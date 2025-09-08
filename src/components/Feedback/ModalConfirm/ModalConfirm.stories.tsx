@@ -32,9 +32,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Warning: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <div className="mb-4 p-4 bg-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+            {isOpen ? "Cerrar Modal" : "Abrir Modal"}
+          </button>
+        </div>
+        <ModalConfirm {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      </div>
+    );
+  },
   args: {
-    isOpen: true,
-    onClose: () => {},
     title: "¿Estás seguro?",
     message: "Esta acción no se puede deshacer. ¿Deseas continuar?",
     icon: "warning",
@@ -45,9 +57,21 @@ export const Warning: Story = {
 };
 
 export const Success: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <div className="mb-4 p-4 bg-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+            {isOpen ? "Cerrar Modal" : "Abrir Modal"}
+          </button>
+        </div>
+        <ModalConfirm {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      </div>
+    );
+  },
   args: {
-    isOpen: true,
-    onClose: () => {},
     title: "¡Operación exitosa!",
     message: "Los datos se han guardado correctamente.",
     icon: "success",
@@ -103,5 +127,10 @@ export const Interactive: Story = {
         />
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      disable: true,
+    },
   },
 };

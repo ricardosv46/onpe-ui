@@ -1,0 +1,1 @@
+export { IconEdge } from "./IconEdge";

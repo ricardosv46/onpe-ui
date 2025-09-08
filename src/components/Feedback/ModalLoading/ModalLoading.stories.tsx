@@ -28,17 +28,41 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <div className="p-4 mb-4 bg-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+            {isOpen ? "Cerrar Modal" : "Abrir Modal"}
+          </button>
+        </div>
+        <ModalLoading {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      </div>
+    );
+  },
   args: {
-    isOpen: true,
-    onClose: () => {},
     message: "Cargando...",
   },
 };
 
 export const CustomMessage: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <div className="p-4 mb-4 bg-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">
+            {isOpen ? "Cerrar Modal" : "Abrir Modal"}
+          </button>
+        </div>
+        <ModalLoading {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      </div>
+    );
+  },
   args: {
-    isOpen: true,
-    onClose: () => {},
     message: "Procesando datos, por favor espere...",
   },
 };
@@ -49,19 +73,19 @@ export const Interactive: Story = {
     const [message, setMessage] = useState("Cargando...");
 
     return (
-      <div className="min-h-screen bg-gray-extra-light p-8">
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
+      <div className="min-h-screen p-8 bg-gray-extra-light">
+        <div className="max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg">
           <h2 className="mb-4 text-xl font-bold text-blue">Demo Modal Loading</h2>
           <p className="mb-6 text-gray-dark">Prueba diferentes mensajes de carga.</p>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-dark mb-2">Mensaje:</label>
+              <label className="block mb-2 text-sm font-medium text-gray-dark">Mensaje:</label>
               <input
                 type="text"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full p-2 border border-gray rounded focus:outline-none focus:ring-2 focus:ring-blue"
+                className="w-full p-2 border rounded border-gray focus:outline-none focus:ring-2 focus:ring-blue"
                 placeholder="Ingresa un mensaje..."
               />
             </div>
@@ -78,5 +102,11 @@ export const Interactive: Story = {
         <ModalLoading isOpen={isOpen} onClose={() => setIsOpen(false)} message={message} />
       </div>
     );
+  },
+  parameters: {
+    layout: "fullscreen",
+    docs: {
+      disable: true,
+    },
   },
 };

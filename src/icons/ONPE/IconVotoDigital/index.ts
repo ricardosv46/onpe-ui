@@ -1,0 +1,1 @@
+export { IconVotoDigital } from "./IconVotoDigital";

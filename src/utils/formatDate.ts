@@ -28,7 +28,7 @@ export function formatDate(date: Date | string, format: "short" | "long" | "time
       minute: "2-digit",
       second: "2-digit",
     },
-  }[format];
+  }[format] as Intl.DateTimeFormatOptions;
 
   return new Intl.DateTimeFormat("es-PE", options).format(dateObj);
 }

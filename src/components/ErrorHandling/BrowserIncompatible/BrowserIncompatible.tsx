@@ -1,10 +1,10 @@
 import React from "react";
 import { Modal } from "../../Modal/Modal";
 import { IconWarning } from "../../../icons/Actions/IconWarning/IconWarning";
-import { IconChromeColor } from "../../../icons/Logos/IconChromeColor/IconChromeColor";
-import { IconSafariColor } from "../../../icons/Logos/IconSafariColor/IconSafariColor";
-import { IconMozillaColor } from "../../../icons/Logos/IconMozillaColor/IconMozillaColor";
-import { IconEdgeColor } from "../../../icons/Logos/IconEdgeColor/IconEdgeColor";
+import { IconChromeColor } from "../../../icons/Browsers/IconChromeColor/IconChromeColor";
+import { IconSafariColor } from "../../../icons/Browsers/IconSafariColor/IconSafariColor";
+import { IconMozillaColor } from "../../../icons/Browsers/IconMozillaColor/IconMozillaColor";
+import { IconEdgeColor } from "../../../icons/Browsers/IconEdgeColor/IconEdgeColor";
 
 export interface BrowserIncompatibleProps {
   isOpen: boolean;
@@ -14,7 +14,7 @@ export interface BrowserIncompatibleProps {
 
 export const BrowserIncompatible = ({ isOpen = false, onClose = () => {}, className = "" }: BrowserIncompatibleProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-5 pb-8 ${className}`} closeButton={true}>
+    <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-5 pb-8 ${className}`} closeButton={true} closeDisabled>
       <div className="flex justify-center items-center">
         <IconWarning className="w-22 h-22 text-skyblue" />
       </div>

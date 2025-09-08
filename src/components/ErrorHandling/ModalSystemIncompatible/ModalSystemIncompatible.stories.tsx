@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { BrowserIncompatible } from "./BrowserIncompatible";
+import { ModalSystemIncompatible } from "./ModalSystemIncompatible";
 
 // @ts-ignore
 import type { Meta, StoryObj } from "@storybook/react";
 
-const meta: Meta<typeof BrowserIncompatible> = {
-  title: "ErrorHandling/BrowserIncompatible",
-  component: BrowserIncompatible,
+const meta: Meta<typeof ModalSystemIncompatible> = {
+  title: "ErrorHandling/ModalSystemIncompatible",
+  component: ModalSystemIncompatible,
   parameters: {
     layout: "fullscreen",
   },
@@ -30,18 +30,16 @@ export const Default: Story = {
 
     return (
       <div>
-        <div className="p-4 mb-4 bg-gray-100 rounded">
-          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+        <div className="mb-4 p-4 bg-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600">
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
-        <BrowserIncompatible {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <ModalSystemIncompatible {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </div>
     );
   },
-  args: {
-    className: "",
-  },
+  args: {},
 };
 
 export const Interactive: Story = {
@@ -49,19 +47,19 @@ export const Interactive: Story = {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-      <div className="min-h-screen p-8 bg-gray-extra-light">
-        <div className="max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg">
-          <h2 className="mb-4 text-xl font-bold text-blue">Demo Browser Incompatible</h2>
-          <p className="mb-6 text-gray-dark">Simula un navegador incompatible para probar el componente.</p>
+      <div className="min-h-screen bg-gray-extra-light p-8">
+        <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
+          <h2 className="mb-4 text-xl font-bold text-blue">Demo Device Incompatible</h2>
+          <p className="mb-6 text-gray-dark">Simula un sistema operativo incompatible para probar el componente.</p>
           <button
             onClick={() => setIsOpen(true)}
             className="w-full px-4 py-2 font-semibold text-white transition-colors rounded bg-red hover:bg-red/80"
           >
-            Simular Navegador Incompatible
+            Simular Sistema Incompatible
           </button>
         </div>
 
-        <BrowserIncompatible isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <ModalSystemIncompatible isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </div>
     );
   },
@@ -78,12 +76,12 @@ export const CustomStyling: Story = {
 
     return (
       <div>
-        <div className="p-4 mb-4 bg-gray-100 rounded">
-          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
+        <div className="mb-4 p-4 bg-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
-        <BrowserIncompatible {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <ModalSystemIncompatible {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </div>
     );
   },

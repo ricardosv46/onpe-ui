@@ -47,7 +47,7 @@ export const ModalConfirm = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-5 pb-8 ${className}`} closeButton={true} topAbsolute={true}>
+    <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-5 pb-8 ${className}`} closeButton={true} closeDisabled topAbsolute={true}>
       <div className="flex items-center justify-center">
         {icon === "warning" && <IconWarning className="w-16 h-16 text-skyblue" />}
         {icon === "success" && <IconCheck className="w-16 h-16 text-skyblue" />}

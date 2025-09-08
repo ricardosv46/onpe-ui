@@ -1,5 +1,11 @@
 // Iconos de Acciones
 export * from "./Actions";
 
-// Iconos de Logos
-export * from "./Logos";
+// Iconos de Navegadores
+export * from "./Browsers";
+
+// Iconos de Sistemas Operativos
+export * from "./OperatingSystems";
+
+// Iconos de ONPE
+export * from "./ONPE";

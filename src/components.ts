@@ -23,5 +23,5 @@ export type { ModalConfirmProps } from "./components/Feedback/ModalConfirm";
 export { ModalLoading } from "./components/Feedback/ModalLoading";
 export type { ModalLoadingProps } from "./components/Feedback/ModalLoading";
 
-export { ModalDeviceIncompatible } from "./components/ErrorHandling/ModalDeviceIncompatible";
-export type { ModalDeviceIncompatibleProps } from "./components/ErrorHandling/ModalDeviceIncompatible";
+export { ModalSystemIncompatible } from "./components/ErrorHandling/ModalSystemIncompatible";
+export type { ModalSystemIncompatibleProps } from "./components/ErrorHandling/ModalSystemIncompatible";

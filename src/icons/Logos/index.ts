@@ -1,8 +1,5 @@
-// Iconos de Logos
-export * from "./IconChromeColor";
-export * from "./IconSafariColor";
-export * from "./IconMozillaColor";
-export * from "./IconEdgeColor";
-export * from "./IconWindow";
-export * from "./IconAndroid";
-export * from "./IconApple";
+// Iconos de Logos Generales
+// (Los logos específicos se han movido a sus respectivas categorías)
+
+// Exportación vacía para que sea un módulo válido
+export {};

@@ -1,0 +1,1 @@
+export { IconChrome } from "./IconChrome";

@@ -1,0 +1,1 @@
+export { IconElectionsGeneral } from "./IconElectionsGeneral";

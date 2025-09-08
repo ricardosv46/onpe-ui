@@ -1,19 +1,19 @@
 import React from "react";
 import { Modal } from "../../Modal/Modal";
 import { IconWarning } from "../../../icons/Actions/IconWarning/IconWarning";
-import { IconWindow } from "../../../icons/Logos/IconWindow/IconWindow";
-import { IconAndroid } from "../../../icons/Logos/IconAndroid/IconAndroid";
-import { IconApple } from "../../../icons/Logos/IconApple/IconApple";
+import { IconWindow } from "../../../icons/OperatingSystems/IconWindow/IconWindow";
+import { IconAndroid } from "../../../icons/OperatingSystems/IconAndroid/IconAndroid";
+import { IconApple } from "../../../icons/OperatingSystems/IconApple/IconApple";
 
-export interface ModalDeviceIncompatibleProps {
+export interface ModalSystemIncompatibleProps {
   isOpen: boolean;
   onClose: () => void;
   className?: string;
 }
 
-export const ModalDeviceIncompatible = ({ isOpen = false, onClose = () => {}, className = "" }: ModalDeviceIncompatibleProps) => {
+export const ModalSystemIncompatible = ({ isOpen = false, onClose = () => {}, className = "" }: ModalSystemIncompatibleProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-10 pb-24.5 ${className}`} closeButton={true}>
+    <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-10 pb-24.5 ${className}`} closeButton={true} closeDisabled>
       <div className="flex justify-center items-center">
         <IconWarning className="w-22 h-22 text-skyblue" />
       </div>
@@ -33,4 +33,4 @@ export const ModalDeviceIncompatible = ({ isOpen = false, onClose = () => {}, cl
   );
 };
 
-export default ModalDeviceIncompatible;
+export default ModalSystemIncompatible;

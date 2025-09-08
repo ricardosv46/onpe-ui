@@ -1,0 +1,1 @@
+export { IconMozilla } from "./IconMozilla";
