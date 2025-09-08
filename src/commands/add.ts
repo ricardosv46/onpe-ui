@@ -9,14 +9,14 @@ export async function addComponent(componentName: string) {
   const isIcon = componentName.toLowerCase().startsWith("icon-");
   const isModal = componentName.toLowerCase().startsWith("modal");
 
-  let folderName = "onpe-ui"; // Por defecto
+  let componentPath;
   if (isIcon) {
-    folderName = "onpe-icons";
-  } else if (isModal) {
-    folderName = "onpe-modals";
+    // Los iconos van en src/icons/
+    componentPath = path.join(process.cwd(), "src", "icons");
+  } else {
+    // Los componentes van en src/components/
+    componentPath = path.join(process.cwd(), "src", "components");
   }
-
-  const componentPath = path.join(process.cwd(), "src", "components", folderName);
 
   // Crear directorio si no existe
   await fs.ensureDir(componentPath);
@@ -121,7 +121,25 @@ export async function addComponent(componentName: string) {
     console.log("\n📋 Próximos pasos:");
     console.log(`1. Importa el ${isIcon ? "icono" : "componente"}:`);
     const componentNamePascal = convertToPascalCase(componentName);
-    const importPath = `./components/${folderName}/${fileName.replace(".tsx", "")}`;
+    let importPath;
+    if (isIcon) {
+      // Para iconos, determinar la subcarpeta correcta
+      const iconType = componentName.toLowerCase().includes("chrome") || componentName.toLowerCase().includes("safari") || componentName.toLowerCase().includes("mozilla") || componentName.toLowerCase().includes("edge") 
+        ? "Browsers" 
+        : componentName.toLowerCase().includes("android") || componentName.toLowerCase().includes("apple") || componentName.toLowerCase().includes("window")
+        ? "OperatingSystems"
+        : "Actions";
+      importPath = `./icons/${iconType}/${componentNamePascal}`;
+    } else {
+      // Para componentes, determinar la subcarpeta correcta
+      if (componentName.toLowerCase().includes("modal-confirm") || componentName.toLowerCase().includes("modal-loading")) {
+        importPath = `./components/Feedback/${componentNamePascal}`;
+      } else if (componentName.toLowerCase().includes("modal-browser") || componentName.toLowerCase().includes("modal-system")) {
+        importPath = `./components/ErrorHandling/${componentNamePascal}`;
+      } else {
+        importPath = `./components/${componentNamePascal}`;
+      }
+    }
     console.log(`   import { ${componentNamePascal} } from '${importPath}'`);
 
     // Mostrar dependencias si las hay
@@ -130,8 +148,26 @@ export async function addComponent(componentName: string) {
       console.log(`2. También se instalaron las dependencias:`);
       dependencies.forEach((dep) => {
         const depPascal = convertToPascalCase(dep);
-        const depFolder = dep.startsWith("icon-") ? "onpe-icons" : dep.startsWith("modal") ? "onpe-modals" : "onpe-ui";
-        console.log(`   import { ${depPascal} } from './components/${depFolder}/${depPascal}'`);
+        let depPath;
+        if (dep.startsWith("icon-")) {
+          const iconType = dep.includes("chrome") || dep.includes("safari") || dep.includes("mozilla") || dep.includes("edge") 
+            ? "Browsers" 
+            : dep.includes("android") || dep.includes("apple") || dep.includes("window")
+            ? "OperatingSystems"
+            : "Actions";
+          depPath = `./icons/${iconType}/${depPascal}`;
+        } else if (dep.startsWith("modal")) {
+          if (dep.includes("confirm") || dep.includes("loading")) {
+            depPath = `./components/Feedback/${depPascal}`;
+          } else if (dep.includes("browser") || dep.includes("system")) {
+            depPath = `./components/ErrorHandling/${depPascal}`;
+          } else {
+            depPath = `./components/${depPascal}`;
+          }
+        } else {
+          depPath = `./components/${depPascal}`;
+        }
+        console.log(`   import { ${depPascal} } from '${depPath}'`);
       });
       console.log(`3. Usa el ${isIcon ? "icono" : "componente"}:`);
     } else {
@@ -155,39 +191,39 @@ function convertToPascalCase(name: string): string {
 function personalizeComponent(code: string, componentName: string): string {
   const componentNamePascal = convertToPascalCase(componentName);
 
-  // Mapeo de componentes y sus nuevas ubicaciones
+  // Mapeo de componentes y sus ubicaciones reales
   const componentPaths = {
-    // Componentes básicos → onpe-ui
-    Button: "./components/onpe-ui/Button",
-    Overlay: "./components/onpe-ui/Overlay",
-    Portal: "./components/onpe-ui/Portal",
-    Show: "./components/onpe-ui/Show",
+    // Componentes básicos
+    Button: "./components/Button",
+    Overlay: "./components/Overlay",
+    Portal: "./components/Portal",
+    Show: "./components/Show",
 
-    // Modales → onpe-modals
-    Modal: "./components/onpe-modals/Modal",
-    ModalConfirm: "./components/onpe-modals/ModalConfirm",
-    ModalLoading: "./components/onpe-modals/ModalLoading",
-    ModalBrowserIncompatible: "./components/onpe-modals/ModalBrowserIncompatible",
-    ModalSystemIncompatible: "./components/onpe-modals/ModalSystemIncompatible",
+    // Modales
+    Modal: "./components/Modal",
+    ModalConfirm: "./components/Feedback/ModalConfirm",
+    ModalLoading: "./components/Feedback/ModalLoading",
+    ModalBrowserIncompatible: "./components/ErrorHandling/ModalBrowserIncompatible",
+    ModalSystemIncompatible: "./components/ErrorHandling/ModalSystemIncompatible",
 
-    // Iconos → onpe-icons
-    IconCheck: "./components/onpe-icons/IconCheck",
-    IconClose: "./components/onpe-icons/IconClose",
-    IconWarning: "./components/onpe-icons/IconWarning",
-    IconSpinnerDesktop: "./components/onpe-icons/IconSpinnerDesktop",
-    IconSpinnerMobile: "./components/onpe-icons/IconSpinnerMobile",
-    IconHome: "./components/onpe-icons/IconHome",
-    IconChrome: "./components/onpe-icons/IconChrome",
-    IconChromeColor: "./components/onpe-icons/IconChromeColor",
-    IconEdge: "./components/onpe-icons/IconEdge",
-    IconEdgeColor: "./components/onpe-icons/IconEdgeColor",
-    IconMozilla: "./components/onpe-icons/IconMozilla",
-    IconMozillaColor: "./components/onpe-icons/IconMozillaColor",
-    IconSafari: "./components/onpe-icons/IconSafari",
-    IconSafariColor: "./components/onpe-icons/IconSafariColor",
-    IconAndroid: "./components/onpe-icons/IconAndroid",
-    IconApple: "./components/onpe-icons/IconApple",
-    IconWindow: "./components/onpe-icons/IconWindow",
+    // Iconos
+    IconCheck: "./icons/Actions/IconCheck",
+    IconClose: "./icons/Actions/IconClose",
+    IconWarning: "./icons/Actions/IconWarning",
+    IconSpinnerDesktop: "./icons/Actions/IconSpinnerDesktop",
+    IconSpinnerMobile: "./icons/Actions/IconSpinnerMobile",
+    IconHome: "./icons/Actions/IconHome",
+    IconChrome: "./icons/Browsers/IconChrome",
+    IconChromeColor: "./icons/Browsers/IconChromeColor",
+    IconEdge: "./icons/Browsers/IconEdge",
+    IconEdgeColor: "./icons/Browsers/IconEdgeColor",
+    IconMozilla: "./icons/Browsers/IconMozilla",
+    IconMozillaColor: "./icons/Browsers/IconMozillaColor",
+    IconSafari: "./icons/Browsers/IconSafari",
+    IconSafariColor: "./icons/Browsers/IconSafariColor",
+    IconAndroid: "./icons/OperatingSystems/IconAndroid",
+    IconApple: "./icons/OperatingSystems/IconApple",
+    IconWindow: "./icons/OperatingSystems/IconWindow",
   };
 
   // Reemplazar las rutas de importación
