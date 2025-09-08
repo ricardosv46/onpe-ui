@@ -70,6 +70,8 @@ export default [
   buildConfig('src/utils.ts', 'utils'),
   // Build lib
   buildConfig('src/lib.ts', 'lib'),
+  // Build CLI
+  buildConfig('src/cli.ts', 'cli'),
   
   // Build standalone CSS
   cssStandaloneConfig,
@@ -80,4 +82,5 @@ export default [
   dtsConfig('src/hooks.ts', 'hooks'),
   dtsConfig('src/utils.ts', 'utils'),
   dtsConfig('src/lib.ts', 'lib'),
+  dtsConfig('src/cli.ts', 'cli'),
 ];
