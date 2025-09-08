@@ -11,8 +11,9 @@ export async function addComponent(componentName: string) {
 
   let componentPath;
   if (isIcon) {
-    // Los iconos van en src/components/onpe-icons/
-    componentPath = path.join(process.cwd(), "src", "components", "onpe-icons");
+    // Determinar la categoría del icono
+    const iconCategory = getIconCategory(componentName);
+    componentPath = path.join(process.cwd(), "src", "components", `onpe-icons-${iconCategory}`);
   } else if (isModalComponent) {
     // Los modales específicos van en src/components/onpe-modals/
     componentPath = path.join(process.cwd(), "src", "components", "onpe-modals");
@@ -126,8 +127,9 @@ export async function addComponent(componentName: string) {
     const componentNamePascal = convertToPascalCase(componentName);
     let importPath;
     if (isIcon) {
-      // Los iconos van en onpe-icons
-      importPath = `../onpe-icons/${componentNamePascal}`;
+      // Los iconos van organizados por categorías
+      const iconCategory = getIconCategory(componentName);
+      importPath = `../onpe-icons-${iconCategory}/${componentNamePascal}`;
     } else {
       // Los componentes van en onpe-modals o onpe-ui
       if (componentName.toLowerCase().startsWith("modal") && componentName !== "modal") {
@@ -146,7 +148,8 @@ export async function addComponent(componentName: string) {
         const depPascal = convertToPascalCase(dep);
         let depPath;
         if (dep.startsWith("icon-")) {
-          depPath = `../onpe-icons/${depPascal}`;
+          const iconCategory = getIconCategory(dep);
+          depPath = `../onpe-icons-${iconCategory}/${depPascal}`;
         } else if (dep.startsWith("modal") && dep !== "modal") {
           depPath = `../onpe-modals/${depPascal}`;
         } else {
@@ -162,6 +165,44 @@ export async function addComponent(componentName: string) {
   } catch (error) {
     throw new Error(`Error al instalar el ${isIcon ? "icono" : "componente"}: ${error.message}`);
   }
+}
+
+function getIconCategory(iconName: string): string {
+  const icon = iconName.toLowerCase();
+
+  // Iconos de acciones
+  if (["icon-check", "icon-close", "icon-warning", "icon-spinner-desktop", "icon-spinner-mobile", "icon-home"].includes(icon)) {
+    return "actions";
+  }
+
+  // Iconos de navegadores
+  if (
+    [
+      "icon-chrome",
+      "icon-chrome-color",
+      "icon-edge",
+      "icon-edge-color",
+      "icon-mozilla",
+      "icon-mozilla-color",
+      "icon-safari",
+      "icon-safari-color",
+    ].includes(icon)
+  ) {
+    return "browsers";
+  }
+
+  // Iconos de sistemas operativos
+  if (["icon-android", "icon-apple", "icon-window"].includes(icon)) {
+    return "systems";
+  }
+
+  // Iconos de ONPE
+  if (["icon-elections", "icon-voto-digital"].includes(icon)) {
+    return "onpe";
+  }
+
+  // Por defecto, acciones
+  return "actions";
 }
 
 function convertToPascalCase(name: string): string {
@@ -192,23 +233,29 @@ function personalizeComponent(code: string, componentName: string): string {
     ModalSystemIncompatible: "../onpe-modals/ModalSystemIncompatible",
 
     // Iconos
-    IconCheck: "../onpe-icons/IconCheck",
-    IconClose: "../onpe-icons/IconClose",
-    IconWarning: "../onpe-icons/IconWarning",
-    IconSpinnerDesktop: "../onpe-icons/IconSpinnerDesktop",
-    IconSpinnerMobile: "../onpe-icons/IconSpinnerMobile",
-    IconHome: "../onpe-icons/IconHome",
-    IconChrome: "../onpe-icons/IconChrome",
-    IconChromeColor: "../onpe-icons/IconChromeColor",
-    IconEdge: "../onpe-icons/IconEdge",
-    IconEdgeColor: "../onpe-icons/IconEdgeColor",
-    IconMozilla: "../onpe-icons/IconMozilla",
-    IconMozillaColor: "../onpe-icons/IconMozillaColor",
-    IconSafari: "../onpe-icons/IconSafari",
-    IconSafariColor: "../onpe-icons/IconSafariColor",
-    IconAndroid: "../onpe-icons/IconAndroid",
-    IconApple: "../onpe-icons/IconApple",
-    IconWindow: "../onpe-icons/IconWindow",
+    // Iconos organizados por categorías
+    // Actions
+    IconCheck: "../onpe-icons-actions/IconCheck",
+    IconClose: "../onpe-icons-actions/IconClose",
+    IconWarning: "../onpe-icons-actions/IconWarning",
+    IconSpinnerDesktop: "../onpe-icons-actions/IconSpinnerDesktop",
+    IconSpinnerMobile: "../onpe-icons-actions/IconSpinnerMobile",
+    IconHome: "../onpe-icons-actions/IconHome",
+
+    // Browsers
+    IconChrome: "../onpe-icons-browsers/IconChrome",
+    IconChromeColor: "../onpe-icons-browsers/IconChromeColor",
+    IconEdge: "../onpe-icons-browsers/IconEdge",
+    IconEdgeColor: "../onpe-icons-browsers/IconEdgeColor",
+    IconMozilla: "../onpe-icons-browsers/IconMozilla",
+    IconMozillaColor: "../onpe-icons-browsers/IconMozillaColor",
+    IconSafari: "../onpe-icons-browsers/IconSafari",
+    IconSafariColor: "../onpe-icons-browsers/IconSafariColor",
+
+    // Systems
+    IconAndroid: "../onpe-icons-systems/IconAndroid",
+    IconApple: "../onpe-icons-systems/IconApple",
+    IconWindow: "../onpe-icons-systems/IconWindow",
   };
 
   // Reemplazar las rutas de importación

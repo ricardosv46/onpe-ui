@@ -11,4 +11,3 @@ export const IconHome = ({ size = 20, ...props }: IconHomeProps) => {
     </svg>
   );
 };
-
