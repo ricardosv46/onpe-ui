@@ -44,6 +44,21 @@ const dtsConfig = (input, outputName) => ({
   external: [/\.css$/],
 });
 
+// CSS standalone build configuration
+const cssStandaloneConfig = {
+  input: 'src/styles-standalone.css',
+  output: {
+    file: 'dist/index.css',
+    format: 'es',
+  },
+  plugins: [
+    postcss({
+      extract: true,
+      minimize: true,
+    }),
+  ],
+};
+
 export default [
   // Build main index
   buildConfig('src/index.ts', 'index'),
@@ -55,6 +70,9 @@ export default [
   buildConfig('src/utils.ts', 'utils'),
   // Build lib
   buildConfig('src/lib.ts', 'lib'),
+  
+  // Build standalone CSS
+  cssStandaloneConfig,
   
   // Generate type definitions
   dtsConfig('src/index.ts', 'index'),
