@@ -7,17 +7,17 @@ const ICONS_URL = "https://raw.githubusercontent.com/ricardosv46/onpe-ui/main/sr
 export async function addComponent(componentName: string) {
   // Determinar si es un icono, modal o componente básico
   const isIcon = componentName.toLowerCase().startsWith("icon-");
-  const isModal = componentName.toLowerCase().startsWith("modal");
+  const isModalComponent = componentName.toLowerCase().startsWith("modal") && componentName !== "modal";
 
   let componentPath;
   if (isIcon) {
     // Los iconos van en src/components/onpe-icons/
     componentPath = path.join(process.cwd(), "src", "components", "onpe-icons");
-  } else if (isModal) {
-    // Los modales van en src/components/onpe-modals/
+  } else if (isModalComponent) {
+    // Los modales específicos van en src/components/onpe-modals/
     componentPath = path.join(process.cwd(), "src", "components", "onpe-modals");
   } else {
-    // Los componentes básicos van en src/components/onpe-ui/
+    // Los componentes básicos (incluyendo Modal base) van en src/components/onpe-ui/
     componentPath = path.join(process.cwd(), "src", "components", "onpe-ui");
   }
 
@@ -130,7 +130,7 @@ export async function addComponent(componentName: string) {
       importPath = `../onpe-icons/${componentNamePascal}`;
     } else {
       // Los componentes van en onpe-modals o onpe-ui
-      if (componentName.toLowerCase().includes("modal")) {
+      if (componentName.toLowerCase().startsWith("modal") && componentName !== "modal") {
         importPath = `../onpe-modals/${componentNamePascal}`;
       } else {
         importPath = `../onpe-ui/${componentNamePascal}`;
@@ -147,7 +147,7 @@ export async function addComponent(componentName: string) {
         let depPath;
         if (dep.startsWith("icon-")) {
           depPath = `../onpe-icons/${depPascal}`;
-        } else if (dep.startsWith("modal")) {
+        } else if (dep.startsWith("modal") && dep !== "modal") {
           depPath = `../onpe-modals/${depPascal}`;
         } else {
           depPath = `../onpe-ui/${depPascal}`;
@@ -185,7 +185,7 @@ function personalizeComponent(code: string, componentName: string): string {
     Show: "../onpe-ui/Show",
 
     // Modales
-    Modal: "../onpe-modals/Modal",
+    Modal: "../onpe-ui/Modal", // Modal base va en onpe-ui
     ModalConfirm: "../onpe-modals/ModalConfirm",
     ModalLoading: "../onpe-modals/ModalLoading",
     ModalBrowserIncompatible: "../onpe-modals/ModalBrowserIncompatible",
@@ -246,6 +246,11 @@ function personalizeComponent(code: string, componentName: string): string {
       personalizedCode = personalizedCode.replace(pattern, `from "${newPath}"`);
     });
   });
+
+  // Agregar export default si no existe
+  if (!personalizedCode.includes("export default")) {
+    personalizedCode += `\n\nexport default ${componentNamePascal};`;
+  }
 
   const finalCode = `// Componente ${componentNamePascal} copiado y ajustado para la nueva estructura
 // Las rutas de importación han sido actualizadas automáticamente
