@@ -21,19 +21,19 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = ({ color, title, size, className, ...props }: ButtonProps) => {
   const getColor = () => {
-    if (color === "blue") return "bg-onpe-ui-blue md:hover:bg-onpe-ui-blue/30";
-    if (color === "skyblue") return "bg-onpe-ui-skyblue md:hover:bg-onpe-ui-skyblue/30";
-    if (color === "skyblue-light") return "bg-onpe-ui-skyblue-light md:hover:bg-onpe-ui-skyblue-light/30";
-    if (color === "yellow") return "bg-onpe-ui-yellow md:hover:bg-onpe-ui-yellow/30";
-    if (color === "light-skyblue") return "bg-onpe-ui-light-skyblue md:hover:bg-onpe-ui-light-skyblue/30";
-    if (color === "gray") return "bg-onpe-ui-gray md:hover:bg-onpe-ui-gray/30";
-    if (color === "gray-light") return "bg-onpe-ui-gray-light md:hover:bg-onpe-ui-gray-light/30";
-    if (color === "gray-extra-light") return "bg-onpe-ui-gray-extra-light md:hover:bg-onpe-ui-gray-extra-light/30";
-    if (color === "red") return "bg-onpe-ui-red md:hover:bg-onpe-ui-red/30";
-    if (color === "dark-gray") return "bg-onpe-ui-dark-gray md:hover:bg-onpe-ui-dark-gray/30";
-    if (color === "green") return "bg-onpe-ui-green md:hover:bg-onpe-ui-green/30";
-    if (color === "yellow-light") return "bg-onpe-ui-yellow-light md:hover:bg-onpe-ui-yellow-light/30";
-    if (color === "primary") return "bg-onpe-ui-blue md:hover:bg-onpe-ui-blue/30";
+    if (color === "blue") return "bg-onpe-ui-blue hover:bg-onpe-ui-blue/30";
+    if (color === "skyblue") return "bg-onpe-ui-skyblue hover:bg-onpe-ui-skyblue/30";
+    if (color === "skyblue-light") return "bg-onpe-ui-skyblue-light hover:bg-onpe-ui-skyblue-light/30";
+    if (color === "yellow") return "bg-onpe-ui-yellow hover:bg-onpe-ui-yellow/30";
+    if (color === "light-skyblue") return "bg-onpe-ui-light-skyblue hover:bg-onpe-ui-light-skyblue/30";
+    if (color === "gray") return "bg-onpe-ui-gray hover:bg-onpe-ui-gray/30";
+    if (color === "gray-light") return "bg-onpe-ui-gray-light hover:bg-onpe-ui-gray-light/30";
+    if (color === "gray-extra-light") return "bg-onpe-ui-gray-extra-light hover:bg-onpe-ui-gray-extra-light/30";
+    if (color === "red") return "bg-onpe-ui-red hover:bg-onpe-ui-red/30";
+    if (color === "dark-gray") return "bg-onpe-ui-dark-gray hover:bg-onpe-ui-dark-gray/30";
+    if (color === "green") return "bg-onpe-ui-green hover:bg-onpe-ui-green/30";
+    if (color === "yellow-light") return "bg-onpe-ui-yellow-light hover:bg-onpe-ui-yellow-light/30";
+    if (color === "primary") return "bg-onpe-ui-blue hover:bg-onpe-ui-blue/30";
     return "";
   };
 

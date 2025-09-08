@@ -239,7 +239,7 @@ button{
 .hover\:bg-onpe-ui-green:hover { background-color: var(--color-onpe-ui-green); }
 .hover\:bg-onpe-ui-yellow-light:hover { background-color: var(--color-onpe-ui-yellow-light); }
 
-/* Estados hover con opacidad */
+/* Estados hover con opacidad - funcionan siempre */
 .hover\:bg-onpe-ui-blue\/30:hover { background-color: rgba(0, 55, 112, 0.3); }
 .hover\:bg-onpe-ui-skyblue\/30:hover { background-color: rgba(0, 115, 207, 0.3); }
 .hover\:bg-onpe-ui-skyblue-light\/30:hover { background-color: rgba(105, 178, 232, 0.3); }
@@ -252,6 +252,7 @@ button{
 .hover\:bg-onpe-ui-dark-gray\/30:hover { background-color: rgba(79, 79, 79, 0.3); }
 .hover\:bg-onpe-ui-green\/30:hover { background-color: rgba(118, 189, 67, 0.3); }
 .hover\:bg-onpe-ui-yellow-light\/30:hover { background-color: rgba(255, 241, 210, 0.3); }
+
 
 /* Clases adicionales para el Button */
 .min-w-\[200px\] { min-width: 200px; }
