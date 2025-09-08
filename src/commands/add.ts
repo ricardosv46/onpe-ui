@@ -11,11 +11,14 @@ export async function addComponent(componentName: string) {
 
   let componentPath;
   if (isIcon) {
-    // Los iconos van en src/icons/
-    componentPath = path.join(process.cwd(), "src", "icons");
+    // Los iconos van en src/components/onpe-icons/
+    componentPath = path.join(process.cwd(), "src", "components", "onpe-icons");
+  } else if (isModal) {
+    // Los modales van en src/components/onpe-modals/
+    componentPath = path.join(process.cwd(), "src", "components", "onpe-modals");
   } else {
-    // Los componentes van en src/components/
-    componentPath = path.join(process.cwd(), "src", "components");
+    // Los componentes básicos van en src/components/onpe-ui/
+    componentPath = path.join(process.cwd(), "src", "components", "onpe-ui");
   }
 
   // Crear directorio si no existe
@@ -123,21 +126,14 @@ export async function addComponent(componentName: string) {
     const componentNamePascal = convertToPascalCase(componentName);
     let importPath;
     if (isIcon) {
-      // Para iconos, determinar la subcarpeta correcta
-      const iconType = componentName.toLowerCase().includes("chrome") || componentName.toLowerCase().includes("safari") || componentName.toLowerCase().includes("mozilla") || componentName.toLowerCase().includes("edge") 
-        ? "Browsers" 
-        : componentName.toLowerCase().includes("android") || componentName.toLowerCase().includes("apple") || componentName.toLowerCase().includes("window")
-        ? "OperatingSystems"
-        : "Actions";
-      importPath = `./icons/${iconType}/${componentNamePascal}`;
+      // Los iconos van en onpe-icons
+      importPath = `../onpe-icons/${componentNamePascal}`;
     } else {
-      // Para componentes, determinar la subcarpeta correcta
-      if (componentName.toLowerCase().includes("modal-confirm") || componentName.toLowerCase().includes("modal-loading")) {
-        importPath = `./components/Feedback/${componentNamePascal}`;
-      } else if (componentName.toLowerCase().includes("modal-browser") || componentName.toLowerCase().includes("modal-system")) {
-        importPath = `./components/ErrorHandling/${componentNamePascal}`;
+      // Los componentes van en onpe-modals o onpe-ui
+      if (componentName.toLowerCase().includes("modal")) {
+        importPath = `../onpe-modals/${componentNamePascal}`;
       } else {
-        importPath = `./components/${componentNamePascal}`;
+        importPath = `../onpe-ui/${componentNamePascal}`;
       }
     }
     console.log(`   import { ${componentNamePascal} } from '${importPath}'`);
@@ -150,22 +146,11 @@ export async function addComponent(componentName: string) {
         const depPascal = convertToPascalCase(dep);
         let depPath;
         if (dep.startsWith("icon-")) {
-          const iconType = dep.includes("chrome") || dep.includes("safari") || dep.includes("mozilla") || dep.includes("edge") 
-            ? "Browsers" 
-            : dep.includes("android") || dep.includes("apple") || dep.includes("window")
-            ? "OperatingSystems"
-            : "Actions";
-          depPath = `./icons/${iconType}/${depPascal}`;
+          depPath = `../onpe-icons/${depPascal}`;
         } else if (dep.startsWith("modal")) {
-          if (dep.includes("confirm") || dep.includes("loading")) {
-            depPath = `./components/Feedback/${depPascal}`;
-          } else if (dep.includes("browser") || dep.includes("system")) {
-            depPath = `./components/ErrorHandling/${depPascal}`;
-          } else {
-            depPath = `./components/${depPascal}`;
-          }
+          depPath = `../onpe-modals/${depPascal}`;
         } else {
-          depPath = `./components/${depPascal}`;
+          depPath = `../onpe-ui/${depPascal}`;
         }
         console.log(`   import { ${depPascal} } from '${depPath}'`);
       });
@@ -194,36 +179,36 @@ function personalizeComponent(code: string, componentName: string): string {
   // Mapeo de componentes y sus ubicaciones reales
   const componentPaths = {
     // Componentes básicos
-    Button: "./components/Button",
-    Overlay: "./components/Overlay",
-    Portal: "./components/Portal",
-    Show: "./components/Show",
+    Button: "../onpe-ui/Button",
+    Overlay: "../onpe-ui/Overlay",
+    Portal: "../onpe-ui/Portal",
+    Show: "../onpe-ui/Show",
 
     // Modales
-    Modal: "./components/Modal",
-    ModalConfirm: "./components/Feedback/ModalConfirm",
-    ModalLoading: "./components/Feedback/ModalLoading",
-    ModalBrowserIncompatible: "./components/ErrorHandling/ModalBrowserIncompatible",
-    ModalSystemIncompatible: "./components/ErrorHandling/ModalSystemIncompatible",
+    Modal: "../onpe-modals/Modal",
+    ModalConfirm: "../onpe-modals/ModalConfirm",
+    ModalLoading: "../onpe-modals/ModalLoading",
+    ModalBrowserIncompatible: "../onpe-modals/ModalBrowserIncompatible",
+    ModalSystemIncompatible: "../onpe-modals/ModalSystemIncompatible",
 
     // Iconos
-    IconCheck: "./icons/Actions/IconCheck",
-    IconClose: "./icons/Actions/IconClose",
-    IconWarning: "./icons/Actions/IconWarning",
-    IconSpinnerDesktop: "./icons/Actions/IconSpinnerDesktop",
-    IconSpinnerMobile: "./icons/Actions/IconSpinnerMobile",
-    IconHome: "./icons/Actions/IconHome",
-    IconChrome: "./icons/Browsers/IconChrome",
-    IconChromeColor: "./icons/Browsers/IconChromeColor",
-    IconEdge: "./icons/Browsers/IconEdge",
-    IconEdgeColor: "./icons/Browsers/IconEdgeColor",
-    IconMozilla: "./icons/Browsers/IconMozilla",
-    IconMozillaColor: "./icons/Browsers/IconMozillaColor",
-    IconSafari: "./icons/Browsers/IconSafari",
-    IconSafariColor: "./icons/Browsers/IconSafariColor",
-    IconAndroid: "./icons/OperatingSystems/IconAndroid",
-    IconApple: "./icons/OperatingSystems/IconApple",
-    IconWindow: "./icons/OperatingSystems/IconWindow",
+    IconCheck: "../onpe-icons/IconCheck",
+    IconClose: "../onpe-icons/IconClose",
+    IconWarning: "../onpe-icons/IconWarning",
+    IconSpinnerDesktop: "../onpe-icons/IconSpinnerDesktop",
+    IconSpinnerMobile: "../onpe-icons/IconSpinnerMobile",
+    IconHome: "../onpe-icons/IconHome",
+    IconChrome: "../onpe-icons/IconChrome",
+    IconChromeColor: "../onpe-icons/IconChromeColor",
+    IconEdge: "../onpe-icons/IconEdge",
+    IconEdgeColor: "../onpe-icons/IconEdgeColor",
+    IconMozilla: "../onpe-icons/IconMozilla",
+    IconMozillaColor: "../onpe-icons/IconMozillaColor",
+    IconSafari: "../onpe-icons/IconSafari",
+    IconSafariColor: "../onpe-icons/IconSafariColor",
+    IconAndroid: "../onpe-icons/IconAndroid",
+    IconApple: "../onpe-icons/IconApple",
+    IconWindow: "../onpe-icons/IconWindow",
   };
 
   // Reemplazar las rutas de importación
