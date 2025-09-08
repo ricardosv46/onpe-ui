@@ -1,58 +1,57 @@
-import React from "react";
-import { clsx } from "clsx";
+import React, { type ButtonHTMLAttributes } from "react";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /**
-   * Variante del botón
-   */
-  variant?: "primary" | "secondary" | "outline" | "ghost";
-  /**
-   * Tamaño del botón
-   */
-  size?: "sm" | "md" | "lg";
-  /**
-   * Si el botón está en estado de carga
-   */
-  loading?: boolean;
-  /**
-   * Contenido del botón
-   */
-  children: React.ReactNode;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  color:
+    | "blue"
+    | "skyblue"
+    | "skyblue-light"
+    | "yellow"
+    | "light-skyblue"
+    | "gray"
+    | "gray-light"
+    | "gray-extra-light"
+    | "red"
+    | "dark-gray"
+    | "green"
+    | "yellow-light"
+    | "primary";
+  title: string;
+  size?: "small" | "normal" | "large";
 }
 
-const Button: React.FC<ButtonProps> = ({ variant = "primary", size = "md", loading = false, children, className, disabled, ...props }) => {
-  const baseClasses =
-    "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
-
-  const variantClasses = {
-    primary: "bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light",
-    secondary: "bg-gray text-white hover:bg-dark-gray focus:ring-gray-light",
-    outline: "border border-blue text-blue hover:bg-light-skyblue focus:ring-skyblue-light",
-    ghost: "text-blue hover:bg-light-skyblue focus:ring-skyblue-light",
+export const Button = ({ color, title, size, className, ...props }: ButtonProps) => {
+  const getColor = () => {
+    if (color === "blue") return "bg-blue md:hover:bg-blue/30";
+    if (color === "skyblue") return "bg-skyblue md:hover:bg-skyblue/30";
+    if (color === "skyblue-light") return "bg-skyblue-light md:hover:bg-skyblue-light/30";
+    if (color === "yellow") return "bg-yellow md:hover:bg-yellow/30";
+    if (color === "light-skyblue") return "bg-light-skyblue md:hover:bg-light-skyblue/30";
+    if (color === "gray") return "bg-gray md:hover:bg-gray/30";
+    if (color === "gray-light") return "bg-gray-light md:hover:bg-gray-light/30";
+    if (color === "gray-extra-light") return "bg-gray-extra-light md:hover:bg-gray-extra-light/30";
+    if (color === "red") return "bg-red md:hover:bg-red/30";
+    if (color === "dark-gray") return "bg-dark-gray md:hover:bg-dark-gray/30";
+    if (color === "green") return "bg-green md:hover:bg-green/30";
+    if (color === "yellow-light") return "bg-yellow-light md:hover:bg-yellow-light/30";
+    if (color === "primary") return "bg-blue md:hover:bg-blue/30";
+    return "";
   };
 
-  const sizeClasses = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-4 py-2 text-sm",
-    lg: "px-6 py-3 text-base",
+  const getSize = () => {
+    if (size === "small") return "h-10 text-sm";
+    if (size === "normal") return "h-12 text-base";
+    if (size === "large") return "h-14 text-lg";
+    return "h-12 text-base"; // Por defecto es normal
   };
 
   return (
-    <button className={clsx(baseClasses, variantClasses[variant], sizeClasses[size], className)} disabled={disabled || loading} {...props}>
-      {loading && (
-        <svg className="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          />
-        </svg>
-      )}
-      {children}
+    <button
+      className={`text-white cursor-pointer disabled:cursor-not-allowed flex justify-center items-center font-semibold disabled:bg-gray disabled:hover:bg-gray ${getColor()} ${getSize()} transition-all duration-300 ease-in-out min-w-[200px] ${className}`}
+      {...props}
+    >
+      {title}
     </button>
   );
 };
 
-export { Button };
 export default Button;

@@ -9,16 +9,27 @@ const meta: Meta<typeof Button> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    variant: {
+    color: {
       control: { type: "select" },
-      options: ["primary", "secondary", "outline", "ghost"],
+      options: [
+        "blue",
+        "skyblue",
+        "skyblue-light",
+        "yellow",
+        "light-skyblue",
+        "gray",
+        "gray-light",
+        "gray-extra-light",
+        "red",
+        "dark-gray",
+        "green",
+        "yellow-light",
+        "primary",
+      ],
     },
     size: {
       control: { type: "select" },
-      options: ["sm", "md", "lg"],
-    },
-    loading: {
-      control: { type: "boolean" },
+      options: ["small", "normal", "large"],
     },
   },
 };
@@ -26,62 +37,111 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// Colores principales
 export const Primary: Story = {
   args: {
-    variant: "primary",
-    children: "Botón Primario",
+    color: "primary",
+    title: "Botón Primario",
   },
 };
 
-export const Secondary: Story = {
+export const Blue: Story = {
   args: {
-    variant: "secondary",
-    children: "Botón Secundario",
+    color: "blue",
+    title: "Botón Azul",
   },
 };
 
-export const Outline: Story = {
+export const Skyblue: Story = {
   args: {
-    variant: "outline",
-    children: "Botón Outline",
+    color: "skyblue",
+    title: "Botón Skyblue",
   },
 };
 
-export const Ghost: Story = {
+export const Red: Story = {
   args: {
-    variant: "ghost",
-    children: "Botón Ghost",
+    color: "red",
+    title: "Botón Rojo",
   },
 };
 
-export const Loading: Story = {
+export const Green: Story = {
   args: {
-    variant: "primary",
-    loading: true,
-    children: "Cargando...",
+    color: "green",
+    title: "Botón Verde",
   },
 };
 
+export const Yellow: Story = {
+  args: {
+    color: "yellow",
+    title: "Botón Amarillo",
+  },
+};
+
+// Tamaños
 export const Small: Story = {
   args: {
-    variant: "primary",
-    size: "sm",
-    children: "Pequeño",
+    color: "primary",
+    size: "small",
+    title: "Pequeño",
+  },
+};
+
+export const Normal: Story = {
+  args: {
+    color: "primary",
+    size: "normal",
+    title: "Normal",
   },
 };
 
 export const Large: Story = {
   args: {
-    variant: "primary",
-    size: "lg",
-    children: "Grande",
+    color: "primary",
+    size: "large",
+    title: "Grande",
   },
 };
 
+// Estados especiales
 export const Disabled: Story = {
   args: {
-    variant: "primary",
+    color: "primary",
+    title: "Deshabilitado",
     disabled: true,
-    children: "Deshabilitado",
   },
+};
+
+// Galería de todos los colores
+export const AllColors: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-4">
+      <Button color="primary" title="Primario" />
+      <Button color="blue" title="Azul" />
+      <Button color="skyblue" title="Skyblue" />
+      <Button color="skyblue-light" title="Skyblue Light" />
+      <Button color="yellow" title="Amarillo" />
+      <Button color="light-skyblue" title="Light Skyblue" />
+      <Button color="gray" title="Gris" />
+      <Button color="gray-light" title="Gris Light" />
+      <Button color="gray-extra-light" title="Gris Extra Light" />
+      <Button color="red" title="Rojo" />
+      <Button color="dark-gray" title="Gris Oscuro" />
+      <Button color="green" title="Verde" />
+      <Button color="yellow-light" title="Amarillo Light" />
+    </div>
+  ),
+};
+
+// Galería de todos los tamaños
+export const AllSizes: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-4">
+      <Button color="primary" size="small" title="Pequeño" />
+      <Button color="primary" size="normal" title="Normal" />
+      <Button color="primary" size="large" title="Grande" />
+    </div>
+  ),
 };
