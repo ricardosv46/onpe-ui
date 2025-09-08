@@ -54,6 +54,7 @@ export async function addComponent(componentName: string) {
     "icon-warning": "Actions/IconWarning/IconWarning.tsx",
     "icon-spinner-desktop": "Actions/IconSpinnerDesktop/IconSpinnerDesktop.tsx",
     "icon-spinner-mobile": "Actions/IconSpinnerMobile/IconSpinnerMobile.tsx",
+    "icon-home": "Actions/IconHome/IconHome.tsx",
     "icon-chrome": "Browsers/IconChrome/IconChrome.tsx",
     "icon-chrome-color": "Browsers/IconChromeColor/IconChromeColor.tsx",
     "icon-edge": "Browsers/IconEdge/IconEdge.tsx",
@@ -175,6 +176,7 @@ function personalizeComponent(code: string, componentName: string): string {
     IconWarning: "./components/onpe-icons/IconWarning",
     IconSpinnerDesktop: "./components/onpe-icons/IconSpinnerDesktop",
     IconSpinnerMobile: "./components/onpe-icons/IconSpinnerMobile",
+    IconHome: "./components/onpe-icons/IconHome",
     IconChrome: "./components/onpe-icons/IconChrome",
     IconChromeColor: "./components/onpe-icons/IconChromeColor",
     IconEdge: "./components/onpe-icons/IconEdge",
@@ -197,7 +199,7 @@ function personalizeComponent(code: string, componentName: string): string {
       // Patrones básicos
       `from "../${component}/${component}"`,
       `from "../${component}"`,
-      
+
       // Patrones de iconos con rutas completas
       `from "../../icons/Actions/${component}/${component}"`,
       `from "../../icons/Actions/${component}"`,
@@ -207,7 +209,7 @@ function personalizeComponent(code: string, componentName: string): string {
       `from "../../icons/OperatingSystems/${component}"`,
       `from "../../icons/ONPE/${component}/${component}"`,
       `from "../../icons/ONPE/${component}"`,
-      
+
       // Patrones con más niveles de profundidad
       `from "../../../icons/Actions/${component}/${component}"`,
       `from "../../../icons/Actions/${component}"`,

@@ -5,6 +5,7 @@ import {
   IconWarning,
   IconSpinnerDesktop,
   IconSpinnerMobile,
+  IconHome,
   // Navegadores
   IconChromeColor,
   IconChrome,
@@ -59,6 +60,10 @@ export const ActionsIcons: Story = {
           <div className="p-4 text-center border rounded-lg border-gray">
             <IconSpinnerMobile width={24} height={24} className="mx-auto mb-2 text-onpe-ui-blue animate-spin" />
             <span className="text-sm text-onpe-ui-gray-dark">IconSpinnerMobile</span>
+          </div>
+          <div className="p-4 text-center border rounded-lg border-gray">
+            <IconHome width={24} height={24} className="mx-auto mb-2 text-onpe-ui-blue" />
+            <span className="text-sm text-onpe-ui-gray-dark">IconHome</span>
           </div>
         </div>
       </div>
