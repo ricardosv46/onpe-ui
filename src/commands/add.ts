@@ -12,6 +12,14 @@ export async function addComponent(componentName: string) {
   // Crear directorio si no existe
   await fs.ensureDir(componentPath);
 
+  // Definir dependencias de componentes
+  const componentDependencies = {
+    "browser-incompatible": ["modal", "icon-warning", "icon-chrome-color", "icon-safari-color", "icon-mozilla-color", "icon-edge-color"],
+    "modal-system-incompatible": ["modal", "icon-warning"],
+    "modal-confirm": ["modal"],
+    "modal-loading": ["modal"],
+  };
+
   // Componentes disponibles
   const availableComponents = {
     // Componentes básicos
@@ -38,9 +46,13 @@ export async function addComponent(componentName: string) {
     "icon-spinner-desktop": "Actions/IconSpinnerDesktop/IconSpinnerDesktop.tsx",
     "icon-spinner-mobile": "Actions/IconSpinnerMobile/IconSpinnerMobile.tsx",
     "icon-chrome": "Browsers/IconChrome/IconChrome.tsx",
+    "icon-chrome-color": "Browsers/IconChromeColor/IconChromeColor.tsx",
     "icon-edge": "Browsers/IconEdge/IconEdge.tsx",
+    "icon-edge-color": "Browsers/IconEdgeColor/IconEdgeColor.tsx",
     "icon-mozilla": "Browsers/IconMozilla/IconMozilla.tsx",
+    "icon-mozilla-color": "Browsers/IconMozillaColor/IconMozillaColor.tsx",
     "icon-safari": "Browsers/IconSafari/IconSafari.tsx",
+    "icon-safari-color": "Browsers/IconSafariColor/IconSafariColor.tsx",
     "icon-elections": "ONPE/ElectionsIcon/ElectionsIcon.tsx",
     "icon-voto-digital": "ONPE/IconVotoDigital/IconVotoDigital.tsx",
     "icon-android": "OperatingSystems/IconAndroid/IconAndroid.tsx",
@@ -60,6 +72,20 @@ export async function addComponent(componentName: string) {
   }
 
   try {
+    // Instalar dependencias si es un componente que las tiene
+    if (!isIcon && componentDependencies[componentName.toLowerCase()]) {
+      const dependencies = componentDependencies[componentName.toLowerCase()];
+      console.log(`🔗 Instalando dependencias: ${dependencies.join(", ")}`);
+      
+      for (const dependency of dependencies) {
+        try {
+          await addComponent(dependency);
+        } catch (depError) {
+          console.warn(`⚠️  No se pudo instalar la dependencia '${dependency}': ${depError.message}`);
+        }
+      }
+    }
+
     // Descargar el componente o icono
     const downloadUrl = isIcon ? `${ICONS_URL}/${componentFile}` : `${COMPONENTS_URL}/${componentFile}`;
     const response = await fetch(downloadUrl);
