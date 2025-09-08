@@ -15,7 +15,17 @@ Librería completa de componentes de interfaz de usuario para aplicaciones de la
 
 ```bash
 npm install @onpe/ui
-`` ` esolo logica verdad ?
+```
+
+## ⚠️ Importante sobre TailwindCSS
+
+Esta librería **NO requiere** que instales TailwindCSS en tu proyecto. Los estilos ya están compilados y optimizados. Solo necesitas importar los estilos:
+
+```css
+@import "@onpe/ui/styles";
+```
+
+Si quieres extender los estilos con tus propias clases de TailwindCSS, entonces sí necesitarías instalar TailwindCSS en tu proyecto.
 
 ## 📖 Uso Básico
 
@@ -33,12 +43,8 @@ import { Button } from '@onpe/ui/components';
 function App() {
   return (
     <div>
-      <Button variant="primary" size="md">
-        Votar Ahora
-      </Button>
-      <Button variant="outline" size="lg">
-        Ver Resultados
-      </Button>
+      <Button color="primary" title="Votar Ahora" size="normal" />
+      <Button color="skyblue" title="Ver Resultados" size="large" />
     </div>
   );
 }
@@ -67,36 +73,152 @@ function App() {
 
 ### Button
 
+Botón versátil con múltiples colores y tamaños.
+
 Botón versátil con múltiples variantes y tamaños.
 
 ```tsx
 import { Button } from '@onpe/ui/components';
 
-// Variantes
-<Button variant="primary">Primario</Button>
-<Button variant="secondary">Secundario</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
+// Colores disponibles
+<Button color="primary" title="Primario" />
+<Button color="blue" title="Azul" />
+<Button color="skyblue" title="Sky Blue" />
+<Button color="green" title="Verde" />
+<Button color="yellow" title="Amarillo" />
+<Button color="red" title="Rojo" />
 
 // Tamaños
-<Button size="sm">Pequeño</Button>
-<Button size="md">Mediano</Button>
-<Button size="lg">Grande</Button>
+<Button color="primary" title="Pequeño" size="small" />
+<Button color="primary" title="Mediano" size="normal" />
+<Button color="primary" title="Grande" size="large" />
 
 // Estados
-<Button loading>Cargando...</Button>
-<Button disabled>Deshabilitado</Button>
+<Button color="primary" title="Deshabilitado" disabled />
 ```
 
 ### Props del Button
 
 | Prop | Tipo | Default | Descripción |
 |------|------|---------|-------------|
-| `variant` | `'primary' \| 'secondary' \| 'outline' \| 'ghost'` | `'primary'` | Estilo del botón |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Tamaño del botón |
-| `loading` | `boolean` | `false` | Estado de carga |
+| `color` | `'primary' \| 'blue' \| 'skyblue' \| 'skyblue-light' \| 'yellow' \| 'light-skyblue' \| 'gray' \| 'gray-light' \| 'gray-extra-light' \| 'red' \| 'dark-gray' \| 'green' \| 'yellow-light'` | `'primary'` | Color del botón |
+| `title` | `string` | - | Texto del botón (requerido) |
+| `size` | `'small' \| 'normal' \| 'large'` | `'normal'` | Tamaño del botón |
 | `disabled` | `boolean` | `false` | Estado deshabilitado |
-| `children` | `ReactNode` | - | Contenido del botón |
+| `className` | `string` | - | Clases CSS adicionales |
+
+### Modal
+
+Componente modal para mostrar contenido en overlay.
+
+```tsx
+import { Modal } from '@onpe/ui/components';
+
+function App() {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  return (
+    <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <h2>Contenido del Modal</h2>
+      <p>Este es el contenido del modal.</p>
+    </Modal>
+  );
+}
+```
+
+### Overlay
+
+Componente overlay para superponer contenido.
+
+```tsx
+import { Overlay } from '@onpe/ui/components';
+
+function App() {
+  return (
+    <Overlay>
+      <div>Contenido superpuesto</div>
+    </Overlay>
+  );
+}
+```
+
+### Portal
+
+Componente portal para renderizar fuera del DOM padre.
+
+```tsx
+import { Portal } from '@onpe/ui/components';
+
+function App() {
+  return (
+    <Portal>
+      <div>Contenido renderizado en portal</div>
+    </Portal>
+  );
+}
+```
+
+### Show
+
+Componente condicional para mostrar/ocultar contenido.
+
+```tsx
+import { Show } from '@onpe/ui/components';
+
+function App() {
+  const [visible, setVisible] = useState(true);
+  
+  return (
+    <Show when={visible}>
+      <div>Contenido visible</div>
+    </Show>
+  );
+}
+```
+
+### ModalConfirm
+
+Modal de confirmación para acciones importantes.
+
+```tsx
+import { ModalConfirm } from '@onpe/ui/components';
+
+function App() {
+  const [showConfirm, setShowConfirm] = useState(false);
+  
+  return (
+    <ModalConfirm
+      isOpen={showConfirm}
+      onClose={() => setShowConfirm(false)}
+      onConfirm={() => {
+        // Acción a confirmar
+        setShowConfirm(false);
+      }}
+      title="Confirmar acción"
+      message="¿Estás seguro de realizar esta acción?"
+    />
+  );
+}
+```
+
+### ModalLoading
+
+Modal de carga para mostrar estados de procesamiento.
+
+```tsx
+import { ModalLoading } from '@onpe/ui/components';
+
+function App() {
+  const [loading, setLoading] = useState(false);
+  
+  return (
+    <ModalLoading
+      isOpen={loading}
+      message="Procesando información..."
+    />
+  );
+}
+```
 
 ## 🎯 Hooks Disponibles
 
@@ -141,6 +263,45 @@ function SettingsComponent() {
       <option value="light">Claro</option>
       <option value="dark">Oscuro</option>
     </select>
+  );
+}
+```
+
+## 🎨 Iconos Disponibles
+
+La librería incluye una colección completa de iconos organizados por categorías:
+
+### Iconos de Acciones
+- Iconos para acciones comunes (editar, eliminar, guardar, etc.)
+
+### Iconos de Navegadores
+- Iconos de navegadores web (Chrome, Firefox, Safari, Edge, etc.)
+
+### Iconos de Sistemas Operativos
+- Iconos de sistemas operativos (Windows, macOS, Linux, etc.)
+
+### Iconos ONPE
+- Iconos específicos de la institución ONPE
+
+### Logos
+- Logotipos oficiales y marcas
+
+```tsx
+import { 
+  IconChrome, 
+  IconFirefox, 
+  IconSafari,
+  IconWindows,
+  IconMacOS 
+} from '@onpe/ui/icons';
+
+function App() {
+  return (
+    <div>
+      <IconChrome className="w-6 h-6" />
+      <IconFirefox className="w-6 h-6" />
+      <IconSafari className="w-6 h-6" />
+    </div>
   );
 }
 ```
@@ -217,6 +378,13 @@ La librería incluye breakpoints personalizados para ONPE:
 .bg-gray-extra-light /* Fondo gris muy claro */
 ```
 
+## 📋 Versiones
+
+- **v1.0.4** - Versión actual
+- Compatible con React 16.8+
+- TailwindCSS v4
+- TypeScript 5.3+
+
 ## 🔧 Desarrollo
 
 ### Requisitos
@@ -258,6 +426,7 @@ MIT © ONPE - Oficina Nacional de Procesos Electorales
 - 🐛 Issues: [GitHub Issues](https://github.com/ricardosv46/onpe-ui/issues)
 - 📖 Documentación: [Storybook](https://onpe-ui-components.netlify.app)
 - 🔗 Repositorio: [GitHub](https://github.com/ricardosv46/onpe-ui)
+- 📦 NPM: [@onpe/ui](https://www.npmjs.com/package/@onpe/ui)
 
 ---
 
