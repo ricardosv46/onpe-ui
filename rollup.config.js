@@ -46,7 +46,7 @@ const dtsConfig = (input, outputName) => ({
 
 // CSS standalone build configuration
 const cssStandaloneConfig = {
-  input: 'src/styles-standalone.css',
+  input: 'src/styles.css',
   output: {
     file: 'dist/index.css',
     format: 'es',

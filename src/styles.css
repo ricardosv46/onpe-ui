@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* Solo importamos las utilidades específicas que necesitamos */
+@import "tailwindcss/utilities";
 
 :root {
   --blue: #003770;
