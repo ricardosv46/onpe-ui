@@ -51,7 +51,7 @@ export const Modal = ({
         ])}
       >
         <Overlay show={isOpen} onClick={closeDisabled ? undefined : onClose} color={overlayColor} />
-        <div className="z-20 grid place-items-center relative">
+        <div className="relative z-20 grid place-items-center">
           <div
             className={classNames([
               "relative",

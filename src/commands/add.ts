@@ -109,7 +109,7 @@ export async function addComponent(componentName: string) {
     const personalizedCode = personalizeComponent(componentCode, componentName);
 
     // Guardar el componente
-    const fileName = `${componentName.charAt(0).toUpperCase() + componentName.slice(1)}.tsx`;
+    const fileName = `${convertToPascalCase(componentName)}.tsx`;
     const filePath = path.join(componentPath, fileName);
 
     await fs.writeFile(filePath, personalizedCode);
@@ -119,21 +119,98 @@ export async function addComponent(componentName: string) {
     // Mostrar instrucciones
     console.log("\n📋 Próximos pasos:");
     console.log(`1. Importa el ${isIcon ? "icono" : "componente"}:`);
+    const componentNamePascal = convertToPascalCase(componentName);
     const importPath = `./components/${folderName}/${fileName.replace(".tsx", "")}`;
-    console.log(`   import { ${componentName.charAt(0).toUpperCase() + componentName.slice(1)} } from '${importPath}'`);
-    console.log(`2. Usa el ${isIcon ? "icono" : "componente"}:`);
-    console.log(`   <${componentName.charAt(0).toUpperCase() + componentName.slice(1)} />`);
+    console.log(`   import { ${componentNamePascal} } from '${importPath}'`);
+
+    // Mostrar dependencias si las hay
+    if (!isIcon && componentDependencies[componentName.toLowerCase()]) {
+      const dependencies = componentDependencies[componentName.toLowerCase()];
+      console.log(`2. También se instalaron las dependencias:`);
+      dependencies.forEach((dep) => {
+        const depPascal = convertToPascalCase(dep);
+        const depFolder = dep.startsWith("icon-") ? "onpe-icons" : dep.startsWith("modal") ? "onpe-modals" : "onpe-ui";
+        console.log(`   import { ${depPascal} } from './components/${depFolder}/${depPascal}'`);
+      });
+      console.log(`3. Usa el ${isIcon ? "icono" : "componente"}:`);
+    } else {
+      console.log(`2. Usa el ${isIcon ? "icono" : "componente"}:`);
+    }
+    console.log(`   <${componentNamePascal} />`);
   } catch (error) {
     throw new Error(`Error al instalar el ${isIcon ? "icono" : "componente"}: ${error.message}`);
   }
 }
 
+function convertToPascalCase(name: string): string {
+  // Convertir kebab-case a PascalCase
+  // Ejemplo: "icon-android" → "IconAndroid"
+  return name
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join("");
+}
+
 function personalizeComponent(code: string, componentName: string): string {
-  // Solo agregar comentario, sin cambiar nada
-  const personalizedCode = `// Componente ${componentName.charAt(0).toUpperCase() + componentName.slice(1)} copiado tal cual
-// Puedes modificar los colores y estilos según tus necesidades
+  const componentNamePascal = convertToPascalCase(componentName);
 
-${code}`;
+  // Mapeo de componentes y sus nuevas ubicaciones
+  const componentPaths = {
+    // Componentes básicos → onpe-ui
+    Button: "./components/onpe-ui/Button",
+    Overlay: "./components/onpe-ui/Overlay",
+    Portal: "./components/onpe-ui/Portal",
+    Show: "./components/onpe-ui/Show",
 
-  return personalizedCode;
+    // Modales → onpe-modals
+    Modal: "./components/onpe-modals/Modal",
+    ModalConfirm: "./components/onpe-modals/ModalConfirm",
+    ModalLoading: "./components/onpe-modals/ModalLoading",
+    ModalBrowserIncompatible: "./components/onpe-modals/ModalBrowserIncompatible",
+    ModalSystemIncompatible: "./components/onpe-modals/ModalSystemIncompatible",
+
+    // Iconos → onpe-icons
+    IconCheck: "./components/onpe-icons/IconCheck",
+    IconClose: "./components/onpe-icons/IconClose",
+    IconWarning: "./components/onpe-icons/IconWarning",
+    IconSpinnerDesktop: "./components/onpe-icons/IconSpinnerDesktop",
+    IconSpinnerMobile: "./components/onpe-icons/IconSpinnerMobile",
+    IconChrome: "./components/onpe-icons/IconChrome",
+    IconChromeColor: "./components/onpe-icons/IconChromeColor",
+    IconEdge: "./components/onpe-icons/IconEdge",
+    IconEdgeColor: "./components/onpe-icons/IconEdgeColor",
+    IconMozilla: "./components/onpe-icons/IconMozilla",
+    IconMozillaColor: "./components/onpe-icons/IconMozillaColor",
+    IconSafari: "./components/onpe-icons/IconSafari",
+    IconSafariColor: "./components/onpe-icons/IconSafariColor",
+    IconAndroid: "./components/onpe-icons/IconAndroid",
+    IconApple: "./components/onpe-icons/IconApple",
+    IconWindow: "./components/onpe-icons/IconWindow",
+  };
+
+  // Reemplazar las rutas de importación
+  let personalizedCode = code;
+
+  // Reemplazar imports relativos con las nuevas rutas
+  Object.entries(componentPaths).forEach(([component, newPath]) => {
+    const oldPatterns = [
+      `from "../${component}/${component}"`,
+      `from "../${component}"`,
+      `from "../../icons/Actions/${component}"`,
+      `from "../../icons/Browsers/${component}"`,
+      `from "../../icons/OperatingSystems/${component}"`,
+      `from "../../icons/ONPE/${component}"`,
+    ];
+
+    oldPatterns.forEach((pattern) => {
+      personalizedCode = personalizedCode.replace(pattern, `from "${newPath}"`);
+    });
+  });
+
+  const finalCode = `// Componente ${componentNamePascal} copiado y ajustado para la nueva estructura
+// Las rutas de importación han sido actualizadas automáticamente
+
+${personalizedCode}`;
+
+  return finalCode;
 }
