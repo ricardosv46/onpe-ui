@@ -1,4 +1,4 @@
-# 🗳️ ONPE
+# 🗳️ ONPE UI
 
 Librería completa de componentes de interfaz de usuario para aplicaciones de la Oficina Nacional de Procesos Electorales (ONPE) del Perú.
 
@@ -225,8 +225,8 @@ La librería incluye breakpoints personalizados para ONPE:
 
 ### Instalación para desarrollo
 ```bash
-git clone https://github.com/onpe/ui-components.git
-cd ui-components
+git clone https://github.com/ricardosv46/onpe-ui.git
+cd onpe-ui
 npm install
 ```
 
@@ -255,8 +255,9 @@ MIT © ONPE - Oficina Nacional de Procesos Electorales
 ## 📞 Soporte
 
 - 📧 Email: desarrollo@onpe.gob.pe
-- 🐛 Issues: [GitHub Issues](https://github.com/onpe/ui-components/issues)
+- 🐛 Issues: [GitHub Issues](https://github.com/ricardosv46/onpe-ui/issues)
 - 📖 Documentación: [Storybook](https://onpe-ui-components.netlify.app)
+- 🔗 Repositorio: [GitHub](https://github.com/ricardosv46/onpe-ui)
 
 ---
 
