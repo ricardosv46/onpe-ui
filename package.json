@@ -7,7 +7,7 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "@onpe/ui": "dist/cli.js"
+    "ui": "dist/cli.js"
   },
   "exports": {
     ".": {
