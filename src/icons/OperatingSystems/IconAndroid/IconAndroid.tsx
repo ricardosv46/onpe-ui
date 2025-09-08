@@ -12,4 +12,3 @@ export const IconAndroid = (props: IconAndroidProps) => (
   </svg>
 );
 
-export default IconAndroid;

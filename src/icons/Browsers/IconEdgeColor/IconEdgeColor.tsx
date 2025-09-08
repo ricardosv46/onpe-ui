@@ -114,4 +114,3 @@ export const IconEdgeColor = (props: IconEdgeColorProps) => (
   </svg>
 );
 
-export default IconEdgeColor;

@@ -15,4 +15,3 @@ export const IconClose = (props: IconCloseProps) => (
   </svg>
 );
 
-export default IconClose;

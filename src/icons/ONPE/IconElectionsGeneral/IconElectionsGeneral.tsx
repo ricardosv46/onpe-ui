@@ -248,4 +248,3 @@ export const IconElectionsGeneral = (props: IconElectionsGeneralProps) => (
   </svg>
 );
 
-export default IconElectionsGeneral;

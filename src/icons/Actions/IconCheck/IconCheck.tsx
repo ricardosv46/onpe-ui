@@ -12,4 +12,3 @@ export const IconCheck = (props: IconCheckProps) => (
   </svg>
 );
 
-export default IconCheck;

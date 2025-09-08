@@ -31,4 +31,3 @@ export const IconSafariColor = (props: IconSafariColorProps) => (
   </svg>
 );
 
-export default IconSafariColor;

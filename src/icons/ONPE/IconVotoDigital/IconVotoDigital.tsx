@@ -70,4 +70,3 @@ export const IconVotoDigital = (props: IconVotoDigitalProps) => (
   </svg>
 );
 
-export default IconVotoDigital;

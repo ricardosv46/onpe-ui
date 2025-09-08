@@ -14,4 +14,3 @@ export const IconSpinnerMobile = (props: IconSpinnerMobileProps) => (
   </svg>
 );
 
-export default IconSpinnerMobile;

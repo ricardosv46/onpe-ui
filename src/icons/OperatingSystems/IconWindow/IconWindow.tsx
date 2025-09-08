@@ -12,4 +12,3 @@ export const IconWindow = (props: IconWindowProps) => (
   </svg>
 );
 
-export default IconWindow;

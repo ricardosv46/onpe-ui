@@ -223,4 +223,3 @@ export const IconMozillaColor = (props: IconMozillaColorProps) => (
   </svg>
 );
 
-export default IconMozillaColor;

@@ -12,4 +12,3 @@ export const IconWarning = (props: IconWarningProps) => (
   </svg>
 );
 
-export default IconWarning;

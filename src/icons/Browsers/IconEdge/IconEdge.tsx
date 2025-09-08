@@ -19,4 +19,3 @@ export const IconEdge = (props: IconEdgeProps) => (
   </svg>
 );
 
-export default IconEdge;

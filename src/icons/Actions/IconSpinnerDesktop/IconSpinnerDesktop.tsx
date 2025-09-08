@@ -14,4 +14,3 @@ export const IconSpinnerDesktop = (props: IconSpinnerDesktopProps) => (
   </svg>
 );
 
-export default IconSpinnerDesktop;

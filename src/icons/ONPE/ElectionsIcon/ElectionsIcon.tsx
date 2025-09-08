@@ -15,4 +15,3 @@ export const ElectionsIcon = (props: ElectionsIconProps) => (
   </svg>
 );
 
-export default ElectionsIcon;

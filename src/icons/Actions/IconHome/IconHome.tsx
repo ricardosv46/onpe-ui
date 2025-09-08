@@ -12,4 +12,3 @@ export const IconHome = ({ size = 20, ...props }: IconHomeProps) => {
   );
 };
 
-export default IconHome;

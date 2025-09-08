@@ -31,4 +31,3 @@ export const IconChrome = (props: IconChromeProps) => (
   </svg>
 );
 
-export default IconChrome;

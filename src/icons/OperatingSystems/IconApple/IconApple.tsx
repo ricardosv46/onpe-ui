@@ -18,4 +18,3 @@ export const IconApple = (props: IconAppleProps) => (
   </svg>
 );
 
-export default IconApple;

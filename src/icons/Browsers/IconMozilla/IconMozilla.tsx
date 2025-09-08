@@ -19,4 +19,3 @@ export const IconMozilla = (props: IconMozillaProps) => (
   </svg>
 );
 
-export default IconMozilla;
