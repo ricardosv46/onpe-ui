@@ -1,22 +1,6 @@
 /* Estilos ONPE UI - CSS puro que funciona en cualquier proyecto */
 
 @import "tailwindcss";
-
-@config {
-  --color-onpe-ui-blue: #003770;
-  --color-onpe-ui-skyblue: #0073cf;
-  --color-onpe-ui-skyblue-light: #69b2e8;
-  --color-onpe-ui-yellow: #ffb81c;
-  --color-onpe-ui-light-skyblue: #aaeff6;
-  --color-onpe-ui-gray: #bcbcbc;
-  --color-onpe-ui-gray-light: #bdbdbd;
-  --color-onpe-ui-gray-extra-light: #f2f2f2;
-  --color-onpe-ui-red: #e3002b;
-  --color-onpe-ui-dark-gray: #4f4f4f;
-  --color-onpe-ui-green: #76bd43;
-  --color-onpe-ui-yellow-light: #FFF1D2;
-}
-
 :root {
   --blue: #003770;
   --skyblue: #0073cf;
@@ -31,6 +15,22 @@
   --green: #76bd43;
   --yellow-light: #FFF1D2;
 }
+
+@theme {
+  --color-onpe-ui-blue: #003770;
+  --color-onpe-ui-skyblue: #0073cf;
+  --color-onpe-ui-skyblue-light: #69b2e8;
+  --color-onpe-ui-yellow: #ffb81c;
+  --color-onpe-ui-light-skyblue: #aaeff6;
+  --color-onpe-ui-gray: #bcbcbc;
+  --color-onpe-ui-gray-light: #bdbdbd;
+  --color-onpe-ui-gray-extra-light: #f2f2f2;
+  --color-onpe-ui-red: #e3002b;
+  --color-onpe-ui-dark-gray: #4f4f4f;
+  --color-onpe-ui-green: #76bd43;
+  --color-onpe-ui-yellow-light: #FFF1D2;
+}
+
 
 
 
