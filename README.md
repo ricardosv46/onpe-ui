@@ -29,7 +29,11 @@ npx @onpe/ui add <componente>
 
 ## ⚠️ Importante sobre Estilos
 
-**Esta librería requiere que instales y configures TailwindCSS en tu proyecto.** Los componentes usan clases de TailwindCSS que necesitan estar configuradas correctamente.
+**Esta librería usa Tailwind CSS v4** y requiere configuración específica. Los componentes usan clases de TailwindCSS que necesitan estar configuradas correctamente.
+
+### 🆕 Tailwind CSS v4
+
+Esta librería utiliza **Tailwind CSS v4** (la última versión) que tiene una configuración diferente a las versiones anteriores. La configuración se hace directamente en el CSS usando `@theme` y `@utility`.
 
 ## 📖 Uso Básico
 
@@ -108,41 +112,52 @@ npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 
-**2. Configurar tailwind.config.js:**
+**2. Configurar PostCSS para Tailwind v4:**
 ```javascript
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {
-      colors: {
-        'onpe-ui-blue': '#003770',
-        'onpe-ui-skyblue': '#0073cf',
-        'onpe-ui-skyblue-light': '#69b2e8',
-        'onpe-ui-yellow': '#ffb81c',
-        'onpe-ui-light-skyblue': '#aaeff6',
-        'onpe-ui-gray': '#bcbcbc',
-        'onpe-ui-gray-light': '#bdbdbd',
-        'onpe-ui-gray-extra-light': '#f2f2f2',
-        'onpe-ui-red': '#e3002b',
-        'onpe-ui-dark-gray': '#4f4f4f',
-        'onpe-ui-green': '#76bd43',
-        'onpe-ui-yellow-light': '#FFF1D2',
-      }
-    },
+// postcss.config.js
+export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+    autoprefixer: {},
   },
-  plugins: [],
 }
 ```
 
-**3. Agregar estilos base en index.css:**
+**3. Crear archivo CSS con configuración Tailwind v4:**
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* onpe-ui.css */
+@import "tailwindcss";
+
+@theme {
+  --color-onpe-ui-blue: #003770;
+  --color-onpe-ui-skyblue: #0073cf;
+  --color-onpe-ui-skyblue-light: #69b2e8;
+  --color-onpe-ui-yellow: #ffb81c;
+  --color-onpe-ui-light-skyblue: #aaeff6;
+  --color-onpe-ui-gray: #bcbcbc;
+  --color-onpe-ui-gray-light: #bdbdbd;
+  --color-onpe-ui-gray-extra-light: #f2f2f2;
+  --color-onpe-ui-red: #e3002b;
+  --color-onpe-ui-dark-gray: #4f4f4f;
+  --color-onpe-ui-green: #76bd43;
+  --color-onpe-ui-yellow-light: #FFF1D2;
+}
+
+/* Clases personalizadas ONPE */
+@utility bg-onpe-ui-blue { background-color: var(--color-onpe-ui-blue); }
+@utility text-onpe-ui-blue { color: var(--color-onpe-ui-blue); }
+@utility border-onpe-ui-blue { border-color: var(--color-onpe-ui-blue); }
+/* ... resto de clases personalizadas */
 ```
 
-**4. Para componentes que usan Portal, agregar en public/index.html:**
+**4. Importar el archivo CSS en tu aplicación:**
+```tsx
+// En tu archivo principal (index.tsx o App.tsx)
+import './onpe-ui.css'; // ← IMPORTANTE: Importar primero
+import { Button } from './components/onpe-ui/Button';
+```
+
+**5. Para componentes que usan Portal, agregar en public/index.html:**
 ```html
 <!DOCTYPE html>
 <html lang="es">
@@ -185,6 +200,21 @@ Modal
 ├── Overlay (requerido)
 └── IconClose (requerido)
 
+ModalBrowserIncompatible
+├── Modal (requerido)
+├── IconWarning (requerido)
+├── IconChromeColor (requerido)
+├── IconSafariColor (requerido)
+├── IconMozillaColor (requerido)
+└── IconEdgeColor (requerido)
+
+ModalSystemIncompatible
+├── Modal (requerido)
+├── IconWarning (requerido)
+├── IconWindow (requerido)
+├── IconAndroid (requerido)
+└── IconApple (requerido)
+
 Portal
 └── react-dom (createPortal)
 
@@ -207,6 +237,29 @@ npx @onpe/ui add modal
 # - Portal.tsx
 # - Overlay.tsx
 # - IconClose.tsx (si está disponible)
+```
+
+**ModalBrowserIncompatible** - Instala automáticamente sus dependencias:
+```bash
+npx @onpe/ui add modal-browser-incompatible
+# Esto instalará automáticamente:
+# - Modal.tsx
+# - IconWarning.tsx
+# - IconChromeColor.tsx
+# - IconSafariColor.tsx
+# - IconMozillaColor.tsx
+# - IconEdgeColor.tsx
+```
+
+**ModalSystemIncompatible** - Instala automáticamente sus dependencias:
+```bash
+npx @onpe/ui add modal-system-incompatible
+# Esto instalará automáticamente:
+# - Modal.tsx
+# - IconWarning.tsx
+# - IconWindow.tsx
+# - IconAndroid.tsx
+# - IconApple.tsx
 ```
 
 **Otros componentes** - Instalación independiente:
@@ -665,6 +718,58 @@ function App() {
   );
 }
 ```
+
+### ModalBrowserIncompatible
+
+Modal mejorado para mostrar cuando el navegador no es compatible con el sistema de votación.
+
+```tsx
+import { ModalBrowserIncompatible } from '@onpe/ui/components';
+
+function App() {
+  const [showBrowserModal, setShowBrowserModal] = useState(false);
+  
+  return (
+    <ModalBrowserIncompatible
+      isOpen={showBrowserModal}
+      onClose={() => setShowBrowserModal(false)}
+    />
+  );
+}
+```
+
+**Características del modal mejorado:**
+- ✅ Mensaje claro sobre incompatibilidad
+- ✅ Lista visual de navegadores compatibles con nombres
+- ✅ Información sobre seguridad y versiones
+- ✅ Diseño responsive y accesible
+- ✅ Colores institucionales ONPE
+
+### ModalSystemIncompatible
+
+Modal mejorado para mostrar cuando el sistema operativo no es compatible con ONPEID.
+
+```tsx
+import { ModalSystemIncompatible } from '@onpe/ui/components';
+
+function App() {
+  const [showSystemModal, setShowSystemModal] = useState(false);
+  
+  return (
+    <ModalSystemIncompatible
+      isOpen={showSystemModal}
+      onClose={() => setShowSystemModal(false)}
+    />
+  );
+}
+```
+
+**Características del modal mejorado:**
+- ✅ Información específica sobre ONPEID
+- ✅ Lista de sistemas operativos compatibles con versiones mínimas
+- ✅ Alternativa de acceso web
+- ✅ Información de seguridad sobre fuentes oficiales
+- ✅ Diseño intuitivo y profesional
 
 ## 🎯 Hooks Disponibles
 

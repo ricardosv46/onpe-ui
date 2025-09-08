@@ -15,7 +15,7 @@ export async function addComponent(componentName: string) {
   // Definir dependencias de componentes
   const componentDependencies = {
     "modal-browser-incompatible": ["modal", "icon-warning", "icon-chrome-color", "icon-safari-color", "icon-mozilla-color", "icon-edge-color"],
-    "modal-system-incompatible": ["modal", "icon-warning"],
+    "modal-system-incompatible": ["modal", "icon-warning", "icon-window", "icon-android", "icon-apple"],
     "modal-confirm": ["modal"],
     "modal-loading": ["modal"],
   };
