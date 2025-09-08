@@ -1,5 +1,7 @@
 /* Solo definimos nuestras variables y estilos personalizados */
 
+@import "tailwindcss";
+
 :root {
   --blue: #003770;
   --skyblue: #0073cf;

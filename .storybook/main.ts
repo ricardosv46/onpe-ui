@@ -10,6 +10,16 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  viteFinal: async (config) => {
+    // Asegurar que Tailwind CSS funcione correctamente
+    config.css = {
+      ...config.css,
+      postcss: {
+        plugins: [require("tailwindcss"), require("autoprefixer")],
+      },
+    };
+    return config;
+  },
 };
 
 export default config;

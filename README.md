@@ -13,8 +13,18 @@ Librería completa de componentes de interfaz de usuario para aplicaciones de la
 
 ## 🚀 Instalación
 
+### Instalación Completa de la Librería
 ```bash
 npm install @onpe/ui
+```
+
+### Instalación Individual de Componentes (CLI)
+```bash
+# Instalar la CLI globalmente
+npm install -g @onpe/ui
+
+# O usar directamente con npx
+npx onpe-ui add <componente>
 ```
 
 ## ⚠️ Importante sobre TailwindCSS
@@ -29,14 +39,14 @@ Si quieres extender los estilos con tus propias clases de TailwindCSS, entonces 
 
 ## 📖 Uso Básico
 
-### Importar estilos
+### Opción 1: Usar la Librería Completa
 
+#### Importar estilos
 ```css
 @import "@onpe/ui/styles";
 ```
 
-### Usar componentes
-
+#### Usar componentes
 ```tsx
 import { Button } from '@onpe/ui/components';
 
@@ -48,6 +58,103 @@ function App() {
     </div>
   );
 }
+```
+
+### Opción 2: Instalar Componentes Individualmente con CLI
+
+#### Instalar un componente específico
+```bash
+# Instalar Button
+npx onpe-ui add button
+
+# Instalar Modal (instala automáticamente Portal y Overlay)
+npx onpe-ui add modal
+
+# Instalar Portal
+npx onpe-ui add portal
+
+# Instalar Overlay
+npx onpe-ui add overlay
+
+# Instalar Show
+npx onpe-ui add show
+```
+
+#### Usar componentes instalados individualmente
+```tsx
+// Después de instalar con CLI
+import { Button } from './components/ui/Button';
+import { Modal } from './components/ui/Modal';
+
+function App() {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  return (
+    <div>
+      <Button color="primary" title="Abrir Modal" onClick={() => setIsOpen(true)} />
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <h2>Contenido del Modal</h2>
+      </Modal>
+    </div>
+  );
+}
+```
+
+#### Configuración requerida para componentes individuales
+
+**1. Instalar Tailwind CSS:**
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+**2. Configurar tailwind.config.js:**
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        'onpe-ui-blue': '#003770',
+        'onpe-ui-skyblue': '#0073cf',
+        'onpe-ui-skyblue-light': '#69b2e8',
+        'onpe-ui-yellow': '#ffb81c',
+        'onpe-ui-light-skyblue': '#aaeff6',
+        'onpe-ui-gray': '#bcbcbc',
+        'onpe-ui-gray-light': '#bdbdbd',
+        'onpe-ui-gray-extra-light': '#f2f2f2',
+        'onpe-ui-red': '#e3002b',
+        'onpe-ui-dark-gray': '#4f4f4f',
+        'onpe-ui-green': '#76bd43',
+        'onpe-ui-yellow-light': '#FFF1D2',
+      }
+    },
+  },
+  plugins: [],
+}
+```
+
+**3. Agregar estilos base en index.css:**
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+**4. Para componentes que usan Portal, agregar en public/index.html:**
+```html
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mi App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="portal"></div>
+  </body>
+</html>
 ```
 
 ## 🎨 Paleta de Colores ONPE
@@ -68,6 +175,60 @@ function App() {
 - **Gray**: `#bcbcbc` - Texto secundario
 - **Gray Light**: `#bdbdbd` - Texto terciario
 - **Gray Extra Light**: `#f2f2f2` - Fondos suaves
+
+## 🔗 Dependencias entre Componentes
+
+### Mapa de Dependencias
+```
+Modal
+├── Portal (requerido)
+├── Overlay (requerido)
+└── IconClose (requerido)
+
+Portal
+└── react-dom (createPortal)
+
+Overlay
+└── (sin dependencias externas)
+
+Button
+└── (sin dependencias externas)
+
+Show
+└── (sin dependencias externas)
+```
+
+### Instalación Automática de Dependencias
+
+**Modal** - Instala automáticamente sus dependencias:
+```bash
+npx onpe-ui add modal
+# Esto instalará automáticamente:
+# - Portal.tsx
+# - Overlay.tsx
+# - IconClose.tsx (si está disponible)
+```
+
+**Otros componentes** - Instalación independiente:
+```bash
+npx onpe-ui add button    # Sin dependencias
+npx onpe-ui add portal    # Sin dependencias
+npx onpe-ui add overlay   # Sin dependencias
+npx onpe-ui add show      # Sin dependencias
+```
+
+### Estructura de Archivos Después de la Instalación
+
+```
+src/
+└── components/
+    └── ui/
+        ├── Button.tsx
+        ├── Modal.tsx
+        ├── Overlay.tsx
+        ├── Portal.tsx
+        └── Show.tsx
+```
 
 ## 🧩 Componentes Disponibles
 
@@ -419,6 +580,68 @@ MIT © ONPE - Oficina Nacional de Procesos Electorales
 3. Commit tus cambios (`git commit -m 'Agregar nueva funcionalidad'`)
 4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
 5. Abre un Pull Request
+
+## 🐛 Solución de Problemas
+
+### Problemas con la CLI
+
+**Error: "Componente no encontrado"**
+```bash
+# Verificar componentes disponibles
+npx onpe-ui add --help
+
+# Componentes válidos:
+# button, modal, overlay, portal, show
+```
+
+**Error: "No se pudo descargar el componente"**
+```bash
+# Verificar conexión a internet
+ping github.com
+
+# Verificar que el repositorio esté disponible
+curl https://raw.githubusercontent.com/ricardosv46/onpe-ui/main/src/components/Button/Button.tsx
+```
+
+**Los estilos no se aplican**
+```bash
+# Verificar que Tailwind esté instalado
+npm list tailwindcss
+
+# Verificar configuración
+cat tailwind.config.js
+```
+
+**Portal no funciona**
+```bash
+# Verificar que tengas el elemento portal en HTML
+grep -r "id=\"portal\"" public/
+```
+
+### Problemas con la Librería Completa
+
+**Error: "Module not found"**
+```bash
+# Verificar instalación
+npm list @onpe/ui
+
+# Reinstalar si es necesario
+npm uninstall @onpe/ui
+npm install @onpe/ui
+```
+
+**Estilos no se cargan**
+```css
+/* Verificar que tengas la importación correcta */
+@import "@onpe/ui/styles";
+```
+
+### Problemas con Storybook
+
+**Error: "Failed to fetch dynamically imported module"**
+- Verificar que el archivo `preview.ts` importe correctamente `../src/styles.css`
+- Asegurar que Tailwind CSS esté configurado correctamente
+- Verificar que PostCSS esté configurado
 
 ## 📞 Soporte
 
