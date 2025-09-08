@@ -35,7 +35,9 @@
     "./styles": "./dist/index.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "!dist/**/*.stories.*",
+    "!dist/**/IconsOverview.*"
   ],
   "scripts": {
     "build": "rollup -c",
