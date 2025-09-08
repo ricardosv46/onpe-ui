@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONPE UI - Prueba de Componentes</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="./dist/index.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        h1 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        .color-demo {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        .color-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 ONPE UI - Prueba de Componentes</h1>
+        <p>Esta es una demostración de los componentes y estilos de tu librería ONPE.</p>
+        
+        <div class="section">
+            <h2>Botones</h2>
+            <div class="button-group">
+                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
+                    Botón Primario
+                </button>
+                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-gray text-white hover:bg-dark-gray focus:ring-gray-light px-4 py-2 text-sm">
+                    Botón Secundario
+                </button>
+                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border border-blue text-blue hover:bg-light-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
+                    Botón Outline
+                </button>
+                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-blue hover:bg-light-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
+                    Botón Ghost
+                </button>
+            </div>
+            
+            <h3>Tamaños</h3>
+            <div class="button-group">
+                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-3 py-1.5 text-sm">
+                    Pequeño
+                </button>
+                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
+                    Mediano
+                </button>
+                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-6 py-3 text-base">
+                    Grande
+                </button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Paleta de Colores ONPE</h2>
+            <h3>Colores Principales</h3>
+            <div class="color-demo">
+                <div class="color-box bg-blue" style="color: white;">Azul</div>
+                <div class="color-box bg-skyblue" style="color: white;">Sky Blue</div>
+                <div class="color-box bg-skyblue-light" style="color: #003770;">Sky Blue Light</div>
+                <div class="color-box bg-light-skyblue" style="color: #003770;">Light Sky Blue</div>
+            </div>
+            
+            <h3>Colores de Acento</h3>
+            <div class="color-demo">
+                <div class="color-box bg-yellow" style="color: #003770;">Amarillo</div>
+                <div class="color-box bg-yellow-light" style="color: #003770;">Amarillo Light</div>
+                <div class="color-box bg-green" style="color: white;">Verde</div>
+                <div class="color-box bg-red" style="color: white;">Rojo</div>
+            </div>
+            
+            <h3>Escala de Grises</h3>
+            <div class="color-demo">
+                <div class="color-box bg-gray-extra-light" style="color: #4f4f4f;">Extra Light</div>
+                <div class="color-box bg-gray-light" style="color: #003770;">Light</div>
+                <div class="color-box bg-gray" style="color: white;">Gray</div>
+                <div class="color-box bg-dark-gray" style="color: white;">Dark Gray</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tipografía</h2>
+            <h1 class="text-4xl font-bold text-blue">Título Principal</h1>
+            <h2 class="text-2xl font-semibold text-dark-gray">Subtítulo</h2>
+            <p class="text-base text-gray">Este es un párrafo de ejemplo con el color gris de ONPE.</p>
+            <p class="text-sm text-gray-light">Texto pequeño para información adicional.</p>
+        </div>
+
+        <div class="section">
+            <h2>Estados de Botones</h2>
+            <div class="button-group">
+                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
+                    Normal
+                </button>
+                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-4 py-2 text-sm opacity-50 cursor-not-allowed" disabled>
+                    Deshabilitado
+                </button>
+                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
+                    <svg class="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Cargando...
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

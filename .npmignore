@@ -1,0 +1,19 @@
+# Source files
+src/
+storybook/
+.storybook/
+
+# Config files
+rollup.config.js
+tsconfig.json
+tailwind.config.js
+postcss.config.js
+eslint.config.js
+
+# Development files
+*.md
+.gitignore
+.npmignore
+
+# Build tools
+node_modules/

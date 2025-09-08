@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --blue: #003770;
+  --skyblue: #0073cf;
+  --skyblue-light: #69b2e8;
+  --yellow: #ffb81c;
+  --light-skyblue: #aaeff6;
+  --gray: #bcbcbc;
+  --gray-light: #bdbdbd;
+  --gray-extra-light: #f2f2f2;
+  --red: #e3002b;
+  --dark-gray: #4f4f4f;
+  --green: #76bd43;
+  --yellow-light: #FFF1D2;
+}
+
+@theme {
+  --color-blue: var(--blue);
+  --color-skyblue: var(--skyblue);
+  --color-skyblue-light: var(--skyblue-light);
+  --color-yellow: var(--yellow);
+  --color-light-skyblue: var(--light-skyblue);
+  --color-gray: var(--gray);
+  --color-gray-light: var(--gray-light);
+  --color-gray-extra-light: var(--gray-extra-light);
+  --color-red: var(--red);
+  --color-dark-gray: var(--dark-gray);
+  --color-green: var(--green);
+  --color-yellow-light: var(--yellow-light);
+  
+  /* Breakpoints personalizados de ONPE */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-2lg: 1200px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1650px;
+}
