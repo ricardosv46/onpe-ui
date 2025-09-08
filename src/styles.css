@@ -1,6 +1,4 @@
-/* Estilos ONPE UI con TailwindCSS v4 */
-
-@import "tailwindcss";
+/* Estilos ONPE UI - CSS puro que funciona en cualquier proyecto */
 
 :root {
   --blue: #003770;
@@ -17,20 +15,45 @@
   --yellow-light: #FFF1D2;
 }
 
-@theme {
-  --color-onpe-ui-blue: var(--blue);
-  --color-onpe-ui-skyblue: var(--skyblue);
-  --color-onpe-ui-skyblue-light: var(--skyblue-light);
-  --color-onpe-ui-yellow: var(--yellow);
-  --color-onpe-ui-light-skyblue: var(--light-skyblue);
-  --color-onpe-ui-gray: var(--gray);
-  --color-onpe-ui-gray-light: var(--gray-light);
-  --color-onpe-ui-gray-extra-light: var(--gray-extra-light);
-  --color-onpe-ui-red: var(--red);
-  --color-onpe-ui-dark-gray: var(--dark-gray);
-  --color-onpe-ui-green: var(--green);
-  --color-onpe-ui-yellow-light: var(--yellow-light);
-}
+/* Clases de colores ONPE - Funcionan sin TailwindCSS */
+.bg-onpe-ui-blue { background-color: var(--blue) !important; }
+.bg-onpe-ui-skyblue { background-color: var(--skyblue) !important; }
+.bg-onpe-ui-skyblue-light { background-color: var(--skyblue-light) !important; }
+.bg-onpe-ui-yellow { background-color: var(--yellow) !important; }
+.bg-onpe-ui-light-skyblue { background-color: var(--light-skyblue) !important; }
+.bg-onpe-ui-gray { background-color: var(--gray) !important; }
+.bg-onpe-ui-gray-light { background-color: var(--gray-light) !important; }
+.bg-onpe-ui-gray-extra-light { background-color: var(--gray-extra-light) !important; }
+.bg-onpe-ui-red { background-color: var(--red) !important; }
+.bg-onpe-ui-dark-gray { background-color: var(--dark-gray) !important; }
+.bg-onpe-ui-green { background-color: var(--green) !important; }
+.bg-onpe-ui-yellow-light { background-color: var(--yellow-light) !important; }
+
+.text-onpe-ui-blue { color: var(--blue) !important; }
+.text-onpe-ui-skyblue { color: var(--skyblue) !important; }
+.text-onpe-ui-skyblue-light { color: var(--skyblue-light) !important; }
+.text-onpe-ui-yellow { color: var(--yellow) !important; }
+.text-onpe-ui-light-skyblue { color: var(--light-skyblue) !important; }
+.text-onpe-ui-gray { color: var(--gray) !important; }
+.text-onpe-ui-gray-light { color: var(--gray-light) !important; }
+.text-onpe-ui-gray-extra-light { color: var(--gray-extra-light) !important; }
+.text-onpe-ui-red { color: var(--red) !important; }
+.text-onpe-ui-dark-gray { color: var(--dark-gray) !important; }
+.text-onpe-ui-green { color: var(--green) !important; }
+.text-onpe-ui-yellow-light { color: var(--yellow-light) !important; }
+
+.border-onpe-ui-blue { border-color: var(--blue) !important; }
+.border-onpe-ui-skyblue { border-color: var(--skyblue) !important; }
+.border-onpe-ui-skyblue-light { border-color: var(--skyblue-light) !important; }
+.border-onpe-ui-yellow { border-color: var(--yellow) !important; }
+.border-onpe-ui-light-skyblue { border-color: var(--light-skyblue) !important; }
+.border-onpe-ui-gray { border-color: var(--gray) !important; }
+.border-onpe-ui-gray-light { border-color: var(--gray-light) !important; }
+.border-onpe-ui-gray-extra-light { border-color: var(--gray-extra-light) !important; }
+.border-onpe-ui-red { border-color: var(--red) !important; }
+.border-onpe-ui-dark-gray { border-color: var(--dark-gray) !important; }
+.border-onpe-ui-green { border-color: var(--green) !important; }
+.border-onpe-ui-yellow-light { border-color: var(--yellow-light) !important; }
 
 
 button{
