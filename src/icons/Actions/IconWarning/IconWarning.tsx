@@ -1,0 +1,15 @@
+import * as React from "react";
+import { SVGProps } from "react";
+
+export interface IconWarningProps extends SVGProps<SVGSVGElement> {}
+
+export const IconWarning = (props: IconWarningProps) => (
+  <svg width={16} height={16} viewBox="0 0 60 51" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path
+      d="M0.667969 50.9987L30.0013 0.332031L59.3346 50.9987H0.667969ZM9.86797 45.6654H50.1346L30.0013 10.9987L9.86797 45.6654ZM30.0013 42.9987C30.7569 42.9987 31.3906 42.7427 31.9026 42.2307C32.4146 41.7187 32.6697 41.0858 32.668 40.332C32.668 39.5765 32.412 38.9427 31.9 38.4307C31.388 37.9187 30.7551 37.6636 30.0013 37.6654C29.2457 37.6654 28.612 37.9214 28.1 38.4334C27.588 38.9454 27.3329 39.5783 27.3346 40.332C27.3346 41.0876 27.5906 41.7214 28.1026 42.2334C28.6146 42.7454 29.2475 43.0005 30.0013 42.9987ZM27.3346 34.9987H32.668V21.6654H27.3346V34.9987Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export default IconWarning;

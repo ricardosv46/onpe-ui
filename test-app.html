@@ -72,16 +72,16 @@
         <div class="section">
             <h2>Botones</h2>
             <div class="button-group">
-                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
+                <button class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue hover:bg-skyblue focus:ring-skyblue-light">
                     Botón Primario
                 </button>
-                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-gray text-white hover:bg-dark-gray focus:ring-gray-light px-4 py-2 text-sm">
+                <button class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-gray hover:bg-dark-gray focus:ring-gray-light">
                     Botón Secundario
                 </button>
-                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border border-blue text-blue hover:bg-light-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
+                <button class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border-blue text-blue hover:bg-light-skyblue focus:ring-skyblue-light">
                     Botón Outline
                 </button>
-                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-blue hover:bg-light-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
+                <button class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-blue hover:bg-light-skyblue focus:ring-skyblue-light">
                     Botón Ghost
                 </button>
             </div>
@@ -91,13 +91,19 @@
                 <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-3 py-1.5 text-sm">
                     Pequeño
                 </button>
-                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
+                <button class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue hover:bg-skyblue focus:ring-skyblue-light">
                     Mediano
                 </button>
-                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-6 py-3 text-base">
+                <button class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue hover:bg-skyblue focus:ring-skyblue-light">
                     Grande
                 </button>
             </div>
+        </div>
+
+        <div class="section">
+            <h2>Componente Modal</h2>
+            <p>Prueba el Modal con Portal:</p>
+            <div id="modal-root"></div>
         </div>
 
         <div class="section">
@@ -138,14 +144,14 @@
         <div class="section">
             <h2>Estados de Botones</h2>
             <div class="button-group">
-                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
+                <button class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue hover:bg-skyblue focus:ring-skyblue-light">
                     Normal
                 </button>
-                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-4 py-2 text-sm opacity-50 cursor-not-allowed" disabled>
+                <button class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-colors rounded-md opacity-50 cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue hover:bg-skyblue focus:ring-skyblue-light" disabled>
                     Deshabilitado
                 </button>
-                <button class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue text-white hover:bg-skyblue focus:ring-skyblue-light px-4 py-2 text-sm">
-                    <svg class="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <button class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue hover:bg-skyblue focus:ring-skyblue-light">
+                    <svg class="w-4 h-4 mr-2 -ml-1 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
@@ -154,5 +160,10 @@
             </div>
         </div>
     </div>
+    
+    <!-- Elemento para el Portal -->
+    <div id="portal"></div>
+
+   
 </body>
 </html>
