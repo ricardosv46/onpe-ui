@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import { addComponent } from "./commands/add";
+import { addComponent } from "./commands/add.js";
 
 const program = new Command();
 
-program.name("onpe-ui").description("CLI para instalar componentes ONPE UI").version("1.0.19");
+program.name("onpe-ui").description("CLI para instalar componentes ONPE UI").version("1.0.22");
 
 program
   .command("add <component>")

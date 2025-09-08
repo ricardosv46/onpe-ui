@@ -13,7 +13,7 @@ const buildConfig = (input, outputName) => ({
   output: [
     {
       file: `dist/${outputName}.js`,
-      format: 'cjs',
+      format: 'esm',
       sourcemap: true,
     },
     {
