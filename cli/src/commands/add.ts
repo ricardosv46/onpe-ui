@@ -65,14 +65,6 @@ function personalizeComponent(code: string, componentName: string): string {
   // Personalizar el componente para usar colores del proyecto host
   let personalizedCode = code;
 
-  // Reemplazar colores ONPE con clases Tailwind del host
-  personalizedCode = personalizedCode.replace(/bg-onpe-ui-blue/g, "bg-primary");
-  personalizedCode = personalizedCode.replace(/bg-onpe-ui-skyblue/g, "bg-sky-500");
-  personalizedCode = personalizedCode.replace(/bg-onpe-ui-gray/g, "bg-gray-400");
-  personalizedCode = personalizedCode.replace(/bg-onpe-ui-red/g, "bg-red-600");
-  personalizedCode = personalizedCode.replace(/bg-onpe-ui-green/g, "bg-green-500");
-  personalizedCode = personalizedCode.replace(/bg-onpe-ui-yellow/g, "bg-yellow-500");
-
   // Agregar comentario de personalización
   personalizedCode = `// Componente ${componentName.charAt(0).toUpperCase() + componentName.slice(1)} personalizado para tu proyecto
 // Puedes modificar los colores y estilos según tus necesidades
