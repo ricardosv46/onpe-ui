@@ -1,5 +1,6 @@
 import * as fs from "fs-extra";
 import * as path from "path";
+import { createBarrelFiles } from "./createBarrelFiles";
 
 const COMPONENTS_URL = "https://raw.githubusercontent.com/ricardosv46/onpe-ui/main/src/components";
 const ICONS_URL = "https://raw.githubusercontent.com/ricardosv46/onpe-ui/main/src/icons";
@@ -11,15 +12,15 @@ export async function addComponent(componentName: string) {
 
   let componentPath;
   if (isIcon) {
-    // Determinar la categoría del icono
+    // Determinar la categoría del icono - NUEVA ESTRUCTURA
     const iconCategory = getIconCategory(componentName);
-    componentPath = path.join(process.cwd(), "src", "components", `onpe-icons-${iconCategory}`);
+    componentPath = path.join(process.cwd(), "src", "components", "onpe", "icons", iconCategory);
   } else if (isModalComponent) {
-    // Los modales específicos van en src/components/onpe-modals/
-    componentPath = path.join(process.cwd(), "src", "components", "onpe-modals");
+    // Los modales específicos van en src/components/onpe/modals/
+    componentPath = path.join(process.cwd(), "src", "components", "onpe", "modals");
   } else {
-    // Los componentes básicos (incluyendo Modal base) van en src/components/onpe-ui/
-    componentPath = path.join(process.cwd(), "src", "components", "onpe-ui");
+    // Los componentes básicos (incluyendo Modal base) van en src/components/onpe/ui/
+    componentPath = path.join(process.cwd(), "src", "components", "onpe", "ui");
   }
 
   // Crear directorio si no existe
@@ -121,24 +122,45 @@ export async function addComponent(componentName: string) {
 
     console.log(`📁 ${isIcon ? "Icono" : "Componente"} guardado en: ${filePath}`);
 
+    // Crear/actualizar archivos de barril
+    try {
+      await createBarrelFiles();
+      console.log("🔄 Archivos de barril actualizados");
+    } catch (barrelError) {
+      console.warn(`⚠️  No se pudieron actualizar los archivos de barril: ${barrelError.message}`);
+    }
+
     // Mostrar instrucciones
     console.log("\n📋 Próximos pasos:");
     console.log(`1. Importa el ${isIcon ? "icono" : "componente"}:`);
     const componentNamePascal = convertToPascalCase(componentName);
-    let importPath;
+
+    // Mostrar opciones de importación
     if (isIcon) {
-      // Los iconos van organizados por categorías
       const iconCategory = getIconCategory(componentName);
-      importPath = `../onpe-icons-${iconCategory}/${componentNamePascal}`;
+      console.log(`   // Opción 1: Importación directa`);
+      console.log(`   import { ${componentNamePascal} } from '../onpe/icons/${iconCategory}/${componentNamePascal}';`);
+      console.log(`   // Opción 2: Importación con barril (recomendado)`);
+      console.log(`   import { ${componentNamePascal} } from '../onpe/icons/${iconCategory}';`);
+      console.log(`   // Opción 3: Importación desde raíz`);
+      console.log(`   import { ${componentNamePascal} } from '../onpe';`);
     } else {
-      // Los componentes van en onpe-modals o onpe-ui
       if (componentName.toLowerCase().startsWith("modal") && componentName !== "modal") {
-        importPath = `../onpe-modals/${componentNamePascal}`;
+        console.log(`   // Opción 1: Importación directa`);
+        console.log(`   import { ${componentNamePascal} } from '../onpe/modals/${componentNamePascal}';`);
+        console.log(`   // Opción 2: Importación con barril (recomendado)`);
+        console.log(`   import { ${componentNamePascal} } from '../onpe/modals';`);
+        console.log(`   // Opción 3: Importación desde raíz`);
+        console.log(`   import { ${componentNamePascal} } from '../onpe';`);
       } else {
-        importPath = `../onpe-ui/${componentNamePascal}`;
+        console.log(`   // Opción 1: Importación directa`);
+        console.log(`   import { ${componentNamePascal} } from '../onpe/ui/${componentNamePascal}';`);
+        console.log(`   // Opción 2: Importación con barril (recomendado)`);
+        console.log(`   import { ${componentNamePascal} } from '../onpe/ui';`);
+        console.log(`   // Opción 3: Importación desde raíz`);
+        console.log(`   import { ${componentNamePascal} } from '../onpe';`);
       }
     }
-    console.log(`   import { ${componentNamePascal} } from '${importPath}'`);
 
     // Mostrar dependencias si las hay
     if (!isIcon && componentDependencies[componentName.toLowerCase()]) {
@@ -217,45 +239,49 @@ function convertToPascalCase(name: string): string {
 function personalizeComponent(code: string, componentName: string): string {
   const componentNamePascal = convertToPascalCase(componentName);
 
-  // Mapeo de componentes y sus ubicaciones reales
+  // Mapeo de componentes y sus ubicaciones reales - NUEVA ESTRUCTURA
   const componentPaths = {
-    // Componentes básicos
-    Button: "../onpe-ui/Button",
-    Overlay: "../onpe-ui/Overlay",
-    Portal: "../onpe-ui/Portal",
-    Show: "../onpe-ui/Show",
+    // Componentes básicos - van en onpe/ui/
+    Button: "../onpe/ui/Button",
+    Overlay: "../onpe/ui/Overlay",
+    Portal: "../onpe/ui/Portal",
+    Show: "../onpe/ui/Show",
+    Modal: "../onpe/ui/Modal",
 
-    // Modales
-    Modal: "../onpe-ui/Modal", // Modal base va en onpe-ui
-    ModalConfirm: "../onpe-modals/ModalConfirm",
-    ModalLoading: "../onpe-modals/ModalLoading",
-    ModalBrowserIncompatible: "../onpe-modals/ModalBrowserIncompatible",
-    ModalSystemIncompatible: "../onpe-modals/ModalSystemIncompatible",
+    // Modales especializados - van en onpe/modals/
+    ModalConfirm: "../onpe/modals/ModalConfirm",
+    ModalLoading: "../onpe/modals/ModalLoading",
+    ModalBrowserIncompatible: "../onpe/modals/ModalBrowserIncompatible",
+    ModalSystemIncompatible: "../onpe/modals/ModalSystemIncompatible",
 
-    // Iconos
-    // Iconos organizados por categorías
+    // Iconos - organizados por categorías en onpe/icons/
     // Actions
-    IconCheck: "../onpe-icons-actions/IconCheck",
-    IconClose: "../onpe-icons-actions/IconClose",
-    IconWarning: "../onpe-icons-actions/IconWarning",
-    IconSpinnerDesktop: "../onpe-icons-actions/IconSpinnerDesktop",
-    IconSpinnerMobile: "../onpe-icons-actions/IconSpinnerMobile",
-    IconHome: "../onpe-icons-actions/IconHome",
+    IconCheck: "../onpe/icons/actions/IconCheck",
+    IconClose: "../onpe/icons/actions/IconClose",
+    IconWarning: "../onpe/icons/actions/IconWarning",
+    IconSpinnerDesktop: "../onpe/icons/actions/IconSpinnerDesktop",
+    IconSpinnerMobile: "../onpe/icons/actions/IconSpinnerMobile",
+    IconHome: "../onpe/icons/actions/IconHome",
 
     // Browsers
-    IconChrome: "../onpe-icons-browsers/IconChrome",
-    IconChromeColor: "../onpe-icons-browsers/IconChromeColor",
-    IconEdge: "../onpe-icons-browsers/IconEdge",
-    IconEdgeColor: "../onpe-icons-browsers/IconEdgeColor",
-    IconMozilla: "../onpe-icons-browsers/IconMozilla",
-    IconMozillaColor: "../onpe-icons-browsers/IconMozillaColor",
-    IconSafari: "../onpe-icons-browsers/IconSafari",
-    IconSafariColor: "../onpe-icons-browsers/IconSafariColor",
+    IconChrome: "../onpe/icons/browsers/IconChrome",
+    IconChromeColor: "../onpe/icons/browsers/IconChromeColor",
+    IconEdge: "../onpe/icons/browsers/IconEdge",
+    IconEdgeColor: "../onpe/icons/browsers/IconEdgeColor",
+    IconMozilla: "../onpe/icons/browsers/IconMozilla",
+    IconMozillaColor: "../onpe/icons/browsers/IconMozillaColor",
+    IconSafari: "../onpe/icons/browsers/IconSafari",
+    IconSafariColor: "../onpe/icons/browsers/IconSafariColor",
 
     // Systems
-    IconAndroid: "../onpe-icons-systems/IconAndroid",
-    IconApple: "../onpe-icons-systems/IconApple",
-    IconWindow: "../onpe-icons-systems/IconWindow",
+    IconAndroid: "../onpe/icons/systems/IconAndroid",
+    IconApple: "../onpe/icons/systems/IconApple",
+    IconWindow: "../onpe/icons/systems/IconWindow",
+
+    // ONPE
+    IconVotoDigital: "../onpe/icons/onpe/IconVotoDigital",
+    IconElectionsGeneral: "../onpe/icons/onpe/IconElectionsGeneral",
+    IconElections: "../onpe/icons/onpe/IconElections",
   };
 
   // Reemplazar las rutas de importación
