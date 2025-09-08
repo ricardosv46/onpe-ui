@@ -5,9 +5,18 @@ const COMPONENTS_URL = "https://raw.githubusercontent.com/ricardosv46/onpe-ui/ma
 const ICONS_URL = "https://raw.githubusercontent.com/ricardosv46/onpe-ui/main/src/icons";
 
 export async function addComponent(componentName: string) {
-  // Determinar si es un icono o componente
+  // Determinar si es un icono, modal o componente básico
   const isIcon = componentName.toLowerCase().startsWith("icon-");
-  const componentPath = path.join(process.cwd(), "src", "components", isIcon ? "onpe-icons" : "onpe-ui");
+  const isModal = componentName.toLowerCase().startsWith("modal");
+
+  let folderName = "onpe-ui"; // Por defecto
+  if (isIcon) {
+    folderName = "onpe-icons";
+  } else if (isModal) {
+    folderName = "onpe-modals";
+  }
+
+  const componentPath = path.join(process.cwd(), "src", "components", folderName);
 
   // Crear directorio si no existe
   await fs.ensureDir(componentPath);
@@ -110,7 +119,7 @@ export async function addComponent(componentName: string) {
     // Mostrar instrucciones
     console.log("\n📋 Próximos pasos:");
     console.log(`1. Importa el ${isIcon ? "icono" : "componente"}:`);
-    const importPath = isIcon ? `./components/onpe-icons/${fileName.replace(".tsx", "")}` : `./components/onpe-ui/${fileName.replace(".tsx", "")}`;
+    const importPath = `./components/${folderName}/${fileName.replace(".tsx", "")}`;
     console.log(`   import { ${componentName.charAt(0).toUpperCase() + componentName.slice(1)} } from '${importPath}'`);
     console.log(`2. Usa el ${isIcon ? "icono" : "componente"}:`);
     console.log(`   <${componentName.charAt(0).toUpperCase() + componentName.slice(1)} />`);
