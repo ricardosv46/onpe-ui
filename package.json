@@ -1,6 +1,6 @@
 {
   "name": "@onpe/ui",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "type": "module",
   "description": "Librería completa de UI para ONPE - Componentes, Hooks, Utils y Librerías",
   "main": "dist/index.js",
@@ -37,7 +37,8 @@
   "files": [
     "dist",
     "!dist/**/*.stories.*",
-    "!dist/**/IconsOverview.*"
+    "!dist/**/IconsOverview.*",
+    "!dist/**/*.map"
   ],
   "scripts": {
     "build": "rollup -c",
