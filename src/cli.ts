@@ -5,7 +5,7 @@ import { addComponent } from "./commands/add.js";
 
 const program = new Command();
 
-program.name("onpe-ui").description("CLI para instalar componentes ONPE UI").version("1.0.22");
+program.name("onpe-ui").description("CLI para instalar componentes ONPE UI").version("1.0.32");
 
 program
   .command("add <component>")
