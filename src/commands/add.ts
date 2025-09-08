@@ -194,12 +194,29 @@ function personalizeComponent(code: string, componentName: string): string {
   // Reemplazar imports relativos con las nuevas rutas
   Object.entries(componentPaths).forEach(([component, newPath]) => {
     const oldPatterns = [
+      // Patrones básicos
       `from "../${component}/${component}"`,
       `from "../${component}"`,
+      
+      // Patrones de iconos con rutas completas
+      `from "../../icons/Actions/${component}/${component}"`,
       `from "../../icons/Actions/${component}"`,
+      `from "../../icons/Browsers/${component}/${component}"`,
       `from "../../icons/Browsers/${component}"`,
+      `from "../../icons/OperatingSystems/${component}/${component}"`,
       `from "../../icons/OperatingSystems/${component}"`,
+      `from "../../icons/ONPE/${component}/${component}"`,
       `from "../../icons/ONPE/${component}"`,
+      
+      // Patrones con más niveles de profundidad
+      `from "../../../icons/Actions/${component}/${component}"`,
+      `from "../../../icons/Actions/${component}"`,
+      `from "../../../icons/Browsers/${component}/${component}"`,
+      `from "../../../icons/Browsers/${component}"`,
+      `from "../../../icons/OperatingSystems/${component}/${component}"`,
+      `from "../../../icons/OperatingSystems/${component}"`,
+      `from "../../../icons/ONPE/${component}/${component}"`,
+      `from "../../../icons/ONPE/${component}"`,
     ];
 
     oldPatterns.forEach((pattern) => {
