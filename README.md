@@ -30,83 +30,16 @@ npx onpe-ui add <componente>
 ## ⚠️ Importante sobre Estilos
 
 ### Opción 1: Librería Completa (Recomendado)
-Esta librería **NO requiere** que instales TailwindCSS en tu proyecto. Los estilos ya están compilados y optimizados. Solo necesitas crear tu propio archivo CSS con las variables personalizadas:
+Esta librería **NO requiere** que instales TailwindCSS en tu proyecto. Los estilos ya están compilados y optimizados. Solo necesitas importar los estilos:
 
-#### Crear archivo CSS personalizado
-Crea un archivo llamado `onpe-ui.css` en la raíz de tu proyecto:
-
-```css
-/* Solo definimos nuestras variables y estilos personalizados */
-
-
-
-:root {
-  --blue: #003770;
-  --skyblue: #0073cf;
-  --skyblue-light: #69b2e8;
-  --yellow: #ffb81c;
-  --light-skyblue: #aaeff6;
-  --gray: #bcbcbc;
-  --gray-light: #bdbdbd;
-  --gray-extra-light: #f2f2f2;
-  --red: #e3002b;
-  --dark-gray: #4f4f4f;
-  --green: #76bd43;
-  --yellow-light: #FFF1D2;
-}
-
-@theme {
-  --color-onpe-ui-blue: var(--blue);
-  --color-onpe-ui-skyblue: var(--skyblue);
-  --color-onpe-ui-skyblue-light: var(--skyblue-light);
-  --color-onpe-ui-yellow: var(--yellow);
-  --color-onpe-ui-light-skyblue: var(--light-skyblue);
-  --color-onpe-ui-gray: var(--gray);
-  --color-onpe-ui-gray-light: var(--gray-light);
-  --color-onpe-ui-gray-extra-light: var(--gray-extra-light);
-  --color-onpe-ui-red: var(--red);
-  --color-onpe-ui-dark-gray: var(--dark-gray);
-  --color-onpe-ui-green: var(--green);
-  --color-onpe-ui-yellow-light: var(--yellow-light);
-}
-
-
-button{
-  cursor: pointer;
-}
-
-
-@keyframes fastBlink {
-  0% {
-    opacity: 1;
-  }
-  25% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  75% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-.fast-blink {
-  animation: fastBlink 0.8s ease-in-out infinite;
-}
-```
-
-#### Importar el archivo CSS en tu proyecto
 ```tsx
 // En tu archivo principal (index.tsx, App.tsx, etc.)
-import './onpe-ui.css';
+import '@onpe/ui/styles';
 import { Button } from '@onpe/ui/components';
 ```
 
-### Opción 2: Componentes Individuales
-Si instalas componentes individualmente con la CLI, **SÍ necesitas** instalar y configurar TailwindCSS en tu proyecto.
+### Opción 2: Componentes Individuales (CLI)
+Si instalas componentes individualmente con la CLI, **SÍ necesitas** instalar y configurar TailwindCSS en tu proyecto, y crear un archivo CSS con las variables personalizadas.
 
 ## 📖 Uso Básico
 
@@ -114,14 +47,14 @@ Si instalas componentes individualmente con la CLI, **SÍ necesitas** instalar y
 
 #### Importar estilos
 ```tsx
-// Importar tu archivo CSS personalizado
-import './onpe-ui.css';
+// Importar estilos de la librería
+import '@onpe/ui/styles';
 import { Button } from '@onpe/ui/components';
 ```
 
 #### Usar componentes
 ```tsx
-import './onpe-ui.css';
+import '@onpe/ui/styles';
 import { Button } from '@onpe/ui/components';
 
 function App() {
@@ -1449,17 +1382,17 @@ npm install @onpe/ui
 **Estilos no se cargan**
 ```tsx
 /* Verificar que tengas la importación correcta */
-import './onpe-ui.css';
+import '@onpe/ui/styles';
 import { Button } from '@onpe/ui/components';
 ```
 
 **Solución: Verificar rutas de importación**
 ```tsx
-// ✅ CORRECTO: Importar tu archivo CSS personalizado
-import './onpe-ui.css';
+// ✅ CORRECTO: Importar estilos de la librería
+import '@onpe/ui/styles';
 import { Button } from '@onpe/ui/components';
 
-// ❌ INCORRECTO: No importar el archivo CSS
+// ❌ INCORRECTO: No importar los estilos
 import { Button } from '@onpe/ui/components';
 ```
 
@@ -1617,9 +1550,36 @@ export default preview;
 npm list @onpe/ui
 ```
 
-**Paso 2: Crear archivo CSS personalizado**
+**Paso 2: Importar estilos (Librería Completa)**
+```tsx
+// En tu archivo principal (index.tsx)
+import '@onpe/ui/styles';
+import { Button } from '@onpe/ui/components';
+```
+
+**Paso 3: Verificar orden de importación**
+```tsx
+// ✅ CORRECTO
+import '@onpe/ui/styles';
+import { Button } from '@onpe/ui/components';
+
+// ❌ INCORRECTO
+import { Button } from '@onpe/ui/components';
+// Falta importar los estilos
+```
+
+### ¿Usas CLI para componentes individuales?
+
+**Entonces SÍ necesitas configurar TailwindCSS:**
+```bash
+# Instalar TailwindCSS
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+**Y crear archivo CSS personalizado:**
 ```css
-/* Crear archivo onpe-ui.css en la raíz del proyecto */
+/* Crear archivo onpe-ui.css */
 :root {
   --blue: #003770;
   --skyblue: #0073cf;
@@ -1630,24 +1590,6 @@ npm list @onpe/ui
   --color-onpe-ui-blue: var(--blue);
   /* ... resto de colores */
 }
-```
-
-**Paso 3: Importar estilos**
-```tsx
-// En tu archivo principal (index.tsx)
-import './onpe-ui.css';
-import { Button } from '@onpe/ui/components';
-```
-
-**Paso 4: Verificar orden de importación**
-```tsx
-// ✅ CORRECTO
-import './onpe-ui.css';
-import { Button } from '@onpe/ui/components';
-
-// ❌ INCORRECTO
-import { Button } from '@onpe/ui/components';
-// Falta importar el archivo CSS
 ```
 
 ### ¿Los colores no funcionan?
