@@ -24,7 +24,7 @@ npm install @onpe/ui
 npm install -g @onpe/ui
 
 # O usar directamente con npx
-npx onpe-ui add <componente>
+npx @onpe/ui add <componente>
 ```
 
 ## ⚠️ Importante sobre Estilos
@@ -38,23 +38,23 @@ npx onpe-ui add <componente>
 #### Instalar componentes específicos
 ```bash
 # Componentes
-npx onpe-ui add button
-npx onpe-ui add modal
-npx onpe-ui add portal
-npx onpe-ui add overlay
-npx onpe-ui add show
+npx @onpe/ui add button
+npx @onpe/ui add modal
+npx @onpe/ui add portal
+npx @onpe/ui add overlay
+npx @onpe/ui add show
 
 # Iconos
-npx onpe-ui add icon-close
-npx onpe-ui add icon-check
-npx onpe-ui add icon-warning
-npx onpe-ui add icon-chrome
-npx onpe-ui add icon-firefox
-npx onpe-ui add icon-safari
-npx onpe-ui add icon-edge
-npx onpe-ui add icon-windows
-npx onpe-ui add icon-apple
-npx onpe-ui add icon-android
+npx @onpe/ui add icon-close
+npx @onpe/ui add icon-check
+npx @onpe/ui add icon-warning
+npx @onpe/ui add icon-chrome
+npx @onpe/ui add icon-firefox
+npx @onpe/ui add icon-safari
+npx @onpe/ui add icon-edge
+npx @onpe/ui add icon-windows
+npx @onpe/ui add icon-apple
+npx @onpe/ui add icon-android
 ```
 
 #### Usar componentes instalados individualmente
@@ -202,7 +202,7 @@ Show
 
 **Modal** - Instala automáticamente sus dependencias:
 ```bash
-npx onpe-ui add modal
+npx @onpe/ui add modal
 # Esto instalará automáticamente:
 # - Portal.tsx
 # - Overlay.tsx
@@ -211,10 +211,10 @@ npx onpe-ui add modal
 
 **Otros componentes** - Instalación independiente:
 ```bash
-npx onpe-ui add button    # Sin dependencias
-npx onpe-ui add portal    # Sin dependencias
-npx onpe-ui add overlay   # Sin dependencias
-npx onpe-ui add show      # Sin dependencias
+npx @onpe/ui add button    # Sin dependencias
+npx @onpe/ui add portal    # Sin dependencias
+npx @onpe/ui add overlay   # Sin dependencias
+npx @onpe/ui add show      # Sin dependencias
 ```
 
 ### Estructura de Archivos Después de la Instalación
@@ -1320,7 +1320,7 @@ export default AdminDashboard;
 **Error: "Componente no encontrado"**
 ```bash
 # Verificar componentes disponibles
-npx onpe-ui add --help
+npx @onpe/ui add --help
 
 # Componentes válidos:
 # button, modal, overlay, portal, show
@@ -1615,12 +1615,12 @@ viteFinal: async (config) => {
 **Solución: Verificar comandos**
 ```bash
 # ✅ CORRECTO
-npx onpe-ui add button
-npx onpe-ui add modal
+npx @onpe/ui add button
+npx @onpe/ui add modal
 
 # ❌ INCORRECTO
-npx onpe-ui add Button
-npx onpe-ui add Modal
+npx @onpe/ui add Button
+npx @onpe/ui add Modal
 ```
 
 ### ¿Portal no funciona?
