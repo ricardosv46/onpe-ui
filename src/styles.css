@@ -1,5 +1,7 @@
 /* Estilos ONPE UI - CSS puro que funciona en cualquier proyecto */
 
+@import "tailwindcss";
+
 :root {
   --blue: #003770;
   --skyblue: #0073cf;

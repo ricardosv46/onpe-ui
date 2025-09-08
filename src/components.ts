@@ -14,8 +14,8 @@ export type { OverlayProps } from "./components/Overlay";
 export { Modal } from "./components/Modal";
 export type { ModalProps } from "./components/Modal";
 
-export { BrowserIncompatible } from "./components/ErrorHandling/BrowserIncompatible";
-export type { BrowserIncompatibleProps } from "./components/ErrorHandling/BrowserIncompatible";
+export { ModalBrowserIncompatible } from "./components/ErrorHandling/ModalBrowserIncompatible";
+export type { ModalBrowserIncompatibleProps } from "./components/ErrorHandling/ModalBrowserIncompatible";
 
 export { ModalConfirm } from "./components/Feedback/ModalConfirm";
 export type { ModalConfirmProps } from "./components/Feedback/ModalConfirm";

@@ -14,7 +14,7 @@ export async function addComponent(componentName: string) {
 
   // Definir dependencias de componentes
   const componentDependencies = {
-    "browser-incompatible": ["modal", "icon-warning", "icon-chrome-color", "icon-safari-color", "icon-mozilla-color", "icon-edge-color"],
+    "modal-browser-incompatible": ["modal", "icon-warning", "icon-chrome-color", "icon-safari-color", "icon-mozilla-color", "icon-edge-color"],
     "modal-system-incompatible": ["modal", "icon-warning"],
     "modal-confirm": ["modal"],
     "modal-loading": ["modal"],
@@ -28,11 +28,11 @@ export async function addComponent(componentName: string) {
     overlay: "Overlay/Overlay.tsx",
     portal: "Portal/Portal.tsx",
     show: "Show/Show.tsx",
-    
+
     // Componentes de ErrorHandling
     "modal-system-incompatible": "ErrorHandling/ModalSystemIncompatible/ModalSystemIncompatible.tsx",
-    "browser-incompatible": "ErrorHandling/BrowserIncompatible/BrowserIncompatible.tsx",
-    
+    "modal-browser-incompatible": "ErrorHandling/ModalBrowserIncompatible/ModalBrowserIncompatible.tsx",
+
     // Componentes de Feedback
     "modal-confirm": "Feedback/ModalConfirm/ModalConfirm.tsx",
     "modal-loading": "Feedback/ModalLoading/ModalLoading.tsx",
@@ -76,7 +76,7 @@ export async function addComponent(componentName: string) {
     if (!isIcon && componentDependencies[componentName.toLowerCase()]) {
       const dependencies = componentDependencies[componentName.toLowerCase()];
       console.log(`🔗 Instalando dependencias: ${dependencies.join(", ")}`);
-      
+
       for (const dependency of dependencies) {
         try {
           await addComponent(dependency);

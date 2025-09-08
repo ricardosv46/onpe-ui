@@ -6,13 +6,13 @@ import { IconSafariColor } from "../../../icons/Browsers/IconSafariColor/IconSaf
 import { IconMozillaColor } from "../../../icons/Browsers/IconMozillaColor/IconMozillaColor";
 import { IconEdgeColor } from "../../../icons/Browsers/IconEdgeColor/IconEdgeColor";
 
-export interface BrowserIncompatibleProps {
+export interface ModalBrowserIncompatibleProps {
   isOpen: boolean;
   onClose: () => void;
   className?: string;
 }
 
-export const BrowserIncompatible = ({ isOpen = false, onClose = () => {}, className = "" }: BrowserIncompatibleProps) => {
+export const ModalBrowserIncompatible = ({ isOpen = false, onClose = () => {}, className = "" }: ModalBrowserIncompatibleProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-5 pb-8 ${className}`} closeButton={true} closeDisabled>
       <div className="flex justify-center items-center">
@@ -35,4 +35,4 @@ export const BrowserIncompatible = ({ isOpen = false, onClose = () => {}, classN
   );
 };
 
-export default BrowserIncompatible;
+export default ModalBrowserIncompatible;

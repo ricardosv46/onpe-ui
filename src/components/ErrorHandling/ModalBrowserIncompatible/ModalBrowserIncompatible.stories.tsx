@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { BrowserIncompatible } from "./BrowserIncompatible";
+import { ModalBrowserIncompatible } from "./ModalBrowserIncompatible";
 
 // @ts-ignore
 import type { Meta, StoryObj } from "@storybook/react";
 
-const meta: Meta<typeof BrowserIncompatible> = {
-  title: "ErrorHandling/BrowserIncompatible",
-  component: BrowserIncompatible,
+const meta: Meta<typeof ModalBrowserIncompatible> = {
+  title: "ErrorHandling/ModalBrowserIncompatible",
+  component: ModalBrowserIncompatible,
   parameters: {
     layout: "fullscreen",
   },
@@ -35,7 +35,7 @@ export const Default: Story = {
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
-        <BrowserIncompatible {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <ModalBrowserIncompatible {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </div>
     );
   },
@@ -61,7 +61,7 @@ export const Interactive: Story = {
           </button>
         </div>
 
-        <BrowserIncompatible isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <ModalBrowserIncompatible isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </div>
     );
   },
@@ -83,7 +83,7 @@ export const CustomStyling: Story = {
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
-        <BrowserIncompatible {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <ModalBrowserIncompatible {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </div>
     );
   },
