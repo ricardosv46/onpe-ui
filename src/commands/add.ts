@@ -14,11 +14,20 @@ export async function addComponent(componentName: string) {
 
   // Componentes disponibles
   const availableComponents = {
+    // Componentes básicos
     button: "Button/Button.tsx",
     modal: "Modal/Modal.tsx",
     overlay: "Overlay/Overlay.tsx",
     portal: "Portal/Portal.tsx",
     show: "Show/Show.tsx",
+    
+    // Componentes de ErrorHandling
+    "modal-system-incompatible": "ErrorHandling/ModalSystemIncompatible/ModalSystemIncompatible.tsx",
+    "browser-incompatible": "ErrorHandling/BrowserIncompatible/BrowserIncompatible.tsx",
+    
+    // Componentes de Feedback
+    "modal-confirm": "Feedback/ModalConfirm/ModalConfirm.tsx",
+    "modal-loading": "Feedback/ModalLoading/ModalLoading.tsx",
   };
 
   // Iconos disponibles
