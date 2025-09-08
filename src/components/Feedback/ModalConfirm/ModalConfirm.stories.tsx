@@ -37,8 +37,8 @@ export const Warning: Story = {
 
     return (
       <div>
-        <div className="mb-4 p-4 bg-gray-100 rounded">
-          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+        <div className="p-4 mb-4 rounded bg-onpe-ui-gray-100">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white rounded bg-onpe-ui-red hover:bg-onpe-ui-red">
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
@@ -62,8 +62,8 @@ export const Success: Story = {
 
     return (
       <div>
-        <div className="mb-4 p-4 bg-gray-100 rounded">
-          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+        <div className="p-4 mb-4 rounded bg-onpe-ui-gray-100">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white rounded bg-onpe-ui-green hover:bg-onpe-ui-green">
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
@@ -86,18 +86,18 @@ export const Interactive: Story = {
     const [icon, setIcon] = useState<"warning" | "success">("warning");
 
     return (
-      <div className="min-h-screen bg-gray-extra-light p-8">
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
-          <h2 className="mb-4 text-xl font-bold text-blue">Demo Modal Confirm</h2>
-          <p className="mb-6 text-gray-dark">Prueba diferentes tipos de confirmación.</p>
+      <div className="min-h-screen p-8 bg-onpe-ui-gray-extra-light">
+        <div className="max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg">
+          <h2 className="mb-4 text-xl font-bold text-onpe-ui-blue">Demo Modal Confirm</h2>
+          <p className="mb-6 text-onpe-ui-gray-dark">Prueba diferentes tipos de confirmación.</p>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-dark mb-2">Tipo de icono:</label>
+              <label className="block mb-2 text-sm font-medium text-onpe-ui-gray-dark">Tipo de icono:</label>
               <select
                 value={icon}
                 onChange={(e) => setIcon(e.target.value as "warning" | "success")}
-                className="w-full p-2 border border-gray rounded focus:outline-none focus:ring-2 focus:ring-blue"
+                className="w-full p-2 border rounded border-gray focus:outline-none focus:ring-2 focus:ring-blue"
               >
                 <option value="warning">Warning</option>
                 <option value="success">Success</option>
@@ -106,7 +106,7 @@ export const Interactive: Story = {
 
             <button
               onClick={() => setIsOpen(true)}
-              className="w-full px-4 py-2 font-semibold text-white transition-colors rounded bg-red hover:bg-red/80"
+              className="w-full px-4 py-2 font-semibold text-white transition-colors rounded bg-onpe-ui-red hover:bg-onpe-ui-red/80"
             >
               Abrir Modal de Confirmación
             </button>

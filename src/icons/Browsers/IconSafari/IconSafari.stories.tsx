@@ -52,6 +52,6 @@ export const CustomStyling: Story = {
   args: {
     width: 24,
     height: 24,
-    className: "text-gray-600",
+    className: "text-onpe-ui-gray-600",
   },
 };

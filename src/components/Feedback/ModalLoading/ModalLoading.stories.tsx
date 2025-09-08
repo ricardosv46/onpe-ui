@@ -33,8 +33,8 @@ export const Default: Story = {
 
     return (
       <div>
-        <div className="p-4 mb-4 bg-gray-100 rounded">
-          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+        <div className="p-4 mb-4 rounded bg-onpe-ui-gray-100">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white rounded bg-onpe-ui-blue hover:bg-onpe-ui-blue">
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
@@ -53,8 +53,8 @@ export const CustomMessage: Story = {
 
     return (
       <div>
-        <div className="p-4 mb-4 bg-gray-100 rounded">
-          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">
+        <div className="p-4 mb-4 rounded bg-onpe-ui-gray-100">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white rounded bg-onpe-ui-green hover:bg-onpe-ui-green">
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
@@ -73,14 +73,14 @@ export const Interactive: Story = {
     const [message, setMessage] = useState("Cargando...");
 
     return (
-      <div className="min-h-screen p-8 bg-gray-extra-light">
+      <div className="min-h-screen p-8 bg-onpe-ui-gray-extra-light">
         <div className="max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg">
-          <h2 className="mb-4 text-xl font-bold text-blue">Demo Modal Loading</h2>
-          <p className="mb-6 text-gray-dark">Prueba diferentes mensajes de carga.</p>
+          <h2 className="mb-4 text-xl font-bold text-onpe-ui-blue">Demo Modal Loading</h2>
+          <p className="mb-6 text-onpe-ui-gray-dark">Prueba diferentes mensajes de carga.</p>
 
           <div className="space-y-4">
             <div>
-              <label className="block mb-2 text-sm font-medium text-gray-dark">Mensaje:</label>
+              <label className="block mb-2 text-sm font-medium text-onpe-ui-gray-dark">Mensaje:</label>
               <input
                 type="text"
                 value={message}
@@ -92,7 +92,7 @@ export const Interactive: Story = {
 
             <button
               onClick={() => setIsOpen(true)}
-              className="w-full px-4 py-2 font-semibold text-white transition-colors rounded bg-blue hover:bg-blue/80"
+              className="w-full px-4 py-2 font-semibold text-white transition-colors rounded bg-onpe-ui-blue hover:bg-onpe-ui-blue/80"
             >
               Mostrar Loading
             </button>

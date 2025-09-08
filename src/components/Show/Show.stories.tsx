@@ -25,11 +25,11 @@ export const Loading: Story = {
     loadingComponent: (
       <div className="flex items-center p-4 space-x-3 bg-white rounded-lg shadow">
         <div className="w-6 h-6 border-b-2 rounded-full animate-spin border-blue"></div>
-        <span className="font-medium text-blue">Cargando...</span>
+        <span className="font-medium text-onpe-ui-blue">Cargando...</span>
       </div>
     ),
     children: (
-      <div className="p-4 text-white rounded-lg bg-green">
+      <div className="p-4 text-white rounded-lg bg-onpe-ui-green">
         <h3 className="font-semibold">Contenido cargado</h3>
         <p>Este contenido se muestra cuando no está cargando</p>
       </div>
@@ -43,11 +43,11 @@ export const Content: Story = {
     loadingComponent: (
       <div className="flex items-center p-4 space-x-3 bg-white rounded-lg shadow">
         <div className="w-6 h-6 border-b-2 rounded-full animate-spin border-blue"></div>
-        <span className="font-medium text-blue">Cargando...</span>
+        <span className="font-medium text-onpe-ui-blue">Cargando...</span>
       </div>
     ),
     children: (
-      <div className="p-4 text-white rounded-lg bg-green">
+      <div className="p-4 text-white rounded-lg bg-onpe-ui-green">
         <h3 className="font-semibold">Contenido cargado</h3>
         <p>Este contenido se muestra cuando no está cargando</p>
       </div>
@@ -63,7 +63,7 @@ export const Interactive: Story = {
       <div className="space-y-4">
         <button
           onClick={() => setIsLoading(!isLoading)}
-          className="px-4 py-2 font-semibold text-white transition-colors rounded bg-blue hover:bg-blue/80"
+          className="px-4 py-2 font-semibold text-white transition-colors rounded bg-onpe-ui-blue hover:bg-onpe-ui-blue/80"
         >
           {isLoading ? "Mostrar contenido" : "Mostrar loading"}
         </button>
@@ -74,13 +74,13 @@ export const Interactive: Story = {
             <div className="flex items-center p-6 space-x-3 bg-white border rounded-lg shadow-lg">
               <div className="w-8 h-8 border-b-2 rounded-full animate-spin border-skyblue"></div>
               <div>
-                <h4 className="font-semibold text-skyblue">Procesando datos...</h4>
-                <p className="text-sm text-gray-dark">Por favor espera un momento</p>
+                <h4 className="font-semibold text-onpe-ui-skyblue">Procesando datos...</h4>
+                <p className="text-sm text-onpe-ui-gray-dark">Por favor espera un momento</p>
               </div>
             </div>
           }
           children={
-            <div className="p-6 text-white rounded-lg shadow-lg bg-skyblue">
+            <div className="p-6 text-white rounded-lg shadow-lg bg-onpe-ui-skyblue">
               <h3 className="mb-2 text-xl font-bold">¡Datos cargados!</h3>
               <p className="mb-4">Los datos se han cargado exitosamente.</p>
               <div className="grid grid-cols-2 gap-4 text-sm">

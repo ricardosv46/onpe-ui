@@ -357,25 +357,25 @@ La librería incluye breakpoints personalizados para ONPE:
 
 ### Colores de Texto
 ```css
-.text-blue          /* Azul principal */
-.text-skyblue       /* Sky blue */
-.text-yellow        /* Amarillo */
-.text-green         /* Verde */
-.text-red           /* Rojo */
-.text-gray          /* Gris */
-.text-dark-gray     /* Gris oscuro */
+.text-onpe-ui-blue          /* Azul principal */
+.text-onpe-ui-skyblue       /* Sky blue */
+.text-onpe-ui-yellow        /* Amarillo */
+.text-onpe-ui-green         /* Verde */
+.text-onpe-ui-red           /* Rojo */
+.text-onpe-ui-gray          /* Gris */
+.text-onpe-ui-dark-gray     /* Gris oscuro */
 ```
 
 ### Colores de Fondo
 ```css
-.bg-blue            /* Fondo azul */
-.bg-skyblue         /* Fondo sky blue */
-.bg-yellow          /* Fondo amarillo */
-.bg-green           /* Fondo verde */
-.bg-red             /* Fondo rojo */
-.bg-gray            /* Fondo gris */
-.bg-gray-light      /* Fondo gris claro */
-.bg-gray-extra-light /* Fondo gris muy claro */
+.bg-onpe-ui-blue            /* Fondo azul */
+.bg-onpe-ui-skyblue         /* Fondo sky blue */
+.bg-onpe-ui-yellow          /* Fondo amarillo */
+.bg-onpe-ui-green           /* Fondo verde */
+.bg-onpe-ui-red             /* Fondo rojo */
+.bg-onpe-ui-gray            /* Fondo gris */
+.bg-onpe-ui-gray-light      /* Fondo gris claro */
+.bg-onpe-ui-gray-extra-light /* Fondo gris muy claro */
 ```
 
 ## 📋 Versiones

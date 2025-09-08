@@ -16,10 +16,10 @@ export const BrowserIncompatible = ({ isOpen = false, onClose = () => {}, classN
   return (
     <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-5 pb-8 ${className}`} closeButton={true} closeDisabled>
       <div className="flex justify-center items-center">
-        <IconWarning className="w-22 h-22 text-skyblue" />
+        <IconWarning className="w-22 h-22 text-onpe-ui-skyblue" />
       </div>
 
-      <p className="text-sm md:text-2xl text-center mt-6 text-skyblue font-medium">Navegador no recomendado</p>
+      <p className="text-sm md:text-2xl text-center mt-6 text-onpe-ui-skyblue font-medium">Navegador no recomendado</p>
 
       <p className="text-sm md:text-lg text-center mt-6">
         Para una mejor experiencia y mayor seguridad, debes ingresar con los siguientes navegadores:

@@ -29,7 +29,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    className: "text-blue animate-spin",
+    className: "text-onpe-ui-blue animate-spin",
   },
 };
 
@@ -37,7 +37,7 @@ export const Small: Story = {
   args: {
     width: 16,
     height: 16,
-    className: "text-blue animate-spin",
+    className: "text-onpe-ui-blue animate-spin",
   },
 };
 
@@ -45,7 +45,7 @@ export const Large: Story = {
   args: {
     width: 66,
     height: 66,
-    className: "text-blue animate-spin",
+    className: "text-onpe-ui-blue animate-spin",
   },
 };
 
@@ -59,7 +59,7 @@ export const CustomSizeAndColor: Story = {
   args: {
     width: 33,
     height: 33,
-    className: "text-skyblue animate-spin",
+    className: "text-onpe-ui-skyblue animate-spin",
   },
 };
 
@@ -67,45 +67,45 @@ export const AllSizesAndColors: Story = {
   render: () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold mb-4 text-gray-dark">Tamaños</h3>
+        <h3 className="text-lg font-semibold mb-4 text-onpe-ui-gray-dark">Tamaños</h3>
         <div className="flex items-center gap-4">
           <div className="text-center">
-            <IconSpinnerMobile width={16} height={16} className="text-blue animate-spin" />
-            <p className="text-sm text-gray-dark mt-1">16x16</p>
+            <IconSpinnerMobile width={16} height={16} className="text-onpe-ui-blue animate-spin" />
+            <p className="text-sm text-onpe-ui-gray-dark mt-1">16x16</p>
           </div>
           <div className="text-center">
-            <IconSpinnerMobile width={33} height={33} className="text-blue animate-spin" />
-            <p className="text-sm text-gray-dark mt-1">33x33</p>
+            <IconSpinnerMobile width={33} height={33} className="text-onpe-ui-blue animate-spin" />
+            <p className="text-sm text-onpe-ui-gray-dark mt-1">33x33</p>
           </div>
           <div className="text-center">
-            <IconSpinnerMobile width={49} height={49} className="text-blue animate-spin" />
-            <p className="text-sm text-gray-dark mt-1">49x49</p>
+            <IconSpinnerMobile width={49} height={49} className="text-onpe-ui-blue animate-spin" />
+            <p className="text-sm text-onpe-ui-gray-dark mt-1">49x49</p>
           </div>
           <div className="text-center">
-            <IconSpinnerMobile width={66} height={66} className="text-blue animate-spin" />
-            <p className="text-sm text-gray-dark mt-1">66x66</p>
+            <IconSpinnerMobile width={66} height={66} className="text-onpe-ui-blue animate-spin" />
+            <p className="text-sm text-onpe-ui-gray-dark mt-1">66x66</p>
           </div>
         </div>
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold mb-4 text-gray-dark">Colores</h3>
+        <h3 className="text-lg font-semibold mb-4 text-onpe-ui-gray-dark">Colores</h3>
         <div className="flex items-center gap-4">
           <div className="text-center">
-            <IconSpinnerMobile className="text-blue animate-spin" />
-            <p className="text-sm text-gray-dark mt-1">Azul</p>
+            <IconSpinnerMobile className="text-onpe-ui-blue animate-spin" />
+            <p className="text-sm text-onpe-ui-gray-dark mt-1">Azul</p>
           </div>
           <div className="text-center">
             <IconSpinnerMobile className="text-white animate-spin" />
-            <p className="text-sm text-gray-dark mt-1">Blanco</p>
+            <p className="text-sm text-onpe-ui-gray-dark mt-1">Blanco</p>
           </div>
           <div className="text-center">
-            <IconSpinnerMobile className="text-skyblue animate-spin" />
-            <p className="text-sm text-gray-dark mt-1">Skyblue</p>
+            <IconSpinnerMobile className="text-onpe-ui-skyblue animate-spin" />
+            <p className="text-sm text-onpe-ui-gray-dark mt-1">Skyblue</p>
           </div>
           <div className="text-center">
-            <IconSpinnerMobile className="text-gray animate-spin" />
-            <p className="text-sm text-gray-dark mt-1">Gris</p>
+            <IconSpinnerMobile className="text-onpe-ui-gray animate-spin" />
+            <p className="text-sm text-onpe-ui-gray-dark mt-1">Gris</p>
           </div>
         </div>
       </div>

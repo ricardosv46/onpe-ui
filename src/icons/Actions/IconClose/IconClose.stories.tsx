@@ -56,20 +56,20 @@ export const WithColors: Story = {
   render: () => (
     <div className="space-y-4">
       <div className="flex items-center space-x-4">
-        <IconClose className="text-red" width={16} height={16} />
-        <span className="text-gray-dark">Rojo</span>
+        <IconClose className="text-onpe-ui-red" width={16} height={16} />
+        <span className="text-onpe-ui-gray-dark">Rojo</span>
       </div>
       <div className="flex items-center space-x-4">
-        <IconClose className="text-blue" width={16} height={16} />
-        <span className="text-gray-dark">Azul</span>
+        <IconClose className="text-onpe-ui-blue" width={16} height={16} />
+        <span className="text-onpe-ui-gray-dark">Azul</span>
       </div>
       <div className="flex items-center space-x-4">
-        <IconClose className="text-green" width={16} height={16} />
-        <span className="text-gray-dark">Verde</span>
+        <IconClose className="text-onpe-ui-green" width={16} height={16} />
+        <span className="text-onpe-ui-gray-dark">Verde</span>
       </div>
       <div className="flex items-center space-x-4">
-        <IconClose className="text-gray-dark" width={16} height={16} />
-        <span className="text-gray-dark">Gris Oscuro</span>
+        <IconClose className="text-onpe-ui-gray-dark" width={16} height={16} />
+        <span className="text-onpe-ui-gray-dark">Gris Oscuro</span>
       </div>
     </div>
   ),
@@ -79,24 +79,24 @@ export const InButtons: Story = {
   render: () => (
     <div className="space-y-4">
       <div className="flex items-center space-x-4">
-        <button className="p-2 text-white transition-colors rounded-full bg-red hover:bg-red/80">
+        <button className="p-2 text-white transition-colors rounded-full bg-onpe-ui-red hover:bg-onpe-ui-red/80">
           <IconClose className="text-white" width={12} height={12} />
         </button>
-        <span className="text-gray-dark">Botón rojo</span>
+        <span className="text-onpe-ui-gray-dark">Botón rojo</span>
       </div>
 
       <div className="flex items-center space-x-4">
-        <button className="p-2 text-white transition-colors rounded-full bg-blue hover:bg-blue/80">
+        <button className="p-2 text-white transition-colors rounded-full bg-onpe-ui-blue hover:bg-onpe-ui-blue/80">
           <IconClose className="text-white" width={12} height={12} />
         </button>
-        <span className="text-gray-dark">Botón azul</span>
+        <span className="text-onpe-ui-gray-dark">Botón azul</span>
       </div>
 
       <div className="flex items-center space-x-4">
-        <button className="p-2 text-white transition-colors rounded-full bg-gray hover:bg-gray/80">
+        <button className="p-2 text-white transition-colors rounded-full bg-onpe-ui-gray hover:bg-onpe-ui-gray/80">
           <IconClose className="text-white" width={12} height={12} />
         </button>
-        <span className="text-gray-dark">Botón gris</span>
+        <span className="text-onpe-ui-gray-dark">Botón gris</span>
       </div>
     </div>
   ),
@@ -106,20 +106,20 @@ export const AllSizes: Story = {
   render: () => (
     <div className="grid items-center grid-cols-4 gap-6">
       <div className="text-center">
-        <IconClose width={8} height={8} className="mx-auto mb-2 text-blue" />
-        <span className="text-xs text-gray-dark">8x8</span>
+        <IconClose width={8} height={8} className="mx-auto mb-2 text-onpe-ui-blue" />
+        <span className="text-xs text-onpe-ui-gray-dark">8x8</span>
       </div>
       <div className="text-center">
-        <IconClose width={12} height={12} className="mx-auto mb-2 text-blue" />
-        <span className="text-xs text-gray-dark">12x12</span>
+        <IconClose width={12} height={12} className="mx-auto mb-2 text-onpe-ui-blue" />
+        <span className="text-xs text-onpe-ui-gray-dark">12x12</span>
       </div>
       <div className="text-center">
-        <IconClose width={16} height={16} className="mx-auto mb-2 text-blue" />
-        <span className="text-xs text-gray-dark">16x16</span>
+        <IconClose width={16} height={16} className="mx-auto mb-2 text-onpe-ui-blue" />
+        <span className="text-xs text-onpe-ui-gray-dark">16x16</span>
       </div>
       <div className="text-center">
-        <IconClose width={24} height={24} className="mx-auto mb-2 text-blue" />
-        <span className="text-xs text-gray-dark">24x24</span>
+        <IconClose width={24} height={24} className="mx-auto mb-2 text-onpe-ui-blue" />
+        <span className="text-xs text-onpe-ui-gray-dark">24x24</span>
       </div>
     </div>
   ),

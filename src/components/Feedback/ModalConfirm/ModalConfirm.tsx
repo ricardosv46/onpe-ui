@@ -49,11 +49,11 @@ export const ModalConfirm = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-5 pb-8 ${className}`} closeButton={true} closeDisabled topAbsolute={true}>
       <div className="flex items-center justify-center">
-        {icon === "warning" && <IconWarning className="w-16 h-16 text-skyblue" />}
-        {icon === "success" && <IconCheck className="w-16 h-16 text-skyblue" />}
+        {icon === "warning" && <IconWarning className="w-16 h-16 text-onpe-ui-skyblue" />}
+        {icon === "success" && <IconCheck className="w-16 h-16 text-onpe-ui-skyblue" />}
       </div>
 
-      <p className="mt-3 text-lg font-medium text-center lg:mt-4 lg:text-2xl text-skyblue">{title}</p>
+      <p className="mt-3 text-lg font-medium text-center lg:mt-4 lg:text-2xl text-onpe-ui-skyblue">{title}</p>
 
       <p className="mt-7 text-sm lg:text-lg text-center max-w-full lg:max-w-[576px]">{message}</p>
 

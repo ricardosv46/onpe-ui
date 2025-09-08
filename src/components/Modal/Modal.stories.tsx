@@ -52,14 +52,14 @@ export const Basic: Story = {
 
     return (
       <div>
-        <div className="p-4 mb-4 bg-gray-100 rounded">
-          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+        <div className="p-4 mb-4 bg-onpe-ui-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-onpe-ui-blue-500 rounded hover:bg-onpe-ui-blue-600">
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
         <Modal {...args} isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          <h2 className="mb-4 text-2xl font-bold text-blue">Modal Básico</h2>
-          <p className="mb-6 text-gray-dark">Este es un modal básico con contenido simple.</p>
+          <h2 className="mb-4 text-2xl font-bold text-onpe-ui-blue">Modal Básico</h2>
+          <p className="mb-6 text-onpe-ui-gray-dark">Este es un modal básico con contenido simple.</p>
           <Button color="primary" title="Cerrar" onClick={() => setIsOpen(false)} />
         </Modal>
       </div>
@@ -76,14 +76,14 @@ export const WithCloseButton: Story = {
 
     return (
       <div>
-        <div className="p-4 mb-4 bg-gray-100 rounded">
-          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">
+        <div className="p-4 mb-4 bg-onpe-ui-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-onpe-ui-green-500 rounded hover:bg-onpe-ui-green-600">
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
         <Modal {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} closeButton={true}>
-          <h2 className="mb-4 text-2xl font-bold text-blue">Modal con Botón Cerrar</h2>
-          <p className="mb-6 text-gray-dark">Este modal tiene un botón de cerrar en la esquina superior derecha.</p>
+          <h2 className="mb-4 text-2xl font-bold text-onpe-ui-blue">Modal con Botón Cerrar</h2>
+          <p className="mb-6 text-onpe-ui-gray-dark">Este modal tiene un botón de cerrar en la esquina superior derecha.</p>
           <div className="space-y-3">
             <Button color="primary" title="Aceptar" className="w-full" />
             <Button color="red" title="Cancelar" onClick={() => setIsOpen(false)} className="w-full" />
@@ -102,20 +102,20 @@ export const Interactive: Story = {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-      <div className="min-h-screen p-8 bg-gray-extra-light">
+      <div className="min-h-screen p-8 bg-onpe-ui-gray-extra-light">
         <div className="max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg">
-          <h2 className="mb-4 text-xl font-bold text-blue">Demo Interactivo de Modal</h2>
+          <h2 className="mb-4 text-xl font-bold text-onpe-ui-blue">Demo Interactivo de Modal</h2>
           <button
             onClick={() => setIsOpen(true)}
-            className="w-full px-4 py-2 font-semibold text-white transition-colors rounded bg-blue hover:bg-blue/80"
+            className="w-full px-4 py-2 font-semibold text-white transition-colors rounded bg-onpe-ui-blue hover:bg-onpe-ui-blue/80"
           >
             Abrir Modal
           </button>
         </div>
 
         <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} overlayColor="blue" closeButton={true}>
-          <h2 className="mb-4 text-2xl font-bold text-blue">Modal Interactivo</h2>
-          <p className="mb-6 text-gray-dark">Este modal se puede configurar con diferentes opciones.</p>
+          <h2 className="mb-4 text-2xl font-bold text-onpe-ui-blue">Modal Interactivo</h2>
+          <p className="mb-6 text-onpe-ui-gray-dark">Este modal se puede configurar con diferentes opciones.</p>
           <div className="space-y-3">
             <Button color="primary" title="Confirmar" className="w-full" />
             <Button color="gray" title="Cancelar" onClick={() => setIsOpen(false)} className="w-full" />

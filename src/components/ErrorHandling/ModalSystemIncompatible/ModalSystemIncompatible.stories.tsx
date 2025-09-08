@@ -30,8 +30,8 @@ export const Default: Story = {
 
     return (
       <div>
-        <div className="mb-4 p-4 bg-gray-100 rounded">
-          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600">
+        <div className="p-4 mb-4 rounded bg-onpe-ui-gray-100">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white rounded bg-onpe-ui-red hover:bg-onpe-ui-red">
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
@@ -47,13 +47,13 @@ export const Interactive: Story = {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-      <div className="min-h-screen bg-gray-extra-light p-8">
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
-          <h2 className="mb-4 text-xl font-bold text-blue">Demo Device Incompatible</h2>
-          <p className="mb-6 text-gray-dark">Simula un sistema operativo incompatible para probar el componente.</p>
+      <div className="min-h-screen p-8 bg-onpe-ui-gray-extra-light">
+        <div className="max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg">
+          <h2 className="mb-4 text-xl font-bold text-onpe-ui-blue">Demo Device Incompatible</h2>
+          <p className="mb-6 text-onpe-ui-gray-dark">Simula un sistema operativo incompatible para probar el componente.</p>
           <button
             onClick={() => setIsOpen(true)}
-            className="w-full px-4 py-2 font-semibold text-white transition-colors rounded bg-red hover:bg-red/80"
+            className="w-full px-4 py-2 font-semibold text-white transition-colors rounded bg-onpe-ui-red hover:bg-onpe-ui-red/80"
           >
             Simular Sistema Incompatible
           </button>
@@ -76,8 +76,8 @@ export const CustomStyling: Story = {
 
     return (
       <div>
-        <div className="mb-4 p-4 bg-gray-100 rounded">
-          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">
+        <div className="p-4 mb-4 rounded bg-onpe-ui-gray-100">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-purple-500 rounded hover:bg-purple-600">
             {isOpen ? "Cerrar Modal" : "Abrir Modal"}
           </button>
         </div>
