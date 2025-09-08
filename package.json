@@ -32,7 +32,8 @@
       "require": "./dist/lib.js",
       "types": "./dist/lib.d.ts"
     },
-    "./styles": "./dist/index.css"
+    "./styles": "./dist/index.css",
+    "./tailwind-preset": "./tailwind-preset.js"
   },
   "files": [
     "dist",

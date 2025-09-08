@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* Storybook usa el Tailwind del proyecto host */
+/* No importamos Tailwind aquí, se usa el del proyecto */
 
 :root {
   --blue: #003770;
