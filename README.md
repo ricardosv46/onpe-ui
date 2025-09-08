@@ -35,29 +35,34 @@ npx onpe-ui add <componente>
 
 ### Instalar Componentes con CLI
 
-#### Instalar un componente específico
+#### Instalar componentes específicos
 ```bash
-# Instalar Button
+# Componentes
 npx onpe-ui add button
-
-# Instalar Modal (instala automáticamente Portal y Overlay)
 npx onpe-ui add modal
-
-# Instalar Portal
 npx onpe-ui add portal
-
-# Instalar Overlay
 npx onpe-ui add overlay
-
-# Instalar Show
 npx onpe-ui add show
+
+# Iconos
+npx onpe-ui add icon-close
+npx onpe-ui add icon-check
+npx onpe-ui add icon-warning
+npx onpe-ui add icon-chrome
+npx onpe-ui add icon-firefox
+npx onpe-ui add icon-safari
+npx onpe-ui add icon-edge
+npx onpe-ui add icon-windows
+npx onpe-ui add icon-apple
+npx onpe-ui add icon-android
 ```
 
 #### Usar componentes instalados individualmente
 ```tsx
 // Después de instalar con CLI
-import { Button } from './components/ui/Button';
-import { Modal } from './components/ui/Modal';
+import { Button } from './components/onpe-ui/Button';
+import { Modal } from './components/onpe-ui/Modal';
+import { IconClose } from './components/onpe-icons/IconClose';
 import { useState } from 'react';
 
 function App() {
@@ -80,11 +85,14 @@ function App() {
         <div className="p-6">
           <h2 className="text-xl font-bold mb-4">Contenido del Modal</h2>
           <p className="mb-4">Este es un ejemplo de modal con contenido.</p>
-          <Button 
-            color="green" 
-            title="Cerrar" 
-            onClick={() => setIsOpen(false)} 
-          />
+          <div className="flex items-center gap-2">
+            <IconClose className="w-4 h-4" />
+            <Button 
+              color="green" 
+              title="Cerrar" 
+              onClick={() => setIsOpen(false)} 
+            />
+          </div>
         </div>
       </Modal>
     </div>
@@ -214,12 +222,21 @@ npx onpe-ui add show      # Sin dependencias
 ```
 src/
 └── components/
-    └── ui/
-        ├── Button.tsx
-        ├── Modal.tsx
-        ├── Overlay.tsx
-        ├── Portal.tsx
-        └── Show.tsx
+    ├── ui/           # shadcn/ui (si está instalado)
+    │   ├── button.tsx
+    │   └── input.tsx
+    ├── onpe-ui/      # ONPE UI - Componentes
+    │   ├── Button.tsx
+    │   ├── Modal.tsx
+    │   ├── Overlay.tsx
+    │   ├── Portal.tsx
+    │   └── Show.tsx
+    └── onpe-icons/   # ONPE UI - Iconos
+        ├── IconClose.tsx
+        ├── IconCheck.tsx
+        ├── IconChrome.tsx
+        ├── IconFirefox.tsx
+        └── IconWindows.tsx
 ```
 
 ## 🧩 Componentes Disponibles
@@ -1349,17 +1366,18 @@ npm install @onpe/ui
 ```tsx
 /* Verificar que tengas la importación correcta */
 import './onpe-ui.css';
-import { Button } from './components/ui/Button';
+import { Button } from './components/onpe-ui/Button';
 ```
 
 **Solución: Verificar rutas de importación**
 ```tsx
 // ✅ CORRECTO: Importar archivo CSS personalizado
 import './onpe-ui.css';
-import { Button } from './components/ui/Button';
+import { Button } from './components/onpe-ui/Button';
+import { IconClose } from './components/onpe-icons/IconClose';
 
 // ❌ INCORRECTO: No importar el archivo CSS
-import { Button } from './components/ui/Button';
+import { Button } from './components/onpe-ui/Button';
 ```
 
 **Solución: Verificar configuración de bundler**
@@ -1542,17 +1560,19 @@ npx tailwindcss init -p
 ```tsx
 // En tu archivo principal (index.tsx)
 import './onpe-ui.css';
-import { Button } from './components/ui/Button';
+import { Button } from './components/onpe-ui/Button';
+import { IconClose } from './components/onpe-icons/IconClose';
 ```
 
 **Paso 5: Verificar orden de importación**
 ```tsx
 // ✅ CORRECTO
 import './onpe-ui.css';
-import { Button } from './components/ui/Button';
+import { Button } from './components/onpe-ui/Button';
+import { IconClose } from './components/onpe-icons/IconClose';
 
 // ❌ INCORRECTO
-import { Button } from './components/ui/Button';
+import { Button } from './components/onpe-ui/Button';
 // Falta importar el archivo CSS
 ```
 
