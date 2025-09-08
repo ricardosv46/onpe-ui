@@ -30,4 +30,3 @@ export const IconChrome = (props: IconChromeProps) => (
     </defs>
   </svg>
 );
-

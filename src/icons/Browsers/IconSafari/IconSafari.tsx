@@ -21,4 +21,3 @@ export const IconSafari = (props: IconSafariProps) => (
     </defs>
   </svg>
 );
-

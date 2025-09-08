@@ -18,4 +18,3 @@ export const IconEdge = (props: IconEdgeProps) => (
     </defs>
   </svg>
 );
-
