@@ -348,6 +348,11 @@ function personalizeComponent(code: string, componentName: string): string {
       /from "\.\.\/onpe\/ui\/([^"]+)"/g,
       (match, component) => `from "../ui/${component}"`
     );
+    // Arreglar importaciones de iconos en modales
+    personalizedCode = personalizedCode.replace(
+      /from "\.\.\/onpe\/icons\/([^"]+)"/g,
+      (match, path) => `from "../icons/${path}"`
+    );
   }
 
   // Agregar export default si no existe
