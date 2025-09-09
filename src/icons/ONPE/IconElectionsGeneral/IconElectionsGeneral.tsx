@@ -1,9 +1,7 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-export type IconElectionsGeneralProps = SVGProps<SVGSVGElement>;
-
-export const IconElectionsGeneral = (props: IconElectionsGeneralProps) => (
+export const IconElectionsGeneral = (props: SVGProps<SVGSVGElement>) => (
   <svg width={350} height={70} viewBox="0 0 350 70" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <path d="M130.62 9.46469V11.413H134.423V13.933H130.62V16.0797H134.925V18.728H127.307V6.80469H134.925V9.45302H130.62V9.46469Z" fill="#1D3B6D" />
     <path d="M139.872 6.21875V18.7254H136.559V6.21875H139.872Z" fill="#1D3B6D" />
@@ -247,4 +245,3 @@ export const IconElectionsGeneral = (props: IconElectionsGeneralProps) => (
     />
   </svg>
 );
-

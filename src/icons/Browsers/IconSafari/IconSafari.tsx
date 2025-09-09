@@ -3,7 +3,7 @@ import { SVGProps } from "react";
 
 export interface IconSafariProps extends SVGProps<SVGSVGElement> {}
 
-export const IconSafari = (props: IconSafariProps) => (
+export const IconSafari = (props: SVGProps<SVGSVGElement>) => (
   <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <g clipPath="url(#clip0_7500_5262)">
       <path d="M7.93359 16.068L10.9832 10.9832L16.068 7.93359L13.0184 13.0184L7.93359 16.068Z" fill="currentColor" />

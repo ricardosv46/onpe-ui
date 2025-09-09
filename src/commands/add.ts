@@ -324,10 +324,7 @@ function personalizeComponent(code: string, componentName: string): string {
   // Arreglar importaciones relativas dentro de la misma carpeta
   // Para componentes UI que importan otros componentes UI
   if (componentName.toLowerCase() === "modal") {
-    personalizedCode = personalizedCode.replace(
-      /from "\.\.\/onpe\/ui\/(Portal|Overlay)"/g,
-      (match, component) => `from "./${component}"`
-    );
+    personalizedCode = personalizedCode.replace(/from "\.\.\/onpe\/ui\/(Portal|Overlay)"/g, (match, component) => `from "./${component}"`);
     personalizedCode = personalizedCode.replace(
       /from "\.\.\/onpe\/icons\/actions\/(IconClose)"/g,
       (match, component) => `from "../icons/actions/${component}"`
@@ -338,22 +335,17 @@ function personalizeComponent(code: string, componentName: string): string {
   if (componentName.toLowerCase().startsWith("icon-")) {
     // Agregar importación de SVGProps si no existe
     if (personalizedCode.includes("SVGProps<SVGSVGElement>") && !personalizedCode.includes("import { SVGProps }")) {
-      personalizedCode = personalizedCode.replace(
-        /import React from "react";/,
-        `import React, { SVGProps } from "react";`
-      );
+      personalizedCode = personalizedCode.replace(/import React from "react";/, `import React, { SVGProps } from "react";`);
     }
-    
-    // Arreglar interfaz vacía agregando propiedades opcionales comunes
+
+    // Simplificar: eliminar interfaces vacías y usar SVGProps directamente
     if (personalizedCode.includes("export interface") && personalizedCode.includes("extends SVGProps<SVGSVGElement>")) {
+      // Eliminar la interfaz vacía y usar SVGProps directamente en el componente
       personalizedCode = personalizedCode.replace(
-        /export interface \w+Props extends SVGProps<SVGSVGElement> \{\}/,
+        /export interface \w+Props extends SVGProps<SVGSVGElement> \{\}\s*\n\s*export const \w+ = \(props: \w+Props\)/,
         (match) => {
-          const interfaceName = match.match(/export interface (\w+Props)/)?.[1] || "IconProps";
-          return `export interface ${interfaceName} extends SVGProps<SVGSVGElement> {
-  className?: string;
-  size?: number | string;
-}`;
+          const componentName = match.match(/export const (\w+) =/)?.[1] || "Icon";
+          return `export const ${componentName} = (props: SVGProps<SVGSVGElement>)`;
         }
       );
     }
@@ -361,28 +353,16 @@ function personalizeComponent(code: string, componentName: string): string {
 
   // Para otros componentes UI
   if (!componentName.toLowerCase().startsWith("icon-") && !componentName.toLowerCase().startsWith("modal")) {
-    personalizedCode = personalizedCode.replace(
-      /from "\.\.\/onpe\/ui\/([^"]+)"/g,
-      (match, component) => `from "./${component}"`
-    );
+    personalizedCode = personalizedCode.replace(/from "\.\.\/onpe\/ui\/([^"]+)"/g, (match, component) => `from "./${component}"`);
   }
 
   // Para modales que importan componentes UI
   if (componentName.toLowerCase().startsWith("modal") && componentName !== "modal") {
     // Arreglar importación de Modal específicamente
-    personalizedCode = personalizedCode.replace(
-      /from "\.\.\/\.\.\/Modal\/Modal"/g,
-      `from "../ui/Modal"`
-    );
-    personalizedCode = personalizedCode.replace(
-      /from "\.\.\/onpe\/ui\/([^"]+)"/g,
-      (match, component) => `from "../ui/${component}"`
-    );
+    personalizedCode = personalizedCode.replace(/from "\.\.\/\.\.\/Modal\/Modal"/g, `from "../ui/Modal"`);
+    personalizedCode = personalizedCode.replace(/from "\.\.\/onpe\/ui\/([^"]+)"/g, (match, component) => `from "../ui/${component}"`);
     // Arreglar importaciones de iconos en modales
-    personalizedCode = personalizedCode.replace(
-      /from "\.\.\/onpe\/icons\/([^"]+)"/g,
-      (match, path) => `from "../icons/${path}"`
-    );
+    personalizedCode = personalizedCode.replace(/from "\.\.\/onpe\/icons\/([^"]+)"/g, (match, path) => `from "../icons/${path}"`);
   }
 
   // Agregar export default si no existe

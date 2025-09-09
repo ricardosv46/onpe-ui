@@ -1,9 +1,7 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-export interface IconMozillaColorProps extends SVGProps<SVGSVGElement> {}
-
-export const IconMozillaColor = (props: IconMozillaColorProps) => (
+export const IconMozillaColor = (props: SVGProps<SVGSVGElement>) => (
   <svg width={47} height={48} viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <g clipPath="url(#clip0_2937_2828)">
       <path
@@ -222,4 +220,3 @@ export const IconMozillaColor = (props: IconMozillaColorProps) => (
     </defs>
   </svg>
 );
-

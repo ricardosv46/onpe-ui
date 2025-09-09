@@ -1,9 +1,7 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-export interface IconChromeProps extends SVGProps<SVGSVGElement> {}
-
-export const IconChrome = (props: IconChromeProps) => (
+export const IconChrome = (props: SVGProps<SVGSVGElement>) => (
   <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <g clipPath="url(#clip2_4460_12124)">
       <path

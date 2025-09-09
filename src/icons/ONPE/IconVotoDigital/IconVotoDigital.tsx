@@ -1,9 +1,7 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-export type IconVotoDigitalProps = SVGProps<SVGSVGElement>;
-
-export const IconVotoDigital = (props: IconVotoDigitalProps) => (
+export const IconVotoDigital = (props: SVGProps<SVGSVGElement>) => (
   <svg width={230} height={80} viewBox="0 0 230 80" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <path
       d="M118.746 35.8343C118.541 35.6834 118.366 35.418 118.222 35.0439L111.826 18.9884C111.736 18.7591 111.693 18.56 111.693 18.3971C111.693 18.023 111.892 17.8359 112.284 17.8359H117.312C117.866 17.8359 118.216 18.0773 118.354 18.56L121.082 27.2967L123.811 18.56C123.955 18.0773 124.298 17.8359 124.853 17.8359H129.881C130.273 17.8359 130.472 18.023 130.472 18.3971C130.472 18.56 130.429 18.7531 130.339 18.9884L123.973 35.0439C123.829 35.418 123.654 35.6834 123.449 35.8343C123.245 35.9851 122.943 36.0636 122.552 36.0636H119.637C119.246 36.0636 118.944 35.9851 118.74 35.8343H118.746Z"
@@ -69,4 +67,3 @@ export const IconVotoDigital = (props: IconVotoDigitalProps) => (
     />
   </svg>
 );
-

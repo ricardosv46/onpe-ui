@@ -1,9 +1,7 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-export interface IconChromeColorProps extends SVGProps<SVGSVGElement> {}
-
-export const IconChromeColor = (props: IconChromeColorProps) => (
+export const IconChromeColor = (props: SVGProps<SVGSVGElement>) => (
   <svg width={48} height={48} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <g clipPath="url(#clip0_2937_2817)">
       <path
@@ -87,4 +85,3 @@ export const IconChromeColor = (props: IconChromeColorProps) => (
     </defs>
   </svg>
 );
-
