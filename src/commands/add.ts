@@ -344,6 +344,11 @@ function personalizeComponent(code: string, componentName: string): string {
 
   // Para modales que importan componentes UI
   if (componentName.toLowerCase().startsWith("modal") && componentName !== "modal") {
+    // Arreglar importación de Modal específicamente
+    personalizedCode = personalizedCode.replace(
+      /from "\.\.\/\.\.\/Modal\/Modal"/g,
+      `from "../ui/Modal"`
+    );
     personalizedCode = personalizedCode.replace(
       /from "\.\.\/onpe\/ui\/([^"]+)"/g,
       (match, component) => `from "../ui/${component}"`
