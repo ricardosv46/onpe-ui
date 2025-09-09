@@ -334,6 +334,17 @@ function personalizeComponent(code: string, componentName: string): string {
     );
   }
 
+  // Para iconos que necesitan SVGProps
+  if (componentName.toLowerCase().startsWith("icon-")) {
+    // Agregar importación de SVGProps si no existe
+    if (personalizedCode.includes("SVGProps<SVGSVGElement>") && !personalizedCode.includes("import { SVGProps }")) {
+      personalizedCode = personalizedCode.replace(
+        /import React from "react";/,
+        `import React, { SVGProps } from "react";`
+      );
+    }
+  }
+
   // Para otros componentes UI
   if (!componentName.toLowerCase().startsWith("icon-") && !componentName.toLowerCase().startsWith("modal")) {
     personalizedCode = personalizedCode.replace(
