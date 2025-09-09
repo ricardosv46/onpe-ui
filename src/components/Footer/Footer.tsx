@@ -1,7 +1,5 @@
 import React, { ReactNode } from "react";
 import { BrowserRecommended } from "../BrowserRecommended/BrowserRecommended";
-import { IconInfo } from "../../icons/Actions/IconInfo/IconInfo";
-import { useToggle } from "../../hooks/useToggle/useToggle";
 
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   showBrowserInfo?: boolean;
@@ -19,8 +17,6 @@ export const Footer = ({
   isDevelopment = false,
   ...props
 }: FooterProps) => {
-  const [isOpen, openTooltip, closeTooltip] = useToggle();
-
   return (
     <footer {...props}>
       {showFooterContent && (
