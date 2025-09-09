@@ -1,6 +1,6 @@
 {
   "name": "@onpe/ui",
-  "version": "1.2.6-beta.0",
+  "version": "1.2.6",
   "type": "module",
   "description": "Librería completa de UI para ONPE - Componentes, Hooks, Utils y Librerías",
   "main": "dist/index.js",
