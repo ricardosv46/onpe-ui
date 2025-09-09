@@ -25,28 +25,7 @@ export const Footer = ({
     <footer {...props}>
       {showFooterContent && (
         <>
-          {showVersionInfo ? (
-            <div className="flex items-center justify-center gap-2 py-2 text-xs text-onpe-ui-blue bg-onpe-ui-skyblue/15">
-              <p>Versión 1.0.0</p>
-              <div className="relative">
-                <button
-                  onMouseEnter={openTooltip}
-                  onMouseLeave={closeTooltip}
-                  className="flex items-center justify-center w-4 h-4 transition-colors text-onpe-ui-blue hover:text-onpe-ui-blue-dark"
-                >
-                  <IconInfo className="w-3 h-3" />
-                </button>
-                {isOpen && (
-                  <div className="absolute z-50 px-2 py-1 text-xs text-white transform -translate-x-1/2 rounded shadow-lg bottom-6 left-1/2 bg-onpe-ui-blue whitespace-nowrap">
-                    Información de versión
-                    <div className="absolute w-0 h-0 transform -translate-x-1/2 border-t-4 border-l-4 border-r-4 border-transparent top-full left-1/2 border-t-onpe-ui-blue"></div>
-                  </div>
-                )}
-              </div>
-            </div>
-          ) : (
-            <></>
-          )}
+          {showVersionInfo ? showVersionInfo : <></>}
 
           {showBrowserInfo && <BrowserRecommended />}
           {showContactInfo && (
