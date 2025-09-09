@@ -6,8 +6,9 @@ const COMPONENTS_URL = "https://raw.githubusercontent.com/ricardosv46/onpe-ui/ma
 const ICONS_URL = "https://raw.githubusercontent.com/ricardosv46/onpe-ui/main/src/icons";
 
 export async function addComponent(componentName: string) {
-  // Determinar si es un icono, modal o componente básico
+  // Determinar el tipo de componente
   const isIcon = componentName.toLowerCase().startsWith("icon-");
+  const isHook = componentName.toLowerCase().startsWith("use-");
   const isModalComponent = componentName.toLowerCase().startsWith("modal") && componentName !== "modal";
 
   let componentPath;
@@ -15,6 +16,9 @@ export async function addComponent(componentName: string) {
     // Determinar la categoría del icono - NUEVA ESTRUCTURA
     const iconCategory = getIconCategory(componentName);
     componentPath = path.join(process.cwd(), "src", "components", "onpe", "icons", iconCategory);
+  } else if (isHook) {
+    // Los hooks van en src/hooks/
+    componentPath = path.join(process.cwd(), "src", "hooks");
   } else if (isModalComponent) {
     // Los modales específicos van en src/components/onpe/modals/
     componentPath = path.join(process.cwd(), "src", "components", "onpe", "modals");
@@ -28,10 +32,15 @@ export async function addComponent(componentName: string) {
 
   // Definir dependencias de componentes
   const componentDependencies = {
+    // Modales especializados
     "modal-browser-incompatible": ["modal", "icon-warning", "icon-chrome-color", "icon-safari-color", "icon-mozilla-color", "icon-edge-color"],
     "modal-system-incompatible": ["modal", "icon-warning", "icon-window", "icon-android", "icon-apple"],
     "modal-confirm": ["modal"],
     "modal-loading": ["modal"],
+
+    // Componentes complejos - ORDEN IMPORTANTE: primero las dependencias, luego el componente principal
+    "browser-recommended": ["icon-chrome", "icon-safari", "icon-mozilla", "icon-edge"],
+    footer: ["browser-recommended", "icon-info", "use-toggle"],
   };
 
   // Componentes disponibles
@@ -52,6 +61,13 @@ export async function addComponent(componentName: string) {
     // Componentes de Feedback
     "modal-confirm": "Feedback/ModalConfirm/ModalConfirm.tsx",
     "modal-loading": "Feedback/ModalLoading/ModalLoading.tsx",
+  };
+
+  // Hooks disponibles
+  const availableHooks = {
+    "use-toggle": "useToggle/useToggle.ts",
+    "use-debounce": "useDebounce/useDebounce.ts",
+    "use-local-storage": "useLocalStorage/useLocalStorage.ts",
   };
 
   // Iconos disponibles
@@ -78,34 +94,58 @@ export async function addComponent(componentName: string) {
     "icon-window": "OperatingSystems/IconWindow/IconWindow.tsx",
   };
 
-  const componentFile = isIcon ? availableIcons[componentName.toLowerCase()] : availableComponents[componentName.toLowerCase()];
+  let componentFile;
+  if (isIcon) {
+    componentFile = availableIcons[componentName.toLowerCase()];
+  } else if (isHook) {
+    componentFile = availableHooks[componentName.toLowerCase()];
+  } else {
+    componentFile = availableComponents[componentName.toLowerCase()];
+  }
 
   if (!componentFile) {
-    const availableItems = isIcon ? Object.keys(availableIcons) : Object.keys(availableComponents);
-    throw new Error(
-      `${isIcon ? "Icono" : "Componente"} '${componentName}' no encontrado. ${isIcon ? "Iconos" : "Componentes"} disponibles: ${availableItems.join(
-        ", "
-      )}`
-    );
+    let availableItems;
+    let itemType;
+    if (isIcon) {
+      availableItems = Object.keys(availableIcons);
+      itemType = "Icono";
+    } else if (isHook) {
+      availableItems = Object.keys(availableHooks);
+      itemType = "Hook";
+    } else {
+      availableItems = Object.keys(availableComponents);
+      itemType = "Componente";
+    }
+    throw new Error(`${itemType} '${componentName}' no encontrado. ${itemType}s disponibles: ${availableItems.join(", ")}`);
   }
 
   try {
     // Instalar dependencias si es un componente que las tiene
-    if (!isIcon && componentDependencies[componentName.toLowerCase()]) {
+    if (!isIcon && !isHook && componentDependencies[componentName.toLowerCase()]) {
       const dependencies = componentDependencies[componentName.toLowerCase()];
       console.log(`🔗 Instalando dependencias: ${dependencies.join(", ")}`);
 
+      // Instalar dependencias en orden secuencial para evitar conflictos
       for (const dependency of dependencies) {
         try {
+          console.log(`   📦 Instalando: ${dependency}`);
           await addComponent(dependency);
+          console.log(`   ✅ ${dependency} instalado correctamente`);
         } catch (depError) {
           console.warn(`⚠️  No se pudo instalar la dependencia '${dependency}': ${depError.message}`);
         }
       }
     }
 
-    // Descargar el componente o icono
-    const downloadUrl = isIcon ? `${ICONS_URL}/${componentFile}` : `${COMPONENTS_URL}/${componentFile}`;
+    // Descargar el componente, icono o hook
+    let downloadUrl;
+    if (isIcon) {
+      downloadUrl = `${ICONS_URL}/${componentFile}`;
+    } else if (isHook) {
+      downloadUrl = `https://raw.githubusercontent.com/ricardosv46/onpe-ui/main/src/hooks/${componentFile}`;
+    } else {
+      downloadUrl = `${COMPONENTS_URL}/${componentFile}`;
+    }
     const response = await fetch(downloadUrl);
 
     if (!response.ok) {
@@ -118,12 +158,13 @@ export async function addComponent(componentName: string) {
     const personalizedCode = personalizeComponent(componentCode, componentName);
 
     // Guardar el componente
-    const fileName = `${convertToPascalCase(componentName)}.tsx`;
+    const fileName = isHook ? `${convertToPascalCase(componentName)}.ts` : `${convertToPascalCase(componentName)}.tsx`;
     const filePath = path.join(componentPath, fileName);
 
     await fs.writeFile(filePath, personalizedCode);
 
-    console.log(`📁 ${isIcon ? "Icono" : "Componente"} guardado en: ${filePath}`);
+    const itemType = isIcon ? "Icono" : isHook ? "Hook" : "Componente";
+    console.log(`📁 ${itemType} guardado en: ${filePath}`);
 
     // Crear/actualizar archivos de barril solo para la carpeta actual
     try {
@@ -136,7 +177,7 @@ export async function addComponent(componentName: string) {
 
     // Mostrar instrucciones
     console.log("\n📋 Próximos pasos:");
-    console.log(`1. Importa el ${isIcon ? "icono" : "componente"}:`);
+    console.log(`1. Importa el ${itemType.toLowerCase()}:`);
     const componentNamePascal = convertToPascalCase(componentName);
 
     // Mostrar opciones de importación
@@ -148,6 +189,11 @@ export async function addComponent(componentName: string) {
       console.log(`   import { ${componentNamePascal} } from '../onpe/icons/${iconCategory}';`);
       console.log(`   // Opción 3: Importación desde raíz`);
       console.log(`   import { ${componentNamePascal} } from '../onpe';`);
+    } else if (isHook) {
+      console.log(`   // Opción 1: Importación directa`);
+      console.log(`   import { ${componentNamePascal} } from '../hooks/${componentNamePascal}';`);
+      console.log(`   // Opción 2: Importación con barril (recomendado)`);
+      console.log(`   import { ${componentNamePascal} } from '../hooks';`);
     } else {
       if (componentName.toLowerCase().startsWith("modal") && componentName !== "modal") {
         console.log(`   // Opción 1: Importación directa`);
@@ -167,7 +213,7 @@ export async function addComponent(componentName: string) {
     }
 
     // Mostrar dependencias si las hay
-    if (!isIcon && componentDependencies[componentName.toLowerCase()]) {
+    if (!isIcon && !isHook && componentDependencies[componentName.toLowerCase()]) {
       const dependencies = componentDependencies[componentName.toLowerCase()];
       console.log(`2. También se instalaron las dependencias:`);
       dependencies.forEach((dep) => {
@@ -175,19 +221,26 @@ export async function addComponent(componentName: string) {
         let depPath;
         if (dep.startsWith("icon-")) {
           const iconCategory = getIconCategory(dep);
-          depPath = `../onpe-icons-${iconCategory}/${depPascal}`;
+          depPath = `../onpe/icons/${iconCategory}/${depPascal}`;
+        } else if (dep.startsWith("use-")) {
+          depPath = `../hooks/${depPascal}`;
         } else if (dep.startsWith("modal") && dep !== "modal") {
-          depPath = `../onpe-modals/${depPascal}`;
+          depPath = `../onpe/modals/${depPascal}`;
         } else {
-          depPath = `../onpe-ui/${depPascal}`;
+          depPath = `../onpe/ui/${depPascal}`;
         }
         console.log(`   import { ${depPascal} } from '${depPath}'`);
       });
-      console.log(`3. Usa el ${isIcon ? "icono" : "componente"}:`);
+      console.log(`3. Usa el ${itemType.toLowerCase()}:`);
     } else {
-      console.log(`2. Usa el ${isIcon ? "icono" : "componente"}:`);
+      console.log(`2. Usa el ${itemType.toLowerCase()}:`);
     }
-    console.log(`   <${componentNamePascal} />`);
+
+    if (isHook) {
+      console.log(`   const [state, toggle, open, close] = ${componentNamePascal}();`);
+    } else {
+      console.log(`   <${componentNamePascal} />`);
+    }
   } catch (error) {
     throw new Error(`Error al instalar el ${isIcon ? "icono" : "componente"}: ${error.message}`);
   }
@@ -251,6 +304,8 @@ function personalizeComponent(code: string, componentName: string): string {
     Portal: "../onpe/ui/Portal",
     Show: "../onpe/ui/Show",
     Modal: "../onpe/ui/Modal",
+    Footer: "../onpe/ui/Footer",
+    BrowserRecommended: "../onpe/ui/BrowserRecommended",
 
     // Modales especializados - van en onpe/modals/
     ModalConfirm: "../onpe/modals/ModalConfirm",
@@ -357,6 +412,26 @@ function personalizeComponent(code: string, componentName: string): string {
   // Para otros componentes UI
   if (!componentName.toLowerCase().startsWith("icon-") && !componentName.toLowerCase().startsWith("modal")) {
     personalizedCode = personalizedCode.replace(/from "\.\.\/onpe\/ui\/([^"]+)"/g, (match, component) => `from "./${component}"`);
+  }
+
+  // Para Footer que importa BrowserRecommended
+  if (componentName.toLowerCase() === "footer") {
+    // Arreglar importación de BrowserRecommended
+    personalizedCode = personalizedCode.replace(/from "\.\.\/BrowserRecommended\/BrowserRecommended"/g, `from "./BrowserRecommended"`);
+    personalizedCode = personalizedCode.replace(/from "\.\.\/BrowserRecommended"/g, `from "./BrowserRecommended"`);
+
+    // Arreglar importación de IconInfo
+    personalizedCode = personalizedCode.replace(/from "\.\.\/\.\.\/icons\/Actions\/IconInfo\/IconInfo"/g, `from "../icons/actions/IconInfo"`);
+    personalizedCode = personalizedCode.replace(/from "\.\.\/\.\.\/icons\/Actions\/IconInfo"/g, `from "../icons/actions/IconInfo"`);
+
+    // Arreglar importación de useToggle
+    personalizedCode = personalizedCode.replace(/from "\.\.\/\.\.\/hooks\/useToggle\/useToggle"/g, `from "../../hooks/useToggle"`);
+    personalizedCode = personalizedCode.replace(/from "\.\.\/\.\.\/hooks\/useToggle"/g, `from "../../hooks/useToggle"`);
+  }
+
+  // Para BrowserRecommended que importa iconos
+  if (componentName.toLowerCase() === "browser-recommended") {
+    personalizedCode = personalizedCode.replace(/from "\.\.\/\.\.\/icons\/Browsers\/([^"]+)"/g, (match, icon) => `from "../icons/browsers/${icon}"`);
   }
 
   // Para modales que importan componentes UI
