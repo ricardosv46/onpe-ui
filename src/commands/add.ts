@@ -321,6 +321,35 @@ function personalizeComponent(code: string, componentName: string): string {
     });
   });
 
+  // Arreglar importaciones relativas dentro de la misma carpeta
+  // Para componentes UI que importan otros componentes UI
+  if (componentName.toLowerCase() === "modal") {
+    personalizedCode = personalizedCode.replace(
+      /from "\.\.\/onpe\/ui\/(Portal|Overlay)"/g,
+      (match, component) => `from "./${component}"`
+    );
+    personalizedCode = personalizedCode.replace(
+      /from "\.\.\/onpe\/icons\/actions\/(IconClose)"/g,
+      (match, component) => `from "../icons/actions/${component}"`
+    );
+  }
+
+  // Para otros componentes UI
+  if (!componentName.toLowerCase().startsWith("icon-") && !componentName.toLowerCase().startsWith("modal")) {
+    personalizedCode = personalizedCode.replace(
+      /from "\.\.\/onpe\/ui\/([^"]+)"/g,
+      (match, component) => `from "./${component}"`
+    );
+  }
+
+  // Para modales que importan componentes UI
+  if (componentName.toLowerCase().startsWith("modal") && componentName !== "modal") {
+    personalizedCode = personalizedCode.replace(
+      /from "\.\.\/onpe\/ui\/([^"]+)"/g,
+      (match, component) => `from "../ui/${component}"`
+    );
+  }
+
   // Agregar export default si no existe
   if (!personalizedCode.includes("export default")) {
     personalizedCode += `\n\nexport default ${componentNamePascal};`;
