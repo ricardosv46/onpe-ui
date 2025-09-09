@@ -4,6 +4,7 @@ export { IconWarning } from "./icons/Actions/IconWarning/IconWarning";
 export { IconCheck } from "./icons/Actions/IconCheck/IconCheck";
 export { IconSpinnerDesktop } from "./icons/Actions/IconSpinnerDesktop/IconSpinnerDesktop";
 export { IconSpinnerMobile } from "./icons/Actions/IconSpinnerMobile/IconSpinnerMobile";
+export { IconInfo } from "./icons/Actions/IconInfo/IconInfo";
 
 // Exportaciones de iconos - Navegadores
 export { IconChromeColor } from "./icons/Browsers/IconChromeColor/IconChromeColor";

@@ -42,6 +42,8 @@ export async function addComponent(componentName: string) {
     overlay: "Overlay/Overlay.tsx",
     portal: "Portal/Portal.tsx",
     show: "Show/Show.tsx",
+    footer: "Footer/Footer.tsx",
+    "browser-recommended": "BrowserRecommended/BrowserRecommended.tsx",
 
     // Componentes de ErrorHandling
     "modal-system-incompatible": "ErrorHandling/ModalSystemIncompatible/ModalSystemIncompatible.tsx",
@@ -60,6 +62,7 @@ export async function addComponent(componentName: string) {
     "icon-spinner-desktop": "Actions/IconSpinnerDesktop/IconSpinnerDesktop.tsx",
     "icon-spinner-mobile": "Actions/IconSpinnerMobile/IconSpinnerMobile.tsx",
     "icon-home": "Actions/IconHome/IconHome.tsx",
+    "icon-info": "Actions/IconInfo/IconInfo.tsx",
     "icon-chrome": "Browsers/IconChrome/IconChrome.tsx",
     "icon-chrome-color": "Browsers/IconChromeColor/IconChromeColor.tsx",
     "icon-edge": "Browsers/IconEdge/IconEdge.tsx",
