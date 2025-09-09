@@ -343,6 +343,20 @@ function personalizeComponent(code: string, componentName: string): string {
         `import React, { SVGProps } from "react";`
       );
     }
+    
+    // Arreglar interfaz vacía agregando propiedades opcionales comunes
+    if (personalizedCode.includes("export interface") && personalizedCode.includes("extends SVGProps<SVGSVGElement>")) {
+      personalizedCode = personalizedCode.replace(
+        /export interface \w+Props extends SVGProps<SVGSVGElement> \{\}/,
+        (match) => {
+          const interfaceName = match.match(/export interface (\w+Props)/)?.[1] || "IconProps";
+          return `export interface ${interfaceName} extends SVGProps<SVGSVGElement> {
+  className?: string;
+  size?: number | string;
+}`;
+        }
+      );
+    }
   }
 
   // Para otros componentes UI
