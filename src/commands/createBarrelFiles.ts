@@ -3,114 +3,145 @@ import * as path from "path";
 
 /**
  * Crea archivos de barril (barrel exports) para simplificar las importaciones
+ * Solo crea las carpetas y archivos que realmente existen
  */
 export async function createBarrelFiles() {
   const componentsDir = path.join(process.cwd(), "src", "components", "onpe");
 
-  // Crear estructura de carpetas si no existe
-  await fs.ensureDir(path.join(componentsDir, "ui"));
-  await fs.ensureDir(path.join(componentsDir, "modals"));
-  await fs.ensureDir(path.join(componentsDir, "icons", "actions"));
-  await fs.ensureDir(path.join(componentsDir, "icons", "browsers"));
-  await fs.ensureDir(path.join(componentsDir, "icons", "systems"));
-  await fs.ensureDir(path.join(componentsDir, "icons", "onpe"));
+  // Solo crear la carpeta principal si no existe
+  await fs.ensureDir(componentsDir);
 
-  // 1. Crear index.ts principal en onpe/
-  const mainIndexContent = `// ONPE UI - Punto de entrada principal
-export * from './ui';
-export * from './modals';
-export * from './icons';
+  // Función para verificar si una carpeta existe y tiene archivos
+  const folderExists = async (folderPath: string): Promise<boolean> => {
+    try {
+      const exists = await fs.pathExists(folderPath);
+      if (!exists) return false;
 
-// Re-exportar todo para importaciones fáciles
-export * from './ui/index';
-export * from './modals/index';
-export * from './icons/index';
-`;
+      const files = await fs.readdir(folderPath);
+      return files.some((file) => file.endsWith(".tsx") && !file.includes(".stories"));
+    } catch {
+      return false;
+    }
+  };
 
-  await fs.writeFile(path.join(componentsDir, "index.ts"), mainIndexContent);
+  // Función para obtener archivos de una carpeta
+  const getFilesInFolder = async (folderPath: string): Promise<string[]> => {
+    try {
+      const files = await fs.readdir(folderPath);
+      return files.filter((file) => file.endsWith(".tsx") && !file.includes(".stories")).map((file) => file.replace(".tsx", ""));
+    } catch {
+      return [];
+    }
+  };
 
-  // 2. Crear index.ts para UI
-  const uiIndexContent = `// Componentes UI básicos
-export * from './Button';
-export * from './Modal';
-export * from './Overlay';
-export * from './Portal';
-export * from './Show';
-`;
+  // 1. Crear index.ts principal en onpe/ solo si hay carpetas
+  const mainExports: string[] = [];
 
-  await fs.writeFile(path.join(componentsDir, "ui", "index.ts"), uiIndexContent);
+  if (await folderExists(path.join(componentsDir, "ui"))) {
+    mainExports.push("export * from './ui';");
+  }
+  if (await folderExists(path.join(componentsDir, "modals"))) {
+    mainExports.push("export * from './modals';");
+  }
+  if (await folderExists(path.join(componentsDir, "icons"))) {
+    mainExports.push("export * from './icons';");
+  }
 
-  // 3. Crear index.ts para Modals
-  const modalsIndexContent = `// Modales especializados
-export * from './ModalConfirm';
-export * from './ModalLoading';
-export * from './ModalBrowserIncompatible';
-export * from './ModalSystemIncompatible';
-`;
+  if (mainExports.length > 0) {
+    const mainIndexContent = `// ONPE UI - Punto de entrada principal
+${mainExports.join("\n")}`;
+    await fs.writeFile(path.join(componentsDir, "index.ts"), mainIndexContent);
+  }
 
-  await fs.writeFile(path.join(componentsDir, "modals", "index.ts"), modalsIndexContent);
+  // 2. Crear index.ts para ui/ solo si existe y tiene archivos
+  const uiPath = path.join(componentsDir, "ui");
+  if (await folderExists(uiPath)) {
+    const uiFiles = await getFilesInFolder(uiPath);
+    if (uiFiles.length > 0) {
+      const uiExports = uiFiles.map((file) => `export * from './${file}';`).join("\n");
+      const uiIndexContent = `// Componentes básicos ONPE UI
+${uiExports}`;
+      await fs.writeFile(path.join(uiPath, "index.ts"), uiIndexContent);
+    }
+  }
 
-  // 4. Crear index.ts para Icons
-  const iconsIndexContent = `// Todos los iconos organizados por categorías
-export * from './actions';
-export * from './browsers';
-export * from './systems';
-export * from './onpe';
-`;
+  // 3. Crear index.ts para modals/ solo si existe y tiene archivos
+  const modalsPath = path.join(componentsDir, "modals");
+  if (await folderExists(modalsPath)) {
+    const modalFiles = await getFilesInFolder(modalsPath);
+    if (modalFiles.length > 0) {
+      const modalExports = modalFiles.map((file) => `export * from './${file}';`).join("\n");
+      const modalsIndexContent = `// Modales especializados ONPE
+${modalExports}`;
+      await fs.writeFile(path.join(modalsPath, "index.ts"), modalsIndexContent);
+    }
+  }
 
-  await fs.writeFile(path.join(componentsDir, "icons", "index.ts"), iconsIndexContent);
+  // 4. Crear index.ts para icons/ solo si existe
+  const iconsPath = path.join(componentsDir, "icons");
+  if (await folderExists(iconsPath)) {
+    const iconExports: string[] = [];
 
-  // 5. Crear index.ts para cada categoría de iconos
-  const actionsIndexContent = `// Iconos de Acciones
-export * from './IconCheck';
-export * from './IconClose';
-export * from './IconWarning';
-export * from './IconSpinnerDesktop';
-export * from './IconSpinnerMobile';
-export * from './IconHome';
-`;
+    if (await folderExists(path.join(iconsPath, "actions"))) {
+      iconExports.push("export * from './actions';");
+    }
+    if (await folderExists(path.join(iconsPath, "browsers"))) {
+      iconExports.push("export * from './browsers';");
+    }
+    if (await folderExists(path.join(iconsPath, "systems"))) {
+      iconExports.push("export * from './systems';");
+    }
+    if (await folderExists(path.join(iconsPath, "onpe"))) {
+      iconExports.push("export * from './onpe';");
+    }
 
-  await fs.writeFile(path.join(componentsDir, "icons", "actions", "index.ts"), actionsIndexContent);
+    if (iconExports.length > 0) {
+      const iconsIndexContent = `// Iconos ONPE organizados por categorías
+${iconExports.join("\n")}`;
+      await fs.writeFile(path.join(iconsPath, "index.ts"), iconsIndexContent);
+    }
 
-  const browsersIndexContent = `// Iconos de Navegadores
-export * from './IconChrome';
-export * from './IconChromeColor';
-export * from './IconEdge';
-export * from './IconEdgeColor';
-export * from './IconMozilla';
-export * from './IconMozillaColor';
-export * from './IconSafari';
-export * from './IconSafariColor';
-`;
+    // 5. Crear index.ts para cada categoría de iconos que exista
+    const iconCategories = ["actions", "browsers", "systems", "onpe"];
 
-  await fs.writeFile(path.join(componentsDir, "icons", "browsers", "index.ts"), browsersIndexContent);
+    for (const category of iconCategories) {
+      const categoryPath = path.join(iconsPath, category);
+      if (await folderExists(categoryPath)) {
+        const categoryFiles = await getFilesInFolder(categoryPath);
+        if (categoryFiles.length > 0) {
+          const categoryExports = categoryFiles.map((file) => `export * from './${file}';`).join("\n");
+          const categoryIndexContent = `// Iconos de ${category}
+${categoryExports}`;
+          await fs.writeFile(path.join(categoryPath, "index.ts"), categoryIndexContent);
+        }
+      }
+    }
+  }
 
-  const systemsIndexContent = `// Iconos de Sistemas Operativos
-export * from './IconAndroid';
-export * from './IconApple';
-export * from './IconWindow';
-`;
+  console.log("✅ Archivos de barril actualizados exitosamente!");
+  console.log("📁 Solo se crearon archivos para carpetas que existen");
+}
 
-  await fs.writeFile(path.join(componentsDir, "icons", "systems", "index.ts"), systemsIndexContent);
+/**
+ * Crea archivos de barril solo para una carpeta específica
+ */
+export async function createBarrelForFolder(folderPath: string) {
+  try {
+    const exists = await fs.pathExists(folderPath);
+    if (!exists) return;
 
-  const onpeIndexContent = `// Iconos de ONPE
-export * from './IconVotoDigital';
-export * from './IconElectionsGeneral';
-export * from './IconElections';
-`;
+    const files = await fs.readdir(folderPath);
+    const componentFiles = files.filter((file) => file.endsWith(".tsx") && !file.includes(".stories")).map((file) => file.replace(".tsx", ""));
 
-  await fs.writeFile(path.join(componentsDir, "icons", "onpe", "index.ts"), onpeIndexContent);
+    if (componentFiles.length === 0) return;
 
-  console.log("✅ Archivos de barril creados exitosamente!");
-  console.log("📁 Estructura creada:");
-  console.log("   onpe/");
-  console.log("   ├── index.ts (principal)");
-  console.log("   ├── ui/index.ts");
-  console.log("   ├── modals/index.ts");
-  console.log("   └── icons/");
-  console.log("       ├── index.ts");
-  console.log("       ├── actions/index.ts");
-  console.log("       ├── browsers/index.ts");
-  console.log("       ├── systems/index.ts");
-  console.log("       └── onpe/index.ts");
+    const exports = componentFiles.map((file) => `export * from './${file}';`).join("\n");
+    const indexContent = `// Componentes en esta carpeta
+${exports}`;
+
+    await fs.writeFile(path.join(folderPath, "index.ts"), indexContent);
+    console.log(`✅ Archivo de barril creado para: ${path.basename(folderPath)}`);
+  } catch (error) {
+    console.warn(`⚠️  No se pudo crear el archivo de barril: ${error.message}`);
+  }
 }

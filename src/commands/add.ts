@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import * as path from "path";
-import { createBarrelFiles } from "./createBarrelFiles";
+import { createBarrelFiles, createBarrelForFolder } from "./createBarrelFiles";
 
 const COMPONENTS_URL = "https://raw.githubusercontent.com/ricardosv46/onpe-ui/main/src/components";
 const ICONS_URL = "https://raw.githubusercontent.com/ricardosv46/onpe-ui/main/src/icons";
@@ -122,10 +122,11 @@ export async function addComponent(componentName: string) {
 
     console.log(`📁 ${isIcon ? "Icono" : "Componente"} guardado en: ${filePath}`);
 
-    // Crear/actualizar archivos de barril
+    // Crear/actualizar archivos de barril solo para la carpeta actual
     try {
+      await createBarrelForFolder(componentPath);
+      // También actualizar el archivo de barril principal si existe
       await createBarrelFiles();
-      console.log("🔄 Archivos de barril actualizados");
     } catch (barrelError) {
       console.warn(`⚠️  No se pudieron actualizar los archivos de barril: ${barrelError.message}`);
     }
