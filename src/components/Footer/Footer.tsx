@@ -4,7 +4,7 @@ import { BrowserRecommended } from "../BrowserRecommended/BrowserRecommended";
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   showBrowserInfo?: boolean;
   showContactInfo?: boolean;
-  showVersionInfo?: ReactNode;
+  children?: ReactNode;
   isDevelopment?: boolean;
   showFooterContent?: boolean;
 }
@@ -12,32 +12,32 @@ export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Footer = ({
   showBrowserInfo = true,
   showContactInfo = true,
-  showVersionInfo = true,
+  children,
   showFooterContent = true,
-  isDevelopment = false,
+  isDevelopment = true,
   ...props
 }: FooterProps) => {
   return (
     <footer {...props}>
       {showFooterContent && (
         <>
-          {showVersionInfo ? showVersionInfo : <></>}
+          {children && children}
 
           {showBrowserInfo && <BrowserRecommended />}
           {showContactInfo && (
-            <div className="relative z-10 flex w-full px-4 bg-onpe-ui-blue">
-              <ul className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 justify-center py-14 lg:pt-[15px] lg:pb-[18px] w-full max-w-[1400px] mx-auto">
-                <li className="text-left lg:text-center">
-                  <p className="pb-2 font-semibold text-onpe-ui-yellow">Oficina central</p>
+            <div className="relative z-10 flex w-full min-h-[100px] bg-onpe-ui-blue ">
+              <ul className="flex justify-between items-start lg:items-center w-full flex-col gap-6 mx-auto lg:flex-row py-14 px-4 max-w-[1456px] md:pt-4 md:pb-7">
+                <li>
+                  <p className="font-semibold pb text-onpe-ui-yellow">Oficina central</p>
                   <p className="text-sm font-medium text-white">Jr. Washington 1894 - Cercado de Lima</p>
                 </li>
-                <li className="text-left lg:text-center">
-                  <p className="pb-2 font-semibold text-onpe-ui-yellow">Escríbenos</p>
+                <li>
+                  <p className="font-semibold text-onpe-ui-yellow">Escríbenos</p>
                   <p className="text-sm font-medium text-white">informes@onpe.gob.pe</p>
                 </li>
-                <li className="text-left lg:text-center">
-                  <p className="pb-2 font-semibold text-onpe-ui-yellow">Central telefónica</p>
-                  <p className="text-sm font-medium text-white">(01) 4170630 | Lunes a viernes de 8:30 a. m. a 4:30 p. m.</p>
+                <li>
+                  <p className="font-semibold text-onpe-ui-yellow">Central telefónica</p>
+                  <p className="text-sm font-medium text-white">(01) 4170630 | Lunes a viernes de 8:30 a.m. a 4:30 p.m.</p>
                 </li>
               </ul>
             </div>

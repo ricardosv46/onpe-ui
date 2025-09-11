@@ -16,29 +16,13 @@ const meta: Meta<typeof Footer> = {
       control: "boolean",
       description: "Mostrar información de contacto de ONPE",
     },
-    showVersionInfo: {
-      control: "boolean",
-      description: "Mostrar información de versión con tooltip",
+    children: {
+      control: "text",
+      description: "Contenido personalizado para renderizar en el footer",
     },
     isDevelopment: {
       control: "boolean",
       description: "Mostrar banner de versión en desarrollo",
-    },
-    version: {
-      control: "text",
-      description: "Versión del sistema",
-    },
-    developVersion: {
-      control: "text",
-      description: "Versión de desarrollo",
-    },
-    currentPath: {
-      control: "text",
-      description: "Ruta actual para determinar visibilidad",
-    },
-    hideOnPaths: {
-      control: "object",
-      description: "Rutas donde ocultar el footer",
     },
   },
 };
@@ -50,33 +34,26 @@ export const Default: Story = {
   args: {
     showBrowserInfo: true,
     showContactInfo: true,
-    showVersionInfo: true,
+    children: undefined,
     isDevelopment: false,
-    version: "1.0.0",
-    developVersion: "1.0.0-dev",
-    currentPath: "/",
-    hideOnPaths: ["/vote/resume", "/vote/candidates"],
   },
 };
 
 export const HomePage: Story = {
   args: {
     ...Default.args,
-    currentPath: "/",
   },
 };
 
 export const VotePage: Story = {
   args: {
     ...Default.args,
-    currentPath: "/vote/resume",
   },
 };
 
 export const AnyPage: Story = {
   args: {
     ...Default.args,
-    currentPath: "/any-page",
   },
 };
 
@@ -101,19 +78,19 @@ export const WithoutContactInfo: Story = {
   },
 };
 
-export const WithoutVersionInfo: Story = {
+export const WithoutChildren: Story = {
   args: {
     ...Default.args,
-    showVersionInfo: false,
+    children: undefined,
   },
 };
 
 export const CustomContent: Story = {
   args: {
     ...Default.args,
-    customContent: (
-      <div className="bg-gray-800 text-white p-8 text-center">
-        <h3 className="text-xl font-bold mb-4">Footer Personalizado</h3>
+    children: (
+      <div className="p-8 text-center text-white bg-gray-800">
+        <h3 className="mb-4 text-xl font-bold">Footer Personalizado</h3>
         <p>Contenido personalizado del footer</p>
       </div>
     ),

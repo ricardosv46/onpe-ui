@@ -1,5 +1,6 @@
 /* Estilos ONPE UI - CSS scoped para evitar conflictos con otros frameworks */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 /* Variables CSS con prefijo único para evitar conflictos */
@@ -74,3 +75,25 @@
 .onpe-fast-blink {
   animation: onpe-fast-blink 0.8s ease-in-out infinite;
 }
+
+
+@layer base {
+  html {
+    font-family: 'Poppins', system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.font-consolas {
+  font-family: 'Consolas', monospace;
+  font-weight: 900;
+}
+
