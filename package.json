@@ -1,14 +1,11 @@
 {
   "name": "@onpe/ui",
-  "version": "1.2.19",
+  "version": "1.2.24",
   "type": "module",
-  "description": "Librería completa de UI para ONPE - Componentes, Hooks, Utils y Librerías",
+  "description": "Librería de componentes UI para ONPE - Componentes, Hooks, Utils y Librerías",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "bin": {
-    "ui": "dist/cli.js"
-  },
   "exports": {
     ".": {
       "import": "./dist/index.esm.js",
@@ -118,8 +115,6 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "clsx": "^2.0.0",
-    "commander": "^11.1.0",
-    "fs-extra": "^11.3.1"
+    "clsx": "^2.0.0"
   }
 }
