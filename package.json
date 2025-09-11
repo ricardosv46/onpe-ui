@@ -48,7 +48,7 @@
     "build": "npm run build:css:prod && rollup -c",
     "build:css": "node scripts/build-css.js",
     "build:css:prod": "node scripts/build-css-clean.js",
-    "publish": "npm publish",
+    "prepublishOnly": "npm run build",
     "test": "jest",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
