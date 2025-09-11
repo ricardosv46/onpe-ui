@@ -13,5 +13,4 @@ export * from "./lib";
 // Iconos
 export * from "./icons";
 
-// Estilos CSS
-import "./styles.css";
+// Estilos CSS se manejan por separado en el build
