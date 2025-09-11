@@ -30,4 +30,3 @@ export { Footer } from "./components/Footer";
 export type { FooterProps } from "./components/Footer";
 
 export { BrowserRecommended } from "./components/BrowserRecommended";
-export type { BrowserRecommendedProps } from "./components/BrowserRecommended";
