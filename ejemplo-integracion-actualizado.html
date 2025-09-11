@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Integración - @onpe/ui</title>
+    
+    <!-- IMPORTANTE: Importar el CSS compilado de la librería -->
+    <link rel="stylesheet" href="./dist/index.css">
+    
+    <!-- El proyecto host puede usar su propio Tailwind sin conflictos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Estilos del proyecto host */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .host-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .host-title {
+            color: #1f2937;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .host-description {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .demo-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #f9fafb;
+        }
+        
+        .demo-title {
+            color: #374151;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="host-container">
+        <h1 class="host-title">🚀 Integración de @onpe/ui</h1>
+        <p class="host-description">
+            Este ejemplo muestra cómo integrar la librería @onpe/ui en un proyecto que ya usa Tailwind CSS.
+            Los componentes ONPE usan el prefijo "onpe-" para evitar conflictos con las clases del host.
+        </p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Botones ONPE</h2>
+            <p class="mb-4 text-gray-600">Los botones ONPE mantienen sus estilos únicos:</p>
+            
+            <!-- Botones ONPE con prefijo -->
+            <div class="onpe-ui-container">
+                <button class="onpe-bg-onpe-ui-blue onpe-text-white onpe-px-4 onpe-py-2 onpe-rounded onpe-font-medium onpe-hover:bg-blue-800 onpe-transition-colors">
+                    Botón ONPE Azul
+                </button>
+                
+                <button class="onpe-bg-onpe-ui-yellow onpe-text-onpe-ui-blue onpe-px-4 onpe-py-2 onpe-rounded onpe-font-medium onpe-hover:bg-yellow-400 onpe-transition-colors onpe-ml-2">
+                    Botón ONPE Amarillo
+                </button>
+                
+                <button class="onpe-bg-onpe-ui-green onpe-text-white onpe-px-4 onpe-py-2 onpe-rounded onpe-font-medium onpe-hover:bg-green-600 onpe-transition-colors onpe-ml-2">
+                    Botón ONPE Verde
+                </button>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Botones del Host</h2>
+            <p class="mb-4 text-gray-600">Los botones del proyecto host mantienen sus estilos:</p>
+            
+            <!-- Botones del host usando Tailwind normal -->
+            <button class="bg-blue-500 text-white px-4 py-2 rounded font-medium hover:bg-blue-600 transition-colors">
+                Botón Host Azul
+            </button>
+            
+            <button class="bg-green-500 text-white px-4 py-2 rounded font-medium hover:bg-green-600 transition-colors ml-2">
+                Botón Host Verde
+            </button>
+            
+            <button class="bg-purple-500 text-white px-4 py-2 rounded font-medium hover:bg-purple-600 transition-colors ml-2">
+                Botón Host Púrpura
+            </button>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Cards ONPE</h2>
+            <p class="mb-4 text-gray-600">Cards usando colores ONPE:</p>
+            
+            <div class="onpe-ui-container">
+                <div class="onpe-bg-onpe-ui-skyblue onpe-text-white onpe-p-6 onpe-rounded-lg onpe-shadow-lg">
+                    <h3 class="onpe-text-xl onpe-font-bold onpe-mb-2">Card ONPE Skyblue</h3>
+                    <p class="onpe-text-onpe-ui-light-skyblue">Este es un ejemplo de card usando los colores oficiales de ONPE.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Cards del Host</h2>
+            <p class="mb-4 text-gray-600">Cards usando Tailwind del host:</p>
+            
+            <div class="bg-gray-100 text-gray-800 p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-2">Card Host</h3>
+                <p class="text-gray-600">Este es un ejemplo de card usando los estilos del proyecto host.</p>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Animación ONPE</h2>
+            <p class="mb-4 text-gray-600">Animación personalizada de ONPE:</p>
+            
+            <div class="onpe-ui-container">
+                <div class="onpe-bg-onpe-ui-red onpe-text-white onpe-p-4 onpe-rounded onpe-fast-blink">
+                    ⚡ Elemento con animación ONPE
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 class="text-lg font-semibold text-blue-800 mb-2">✅ Verificación</h3>
+            <ul class="text-blue-700 space-y-1">
+                <li>• Los componentes ONPE usan prefijo "onpe-"</li>
+                <li>• Los componentes del host usan clases Tailwind normales</li>
+                <li>• No hay conflictos entre ambos sistemas</li>
+                <li>• Los colores ONPE se mantienen consistentes</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+

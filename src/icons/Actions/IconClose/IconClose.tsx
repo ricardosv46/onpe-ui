@@ -12,3 +12,5 @@ export const IconClose = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+export default IconClose;

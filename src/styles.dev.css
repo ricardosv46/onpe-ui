@@ -1,4 +1,4 @@
-/* Estilos ONPE UI - CSS scoped para evitar conflictos con otros frameworks */
+/* Estilos ONPE UI - Versión para desarrollo (Storybook) */
 
 @import "tailwindcss";
 
@@ -44,9 +44,6 @@
 .onpe-ui-container *::after {
   box-sizing: border-box;
 }
-
-
-
 
 /* Estilos específicos para componentes ONPE UI */
 .onpe-ui-container button {

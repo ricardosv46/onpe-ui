@@ -29,10 +29,7 @@ const buildConfig = (input, outputName) => ({
     typescript({
       tsconfig: './tsconfig.json',
     }),
-    postcss({
-      extract: true,
-      minimize: true,
-    }),
+    // NO incluir postcss aquí - el CSS se genera por separado
   ],
   external: ['react', 'react-dom'],
 });
@@ -44,20 +41,8 @@ const dtsConfig = (input, outputName) => ({
   external: [/\.css$/],
 });
 
-// CSS standalone build configuration
-const cssStandaloneConfig = {
-  input: 'src/styles.css',
-  output: {
-    file: 'dist/index.css',
-    format: 'es',
-  },
-  plugins: [
-    postcss({
-      extract: true,
-      minimize: true,
-    }),
-  ],
-};
+// CSS standalone build configuration - REMOVIDO
+// El CSS ahora se genera por separado usando el script build-css.js
 
 export default [
   // Build main index
@@ -72,9 +57,6 @@ export default [
   buildConfig('src/lib.ts', 'lib'),
   // Build CLI
   buildConfig('src/cli.ts', 'cli'),
-  
-  // Build standalone CSS
-  cssStandaloneConfig,
   
   // Generate type definitions
   dtsConfig('src/index.ts', 'index'),

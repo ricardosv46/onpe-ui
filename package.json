@@ -1,6 +1,6 @@
 {
   "name": "@onpe/ui",
-  "version": "1.2.6",
+  "version": "1.2.9",
   "type": "module",
   "description": "Librería completa de UI para ONPE - Componentes, Hooks, Utils y Librerías",
   "main": "dist/index.js",
@@ -36,7 +36,8 @@
       "types": "./dist/lib.d.ts"
     },
     "./styles": "./dist/index.css",
-    "./tailwind-preset": "./tailwind-preset.js"
+    "./tailwind-preset": "./tailwind-preset.js",
+    "./css": "./dist/index.css"
   },
   "files": [
     "dist",
@@ -45,8 +46,11 @@
     "!dist/**/*.map"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "dev": "storybook dev -p 6006",
+    "build": "npm run build:css:prod && rollup -c",
+    "build:css": "node scripts/build-css.js",
+    "build:css:prod": "node scripts/build-css-prod.js",
+    "publish": "npm publish",
     "test": "jest",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",

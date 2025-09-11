@@ -1,6 +1,8 @@
-/* Estilos ONPE UI - CSS scoped para evitar conflictos con otros frameworks */
+/* Estilos ONPE UI - Versión para producción con prefijo único */
 
-@import "tailwindcss";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 /* Variables CSS con prefijo único para evitar conflictos */
 :root {
@@ -18,21 +20,6 @@
   --onpe-ui-yellow-light: #FFF1D2;
 }
 
-@theme {
-  --color-onpe-ui-blue: #003770;
-  --color-onpe-ui-skyblue: #0073cf;
-  --color-onpe-ui-skyblue-light: #69b2e8;
-  --color-onpe-ui-yellow: #ffb81c;
-  --color-onpe-ui-light-skyblue: #aaeff6;
-  --color-onpe-ui-gray: #bcbcbc;
-  --color-onpe-ui-gray-light: #bdbdbd;
-  --color-onpe-ui-gray-extra-light: #f2f2f2;
-  --color-onpe-ui-red: #e3002b;
-  --color-onpe-ui-dark-gray: #4f4f4f;
-  --color-onpe-ui-green: #76bd43;
-  --color-onpe-ui-yellow-light: #FFF1D2;
-}
-
 /* Contenedor scoped para todos los componentes ONPE */
 .onpe-ui-container {
   /* Reset básico solo para nuestros componentes */
@@ -44,9 +31,6 @@
 .onpe-ui-container *::after {
   box-sizing: border-box;
 }
-
-
-
 
 /* Estilos específicos para componentes ONPE UI */
 .onpe-ui-container button {

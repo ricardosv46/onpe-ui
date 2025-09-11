@@ -27,13 +27,50 @@ npm install -g @onpe/ui
 npx @onpe/ui add <componente>
 ```
 
-## ⚠️ Importante sobre Estilos
+## 🛡️ Integración Sin Conflictos
 
-**Esta librería usa Tailwind CSS v4** y requiere configuración específica. Los componentes usan clases de TailwindCSS que necesitan estar configuradas correctamente.
+**Esta librería está diseñada para funcionar perfectamente en proyectos que ya usan Tailwind CSS, Material UI, Shadcn, o cualquier otro framework CSS sin causar conflictos de estilos.**
 
-### 🆕 Tailwind CSS v4
+### ✨ Características de Compatibilidad
 
-Esta librería utiliza **Tailwind CSS v4** (la última versión) que tiene una configuración diferente a las versiones anteriores. La configuración se hace directamente en el CSS usando `@theme` y `@utility`.
+- **Prefijos Únicos**: Todas las clases usan el prefijo `onpe-` para evitar conflictos
+- **CSS Compilado**: Se genera un CSS optimizado y minificado sin `@import` de Tailwind
+- **Variables CSS Aisladas**: Colores con prefijos únicos (`--onpe-ui-blue`, etc.)
+- **Sin Reset de Tailwind**: No interfiere con tu configuración existente
+- **Compatible con**: Material UI, Shadcn, Chakra UI, Ant Design, Bootstrap, etc.
+
+### 🚀 Instalación Rápida
+
+```bash
+npm install @onpe/ui
+```
+
+```tsx
+// Importar estilos compilados (solo una vez en tu app)
+import '@onpe/ui/dist/index.css';
+
+// O usando el export específico
+import '@onpe/ui/css';
+
+// Usar componentes
+import { Button } from '@onpe/ui/components';
+
+function App() {
+  return (
+    <div>
+      {/* Tu contenido existente con Material UI, Shadcn, etc. */}
+      <Button color="blue" title="Botón ONPE" />
+    </div>
+  );
+}
+```
+
+### 🎯 ¿Cómo Evitamos Conflictos?
+
+1. **Prefijos Únicos**: `bg-blue-500` → `onpe-bg-onpe-ui-blue`
+2. **CSS Scoped**: Todos los componentes están aislados
+3. **Variables CSS Aisladas**: `--onpe-ui-blue` en lugar de `--blue`
+4. **Sin Preflight**: No resetea estilos del proyecto host
 
 ## 📖 Uso Básico
 

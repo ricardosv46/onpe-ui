@@ -11,7 +11,7 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   viteFinal: async (config) => {
-    // Configurar PostCSS para usar @tailwindcss/postcss
+    // Configurar PostCSS para usar @tailwindcss/postcss con Tailwind v4
     if (config.css?.postcss) {
       config.css.postcss.plugins = [require("@tailwindcss/postcss"), require("autoprefixer")];
     } else {
