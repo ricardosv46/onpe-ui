@@ -3,7 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import postcss from 'postcss';
-import tailwindcss from 'tailwindcss';
+import tailwindcss from '@tailwindcss/postcss';
 
 /**
  * Script para generar CSS compilado con prefijos para producción
@@ -13,10 +13,10 @@ import tailwindcss from 'tailwindcss';
 const buildCSS = async () => {
   console.log('🎨 Generando CSS compilado para producción...');
   
-  // Configuración con prefijos para producción
+  // Configuración sin prefijos para producción
   const configWithPrefix = {
     content: ['./src/**/*.{js,ts,jsx,tsx}'],
-    prefix: 'onpe-',
+    // prefix: 'onpe-', // Sin prefijos para que funcionen las clases normales
     theme: {
       extend: {
         colors: {
@@ -79,9 +79,7 @@ const buildCSS = async () => {
 };
 
 // Ejecutar si se llama directamente
-if (import.meta.url === `file://${process.argv[1]}`) {
-  buildCSS();
-}
+buildCSS();
 
 export default buildCSS;
 

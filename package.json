@@ -1,6 +1,6 @@
 {
   "name": "@onpe/ui",
-  "version": "1.2.26",
+  "version": "1.2.27",
   "type": "module",
   "description": "Librería de componentes UI para ONPE - Componentes, Hooks, Utils y Librerías",
   "main": "dist/index.js",
@@ -47,7 +47,7 @@
     "dev": "storybook dev -p 6006",
     "build": "npm run build:css:prod && rollup -c",
     "build:css": "node scripts/build-css.js",
-    "build:css:prod": "node scripts/build-css-clean.js",
+    "build:css:prod": "node scripts/build-css.js",
     "prepublishOnly": "npm run build",
     "test": "jest",
     "lint": "eslint src --ext .ts,.tsx",

@@ -3,7 +3,7 @@ module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  prefix: 'onpe-', // Prefijo único para producción
+  // prefix: 'onpe-', // Sin prefijo para que funcionen las clases normales
   theme: {
     extend: {
       colors: {
