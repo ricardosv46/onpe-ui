@@ -57,10 +57,35 @@ const buildCSS = async () => {
     // Leer el archivo de estilos base
     const cssFile = fs.readFileSync('./src/styles.css', 'utf8');
     
+    // Leer todos los archivos CSS de componentes
+    const componentCssFiles = [];
+    
+    // Buscar todos los archivos .css en src/components
+    const componentsDir = './src/components';
+    if (fs.existsSync(componentsDir)) {
+      const readDir = (dir) => {
+        const items = fs.readdirSync(dir);
+        items.forEach(item => {
+          const fullPath = path.join(dir, item);
+          const stat = fs.statSync(fullPath);
+          if (stat.isDirectory()) {
+            readDir(fullPath);
+          } else if (item.endsWith('.css')) {
+            componentCssFiles.push(fs.readFileSync(fullPath, 'utf8'));
+            console.log(`📄 Incluyendo CSS: ${fullPath}`);
+          }
+        });
+      };
+      readDir(componentsDir);
+    }
+    
+    // Combinar todos los archivos CSS
+    const allCss = cssFile + '\n\n' + componentCssFiles.join('\n\n');
+    
     // Generar CSS compilado con prefijos
     const result = await postcss([
       tailwindcss(configWithPrefix),
-    ]).process(cssFile, {
+    ]).process(allCss, {
       from: './src/styles.css',
       to: './dist/index.css',
     });
@@ -69,8 +94,8 @@ const buildCSS = async () => {
     fs.writeFileSync('./dist/index.css', result.css);
     
     console.log('✅ CSS compilado generado exitosamente:');
-    console.log('   📁 dist/index.css (con prefijos onpe-)');
-    console.log('   🚀 Listo para importar sin conflictos');
+    console.log(`   📁 dist/index.css (incluye ${componentCssFiles.length + 1} archivos CSS)`);
+    console.log('   🚀 Listo para importar sin conflictos con CSP');
     
   } catch (error) {
     console.error('❌ Error generando CSS:', error);
