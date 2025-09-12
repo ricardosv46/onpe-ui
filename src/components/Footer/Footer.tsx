@@ -26,7 +26,7 @@ export const Footer = ({
           {showBrowserInfo && <BrowserRecommended />}
           {showContactInfo && (
             <div className="relative z-10 flex w-full min-h-[100px] bg-onpe-ui-blue ">
-              <ul className="flex justify-between items-start lg:items-center w-full flex-col gap-6 mx-auto lg:flex-row py-14 px-4 max-w-[1456px] md:pt-4 md:pb-7">
+              <ul className="flex justify-between items-start lg:items-center w-full flex-col gap-6 mx-auto lg:flex-row py-14 px-4 max-w-[1456px] md:py-7">
                 <li>
                   <p className="font-semibold pb text-onpe-ui-yellow">Oficina central</p>
                   <p className="text-sm font-medium text-white">Jr. Washington 1894 - Cercado de Lima</p>
