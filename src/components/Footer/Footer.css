@@ -1,0 +1,93 @@
+/* Footer Component Styles */
+.onpe-ui-container .onpe-footer {
+  /* Footer base styles */
+}
+
+.onpe-ui-container .onpe-footer-content {
+  /* Content wrapper styles */
+}
+
+.onpe-ui-container .onpe-footer-contact {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  min-height: 100px;
+  background-color: var(--onpe-ui-blue);
+}
+
+.onpe-ui-container .onpe-footer-contact-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 0 auto;
+  padding: 3.5rem 1rem;
+  max-width: 1456px;
+}
+
+.onpe-ui-container .onpe-footer-contact-item {
+  /* List item styles */
+}
+
+.onpe-ui-container .onpe-footer-contact-title {
+  font-weight: 600;
+  color: var(--onpe-ui-yellow);
+  margin-bottom: 0.25rem;
+}
+
+.onpe-ui-container .onpe-footer-contact-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+}
+
+.onpe-ui-container .onpe-footer-development {
+  height: 93px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 241, 210, 0.75); /* onpe-ui-yellow-light/75 */
+  position: fixed;
+  z-index: 10;
+  right: 0;
+  bottom: 0;
+}
+
+.onpe-ui-container .onpe-footer-development-text {
+  padding: 0.5rem 0.5rem;
+  font-size: 1.5rem;
+  color: var(--onpe-ui-blue);
+  font-family: 'Consolas', monospace;
+  font-weight: 900;
+}
+
+.onpe-ui-container .onpe-footer-development-break {
+  display: block;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .onpe-ui-container .onpe-footer-contact-list {
+    padding: 1.75rem 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .onpe-ui-container .onpe-footer-contact-list {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .onpe-ui-container .onpe-footer-development {
+    height: 46px;
+  }
+  
+  .onpe-ui-container .onpe-footer-development-break {
+    display: none;
+  }
+}

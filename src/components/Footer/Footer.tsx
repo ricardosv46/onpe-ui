@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { BrowserRecommended } from "../BrowserRecommended/BrowserRecommended";
+import "./Footer.css";
 
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   showBrowserInfo?: boolean;
@@ -18,41 +19,43 @@ export const Footer = ({
   ...props
 }: FooterProps) => {
   return (
-    <footer {...props}>
-      {showFooterContent && (
-        <>
-          {children && children}
+    <div className="onpe-ui-container">
+      <footer {...props}>
+        {showFooterContent && (
+          <>
+            {children && children}
 
-          {showBrowserInfo && <BrowserRecommended />}
-          {showContactInfo && (
-            <div className="relative z-10 flex w-full min-h-[100px] bg-onpe-ui-blue ">
-              <ul className="flex justify-between items-start lg:items-center w-full flex-col gap-6 mx-auto lg:flex-row py-14 px-4 max-w-[1456px] md:py-7">
-                <li>
-                  <p className="font-semibold pb text-onpe-ui-yellow">Oficina central</p>
-                  <p className="text-sm font-medium text-white">Jr. Washington 1894 - Cercado de Lima</p>
-                </li>
-                <li>
-                  <p className="font-semibold text-onpe-ui-yellow">Escríbenos</p>
-                  <p className="text-sm font-medium text-white">informes@onpe.gob.pe</p>
-                </li>
-                <li>
-                  <p className="font-semibold text-onpe-ui-yellow">Central telefónica</p>
-                  <p className="text-sm font-medium text-white">(01) 4170630 | Lunes a viernes de 8:30 a.m. a 4:30 p.m.</p>
-                </li>
-              </ul>
-            </div>
-          )}
-        </>
-      )}
+            {showBrowserInfo && <BrowserRecommended />}
+            {showContactInfo && (
+              <div className="onpe-footer-contact">
+                <ul className="onpe-footer-contact-list">
+                  <li className="onpe-footer-contact-item">
+                    <p className="onpe-footer-contact-title">Oficina central</p>
+                    <p className="onpe-footer-contact-text">Jr. Washington 1894 - Cercado de Lima</p>
+                  </li>
+                  <li className="onpe-footer-contact-item">
+                    <p className="onpe-footer-contact-title">Escríbenos</p>
+                    <p className="onpe-footer-contact-text">informes@onpe.gob.pe</p>
+                  </li>
+                  <li className="onpe-footer-contact-item">
+                    <p className="onpe-footer-contact-title">Central telefónica</p>
+                    <p className="onpe-footer-contact-text">(01) 4170630 | Lunes a viernes de 8:30 a.m. a 4:30 p.m.</p>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </>
+        )}
 
-      {isDevelopment && (
-        <div className="h-[93px] lg:h-[46px] w-full text-center flex items-center justify-center bg-onpe-ui-yellow-light/75 fixed z-10 right-0 bottom-0">
-          <p className="px-2 py-1 text-2xl text-onpe-ui-blue font-consolas">
-            Versión en Desarrollo <br className="lg:hidden" /> - No Oficial
-          </p>
-        </div>
-      )}
-    </footer>
+        {isDevelopment && (
+          <div className="onpe-footer-development">
+            <p className="onpe-footer-development-text">
+              Versión en Desarrollo <br className="onpe-footer-development-break" /> - No Oficial
+            </p>
+          </div>
+        )}
+      </footer>
+    </div>
   );
 };
 

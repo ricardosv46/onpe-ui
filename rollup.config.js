@@ -29,7 +29,11 @@ const buildConfig = (input, outputName) => ({
     typescript({
       tsconfig: './tsconfig.json',
     }),
-    // NO incluir postcss aquí - el CSS se genera por separado
+    postcss({
+      extract: false, // Inline CSS en los componentes
+      modules: false,
+      autoModules: false,
+    }),
   ],
   external: ['react', 'react-dom'],
 });
