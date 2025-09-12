@@ -15,20 +15,20 @@ export interface ModalBrowserIncompatibleProps {
 export const ModalBrowserIncompatible = ({ isOpen = false, onClose = () => {}, className = "" }: ModalBrowserIncompatibleProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-5 pb-8 ${className}`} closeButton={true} closeDisabled>
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <IconWarning className="w-22 h-22 text-onpe-ui-skyblue" />
       </div>
 
-      <p className="text-sm md:text-2xl text-center mt-6 text-onpe-ui-skyblue font-medium">Navegador no recomendado</p>
+      <p className="mt-6 text-sm font-medium text-center md:text-2xl text-onpe-ui-skyblue">Navegador no recomendado</p>
 
-      <p className="text-sm md:text-lg text-center mt-6">
+      <p className="mt-6 text-sm text-center md:text-lg">
         Para una mejor experiencia y mayor seguridad, debes ingresar con los siguientes navegadores:
       </p>
 
-      <div className="flex justify-center items-center gap-8 md:gap-12 mt-5">
+      <div className="flex items-center justify-center gap-8 mt-5 md:gap-12">
         <IconChromeColor className="md:w-[48px] md:h-[48px] w-[32px] h-[32px]" />
         <IconSafariColor className="md:w-[48px] md:h-[48px] w-[32px] h-[32px]" />
-        <IconMozillaColor className="md:w-[48px] md:h-[48px] w-[32px] h-[32px]" />
+        {/* <IconMozillaColor className="md:w-[48px] md:h-[48px] w-[32px] h-[32px]" /> */}
         <IconEdgeColor className="md:w-[48px] md:h-[48px] w-[32px] h-[32px]" />
       </div>
     </Modal>

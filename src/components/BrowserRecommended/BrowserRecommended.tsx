@@ -17,10 +17,10 @@ export const BrowserRecommended = () => {
           <IconSafari />
           <p className="hidden text-left md:block">Safari</p>
         </div>
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2">
           <IconMozilla />
           <p className="hidden text-left md:block">Mozilla Firefox</p>
-        </div>
+        </div> */}
         <div className="flex items-center gap-2">
           <IconEdge />
           <p className="hidden text-left md:block">Microsoft Edge</p>
