@@ -82,10 +82,50 @@ const buildCSS = async () => {
     // Combinar todos los archivos CSS
     const allCss = cssFile + '\n\n' + componentCssFiles.join('\n\n');
     
-    // Generar CSS compilado SIN Tailwind para preservar variables CSS
-    // Solo usar PostCSS básico para mantener las variables intactas
+    // Generar CSS compilado con Tailwind pero preservando variables CSS
+    // Usar configuración que mantenga las variables intactas
     const result = await postcss([
-      // Sin Tailwind para preservar variables CSS
+      tailwindcss({
+        content: ['./src/**/*.{js,ts,jsx,tsx}'],
+        theme: {
+          extend: {
+            colors: {
+              'onpe-ui-blue': 'var(--onpe-ui-blue)',
+              'onpe-ui-skyblue': 'var(--onpe-ui-skyblue)',
+              'onpe-ui-skyblue-light': 'var(--onpe-ui-skyblue-light)',
+              'onpe-ui-yellow': 'var(--onpe-ui-yellow)',
+              'onpe-ui-light-skyblue': 'var(--onpe-ui-light-skyblue)',
+              'onpe-ui-gray': 'var(--onpe-ui-gray)',
+              'onpe-ui-gray-light': 'var(--onpe-ui-gray-light)',
+              'onpe-ui-gray-extra-light': 'var(--onpe-ui-gray-extra-light)',
+              'onpe-ui-red': 'var(--onpe-ui-red)',
+              'onpe-ui-dark-gray': 'var(--onpe-ui-dark-gray)',
+              'onpe-ui-green': 'var(--onpe-ui-green)',
+              'onpe-ui-yellow-light': 'var(--onpe-ui-yellow-light)',
+            },
+          },
+        },
+        plugins: [],
+        corePlugins: {
+          preflight: false,
+        },
+        // Preservar variables CSS
+        safelist: [
+          ':root',
+          '--onpe-ui-blue',
+          '--onpe-ui-skyblue',
+          '--onpe-ui-skyblue-light',
+          '--onpe-ui-yellow',
+          '--onpe-ui-light-skyblue',
+          '--onpe-ui-gray',
+          '--onpe-ui-gray-light',
+          '--onpe-ui-gray-extra-light',
+          '--onpe-ui-red',
+          '--onpe-ui-dark-gray',
+          '--onpe-ui-green',
+          '--onpe-ui-yellow-light',
+        ],
+      }),
     ]).process(allCss, {
       from: './src/styles.css',
       to: './dist/index.css',
