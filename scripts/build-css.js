@@ -82,9 +82,10 @@ const buildCSS = async () => {
     // Combinar todos los archivos CSS
     const allCss = cssFile + '\n\n' + componentCssFiles.join('\n\n');
     
-    // Generar CSS compilado con prefijos
+    // Generar CSS compilado SIN Tailwind para preservar variables CSS
+    // Solo usar PostCSS básico para mantener las variables intactas
     const result = await postcss([
-      tailwindcss(configWithPrefix),
+      // Sin Tailwind para preservar variables CSS
     ]).process(allCss, {
       from: './src/styles.css',
       to: './dist/index.css',
