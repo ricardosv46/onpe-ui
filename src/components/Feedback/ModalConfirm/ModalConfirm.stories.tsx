@@ -22,6 +22,10 @@ const meta: Meta<typeof ModalConfirm> = {
       control: { type: "select" },
       options: ["warning", "success"],
     },
+    color: {
+      control: { type: "select" },
+      options: ["blue", "red"],
+    },
     twoButtons: {
       control: { type: "boolean" },
     },
@@ -132,5 +136,82 @@ export const Interactive: Story = {
     docs: {
       disable: true,
     },
+  },
+};
+
+export const BlueColor: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <div className="p-4 mb-4 rounded bg-onpe-ui-gray-100">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white rounded bg-onpe-ui-blue hover:bg-onpe-ui-blue/80">
+            {isOpen ? "Cerrar Modal" : "Abrir Modal Azul"}
+          </button>
+        </div>
+        <ModalConfirm {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      </div>
+    );
+  },
+  args: {
+    title: "Confirmación Azul",
+    message: "Este modal usa el color azul por defecto.",
+    icon: "warning",
+    color: "blue",
+    textButtonConfirm: "Confirmar",
+    textButtonCancel: "Cancelar",
+    twoButtons: true,
+  },
+};
+
+export const RedColor: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <div className="p-4 mb-4 rounded bg-onpe-ui-gray-100">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white rounded bg-onpe-ui-red hover:bg-onpe-ui-red/80">
+            {isOpen ? "Cerrar Modal" : "Abrir Modal Rojo"}
+          </button>
+        </div>
+        <ModalConfirm {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      </div>
+    );
+  },
+  args: {
+    title: "Confirmación Roja",
+    message: "Este modal usa el color rojo para el icono y título.",
+    icon: "warning",
+    color: "red",
+    textButtonConfirm: "Eliminar",
+    textButtonCancel: "Cancelar",
+    twoButtons: true,
+  },
+};
+
+export const SuccessRed: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <div className="p-4 mb-4 rounded bg-onpe-ui-gray-100">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white rounded bg-onpe-ui-green hover:bg-onpe-ui-green/80">
+            {isOpen ? "Cerrar Modal" : "Abrir Modal Éxito Rojo"}
+          </button>
+        </div>
+        <ModalConfirm {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      </div>
+    );
+  },
+  args: {
+    title: "Operación Exitosa",
+    message: "La operación se completó correctamente.",
+    icon: "success",
+    color: "red",
+    textButtonConfirm: "Aceptar",
+    twoButtons: false,
   },
 };

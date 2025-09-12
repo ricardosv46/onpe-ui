@@ -11,6 +11,7 @@ export interface ModalConfirmProps {
   title: string;
   message: string;
   icon?: "warning" | "success";
+  color?: "blue" | "red";
   onConfirm?: () => void;
   onCancel?: () => void;
   textButtonConfirm?: string;
@@ -25,6 +26,7 @@ export const ModalConfirm = ({
   title,
   message,
   icon = "warning",
+  color = "blue",
   onConfirm = () => {},
   onCancel = () => {},
   textButtonConfirm = "Confirmar",
@@ -56,12 +58,12 @@ export const ModalConfirm = ({
       closeDisabled
       topAbsolute={true}
     >
-      <div className="onpe-modal-confirm-icon-container">
-        {icon === "warning" && <IconWarning className="onpe-modal-confirm-icon" />}
-        {icon === "success" && <IconCheck className="onpe-modal-confirm-icon" />}
+      <div className={`onpe-modal-confirm-icon-container onpe-modal-confirm-icon-${color}`}>
+        {icon === "warning" && <IconWarning className={`onpe-modal-confirm-icon onpe-modal-confirm-icon-${color}`} />}
+        {icon === "success" && <IconCheck className={`onpe-modal-confirm-icon onpe-modal-confirm-icon-${color}`} />}
       </div>
 
-      <p className="onpe-modal-confirm-title">{title}</p>
+      <p className={`onpe-modal-confirm-title onpe-modal-confirm-title-${color}`}>{title}</p>
 
       <p className="onpe-modal-confirm-message">{message}</p>
 

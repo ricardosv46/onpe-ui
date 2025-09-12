@@ -15,15 +15,33 @@
 .onpe-modal-confirm-icon {
   width: 4rem; /* w-16 */
   height: 4rem; /* h-16 */
+  color: var(--onpe-ui-skyblue); /* Color por defecto: azul */
+}
+
+/* Colores dinámicos para el icono */
+.onpe-modal-confirm-icon-blue {
   color: var(--onpe-ui-skyblue);
+}
+
+.onpe-modal-confirm-icon-red {
+  color: var(--onpe-ui-red);
 }
 
 .onpe-modal-confirm-title {
   margin-top: 0.75rem; /* mt-3 */
   font-size: 1.125rem; /* text-lg */
-  font-weight: 500; /* font-medium */
+  font-weight: 600; /* font-semibold */
   text-align: center;
+  color: var(--onpe-ui-skyblue); /* Color por defecto: azul */
+}
+
+/* Colores dinámicos para el título */
+.onpe-modal-confirm-title-blue {
   color: var(--onpe-ui-skyblue);
+}
+
+.onpe-modal-confirm-title-red {
+  color: var(--onpe-ui-red);
 }
 
 .onpe-modal-confirm-message {
@@ -31,6 +49,7 @@
   font-size: 0.875rem; /* text-sm */
   text-align: center;
   max-width: 100%;
+  color: var(--onpe-ui-dark-gray); /* Usar variable CSS de ONPE, fallback a #333333 */
 }
 
 .onpe-modal-confirm-buttons-container {
