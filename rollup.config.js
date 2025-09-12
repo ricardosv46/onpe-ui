@@ -30,7 +30,7 @@ const buildConfig = (input, outputName) => ({
       tsconfig: './tsconfig.json',
     }),
     postcss({
-      extract: true, // Generar archivos CSS externos para CSP
+      extract: false, // Mantener CSS inline para preservar variables
       modules: false,
       autoModules: false,
     }),
