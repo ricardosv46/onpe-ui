@@ -3,6 +3,7 @@ import { Modal } from "../../Modal/Modal";
 import { Button } from "../../Button/Button";
 import { IconWarning } from "../../../icons/Actions/IconWarning/IconWarning";
 import { IconCheck } from "../../../icons/Actions/IconCheck/IconCheck";
+import "./ModalConfirm.css";
 
 export interface ModalConfirmProps {
   isOpen: boolean;
@@ -47,19 +48,26 @@ export const ModalConfirm = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-5 pb-8 ${className}`} closeButton={true} closeDisabled topAbsolute={true}>
-      <div className="flex items-center justify-center">
-        {icon === "warning" && <IconWarning className="w-16 h-16 text-onpe-ui-skyblue" />}
-        {icon === "success" && <IconCheck className="w-16 h-16 text-onpe-ui-skyblue" />}
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      className={`onpe-modal-confirm-container ${className}`}
+      closeButton={true}
+      closeDisabled
+      topAbsolute={true}
+    >
+      <div className="onpe-modal-confirm-icon-container">
+        {icon === "warning" && <IconWarning className="onpe-modal-confirm-icon" />}
+        {icon === "success" && <IconCheck className="onpe-modal-confirm-icon" />}
       </div>
 
-      <p className="mt-3 text-lg font-medium text-center lg:mt-4 lg:text-2xl text-onpe-ui-skyblue">{title}</p>
+      <p className="onpe-modal-confirm-title">{title}</p>
 
-      <p className="mt-7 text-sm lg:text-lg text-center max-w-full lg:max-w-[576px]">{message}</p>
+      <p className="onpe-modal-confirm-message">{message}</p>
 
-      <div className="flex flex-col-reverse items-center justify-center w-full gap-5 mt-11 lg:mt-20 lg:flex-row">
-        {twoButtons && <Button className="w-full max-w-[200px] lg:w-[200px]" color="blue" title={textButtonCancel} onClick={handleCancel} />}
-        <Button className="w-full max-w-[200px] lg:w-[200px]" color="red" title={textButtonConfirm} onClick={handleConfirm} />
+      <div className="onpe-modal-confirm-buttons-container">
+        {twoButtons && <Button className="onpe-modal-confirm-button" color="blue" title={textButtonCancel} onClick={handleCancel} />}
+        <Button className="onpe-modal-confirm-button" color="red" title={textButtonConfirm} onClick={handleConfirm} />
       </div>
     </Modal>
   );

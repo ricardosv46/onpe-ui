@@ -1,0 +1,143 @@
+/* Button Component Styles */
+.onpe-button {
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  min-width: 200px;
+  border: none;
+}
+
+.onpe-button:disabled {
+  cursor: not-allowed;
+  background-color: var(--onpe-ui-gray);
+}
+
+.onpe-button:disabled:hover {
+  background-color: var(--onpe-ui-gray);
+}
+
+/* Button Sizes */
+.onpe-button.onpe-button-small {
+  height: 2.5rem; /* h-10 */
+  font-size: 0.875rem; /* text-sm */
+}
+
+.onpe-button.onpe-button-normal {
+  height: 3rem; /* h-12 */
+  font-size: 1rem; /* text-base */
+}
+
+.onpe-button.onpe-button-large {
+  height: 3.5rem; /* h-14 */
+  font-size: 1.125rem; /* text-lg */
+}
+
+/* Button Colors */
+.onpe-button.onpe-button-blue {
+  background-color: var(--onpe-ui-blue);
+}
+
+.onpe-button.onpe-button-blue:hover {
+  background-color: rgba(0, 55, 112, 0.3); /* onpe-ui-blue/30 */
+}
+
+.onpe-button.onpe-button-skyblue {
+  background-color: var(--onpe-ui-skyblue);
+}
+
+.onpe-button.onpe-button-skyblue:hover {
+  background-color: rgba(0, 115, 207, 0.3); /* onpe-ui-skyblue/30 */
+}
+
+.onpe-button.onpe-button-skyblue-light {
+  background-color: var(--onpe-ui-skyblue-light);
+}
+
+.onpe-button.onpe-button-skyblue-light:hover {
+  background-color: rgba(105, 178, 232, 0.3); /* onpe-ui-skyblue-light/30 */
+}
+
+.onpe-button.onpe-button-yellow {
+  background-color: var(--onpe-ui-yellow);
+}
+
+.onpe-button.onpe-button-yellow:hover {
+  background-color: rgba(255, 184, 28, 0.3); /* onpe-ui-yellow/30 */
+}
+
+.onpe-button.onpe-button-light-skyblue {
+  background-color: var(--onpe-ui-light-skyblue);
+}
+
+.onpe-button.onpe-button-light-skyblue:hover {
+  background-color: rgba(170, 239, 246, 0.3); /* onpe-ui-light-skyblue/30 */
+}
+
+.onpe-button.onpe-button-gray {
+  background-color: var(--onpe-ui-gray);
+}
+
+.onpe-button.onpe-button-gray:hover {
+  background-color: rgba(188, 188, 188, 0.3); /* onpe-ui-gray/30 */
+}
+
+.onpe-button.onpe-button-gray-light {
+  background-color: var(--onpe-ui-gray-light);
+}
+
+.onpe-button.onpe-button-gray-light:hover {
+  background-color: rgba(189, 189, 189, 0.3); /* onpe-ui-gray-light/30 */
+}
+
+.onpe-button.onpe-button-gray-extra-light {
+  background-color: var(--onpe-ui-gray-extra-light);
+}
+
+.onpe-button.onpe-button-gray-extra-light:hover {
+  background-color: rgba(242, 242, 242, 0.3); /* onpe-ui-gray-extra-light/30 */
+}
+
+.onpe-button.onpe-button-red {
+  background-color: var(--onpe-ui-red);
+}
+
+.onpe-button.onpe-button-red:hover {
+  background-color: rgba(227, 0, 43, 0.3); /* onpe-ui-red/30 */
+}
+
+.onpe-button.onpe-button-dark-gray {
+  background-color: var(--onpe-ui-dark-gray);
+}
+
+.onpe-button.onpe-button-dark-gray:hover {
+  background-color: rgba(79, 79, 79, 0.3); /* onpe-ui-dark-gray/30 */
+}
+
+.onpe-button.onpe-button-green {
+  background-color: var(--onpe-ui-green);
+}
+
+.onpe-button.onpe-button-green:hover {
+  background-color: rgba(118, 189, 67, 0.3); /* onpe-ui-green/30 */
+}
+
+.onpe-button.onpe-button-yellow-light {
+  background-color: var(--onpe-ui-yellow-light);
+}
+
+.onpe-button.onpe-button-yellow-light:hover {
+  background-color: rgba(255, 241, 210, 0.3); /* onpe-ui-yellow-light/30 */
+}
+
+.onpe-button.onpe-button-primary {
+  background-color: var(--onpe-ui-blue);
+}
+
+.onpe-button.onpe-button-primary:hover {
+  background-color: rgba(0, 55, 112, 0.3); /* onpe-ui-blue/30 */
+}
+

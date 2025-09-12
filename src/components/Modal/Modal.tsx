@@ -1,7 +1,8 @@
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, { HTMLAttributes, ReactNode, useEffect } from "react";
 import { Portal } from "../Portal/Portal";
 import { Overlay } from "../Overlay/Overlay";
 import { IconClose } from "../../icons/Actions/IconClose";
+import "./Modal.css";
 
 const classNames = (cln: Array<string | undefined>) => {
   return cln.join(" ").trim();
@@ -42,34 +43,81 @@ export const Modal = ({
   overlayColor = "blue",
   ...props
 }: ModalProps) => {
+  // Manejar el scroll del body cuando el modal está abierto
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("onpe-modal-open");
+    } else {
+      document.body.classList.remove("onpe-modal-open");
+    }
+
+    // Cleanup: remover la clase cuando el componente se desmonte
+    return () => {
+      document.body.classList.remove("onpe-modal-open");
+    };
+  }, [isOpen]);
+
+  // Resetear scroll del modal cuando se abre
+  useEffect(() => {
+    if (isOpen) {
+      // Resetear inmediatamente cuando se abre
+      const modalContentElement = document.querySelector(".onpe-modal-content.onpe-modal-with-background") as HTMLElement;
+      if (modalContentElement) {
+        // Desactivar animación temporalmente para reset instantáneo
+        modalContentElement.style.scrollBehavior = "auto";
+        modalContentElement.scrollTop = 0;
+        // Reactivar animación después del reset
+        setTimeout(() => {
+          modalContentElement.style.scrollBehavior = "smooth";
+        }, 10);
+      }
+
+      // También resetear después de un pequeño delay por si acaso
+      setTimeout(() => {
+        const modalContentElementDelayed = document.querySelector(".onpe-modal-content.onpe-modal-with-background") as HTMLElement;
+        if (modalContentElementDelayed) {
+          modalContentElementDelayed.style.scrollBehavior = "auto";
+          modalContentElementDelayed.scrollTop = 0;
+          setTimeout(() => {
+            modalContentElementDelayed.style.scrollBehavior = "smooth";
+          }, 10);
+        }
+      }, 50);
+    } else {
+      // Resetear scroll cuando se cierra para que no se vea la animación al reabrir
+      const modalContentElement = document.querySelector(".onpe-modal-content.onpe-modal-with-background") as HTMLElement;
+      if (modalContentElement) {
+        modalContentElement.style.scrollBehavior = "auto";
+        modalContentElement.scrollTop = 0;
+        modalContentElement.style.scrollBehavior = "smooth";
+      }
+    }
+  }, [isOpen]);
+
+  const getContainerClass = () => {
+    const baseClass = "onpe-modal-container";
+    if (isOpen) {
+      return topAbsolute ? `${baseClass} onpe-modal-open onpe-modal-top-absolute` : `${baseClass} onpe-modal-open`;
+    }
+    return `${baseClass} onpe-modal-closed`;
+  };
+
+  const getContentClass = () => {
+    const baseClass = "onpe-modal-content";
+    const backgroundClass = whitoutBackground ? "onpe-modal-without-background" : "onpe-modal-with-background";
+    const customClass = props.className || "";
+    return `${baseClass} ${backgroundClass} ${customClass}`.trim();
+  };
+
   return (
     <Portal>
-      <div
-        className={classNames([
-          isOpen ? (topAbsolute ? "opacity-100 z-100" : "opacity-100 z-50") : "opacity-0 -z-10",
-          "fixed top-0 w-full h-screen grid place-items-center ",
-        ])}
-      >
+      <div className={getContainerClass()}>
         <Overlay show={isOpen} onClick={closeDisabled ? undefined : onClose} color={overlayColor} />
-        <div className="relative z-20 grid place-items-center">
-          <div
-            className={classNames([
-              "relative",
-              whitoutBackground
-                ? "flex flex-col items-center justify-center"
-                : "bg-white flex flex-col items-center justify-center  md:px-auto px-1 lg:px-5 min-w-[320px] w-[98vw] md:w-[500px] lg:w-[1024px] max-w-[95vw] max-h-[90vh] overflow-y-auto",
-              props.className ? props.className : "py-10 lg:py-16",
-            ])}
-          >
-            {children}
-          </div>
+        <div className="onpe-modal-content-wrapper">
+          <div className={getContentClass()}>{children}</div>
           {closeButton && (
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 rounded-full bg-onpe-ui-red p-[7px] flex items-center justify-center z-30"
-              aria-label="Cerrar"
-            >
-              <IconClose className="h-[10px]  w-[10px] text-white" />
+            <button onClick={onClose} className="onpe-modal-close-button" aria-label="Cerrar">
+              <IconClose className="onpe-modal-close-icon" />
             </button>
           )}
         </div>

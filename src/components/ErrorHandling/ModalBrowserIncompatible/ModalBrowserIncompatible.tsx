@@ -5,6 +5,7 @@ import { IconChromeColor } from "../../../icons/Browsers/IconChromeColor/IconChr
 import { IconSafariColor } from "../../../icons/Browsers/IconSafariColor/IconSafariColor";
 import { IconMozillaColor } from "../../../icons/Browsers/IconMozillaColor/IconMozillaColor";
 import { IconEdgeColor } from "../../../icons/Browsers/IconEdgeColor/IconEdgeColor";
+import "./ModalBrowserIncompatible.css";
 
 export interface ModalBrowserIncompatibleProps {
   isOpen: boolean;
@@ -14,22 +15,22 @@ export interface ModalBrowserIncompatibleProps {
 
 export const ModalBrowserIncompatible = ({ isOpen = false, onClose = () => {}, className = "" }: ModalBrowserIncompatibleProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={`max-w-[680px] pt-5 pb-8 ${className}`} closeButton={true} closeDisabled>
-      <div className="flex items-center justify-center">
-        <IconWarning className="w-22 h-22 text-onpe-ui-skyblue" />
+    <Modal isOpen={isOpen} onClose={onClose} className={`onpe-modal-browser-incompatible-container ${className}`} closeButton={true} closeDisabled>
+      <div className="onpe-modal-browser-incompatible-icon-container">
+        <IconWarning className="onpe-modal-browser-incompatible-icon" />
       </div>
 
-      <p className="mt-6 text-sm font-medium text-center md:text-2xl text-onpe-ui-skyblue">Navegador no recomendado</p>
+      <p className="onpe-modal-browser-incompatible-title">Navegador no recomendado</p>
 
-      <p className="mt-6 text-sm text-center md:text-lg">
+      <p className="onpe-modal-browser-incompatible-message">
         Para una mejor experiencia y mayor seguridad, debes ingresar con los siguientes navegadores:
       </p>
 
-      <div className="flex items-center justify-center gap-8 mt-5 md:gap-12">
-        <IconChromeColor className="md:w-[48px] md:h-[48px] w-[32px] h-[32px]" />
-        <IconSafariColor className="md:w-[48px] md:h-[48px] w-[32px] h-[32px]" />
-        {/* <IconMozillaColor className="md:w-[48px] md:h-[48px] w-[32px] h-[32px]" /> */}
-        <IconEdgeColor className="md:w-[48px] md:h-[48px] w-[32px] h-[32px]" />
+      <div className="onpe-modal-browser-incompatible-browsers-container">
+        <IconChromeColor className="onpe-modal-browser-incompatible-browser-icon" />
+        <IconSafariColor className="onpe-modal-browser-incompatible-browser-icon" />
+        {/* <IconMozillaColor className="onpe-modal-browser-incompatible-browser-icon" /> */}
+        <IconEdgeColor className="onpe-modal-browser-incompatible-browser-icon" />
       </div>
     </Modal>
   );

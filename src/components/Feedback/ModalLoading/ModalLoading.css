@@ -1,0 +1,46 @@
+/* ModalLoading Component Styles */
+.onpe-modal-loading-spinner-desktop {
+  display: none; /* hidden */
+  color: white;
+  animation: spin 1s linear infinite; /* animate-spin */
+}
+
+.onpe-modal-loading-spinner-mobile {
+  display: block; /* block */
+  color: white;
+  animation: spin 1s linear infinite; /* animate-spin */
+}
+
+.onpe-modal-loading-message {
+  color: white;
+  line-height: normal; /* leading-normal */
+  font-size: 1.5rem; /* text-2xl */
+  text-align: center;
+  margin-top: 2.5rem; /* mt-10 */
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .onpe-modal-loading-spinner-desktop {
+    display: block; /* md:block */
+  }
+  
+  .onpe-modal-loading-spinner-mobile {
+    display: none; /* md:hidden */
+  }
+  
+  .onpe-modal-loading-message {
+    font-size: 4rem; /* md:text-[64px] */
+    margin-top: 5rem; /* md:mt-20 */
+  }
+}
+
+/* Spin Animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,10 +1,10 @@
-/* Estilos ONPE UI - CSS scoped para evitar conflictos con otros frameworks */
+/* ONPE UI - Sistema de diseño global */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import "tailwindcss";
 
-/* Variables CSS con prefijo único para evitar conflictos */
+/* ===== VARIABLES GLOBALES ===== */
 :root {
+  /* Colores ONPE */
   --onpe-ui-blue: #003770;
   --onpe-ui-skyblue: #0073cf;
   --onpe-ui-skyblue-light: #69b2e8;
@@ -17,77 +17,58 @@
   --onpe-ui-dark-gray: #4f4f4f;
   --onpe-ui-green: #76bd43;
   --onpe-ui-yellow-light: #FFF1D2;
+  
+  /* Breakpoints - Solo para referencia, usar valores fijos en media queries */
+  /* xs: 480px, sm: 640px, md: 768px, lg: 1024px, xl: 1280px, 2xl: 1536px, 3xl: 1920px */
 }
 
-@theme {
-  --color-onpe-ui-blue: #003770;
-  --color-onpe-ui-skyblue: #0073cf;
-  --color-onpe-ui-skyblue-light: #69b2e8;
-  --color-onpe-ui-yellow: #ffb81c;
-  --color-onpe-ui-light-skyblue: #aaeff6;
-  --color-onpe-ui-gray: #bcbcbc;
-  --color-onpe-ui-gray-light: #bdbdbd;
-  --color-onpe-ui-gray-extra-light: #f2f2f2;
-  --color-onpe-ui-red: #e3002b;
-  --color-onpe-ui-dark-gray: #4f4f4f;
-  --color-onpe-ui-green: #76bd43;
-  --color-onpe-ui-yellow-light: #FFF1D2;
+/* ===== GUÍA DE BREAKPOINTS ===== */
+/* 
+  Para usar breakpoints en componentes, usar valores fijos:
+  xs: 480px, sm: 640px, md: 768px, lg: 1024px, xl: 1280px, 2xl: 1536px, 3xl: 1920px
+*/
+
+/* ===== RESET GLOBAL PARA COMPONENTES ONPE ===== */
+.onpe-button,
+.onpe-browser-recommended,
+.onpe-footer-contact,
+.onpe-footer-development {
+  box-sizing: border-box;
+  font-family: 'Poppins', system-ui, sans-serif;
 }
 
-/* Contenedor scoped para todos los componentes ONPE */
-.onpe-ui-container {
-  /* Reset básico solo para nuestros componentes */
+.onpe-button *,
+.onpe-browser-recommended *,
+.onpe-footer-contact *,
+.onpe-footer-development * {
   box-sizing: border-box;
 }
 
-.onpe-ui-container *,
-.onpe-ui-container *::before,
-.onpe-ui-container *::after {
-  box-sizing: border-box;
-}
-
-
-
-
-/* Estilos específicos para componentes ONPE UI */
-.onpe-ui-container button {
+/* ===== ESTILOS GLOBALES PARA COMPONENTES ===== */
+.onpe-button {
   cursor: pointer;
 }
 
-@keyframes onpe-fast-blink {
-  0% {
-    opacity: 1;
-  }
-  25% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  75% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 1;
-  }
+.onpe-button:disabled {
+  cursor: not-allowed;
 }
 
+/* ===== UTILIDADES GLOBALES ===== */
 .onpe-fast-blink {
   animation: onpe-fast-blink 0.8s ease-in-out infinite;
-}
-
-
-/* Estilos scoped solo para componentes ONPE */
-.onpe-ui-container button {
-  cursor: pointer;
-}
-
-.onpe-ui-container button:disabled {
-  cursor: not-allowed;
 }
 
 .font-consolas {
   font-family: 'Consolas', monospace;
   font-weight: 900;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes onpe-fast-blink {
+  0% { opacity: 1; }
+  25% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+  75% { opacity: 0.8; }
+  100% { opacity: 1; }
 }
 

@@ -1,0 +1,75 @@
+/* Overlay Component Styles */
+.onpe-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  transition: all 0.5s ease-in-out;
+}
+
+.onpe-overlay.onpe-overlay-show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.onpe-overlay.onpe-overlay-hide {
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Overlay Colors */
+.onpe-overlay.onpe-overlay-blue {
+  background-color: rgba(0, 55, 112, 0.8); /* onpe-ui-blue/80 */
+}
+
+.onpe-overlay.onpe-overlay-skyblue {
+  background-color: rgba(0, 115, 207, 0.8); /* onpe-ui-skyblue/80 */
+}
+
+.onpe-overlay.onpe-overlay-skyblue-light {
+  background-color: rgba(105, 178, 232, 0.8); /* onpe-ui-skyblue-light/80 */
+}
+
+.onpe-overlay.onpe-overlay-yellow {
+  background-color: rgba(255, 184, 28, 0.8); /* onpe-ui-yellow/80 */
+}
+
+.onpe-overlay.onpe-overlay-light-skyblue {
+  background-color: rgba(170, 239, 246, 0.8); /* onpe-ui-light-skyblue/80 */
+}
+
+.onpe-overlay.onpe-overlay-gray {
+  background-color: rgba(188, 188, 188, 0.8); /* onpe-ui-gray/80 */
+}
+
+.onpe-overlay.onpe-overlay-gray-light {
+  background-color: rgba(189, 189, 189, 0.8); /* onpe-ui-gray-light/80 */
+}
+
+.onpe-overlay.onpe-overlay-gray-extra-light {
+  background-color: rgba(242, 242, 242, 0.8); /* onpe-ui-gray-extra-light/80 */
+}
+
+.onpe-overlay.onpe-overlay-red {
+  background-color: rgba(227, 0, 43, 0.8); /* onpe-ui-red/80 */
+}
+
+.onpe-overlay.onpe-overlay-dark-gray {
+  background-color: rgba(79, 79, 79, 0.8); /* onpe-ui-dark-gray/80 */
+}
+
+.onpe-overlay.onpe-overlay-green {
+  background-color: rgba(118, 189, 67, 0.8); /* onpe-ui-green/80 */
+}
+
+.onpe-overlay.onpe-overlay-yellow-light {
+  background-color: rgba(255, 241, 210, 0.8); /* onpe-ui-yellow-light/80 */
+}
+
+.onpe-overlay.onpe-overlay-primary {
+  background-color: rgba(0, 55, 112, 0.8); /* onpe-ui-blue/80 */
+}

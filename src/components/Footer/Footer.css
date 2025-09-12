@@ -1,13 +1,13 @@
 /* Footer Component Styles */
-.onpe-ui-container .onpe-footer {
+.onpe-footer {
   /* Footer base styles */
 }
 
-.onpe-ui-container .onpe-footer-content {
+.onpe-footer-content {
   /* Content wrapper styles */
 }
 
-.onpe-ui-container .onpe-footer-contact {
+.onpe-footer-contact {
   position: relative;
   z-index: 10;
   display: flex;
@@ -16,7 +16,7 @@
   background-color: var(--onpe-ui-blue);
 }
 
-.onpe-ui-container .onpe-footer-contact-list {
+.onpe-footer-contact-list {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -28,23 +28,23 @@
   max-width: 1456px;
 }
 
-.onpe-ui-container .onpe-footer-contact-item {
+.onpe-footer-contact-item {
   /* List item styles */
 }
 
-.onpe-ui-container .onpe-footer-contact-title {
+.onpe-footer-contact-title {
   font-weight: 600;
   color: var(--onpe-ui-yellow);
   margin-bottom: 0.25rem;
 }
 
-.onpe-ui-container .onpe-footer-contact-text {
+.onpe-footer-contact-text {
   font-size: 0.875rem;
   font-weight: 500;
   color: white;
 }
 
-.onpe-ui-container .onpe-footer-development {
+.onpe-footer-development {
   height: 93px;
   width: 100%;
   text-align: center;
@@ -58,7 +58,7 @@
   bottom: 0;
 }
 
-.onpe-ui-container .onpe-footer-development-text {
+.onpe-footer-development-text {
   padding: 0.5rem 0.5rem;
   font-size: 1.5rem;
   color: var(--onpe-ui-blue);
@@ -66,28 +66,28 @@
   font-weight: 900;
 }
 
-.onpe-ui-container .onpe-footer-development-break {
+.onpe-footer-development-break {
   display: block;
 }
 
 /* Responsive Design */
 @media (min-width: 768px) {
-  .onpe-ui-container .onpe-footer-contact-list {
+  .onpe-footer-contact-list {
     padding: 1.75rem 1rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .onpe-ui-container .onpe-footer-contact-list {
+  .onpe-footer-contact-list {
     flex-direction: row;
     align-items: center;
   }
   
-  .onpe-ui-container .onpe-footer-development {
+  .onpe-footer-development {
     height: 46px;
   }
   
-  .onpe-ui-container .onpe-footer-development-break {
+  .onpe-footer-development-break {
     display: none;
   }
 }

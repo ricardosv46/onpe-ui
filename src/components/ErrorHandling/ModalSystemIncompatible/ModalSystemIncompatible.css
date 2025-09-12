@@ -1,0 +1,85 @@
+/* ModalSystemIncompatible Component Styles */
+.onpe-modal-system-incompatible-container {
+  max-width: 680px !important;
+  padding-top: 2.5rem !important; /* pt-10 */
+  padding-bottom: 6.125rem !important; /* pb-24.5 */
+}
+
+.onpe-modal-system-incompatible-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.onpe-modal-system-incompatible-icon {
+  width: 5.5rem; /* w-22 */
+  height: 5.5rem; /* h-22 */
+  color: var(--onpe-ui-skyblue);
+}
+
+.onpe-modal-system-incompatible-title {
+  font-size: 0.875rem; /* text-sm */
+  text-align: center;
+  margin-top: 1.5rem; /* mt-6 */
+  color: var(--onpe-ui-skyblue);
+  font-weight: 500; /* font-medium */
+}
+
+.onpe-modal-system-incompatible-message {
+  font-size: 0.875rem; /* text-sm */
+  margin-top: 2.5rem; /* mt-10 */
+  text-align: center;
+}
+
+.onpe-modal-system-incompatible-systems-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem; /* gap-8 */
+  margin-top: 1.25rem; /* mt-5 */
+  color: var(--onpe-ui-skyblue);
+}
+
+.onpe-modal-system-incompatible-system-icon {
+  width: 2rem; /* w-[32px] */
+  height: 2rem; /* h-[32px] */
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .onpe-modal-system-incompatible-container {
+    width: 680px !important;
+    max-width: 680px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .onpe-modal-system-incompatible-container {
+    width: 680px !important;
+    max-width: 680px !important;
+  }
+  
+  .onpe-modal-system-incompatible-title {
+    font-size: 1.5rem; /* md:text-2xl */
+  }
+  
+  .onpe-modal-system-incompatible-message {
+    font-size: 1.125rem; /* md:text-lg */
+  }
+  
+  .onpe-modal-system-incompatible-systems-container {
+    gap: 3rem; /* md:gap-12 */
+  }
+  
+  .onpe-modal-system-incompatible-system-icon {
+    width: 3rem; /* md:w-[48px] */
+    height: 3rem; /* md:h-[48px] */
+  }
+}
+
+@media (min-width: 1280px) {
+  .onpe-modal-system-incompatible-message {
+    padding-left: 3rem; /* xl:px-12 */
+    padding-right: 3rem; /* xl:px-12 */
+  }
+}

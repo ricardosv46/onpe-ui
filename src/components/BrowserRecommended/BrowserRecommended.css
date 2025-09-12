@@ -1,5 +1,5 @@
 /* BrowserRecommended Component Styles */
-.onpe-ui-container .onpe-browser-recommended {
+.onpe-browser-recommended {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,39 +12,39 @@
   background-color: rgba(105, 178, 232, 0.15); /* onpe-ui-skyblue-light/15 */
 }
 
-.onpe-ui-container .onpe-browser-recommended .onpe-browser-list {
+.onpe-browser-recommended .onpe-browser-list {
   display: flex;
   gap: 1.5rem;
 }
 
-.onpe-ui-container .onpe-browser-recommended .onpe-browser-item {
+.onpe-browser-recommended .onpe-browser-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.onpe-ui-container .onpe-browser-recommended .onpe-browser-name {
+.onpe-browser-recommended .onpe-browser-name {
   display: none;
   text-align: left;
 }
 
 /* Responsive Design */
 @media (min-width: 768px) {
-  .onpe-ui-container .onpe-browser-recommended {
+  .onpe-browser-recommended {
     padding: 0.5rem 0;
   }
   
-  .onpe-ui-container .onpe-browser-recommended .onpe-browser-list {
+  .onpe-browser-recommended .onpe-browser-list {
     gap: 2rem;
   }
   
-  .onpe-ui-container .onpe-browser-recommended .onpe-browser-name {
+  .onpe-browser-recommended .onpe-browser-name {
     display: block;
   }
 }
 
 @media (min-width: 1024px) {
-  .onpe-ui-container .onpe-browser-recommended {
+  .onpe-browser-recommended {
     flex-direction: row;
   }
 }
