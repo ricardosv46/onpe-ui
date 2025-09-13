@@ -82,11 +82,18 @@
 }
 
 .onpe-modal-nfc-icon {
+  width: 273px;
+  padding-bottom: 40px; /* pb-10 */
+  color: var(--onpe-ui-blue);
+}
+
+.onpe-modal-nfc-icon-mobile {
   width: 100%;
   height: 100%;
   padding-bottom: 40px; /* pb-10 */
   color: var(--onpe-ui-blue);
 }
+
 
 /* Estilos específicos para móvil */
 @media (max-width: 640px) {

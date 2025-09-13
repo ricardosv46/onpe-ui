@@ -30,9 +30,3 @@ export { Footer } from "./components/Footer";
 export type { FooterProps } from "./components/Footer";
 
 export { BrowserRecommended } from "./components/BrowserRecommended";
-
-export { ModalDnieVersions } from "./components/Feedback/ModalDnieVersions";
-export type { ModalDnieVersionsProps } from "./components/Feedback/ModalDnieVersions";
-
-export { ModalNfc } from "./components/Feedback/ModalNfc";
-export type { ModalNfcProps } from "./components/Feedback/ModalNfc";

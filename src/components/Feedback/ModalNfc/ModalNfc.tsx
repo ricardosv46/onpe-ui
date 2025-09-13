@@ -2,6 +2,7 @@ import React from "react";
 import { Modal } from "../../Modal/Modal";
 import { IconMobileNfc } from "../../../icons/Actions/IconMobileNfc/IconMobileNfc";
 import "./ModalNfc.css";
+import { IconNfc } from "../../../icons/ONPE/IconNfc/IconNfc";
 
 export interface ModalNfcProps {
   isOpen: boolean;
@@ -29,9 +30,7 @@ export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "" }:
             </li>
           </ul>
         </div>
-
-        <img src="/src/assets/nfc.svg" alt="NFC" className="onpe-modal-nfc-image" />
-
+        <IconNfc className="onpe-modal-nfc-icon" />x
         <div className="onpe-modal-nfc-section">
           <p className="onpe-modal-nfc-step">
             <span className="onpe-modal-nfc-step-number">2. </span>
@@ -43,7 +42,6 @@ export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "" }:
             14, todos los modelos iPhone 7 y superiores pueden leer y escribir una etiqueta NFC.
           </p>
         </div>
-
         <div className="onpe-modal-nfc-section">
           <p className="onpe-modal-nfc-step">
             <span className="onpe-modal-nfc-step-number">3. </span>
@@ -54,9 +52,7 @@ export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "" }:
             Los modelos iPad no poseen NFC, para utilizar este dispositivo necesitarás adquirir un dispositivo NFC compatible.
           </p>
         </div>
-
         <h2 className="onpe-modal-nfc-subtitle">¿Cómo utilizar tu NFC correctamente?</h2>
-
         <div className="onpe-modal-nfc-instructions">
           <ol className="onpe-modal-nfc-ordered-list">
             <li>Activa el NFC en tu celular.</li>
@@ -64,8 +60,7 @@ export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "" }:
             <li>Coloca tu DNIe sobre esa zona hasta que recibas una confirmación o respuesta por parte del sistema.</li>
           </ol>
         </div>
-
-        <IconMobileNfc className="onpe-modal-nfc-icon" />
+        <IconMobileNfc className="onpe-modal-nfc-icon-mobile" />
       </section>
     </Modal>
   );

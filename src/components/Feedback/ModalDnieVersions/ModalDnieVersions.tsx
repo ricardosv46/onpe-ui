@@ -1,6 +1,9 @@
 import React from "react";
 import { Modal } from "../../Modal/Modal";
 import "./ModalDnieVersions.css";
+import { IconDnie1 } from "../../../icons/ONPE/IconDnie1";
+import { IconDnie2 } from "../../../icons/ONPE/IconDnie2";
+import { IconDnie3 } from "../../../icons/ONPE/IconDnie3";
 
 export interface ModalDnieVersionsProps {
   isOpen: boolean;
@@ -32,7 +35,7 @@ export const ModalDnieVersions = ({ isOpen = false, onClose = () => {}, classNam
             </ul>
           </div>
           <div className="onpe-modal-dnie-versions-image-container">
-            <img src="/src/assets/dni1.svg" alt="DNIe versión 1" className="onpe-modal-dnie-versions-image" />
+            <IconDnie1 className="onpe-modal-dnie-versions-image" />
           </div>
         </article>
 
@@ -54,8 +57,8 @@ export const ModalDnieVersions = ({ isOpen = false, onClose = () => {}, classNam
             </ul>
           </div>
           <div className="onpe-modal-dnie-versions-image-container onpe-modal-dnie-versions-image-container-double">
-            <img src="/src/assets/dni2.svg" alt="DNIe versión 2" className="onpe-modal-dnie-versions-image" />
-            <img src="/src/assets/dni3.svg" alt="DNIe versión 3" className="onpe-modal-dnie-versions-image onpe-modal-dnie-versions-image-overlay" />
+            <IconDnie2 className="onpe-modal-dnie-versions-image" />
+            <IconDnie3 className="onpe-modal-dnie-versions-image onpe-modal-dnie-versions-image-overlay" />
           </div>
         </article>
       </section>
