@@ -1,0 +1,138 @@
+/* ModalDnieVersions Component Styles */
+.onpe-modal-dnie-versions-container {
+  /* Solo contenido - el espaciado lo maneja el Modal base */
+  width: 100%;
+  max-width: 590px !important; /* Tamaño específico para este modal */
+}
+
+.onpe-modal-dnie-versions-title {
+  text-align: center;
+  color: var(--onpe-ui-blue);
+  font-weight: 700; /* font-bold */
+  margin-bottom: 8px; /* mb-2 */
+  font-size: 18px; /* text-lg */
+}
+
+.onpe-modal-dnie-versions-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* gap-10 */
+  align-items: center;
+  margin-top: 28px; /* mt-7 */
+  font-size: 14px; /* text-sm */
+}
+
+.onpe-modal-dnie-versions-article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px; /* gap-10 */
+}
+
+.onpe-modal-dnie-versions-text {
+  flex: 1;
+}
+
+.onpe-modal-dnie-versions-subtitle {
+  flex: 1;
+  margin-bottom: 16px; /* mb-4 */
+}
+
+.onpe-modal-dnie-versions-bold {
+  font-weight: 700; /* font-bold */
+}
+
+.onpe-modal-dnie-versions-list {
+  font-size: 14px; /* text-sm */
+  list-style-type: disc;
+  text-align: justify;
+  align-self: flex-start;
+  padding-left: 20px; /* pl-5 */
+}
+
+.onpe-modal-dnie-versions-list li {
+  margin-bottom: 8px; /* mb-2 */
+}
+
+.onpe-modal-dnie-versions-image-container {
+  width: 240px;
+  position: relative;
+}
+
+.onpe-modal-dnie-versions-image-container-double {
+  height: 181px;
+}
+
+.onpe-modal-dnie-versions-image {
+  width: 200px;
+  height: 117px;
+}
+
+.onpe-modal-dnie-versions-image-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* Estilos específicos para móvil */
+@media (max-width: 640px) {
+  .onpe-modal-dnie-versions-title {
+    font-size: 16px; /* text-base para móvil */
+  }
+  
+  .onpe-modal-dnie-versions-content {
+    gap: 32px; /* gap-8 para móvil */
+    margin-top: 24px; /* mt-6 para móvil */
+  }
+  
+  .onpe-modal-dnie-versions-article {
+    gap: 32px; /* gap-8 para móvil */
+  }
+  
+  .onpe-modal-dnie-versions-image-container {
+    width: 200px; /* Más pequeño en móvil */
+  }
+  
+  .onpe-modal-dnie-versions-image {
+    width: 180px; /* Más pequeño en móvil */
+    height: 105px; /* Más pequeño en móvil */
+  }
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+  .onpe-modal-dnie-versions-title {
+    font-size: 20px; /* text-xl para tablet y desktop */
+  }
+  
+  .onpe-modal-dnie-versions-content {
+    font-size: 16px; /* text-base para tablet y desktop */
+  }
+  
+  .onpe-modal-dnie-versions-list {
+    font-size: 16px; /* text-base para tablet y desktop */
+  }
+}
+
+@media (min-width: 768px) {
+  .onpe-modal-dnie-versions-container {
+    /* Desktop: Tamaño específico de 590px */
+    max-width: 590px !important;
+  }
+  
+  .onpe-modal-dnie-versions-article {
+    flex-direction: row; /* md:flex-row */
+    align-items: flex-start; /* md:items-start */
+  }
+  
+  .onpe-modal-dnie-versions-article:last-child {
+    gap: 52px; /* gap-13 para desktop */
+  }
+}
+
+@media (min-width: 1024px) {
+  .onpe-modal-dnie-versions-container {
+    /* Desktop grande: Tamaño específico de 590px */
+    max-width: 590px !important;
+  }
+}

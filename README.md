@@ -35,9 +35,10 @@ npx @onpe/ui add <componente>
 
 - **Prefijos Únicos**: Todas las clases usan el prefijo `onpe-` para evitar conflictos
 - **CSS Compilado**: Se genera un CSS optimizado y minificado sin `@import` de Tailwind
-- **Variables CSS Aisladas**: Colores con prefijos únicos (`--onpe-ui-blue`, etc.)
+- **Variables CSS en `:root`**: Colores con prefijos únicos (`--onpe-ui-blue`, etc.) disponibles globalmente
 - **Sin Reset de Tailwind**: No interfiere con tu configuración existente
 - **Compatible con**: Material UI, Shadcn, Chakra UI, Ant Design, Bootstrap, etc.
+- **CSP Compatible**: Genera archivos CSS externos para cumplir con Content Security Policy
 
 ### 🚀 Instalación Rápida
 
@@ -47,6 +48,7 @@ npm install @onpe/ui
 
 ```tsx
 // Importar estilos compilados (solo una vez en tu app)
+// ⚠️ IMPORTANTE: Esto define las variables CSS en :root
 import '@onpe/ui/dist/index.css';
 
 // O usando el export específico
@@ -60,6 +62,85 @@ function App() {
     <div>
       {/* Tu contenido existente con Material UI, Shadcn, etc. */}
       <Button color="blue" title="Botón ONPE" />
+    </div>
+  );
+}
+```
+
+### 🎨 Variables CSS en `:root`
+
+**Los colores ONPE se definen automáticamente en `:root` cuando importas el CSS:**
+
+```css
+:root {
+  --onpe-ui-blue: #003770;
+  --onpe-ui-skyblue: #0073cf;
+  --onpe-ui-skyblue-light: #69b2e8;
+  --onpe-ui-yellow: #ffb81c;
+  --onpe-ui-light-skyblue: #aaeff6;
+  --onpe-ui-gray: #bcbcbc;
+  --onpe-ui-gray-light: #bdbdbd;
+  --onpe-ui-gray-extra-light: #f2f2f2;
+  --onpe-ui-red: #e3002b;
+  --onpe-ui-dark-gray: #4f4f4f;
+  --onpe-ui-green: #76bd43;
+  --onpe-ui-yellow-light: #FFF1D2;
+}
+```
+
+**Esto permite:**
+- ✅ **Uso directo en CSS del proyecto host**
+- ✅ **Sobrescribir colores si es necesario**
+- ✅ **Compatibilidad con CSP (Content Security Policy)**
+- ✅ **Acceso global a los colores ONPE**
+
+### 💡 Uso de Variables CSS en tu Proyecto
+
+**Puedes usar los colores ONPE directamente en tu CSS:**
+
+```css
+/* En tu archivo CSS del proyecto host */
+.mi-componente {
+  color: var(--onpe-ui-blue);
+  background: var(--onpe-ui-skyblue-light);
+  border: 2px solid var(--onpe-ui-red);
+}
+
+.mi-boton-personalizado {
+  background: var(--onpe-ui-green);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+}
+```
+
+**Sobrescribir colores si es necesario:**
+
+```css
+/* En tu archivo CSS del proyecto host */
+:root {
+  /* Cambiar el azul principal */
+  --onpe-ui-blue: #1a365d;
+  
+  /* Cambiar el rojo */
+  --onpe-ui-red: #c53030;
+}
+```
+
+**Uso en componentes React con estilos inline:**
+
+```tsx
+function MiComponente() {
+  return (
+    <div 
+      style={{
+        color: 'var(--onpe-ui-blue)',
+        backgroundColor: 'var(--onpe-ui-skyblue-light)',
+        padding: '16px',
+        borderRadius: '8px'
+      }}
+    >
+      Contenido con colores ONPE
     </div>
   );
 }
@@ -714,7 +795,7 @@ function App() {
 
 ### ModalConfirm
 
-Modal de confirmación para acciones importantes.
+Modal de confirmación para acciones importantes con colores dinámicos.
 
 ```tsx
 import { ModalConfirm } from '@onpe/ui/components';
@@ -723,19 +804,51 @@ function App() {
   const [showConfirm, setShowConfirm] = useState(false);
   
   return (
-    <ModalConfirm
-      isOpen={showConfirm}
-      onClose={() => setShowConfirm(false)}
-      onConfirm={() => {
-        // Acción a confirmar
-        setShowConfirm(false);
-      }}
-      title="Confirmar acción"
-      message="¿Estás seguro de realizar esta acción?"
-    />
+    <div className="space-y-4">
+      {/* Modal Azul (Por Defecto) */}
+      <ModalConfirm
+        isOpen={showConfirm}
+        onClose={() => setShowConfirm(false)}
+        onConfirm={() => {
+          // Acción a confirmar
+          setShowConfirm(false);
+        }}
+        title="Confirmar acción"
+        message="¿Estás seguro de realizar esta acción?"
+        color="blue" // Por defecto
+      />
+
+      {/* Modal Rojo para Advertencias */}
+      <ModalConfirm
+        isOpen={showConfirm}
+        onClose={() => setShowConfirm(false)}
+        onConfirm={() => {
+          // Acción peligrosa
+          setShowConfirm(false);
+        }}
+        title="Advertencia"
+        message="Esta acción es irreversible y no se puede deshacer."
+        color="red" // Color rojo para advertencias
+        icon="warning"
+      />
+    </div>
   );
 }
 ```
+
+#### Props del ModalConfirm
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `isOpen` | `boolean` | - | Estado de apertura del modal (requerido) |
+| `onClose` | `function` | - | Función para cerrar el modal (requerido) |
+| `onConfirm` | `function` | - | Función para confirmar la acción (requerido) |
+| `title` | `string` | - | Título del modal (requerido) |
+| `message` | `string` | - | Mensaje del modal (requerido) |
+| `color` | `'blue' \| 'red'` | `'blue'` | Color del icono y título |
+| `icon` | `'warning' \| 'success'` | `'warning'` | Tipo de icono a mostrar |
+| `confirmText` | `string` | `'Confirmar'` | Texto del botón de confirmación |
+| `cancelText` | `string` | `'Cancelar'` | Texto del botón de cancelación |
 
 ### ModalLoading
 
@@ -966,12 +1079,78 @@ La librería incluye breakpoints personalizados para ONPE:
 .bg-onpe-ui-gray-extra-light /* Fondo gris muy claro */
 ```
 
+## 🛡️ Compatibilidad con CSP (Content Security Policy)
+
+**La librería es completamente compatible con Content Security Policy estricto.**
+
+### ✅ Características CSP
+
+- **Archivos CSS externos**: No usa estilos inline que violen CSP
+- **Sin `'unsafe-inline'`**: Compatible con `style-src 'self'`
+- **Variables CSS en `:root`**: Disponibles globalmente sin violar políticas
+- **Archivos estáticos**: Todos los recursos se sirven como archivos externos
+
+### 🔧 Configuración CSP Recomendada
+
+```html
+<!-- En tu HTML head -->
+<meta http-equiv="Content-Security-Policy" 
+      content="style-src 'self' https://fonts.googleapis.com; 
+               script-src 'self'; 
+               img-src 'self' data:;">
+```
+
+### 📋 Instrucciones para Proyectos con CSP
+
+**1. Instalar la librería:**
+```bash
+npm install @onpe/ui@1.2.40
+```
+
+**2. Importar CSS (CRÍTICO):**
+```tsx
+// ✅ CORRECTO - Esto carga el CSS externo
+import '@onpe/ui/dist/index.css';
+import { ModalConfirm, Button } from '@onpe/ui/components';
+```
+
+**3. Verificar que las variables CSS estén disponibles:**
+```tsx
+// Las variables CSS se definen automáticamente en :root
+function MiComponente() {
+  return (
+    <div style={{ color: 'var(--onpe-ui-blue)' }}>
+      Este texto usa el color azul ONPE
+    </div>
+  );
+}
+```
+
+### ⚠️ Problemas Comunes con CSP
+
+**Error: "Refused to apply inline style"**
+```bash
+# ❌ PROBLEMA: Estilos inline bloqueados por CSP
+# ✅ SOLUCIÓN: Usar archivos CSS externos (ya implementado)
+```
+
+**Error: "Variable CSS not defined"**
+```tsx
+// ❌ PROBLEMA: No importar el CSS
+import { Button } from '@onpe/ui/components';
+
+// ✅ SOLUCIÓN: Importar CSS primero
+import '@onpe/ui/dist/index.css';
+import { Button } from '@onpe/ui/components';
+```
+
 ## 📋 Versiones
 
-- **v1.0.4** - Versión actual
+- **v1.2.40** - Versión actual con CSP compatible
 - Compatible con React 16.8+
 - TailwindCSS v4
 - TypeScript 5.3+
+- CSP (Content Security Policy) compatible
 
 ## 🔧 Desarrollo
 

@@ -1,8 +1,8 @@
 /* ModalSystemIncompatible Component Styles */
 .onpe-modal-system-incompatible-container {
-  max-width: 680px !important;
-  padding-top: 2.5rem !important; /* pt-10 */
-  padding-bottom: 6.125rem !important; /* pb-24.5 */
+  /* Solo contenido - el espaciado lo maneja el Modal base */
+  width: 100%;
+  max-width: 780px !important; /* Tamaño específico para este modal */
 }
 
 .onpe-modal-system-incompatible-icon-container {
@@ -12,74 +12,102 @@
 }
 
 .onpe-modal-system-incompatible-icon {
-  width: 5.5rem; /* w-22 */
-  height: 5.5rem; /* h-22 */
+  width: 84px; /* 5.5rem = 84px */
+  height: 84px; /* 5.5rem = 84px */
   color: var(--onpe-ui-skyblue);
 }
 
 .onpe-modal-system-incompatible-title {
-  font-size: 0.875rem; /* text-sm */
+  margin-top: 4px; /* mt-4 - Menos espacio entre icono warning y título */
+  font-size: 14px; /* 0.875rem = 14px */
+  font-weight: 600; /* font-semibold */
   text-align: center;
-  margin-top: 1.5rem; /* mt-6 */
   color: var(--onpe-ui-skyblue);
-  font-weight: 500; /* font-medium */
 }
 
 .onpe-modal-system-incompatible-message {
-  font-size: 0.875rem; /* text-sm */
-  margin-top: 2.5rem; /* mt-10 */
+  margin-top: 24px; /* 2rem = 24px - Más espacio entre título y mensaje */
+  font-size: 14px; /* 0.875rem = 14px */
   text-align: center;
 }
 
 .onpe-modal-system-incompatible-systems-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 2rem; /* gap-8 */
-  margin-top: 1.25rem; /* mt-5 */
-  color: var(--onpe-ui-skyblue);
+  justify-content: center;
+  gap: 40px; /* 2.5rem = 40px - Más espacio entre iconos de sistemas */
+  margin-top: 47px; /* 2.5rem = 47px - Más espacio entre mensaje e iconos de sistemas */
 }
 
 .onpe-modal-system-incompatible-system-icon {
-  width: 2rem; /* w-[32px] */
-  height: 2rem; /* h-[32px] */
+  width: 32px; /* 2rem = 32px */
+  height: 32px; /* 2rem = 32px */
+  color: var(--onpe-ui-skyblue);
+}
+
+/* Estilos específicos para móvil */
+@media (max-width: 640px) {
+  .onpe-modal-system-incompatible-title {
+    font-size: 16px; /* 1rem = 16px para móvil */
+    margin-top: 0px; /* mt-3 - Menos espacio entre icono warning y título en móvil */
+  }
+  
+  .onpe-modal-system-incompatible-message {
+    font-size: 16px; /* 1rem = 16px para móvil */
+    margin-top: 24px; /* 1.5rem = 24px - Más espacio en móvil */
+    padding: 0 8px; /* 0.5rem = 8px */
+  }
+  
+  .onpe-modal-system-incompatible-systems-container {
+    gap: 32px; /* 2rem = 32px - Más espacio entre iconos de sistemas en móvil */
+    margin-top: 32px; /* 2rem = 32px - Más espacio entre mensaje e iconos de sistemas en móvil */
+  }
+  
+  .onpe-modal-system-incompatible-system-icon {
+    width: 28px; /* 1.75rem = 28px para móvil */
+    height: 28px; /* 1.75rem = 28px para móvil */
+  }
+  
+  .onpe-modal-system-incompatible-icon {
+    width: 64px; /* 4rem = 64px para móvil */
+    height: 64px; /* 4rem = 64px para móvil */
+  }
 }
 
 /* Responsive Design */
+@media (min-width: 640px) {
+ 
+}
+
 @media (min-width: 768px) {
   .onpe-modal-system-incompatible-container {
-    width: 680px !important;
+    /* Desktop: Tamaño específico de 680px */
     max-width: 680px !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .onpe-modal-system-incompatible-title {
+    font-size: 24px; /* 1.5rem = 24px para tablet y desktop */
+  }
+  
+  .onpe-modal-system-incompatible-message {
+    font-size: 18px; /* 1.125rem = 18px para tablet y desktop */
+  }
+  
+  .onpe-modal-system-incompatible-systems-container {
+    gap: 48px; /* 3rem = 48px para tablet y desktop */
+  }
+  
+  .onpe-modal-system-incompatible-system-icon {
+    width: 48px; /* 3rem = 48px para tablet y desktop */
+    height: 48px; /* 3rem = 48px para tablet y desktop */
   }
 }
 
 @media (min-width: 1024px) {
   .onpe-modal-system-incompatible-container {
-    width: 680px !important;
+    /* Desktop grande: Tamaño específico de 680px */
     max-width: 680px !important;
-  }
-  
-  .onpe-modal-system-incompatible-title {
-    font-size: 1.5rem; /* md:text-2xl */
-  }
-  
-  .onpe-modal-system-incompatible-message {
-    font-size: 1.125rem; /* md:text-lg */
-  }
-  
-  .onpe-modal-system-incompatible-systems-container {
-    gap: 3rem; /* md:gap-12 */
-  }
-  
-  .onpe-modal-system-incompatible-system-icon {
-    width: 3rem; /* md:w-[48px] */
-    height: 3rem; /* md:h-[48px] */
-  }
-}
-
-@media (min-width: 1280px) {
-  .onpe-modal-system-incompatible-message {
-    padding-left: 3rem; /* xl:px-12 */
-    padding-right: 3rem; /* xl:px-12 */
   }
 }

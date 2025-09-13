@@ -16,6 +16,10 @@ const meta: Meta<typeof Modal> = {
     isOpen: {
       control: { type: "boolean" },
     },
+    className: {
+      control: { type: "text" },
+      description: "Clases CSS para personalizar el modal (ej: onpe-modal-size-sm, onpe-modal-size-lg)",
+    },
     overlayColor: {
       control: { type: "select" },
       options: [
@@ -123,5 +127,110 @@ export const Interactive: Story = {
         </Modal>
       </div>
     );
+  },
+};
+
+export const SmallSize: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <div className="p-4 mb-4 bg-onpe-ui-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-onpe-ui-blue-500 rounded hover:bg-onpe-ui-blue-600">
+            {isOpen ? "Cerrar Modal" : "Abrir Modal Pequeño"}
+          </button>
+        </div>
+        <Modal {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} className="onpe-modal-size-sm">
+          <h2 className="mb-4 text-xl font-bold text-onpe-ui-blue">Modal Pequeño</h2>
+          <p className="mb-6 text-onpe-ui-gray-dark">Este es un modal pequeño (400px).</p>
+          <Button color="primary" title="Cerrar" onClick={() => setIsOpen(false)} />
+        </Modal>
+      </div>
+    );
+  },
+  args: {
+    overlayColor: "blue",
+  },
+};
+
+export const LargeSize: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <div className="p-4 mb-4 bg-onpe-ui-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-onpe-ui-blue-500 rounded hover:bg-onpe-ui-blue-600">
+            {isOpen ? "Cerrar Modal" : "Abrir Modal Grande"}
+          </button>
+        </div>
+        <Modal {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} className="onpe-modal-size-lg">
+          <h2 className="mb-4 text-2xl font-bold text-onpe-ui-blue">Modal Grande</h2>
+          <p className="mb-6 text-onpe-ui-gray-dark">Este es un modal grande (800px).</p>
+          <div className="space-y-3">
+            <Button color="primary" title="Confirmar" className="w-full" />
+            <Button color="gray" title="Cancelar" onClick={() => setIsOpen(false)} className="w-full" />
+          </div>
+        </Modal>
+      </div>
+    );
+  },
+  args: {
+    overlayColor: "blue",
+  },
+};
+
+export const ExtraLargeSize: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <div className="p-4 mb-4 bg-onpe-ui-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-onpe-ui-blue-500 rounded hover:bg-onpe-ui-blue-600">
+            {isOpen ? "Cerrar Modal" : "Abrir Modal Extra Grande"}
+          </button>
+        </div>
+        <Modal {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} className="onpe-modal-size-xl">
+          <h2 className="mb-4 text-3xl font-bold text-onpe-ui-blue">Modal Extra Grande</h2>
+          <p className="mb-6 text-onpe-ui-gray-dark">Este es un modal extra grande (1000px).</p>
+          <div className="space-y-3">
+            <Button color="primary" title="Confirmar" className="w-full" />
+            <Button color="gray" title="Cancelar" onClick={() => setIsOpen(false)} className="w-full" />
+          </div>
+        </Modal>
+      </div>
+    );
+  },
+  args: {
+    overlayColor: "blue",
+  },
+};
+
+export const FullSize: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <div className="p-4 mb-4 bg-onpe-ui-gray-100 rounded">
+          <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 text-white bg-onpe-ui-blue-500 rounded hover:bg-onpe-ui-blue-600">
+            {isOpen ? "Cerrar Modal" : "Abrir Modal Pantalla Completa"}
+          </button>
+        </div>
+        <Modal {...args} isOpen={isOpen} onClose={() => setIsOpen(false)} className="onpe-modal-size-full">
+          <h2 className="mb-4 text-3xl font-bold text-onpe-ui-blue">Modal Pantalla Completa</h2>
+          <p className="mb-6 text-onpe-ui-gray-dark">Este modal ocupa toda la pantalla.</p>
+          <div className="space-y-3">
+            <Button color="primary" title="Confirmar" className="w-full" />
+            <Button color="gray" title="Cancelar" onClick={() => setIsOpen(false)} className="w-full" />
+          </div>
+        </Modal>
+      </div>
+    );
+  },
+  args: {
+    overlayColor: "blue",
   },
 };

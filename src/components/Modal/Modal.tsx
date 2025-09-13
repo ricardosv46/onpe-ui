@@ -3,6 +3,7 @@ import { Portal } from "../Portal/Portal";
 import { Overlay } from "../Overlay/Overlay";
 import { IconClose } from "../../icons/Actions/IconClose";
 import "./Modal.css";
+import { IconCloseRadius } from "../../icons/Actions/IconCloseRadius";
 
 const classNames = (cln: Array<string | undefined>) => {
   return cln.join(" ").trim();
@@ -60,37 +61,43 @@ export const Modal = ({
   // Resetear scroll del modal cuando se abre
   useEffect(() => {
     if (isOpen) {
-      // Resetear inmediatamente cuando se abre
-      const modalContentElement = document.querySelector(".onpe-modal-content.onpe-modal-with-background") as HTMLElement;
-      if (modalContentElement) {
-        // Desactivar animación temporalmente para reset instantáneo
-        modalContentElement.style.scrollBehavior = "auto";
-        modalContentElement.scrollTop = 0;
-        // Reactivar animación después del reset
-        setTimeout(() => {
-          modalContentElement.style.scrollBehavior = "smooth";
-        }, 10);
-      }
+      // Función para resetear scroll de cualquier modal content
+      const resetModalScroll = () => {
+        // Buscar todos los elementos de contenido del modal
+        const modalContentElements = document.querySelectorAll(".onpe-modal-content");
+        modalContentElements.forEach((element) => {
+          const htmlElement = element as HTMLElement;
+          // Desactivar animación temporalmente para reset instantáneo
+          htmlElement.style.scrollBehavior = "auto";
+          htmlElement.scrollTop = 0;
+          // Forzar el reset con requestAnimationFrame
+          requestAnimationFrame(() => {
+            htmlElement.scrollTop = 0;
+            // Reactivar animación después del reset
+            setTimeout(() => {
+              htmlElement.style.scrollBehavior = "smooth";
+            }, 10);
+          });
+        });
+      };
 
-      // También resetear después de un pequeño delay por si acaso
-      setTimeout(() => {
-        const modalContentElementDelayed = document.querySelector(".onpe-modal-content.onpe-modal-with-background") as HTMLElement;
-        if (modalContentElementDelayed) {
-          modalContentElementDelayed.style.scrollBehavior = "auto";
-          modalContentElementDelayed.scrollTop = 0;
-          setTimeout(() => {
-            modalContentElementDelayed.style.scrollBehavior = "smooth";
-          }, 10);
-        }
-      }, 50);
+      // Resetear inmediatamente cuando se abre
+      resetModalScroll();
+
+      // Resetear múltiples veces para asegurar que funcione
+      setTimeout(resetModalScroll, 10);
+      setTimeout(resetModalScroll, 50);
+      setTimeout(resetModalScroll, 100);
+      setTimeout(resetModalScroll, 200);
     } else {
       // Resetear scroll cuando se cierra para que no se vea la animación al reabrir
-      const modalContentElement = document.querySelector(".onpe-modal-content.onpe-modal-with-background") as HTMLElement;
-      if (modalContentElement) {
-        modalContentElement.style.scrollBehavior = "auto";
-        modalContentElement.scrollTop = 0;
-        modalContentElement.style.scrollBehavior = "smooth";
-      }
+      const modalContentElements = document.querySelectorAll(".onpe-modal-content");
+      modalContentElements.forEach((element) => {
+        const htmlElement = element as HTMLElement;
+        htmlElement.style.scrollBehavior = "auto";
+        htmlElement.scrollTop = 0;
+        htmlElement.style.scrollBehavior = "smooth";
+      });
     }
   }, [isOpen]);
 
@@ -115,11 +122,7 @@ export const Modal = ({
         <Overlay show={isOpen} onClick={closeDisabled ? undefined : onClose} color={overlayColor} />
         <div className="onpe-modal-content-wrapper">
           <div className={getContentClass()}>{children}</div>
-          {closeButton && (
-            <button onClick={onClose} className="onpe-modal-close-button" aria-label="Cerrar">
-              <IconClose className="onpe-modal-close-icon" />
-            </button>
-          )}
+          {closeButton && <IconCloseRadius onClick={onClose} className="onpe-modal-close-button" aria-label="Cerrar" />}
         </div>
       </div>
     </Portal>
