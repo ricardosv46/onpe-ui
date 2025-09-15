@@ -14,9 +14,9 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
   children: ReactNode;
   whitoutBackground?: boolean;
-  topAbsolute?: boolean;
   closeButton?: boolean;
   closeDisabled?: boolean;
+  zIndexLevel?: number;
   overlayColor?:
     | "blue"
     | "skyblue"
@@ -38,9 +38,9 @@ export const Modal = ({
   onClose,
   children,
   whitoutBackground = false,
-  topAbsolute = false,
   closeButton = false,
   closeDisabled = false,
+  zIndexLevel = 1000,
   overlayColor = "blue",
   ...props
 }: ModalProps) => {
@@ -104,7 +104,7 @@ export const Modal = ({
   const getContainerClass = () => {
     const baseClass = "onpe-modal-container";
     if (isOpen) {
-      return topAbsolute ? `${baseClass} onpe-modal-open onpe-modal-top-absolute` : `${baseClass} onpe-modal-open`;
+      return `${baseClass} onpe-modal-open`;
     }
     return `${baseClass} onpe-modal-closed`;
   };
@@ -118,7 +118,7 @@ export const Modal = ({
 
   return (
     <Portal>
-      <div className={getContainerClass()}>
+      <div className={getContainerClass()} style={{ zIndex: zIndexLevel }}>
         <Overlay show={isOpen} onClick={closeDisabled ? undefined : onClose} color={overlayColor} />
         <div className="onpe-modal-content-wrapper">
           <div className={getContentClass()}>{children}</div>
