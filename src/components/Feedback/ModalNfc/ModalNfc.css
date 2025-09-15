@@ -3,6 +3,13 @@
   /* Solo contenido - el espaciado lo maneja el Modal base */
   width: 100%;
   max-width: 600px !important; /* Tamaño específico para este modal */
+  padding-top: 46px !important; /* pt-5 */
+  
+  padding-bottom: 46px !important; /* pb-8 */
+
+
+  padding-left: 30px !important; /* pl-5 */
+  padding-right: 30px !important; /* pr-5 */
 }
 
 .onpe-modal-nfc-title {
@@ -98,7 +105,7 @@
 /* Estilos específicos para móvil */
 @media (max-width: 640px) {
   .onpe-modal-nfc-title {
-    font-size: 16px; /* text-base para móvil */
+    font-size: 14px; /* text-base para móvil */
   }
   
   .onpe-modal-nfc-content {
@@ -112,7 +119,7 @@
   }
   
   .onpe-modal-nfc-subtitle {
-    font-size: 16px; /* text-base para móvil */
+    font-size: 14px; /* text-base para móvil */
   }
 }
 
@@ -123,19 +130,19 @@
   }
   
   .onpe-modal-nfc-content {
-    font-size: 16px; /* text-base para tablet y desktop */
+    font-size: 14px; /* text-base para tablet y desktop */
   }
   
   .onpe-modal-nfc-step {
-    font-size: 16px; /* text-base para tablet y desktop */
+    font-size: 14px; /* text-base para tablet y desktop */
   }
   
   .onpe-modal-nfc-list-item {
-    font-size: 16px; /* text-base para tablet y desktop */
+    font-size: 14px; /* text-base para tablet y desktop */
   }
   
   .onpe-modal-nfc-text {
-    font-size: 16px; /* text-base para tablet y desktop */
+    font-size: 14px; /* text-base para tablet y desktop */
   }
   
   .onpe-modal-nfc-subtitle {
@@ -143,7 +150,7 @@
   }
   
   .onpe-modal-nfc-ordered-list {
-    font-size: 16px; /* text-base para tablet y desktop */
+    font-size: 14px; /* text-base para tablet y desktop */
   }
 }
 
@@ -151,6 +158,10 @@
   .onpe-modal-nfc-container {
     /* Desktop: Tamaño específico de 600px */
     max-width: 600px !important;
+
+    padding-left: 50px !important; /* pl-5 */
+  padding-right: 50px !important; /* pr-5 */
+
   }
 }
 

@@ -2,8 +2,10 @@
 .onpe-modal-confirm-container {
   max-width: 680px !important;
   width: 680px !important;
-  padding-top: 1.25rem !important; /* pt-5 */
-  padding-bottom: 2rem !important; /* pb-8 */
+  padding-top:30px !important; /* pt-5 */
+  padding-bottom: 30px !important; /* pb-8 */
+  padding-left: 30px !important; /* pl-5 */
+  padding-right: 30px !important; /* pr-5 */
 }
 
 .onpe-modal-confirm-icon-container {
@@ -72,6 +74,8 @@
   .onpe-modal-confirm-container {
     width: 680px !important;
     max-width: 680px !important;
+    padding-left: 32px !important; /* pl-5 */
+    padding-right: 32px !important; /* pr-5 */
   }
 }
 
