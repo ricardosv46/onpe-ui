@@ -3,6 +3,10 @@
   /* Solo contenido - el espaciado lo maneja el Modal base */
   width: 100%;
   max-width: 590px !important; /* Tamaño específico para este modal */
+  padding-top: 46px !important; /* pt-5 */
+  padding-bottom: 46px !important; /* pb-8 */
+  padding-left: 30px !important; /* pl-5 */
+  padding-right: 30px !important; /* pr-5 */
 }
 
 .onpe-modal-dnie-versions-title {
@@ -16,9 +20,9 @@
 .onpe-modal-dnie-versions-content {
   display: flex;
   flex-direction: column;
-  gap: 40px; /* gap-10 */
+  gap: 20px; /* gap-10 */
   align-items: center;
-  margin-top: 28px; /* mt-7 */
+  margin-top: 18px; /* mt-7 */
   font-size: 14px; /* text-sm */
 }
 
@@ -118,6 +122,9 @@
   .onpe-modal-dnie-versions-container {
     /* Desktop: Tamaño específico de 590px */
     max-width: 590px !important;
+    padding-top: 30px !important; /* pl-5 */
+    padding-bottom: 38px !important; /* pr-5 */
+
   }
   
   .onpe-modal-dnie-versions-article {
