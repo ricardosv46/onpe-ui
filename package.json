@@ -17,21 +17,6 @@
       "require": "./dist/components.js",
       "types": "./dist/components.d.ts"
     },
-    "./hooks": {
-      "import": "./dist/hooks.esm.js",
-      "require": "./dist/hooks.js",
-      "types": "./dist/hooks.d.ts"
-    },
-    "./utils": {
-      "import": "./dist/utils.esm.js",
-      "require": "./dist/utils.js",
-      "types": "./dist/utils.d.ts"
-    },
-    "./lib": {
-      "import": "./dist/lib.esm.js",
-      "require": "./dist/lib.js",
-      "types": "./dist/lib.d.ts"
-    },
     "./icons": {
       "import": "./dist/icons.esm.js",
       "require": "./dist/icons.js",

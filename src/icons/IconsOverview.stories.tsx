@@ -22,6 +22,7 @@ import {
   // ONPE
   IconVotoDigital,
   IconElectionsGeneral,
+  IconPersonOnpe,
 } from "./index";
 
 const meta: Meta = {
@@ -126,7 +127,7 @@ export const ActionsIcons: Story = {
 
       <div>
         <h3 className="mb-4 text-lg font-semibold text-onpe-ui-blue">Iconos de ONPE</h3>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <div className="p-4 text-center border rounded-lg border-gray">
             <IconVotoDigital width={80} height={24} className="mx-auto mb-2" />
             <span className="text-sm text-onpe-ui-gray-dark">IconVotoDigital</span>
@@ -134,6 +135,10 @@ export const ActionsIcons: Story = {
           <div className="p-4 text-center border rounded-lg border-gray">
             <IconElectionsGeneral width={120} height={24} className="mx-auto mb-2" />
             <span className="text-sm text-onpe-ui-gray-dark">IconElectionsGeneral</span>
+          </div>
+          <div className="p-4 text-center border rounded-lg border-gray">
+            <IconPersonOnpe width={60} height={100} className="mx-auto mb-2" />
+            <span className="text-sm text-onpe-ui-gray-dark">IconPersonOnpe</span>
           </div>
         </div>
       </div>
