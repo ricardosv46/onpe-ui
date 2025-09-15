@@ -3,6 +3,7 @@ import { Portal } from "../Portal/Portal";
 import { Overlay } from "../Overlay/Overlay";
 import "./Modal.css";
 import { IconCloseRadius } from "../../icons/Actions/IconCloseRadius";
+import { motion, AnimatePresence } from "framer-motion";
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
@@ -144,16 +145,38 @@ export const Modal = ({
     const customClass = props.className || "";
     return `${baseClass} ${backgroundClass} ${customClass}`.trim();
   };
+  const backdropStyle = { zIndex: zIndexLevel };
+  const modalWrapperStyle = { zIndex: zIndexLevel + 10 };
 
   return (
     <Portal>
-      <div className={getContainerClass()} style={{ zIndex: zIndexLevel }}>
-        <Overlay show={isOpen} onClick={closeDisabled ? undefined : onClose} color={overlayColor} />
-        <div className="onpe-modal-content-wrapper" ref={modalRef} tabIndex={0}>
-          <div className={getContentClass()}>{children}</div>
-          {closeButton && <IconCloseRadius onClick={onClose} className="onpe-modal-close-button" aria-label="Cerrar" />}
-        </div>
-      </div>
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              className="onpe-modal-backdrop"
+              style={backdropStyle}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.8 }}
+              exit={{ opacity: 0 }}
+              onClick={closeDisabled ? undefined : onClose}
+            />
+            <motion.div
+              className={getContainerClass()}
+              style={modalWrapperStyle}
+              initial={{ opacity: 0.2, scale: 0.95, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="onpe-modal-content-wrapper" ref={modalRef} tabIndex={0} onClick={(e) => e.stopPropagation()}>
+                <div className={getContentClass()}>{children}</div>
+                {closeButton && <IconCloseRadius onClick={onClose} className="onpe-modal-close-button" aria-label="Cerrar" />}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </Portal>
   );
 };

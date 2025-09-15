@@ -124,6 +124,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "clsx": "^2.0.0"
+    "clsx": "^2.0.0",
+    "framer-motion": "^12.23.12"
   }
 }
