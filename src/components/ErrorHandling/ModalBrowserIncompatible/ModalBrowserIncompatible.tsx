@@ -27,7 +27,6 @@ export const ModalBrowserIncompatible = ({
       onClose={onClose}
       className={`onpe-modal-browser-incompatible-container ${className}`}
       closeButton={true}
-      closeDisabled
     >
       <div className="onpe-modal-browser-incompatible-icon-container">
         <IconWarning className="onpe-modal-browser-incompatible-icon" />

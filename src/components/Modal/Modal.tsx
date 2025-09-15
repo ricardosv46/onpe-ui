@@ -147,14 +147,9 @@ export const Modal = ({
 
   return (
     <Portal>
-      <div
-        ref={modalRef}
-        className={getContainerClass()}
-        style={{ zIndex: zIndexLevel }}
-        tabIndex={-1} // Hacer el modal enfocable
-      >
+      <div className={getContainerClass()} style={{ zIndex: zIndexLevel }}>
         <Overlay show={isOpen} onClick={closeDisabled ? undefined : onClose} color={overlayColor} />
-        <div className="onpe-modal-content-wrapper">
+        <div className="onpe-modal-content-wrapper" ref={modalRef} tabIndex={0}>
           <div className={getContentClass()}>{children}</div>
           {closeButton && <IconCloseRadius onClick={onClose} className="onpe-modal-close-button" aria-label="Cerrar" />}
         </div>
