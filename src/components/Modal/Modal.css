@@ -15,16 +15,13 @@ body.onpe-modal-open {
 
 .onpe-modal-container.onpe-modal-open {
   opacity: 1;
-  z-index: 50;
+  pointer-events: auto;
 }
 
-.onpe-modal-container.onpe-modal-open.onpe-modal-top-absolute {
-  z-index: 100;
-}
 
 .onpe-modal-container.onpe-modal-closed {
   opacity: 0;
-  z-index: -10;
+  pointer-events: none;
 }
 
 .onpe-modal-content-wrapper {

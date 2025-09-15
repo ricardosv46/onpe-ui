@@ -11,11 +11,19 @@ export interface ModalBrowserIncompatibleProps {
   isOpen: boolean;
   onClose: () => void;
   className?: string;
+  zIndexLevel?: number;
 }
 
-export const ModalBrowserIncompatible = ({ isOpen = false, onClose = () => {}, className = "" }: ModalBrowserIncompatibleProps) => {
+export const ModalBrowserIncompatible = ({ isOpen = false, onClose = () => {}, className = "", zIndexLevel = 10 }: ModalBrowserIncompatibleProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={`onpe-modal-browser-incompatible-container ${className}`} closeButton={true} closeDisabled>
+    <Modal
+      zIndexLevel={zIndexLevel}
+      isOpen={isOpen}
+      onClose={onClose}
+      className={`onpe-modal-browser-incompatible-container ${className}`}
+      closeButton={true}
+      closeDisabled
+    >
       <div className="onpe-modal-browser-incompatible-icon-container">
         <IconWarning className="onpe-modal-browser-incompatible-icon" />
       </div>

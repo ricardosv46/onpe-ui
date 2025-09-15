@@ -1,13 +1,8 @@
 import React, { HTMLAttributes, ReactNode, useEffect } from "react";
 import { Portal } from "../Portal/Portal";
 import { Overlay } from "../Overlay/Overlay";
-import { IconClose } from "../../icons/Actions/IconClose";
 import "./Modal.css";
 import { IconCloseRadius } from "../../icons/Actions/IconCloseRadius";
-
-const classNames = (cln: Array<string | undefined>) => {
-  return cln.join(" ").trim();
-};
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;

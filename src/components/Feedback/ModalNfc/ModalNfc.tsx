@@ -8,11 +8,12 @@ export interface ModalNfcProps {
   className?: string;
   iconNfc1: ReactNode;
   iconNfc2: ReactNode;
+  zIndexLevel?: number;
 }
 
-export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "", iconNfc1, iconNfc2 }: ModalNfcProps) => {
+export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "", iconNfc1, iconNfc2, zIndexLevel = 10 }: ModalNfcProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={`onpe-modal-nfc-container ${className}`} closeButton={true}>
+    <Modal zIndexLevel={zIndexLevel} isOpen={isOpen} onClose={onClose} className={`onpe-modal-nfc-container ${className}`} closeButton={true}>
       <h2 className="onpe-modal-nfc-title">¿Cómo saber si mi teléfono tiene NFC?</h2>
 
       <section className="onpe-modal-nfc-content">

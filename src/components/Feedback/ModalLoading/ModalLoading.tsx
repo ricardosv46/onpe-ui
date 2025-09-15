@@ -1,4 +1,3 @@
-import React from "react";
 import { Modal } from "../../Modal/Modal";
 import { IconSpinnerDesktop } from "../../../icons/Actions/IconSpinnerDesktop/IconSpinnerDesktop";
 import { IconSpinnerMobile } from "../../../icons/Actions/IconSpinnerMobile/IconSpinnerMobile";
@@ -9,11 +8,18 @@ export interface ModalLoadingProps {
   onClose?: () => void;
   message?: string;
   className?: string;
+  zIndexLevel?: number;
 }
 
-export const ModalLoading = ({ isOpen = false, onClose = () => {}, message = "Cargando...", className = "" }: ModalLoadingProps) => {
+export const ModalLoading = ({
+  isOpen = false,
+  onClose = () => {},
+  message = "Cargando...",
+  className = "",
+  zIndexLevel = 10,
+}: ModalLoadingProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={className} closeDisabled whitoutBackground={true}>
+    <Modal zIndexLevel={zIndexLevel} isOpen={isOpen} onClose={onClose} className={className} closeDisabled whitoutBackground={true}>
       <IconSpinnerDesktop className="onpe-modal-loading-spinner-desktop" />
       <IconSpinnerMobile className="onpe-modal-loading-spinner-mobile" />
       <p className="onpe-modal-loading-message">{message}</p>

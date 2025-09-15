@@ -9,6 +9,7 @@ export interface ModalDnieVersionsProps {
   iconDnie1: ReactNode;
   iconDnie2: ReactNode;
   iconDnie3: ReactNode;
+  zIndexLevel?: number;
 }
 
 export const ModalDnieVersions = ({
@@ -18,9 +19,16 @@ export const ModalDnieVersions = ({
   iconDnie1,
   iconDnie2,
   iconDnie3,
+  zIndexLevel = 10,
 }: ModalDnieVersionsProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={`onpe-modal-dnie-versions-container ${className}`} closeButton={true}>
+    <Modal
+      zIndexLevel={zIndexLevel}
+      isOpen={isOpen}
+      onClose={onClose}
+      className={`onpe-modal-dnie-versions-container ${className}`}
+      closeButton={true}
+    >
       <h2 className="onpe-modal-dnie-versions-title">Versiones del DNIe</h2>
 
       <section className="onpe-modal-dnie-versions-content">

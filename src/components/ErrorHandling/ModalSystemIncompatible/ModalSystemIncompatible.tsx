@@ -10,11 +10,19 @@ export interface ModalSystemIncompatibleProps {
   isOpen: boolean;
   onClose: () => void;
   className?: string;
+  zIndexLevel?: number;
 }
 
-export const ModalSystemIncompatible = ({ isOpen = false, onClose = () => {}, className = "" }: ModalSystemIncompatibleProps) => {
+export const ModalSystemIncompatible = ({ isOpen = false, onClose = () => {}, className = "", zIndexLevel = 10 }: ModalSystemIncompatibleProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={`onpe-modal-system-incompatible-container ${className}`} closeButton={true} closeDisabled>
+    <Modal
+      zIndexLevel={zIndexLevel}
+      isOpen={isOpen}
+      onClose={onClose}
+      className={`onpe-modal-system-incompatible-container ${className}`}
+      closeButton={true}
+      closeDisabled
+    >
       <div className="onpe-modal-system-incompatible-icon-container">
         <IconWarning className="onpe-modal-system-incompatible-icon" />
       </div>

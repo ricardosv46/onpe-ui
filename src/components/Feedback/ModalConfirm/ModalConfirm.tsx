@@ -18,6 +18,7 @@ export interface ModalConfirmProps {
   textButtonCancel?: string;
   twoButtons?: boolean;
   className?: string;
+  zIndexLevel?: number;
 }
 
 export const ModalConfirm = ({
@@ -33,6 +34,7 @@ export const ModalConfirm = ({
   textButtonCancel = "Cancelar",
   twoButtons = true,
   className = "",
+  zIndexLevel = 10,
 }: ModalConfirmProps) => {
   const handleConfirm = async () => {
     try {
@@ -56,7 +58,7 @@ export const ModalConfirm = ({
       className={`onpe-modal-confirm-container ${className}`}
       closeButton={true}
       closeDisabled
-      topAbsolute={true}
+      zIndexLevel={zIndexLevel}
     >
       <div className={`onpe-modal-confirm-icon-container onpe-modal-confirm-icon-${color}`}>
         {icon === "warning" && <IconWarning className={`onpe-modal-confirm-icon onpe-modal-confirm-icon-${color}`} />}
