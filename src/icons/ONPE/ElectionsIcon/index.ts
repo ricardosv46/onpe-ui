@@ -1,1 +1,0 @@
-export { ElectionsIcon } from "./ElectionsIcon";
