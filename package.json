@@ -32,6 +32,11 @@
       "require": "./dist/lib.js",
       "types": "./dist/lib.d.ts"
     },
+    "./icons": {
+      "import": "./dist/icons.esm.js",
+      "require": "./dist/icons.js",
+      "types": "./dist/icons.d.ts"
+    },
     "./styles": "./dist/index.css",
     "./tailwind-preset": "./tailwind-preset.js",
     "./css": "./dist/index.css",

@@ -59,10 +59,13 @@ export default [
   buildConfig('src/utils.ts', 'utils'),
   // Build lib
   buildConfig('src/lib.ts', 'lib'),
+  // Build icons
+  buildConfig('src/icons.ts', 'icons'),
   // Generate type definitions
   dtsConfig('src/index.ts', 'index'),
   dtsConfig('src/components.ts', 'components'),
   dtsConfig('src/hooks.ts', 'hooks'),
   dtsConfig('src/utils.ts', 'utils'),
   dtsConfig('src/lib.ts', 'lib'),
+  dtsConfig('src/icons.ts', 'icons'),
 ];
