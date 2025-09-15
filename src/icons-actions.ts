@@ -1,0 +1,10 @@
+// Exportaciones de iconos - Actions
+export { IconClose } from "./icons/Actions/IconClose/IconClose";
+export { IconCloseRadius } from "./icons/Actions/IconCloseRadius/IconCloseRadius";
+export { IconWarning } from "./icons/Actions/IconWarning/IconWarning";
+export { IconCheck } from "./icons/Actions/IconCheck/IconCheck";
+export { IconSpinnerDesktop } from "./icons/Actions/IconSpinnerDesktop/IconSpinnerDesktop";
+export { IconSpinnerMobile } from "./icons/Actions/IconSpinnerMobile/IconSpinnerMobile";
+export { IconHome } from "./icons/Actions/IconHome/IconHome";
+export { IconInfo } from "./icons/Actions/IconInfo/IconInfo";
+export { IconMobileNfc } from "./icons/Actions/IconMobileNfc/IconMobileNfc";

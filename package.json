@@ -22,6 +22,26 @@
       "require": "./dist/icons.js",
       "types": "./dist/icons.d.ts"
     },
+    "./icons/actions": {
+      "import": "./dist/icons-actions.esm.js",
+      "require": "./dist/icons-actions.js",
+      "types": "./dist/icons-actions.d.ts"
+    },
+    "./icons/browsers": {
+      "import": "./dist/icons-browsers.esm.js",
+      "require": "./dist/icons-browsers.js",
+      "types": "./dist/icons-browsers.d.ts"
+    },
+    "./icons/onpe": {
+      "import": "./dist/icons-onpe.esm.js",
+      "require": "./dist/icons-onpe.js",
+      "types": "./dist/icons-onpe.d.ts"
+    },
+    "./icons/os": {
+      "import": "./dist/icons-os.esm.js",
+      "require": "./dist/icons-os.js",
+      "types": "./dist/icons-os.d.ts"
+    },
     "./styles": "./dist/index.css",
     "./tailwind-preset": "./tailwind-preset.js",
     "./css": "./dist/index.css",
@@ -74,6 +94,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.5",
     "@storybook/addon-essentials": "^7.6.6",
     "@storybook/addon-interactions": "^7.6.6",

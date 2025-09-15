@@ -1,0 +1,9 @@
+// Exportaciones de iconos - Navegadores
+export { IconChromeColor } from "./icons/Browsers/IconChromeColor/IconChromeColor";
+export { IconChrome } from "./icons/Browsers/IconChrome/IconChrome";
+export { IconSafariColor } from "./icons/Browsers/IconSafariColor/IconSafariColor";
+export { IconSafari } from "./icons/Browsers/IconSafari/IconSafari";
+export { IconMozillaColor } from "./icons/Browsers/IconMozillaColor/IconMozillaColor";
+export { IconMozilla } from "./icons/Browsers/IconMozilla/IconMozilla";
+export { IconEdgeColor } from "./icons/Browsers/IconEdgeColor/IconEdgeColor";
+export { IconEdge } from "./icons/Browsers/IconEdge/IconEdge";
