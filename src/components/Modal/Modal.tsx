@@ -154,12 +154,12 @@ export const Modal = ({
         {isOpen && (
           <>
             <motion.div
-              className="onpe-modal-backdrop"
+              className="onpe-modal-overlay"
               style={backdropStyle}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.8 }}
               exit={{ opacity: 0 }}
-              onClick={closeDisabled ? undefined : onClose}
+              onClick={onClose}
             />
             <motion.div
               className={getContainerClass()}
