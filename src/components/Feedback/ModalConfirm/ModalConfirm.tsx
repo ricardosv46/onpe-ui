@@ -34,7 +34,7 @@ export const ModalConfirm = ({
   textButtonCancel = "Cancelar",
   twoButtons = true,
   className = "",
-  zIndexLevel = 10,
+  zIndexLevel = 100,
 }: ModalConfirmProps) => {
   const handleConfirm = async () => {
     try {

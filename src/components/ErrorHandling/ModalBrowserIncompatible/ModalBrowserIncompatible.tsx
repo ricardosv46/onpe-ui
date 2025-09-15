@@ -14,7 +14,12 @@ export interface ModalBrowserIncompatibleProps {
   zIndexLevel?: number;
 }
 
-export const ModalBrowserIncompatible = ({ isOpen = false, onClose = () => {}, className = "", zIndexLevel = 10 }: ModalBrowserIncompatibleProps) => {
+export const ModalBrowserIncompatible = ({
+  isOpen = false,
+  onClose = () => {},
+  className = "",
+  zIndexLevel = 100,
+}: ModalBrowserIncompatibleProps) => {
   return (
     <Modal
       zIndexLevel={zIndexLevel}

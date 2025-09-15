@@ -13,7 +13,7 @@ export interface ModalSystemIncompatibleProps {
   zIndexLevel?: number;
 }
 
-export const ModalSystemIncompatible = ({ isOpen = false, onClose = () => {}, className = "", zIndexLevel = 10 }: ModalSystemIncompatibleProps) => {
+export const ModalSystemIncompatible = ({ isOpen = false, onClose = () => {}, className = "", zIndexLevel = 1000 }: ModalSystemIncompatibleProps) => {
   return (
     <Modal
       zIndexLevel={zIndexLevel}

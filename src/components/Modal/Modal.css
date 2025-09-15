@@ -26,7 +26,6 @@ body.onpe-modal-open {
 
 .onpe-modal-content-wrapper {
   position: relative;
-  z-index: 20;
   display: grid;
   place-items: center;
 }

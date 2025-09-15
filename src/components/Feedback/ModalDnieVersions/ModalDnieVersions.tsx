@@ -19,7 +19,7 @@ export const ModalDnieVersions = ({
   iconDnie1,
   iconDnie2,
   iconDnie3,
-  zIndexLevel = 10,
+  zIndexLevel = 100,
 }: ModalDnieVersionsProps) => {
   return (
     <Modal

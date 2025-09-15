@@ -11,7 +11,7 @@ export interface ModalNfcProps {
   zIndexLevel?: number;
 }
 
-export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "", iconNfc1, iconNfc2, zIndexLevel = 10 }: ModalNfcProps) => {
+export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "", iconNfc1, iconNfc2, zIndexLevel = 100 }: ModalNfcProps) => {
   return (
     <Modal zIndexLevel={zIndexLevel} isOpen={isOpen} onClose={onClose} className={`onpe-modal-nfc-container ${className}`} closeButton={true}>
       <h2 className="onpe-modal-nfc-title">¿Cómo saber si mi teléfono tiene NFC?</h2>

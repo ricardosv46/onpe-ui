@@ -16,7 +16,7 @@ export const ModalLoading = ({
   onClose = () => {},
   message = "Cargando...",
   className = "",
-  zIndexLevel = 10,
+  zIndexLevel = 100,
 }: ModalLoadingProps) => {
   return (
     <Modal zIndexLevel={zIndexLevel} isOpen={isOpen} onClose={onClose} className={className} closeDisabled whitoutBackground={true}>

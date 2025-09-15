@@ -35,7 +35,7 @@ export const Modal = ({
   whitoutBackground = false,
   closeButton = false,
   closeDisabled = false,
-  zIndexLevel = 1000,
+  zIndexLevel = 100,
   overlayColor = "blue",
   ...props
 }: ModalProps) => {
