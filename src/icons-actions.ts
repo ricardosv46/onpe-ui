@@ -7,4 +7,3 @@ export { IconSpinnerDesktop } from "./icons/Actions/IconSpinnerDesktop/IconSpinn
 export { IconSpinnerMobile } from "./icons/Actions/IconSpinnerMobile/IconSpinnerMobile";
 export { IconHome } from "./icons/Actions/IconHome/IconHome";
 export { IconInfo } from "./icons/Actions/IconInfo/IconInfo";
-export { IconMobileNfc } from "./icons/Actions/IconMobileNfc/IconMobileNfc";

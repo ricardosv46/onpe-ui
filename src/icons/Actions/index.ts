@@ -7,4 +7,3 @@ export * from "./IconCheck";
 export * from "./IconWarning";
 export * from "./IconHome";
 export * from "./IconInfo";
-export * from "./IconMobileNfc";

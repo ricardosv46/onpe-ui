@@ -1,16 +1,16 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Modal } from "../../Modal/Modal";
-import { IconMobileNfc } from "../../../icons/Actions/IconMobileNfc/IconMobileNfc";
 import "./ModalNfc.css";
-import { IconNfc } from "../../../icons/ONPE/IconNfc/IconNfc";
 
 export interface ModalNfcProps {
   isOpen: boolean;
   onClose: () => void;
   className?: string;
+  iconNfc1: ReactNode;
+  iconNfc2: ReactNode;
 }
 
-export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "" }: ModalNfcProps) => {
+export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "", iconNfc1, iconNfc2 }: ModalNfcProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} className={`onpe-modal-nfc-container ${className}`} closeButton={true}>
       <h2 className="onpe-modal-nfc-title">¿Cómo saber si mi teléfono tiene NFC?</h2>
@@ -30,7 +30,8 @@ export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "" }:
             </li>
           </ul>
         </div>
-        <IconNfc className="onpe-modal-nfc-icon" />x
+        {/* <IconNfc className="onpe-modal-nfc-icon" /> */}
+        {iconNfc1}
         <div className="onpe-modal-nfc-section">
           <p className="onpe-modal-nfc-step">
             <span className="onpe-modal-nfc-step-number">2. </span>
@@ -60,7 +61,8 @@ export const ModalNfc = ({ isOpen = false, onClose = () => {}, className = "" }:
             <li>Coloca tu DNIe sobre esa zona hasta que recibas una confirmación o respuesta por parte del sistema.</li>
           </ol>
         </div>
-        <IconMobileNfc className="onpe-modal-nfc-icon-mobile" />
+        {/* <IconMobileNfc className="onpe-modal-nfc-icon-mobile" /> */}
+        {iconNfc2}
       </section>
     </Modal>
   );

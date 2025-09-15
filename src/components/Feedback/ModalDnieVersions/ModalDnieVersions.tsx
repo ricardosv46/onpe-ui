@@ -1,17 +1,24 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Modal } from "../../Modal/Modal";
 import "./ModalDnieVersions.css";
-import { IconDnie1 } from "../../../icons/ONPE/IconDnie1";
-import { IconDnie2 } from "../../../icons/ONPE/IconDnie2";
-import { IconDnie3 } from "../../../icons/ONPE/IconDnie3";
 
 export interface ModalDnieVersionsProps {
   isOpen: boolean;
   onClose: () => void;
   className?: string;
+  iconDnie1: ReactNode;
+  iconDnie2: ReactNode;
+  iconDnie3: ReactNode;
 }
 
-export const ModalDnieVersions = ({ isOpen = false, onClose = () => {}, className = "" }: ModalDnieVersionsProps) => {
+export const ModalDnieVersions = ({
+  isOpen = false,
+  onClose = () => {},
+  className = "",
+  iconDnie1,
+  iconDnie2,
+  iconDnie3,
+}: ModalDnieVersionsProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} className={`onpe-modal-dnie-versions-container ${className}`} closeButton={true}>
       <h2 className="onpe-modal-dnie-versions-title">Versiones del DNIe</h2>
@@ -35,7 +42,8 @@ export const ModalDnieVersions = ({ isOpen = false, onClose = () => {}, classNam
             </ul>
           </div>
           <div className="onpe-modal-dnie-versions-image-container">
-            <IconDnie1 className="onpe-modal-dnie-versions-image" />
+            {/* <IconDnie1 className="onpe-modal-dnie-versions-image" /> */}
+            {iconDnie1}
           </div>
         </article>
 
@@ -57,8 +65,10 @@ export const ModalDnieVersions = ({ isOpen = false, onClose = () => {}, classNam
             </ul>
           </div>
           <div className="onpe-modal-dnie-versions-image-container onpe-modal-dnie-versions-image-container-double">
-            <IconDnie2 className="onpe-modal-dnie-versions-image" />
-            <IconDnie3 className="onpe-modal-dnie-versions-image onpe-modal-dnie-versions-image-overlay" />
+            {/* <IconDnie2 className="onpe-modal-dnie-versions-image" /> */}
+            {/* <IconDnie3 className="onpe-modal-dnie-versions-image onpe-modal-dnie-versions-image-overlay" /> */}
+            {iconDnie2}
+            {iconDnie3}
           </div>
         </article>
       </section>
