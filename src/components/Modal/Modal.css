@@ -28,6 +28,7 @@ body.onpe-modal-open {
   position: relative;
   display: grid;
   place-items: center;
+  z-index: 20;
 }
 
 .onpe-modal-content {
