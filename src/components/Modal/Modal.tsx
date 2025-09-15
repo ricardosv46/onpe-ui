@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode, useEffect } from "react";
+import React, { HTMLAttributes, ReactNode, useEffect, useRef } from "react";
 import { Portal } from "../Portal/Portal";
 import { Overlay } from "../Overlay/Overlay";
 import "./Modal.css";
@@ -11,6 +11,7 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   whitoutBackground?: boolean;
   closeButton?: boolean;
   closeDisabled?: boolean;
+  escapeToClose?: boolean; // Nueva prop para controlar si Escape cierra el modal
   zIndexLevel?: number;
   overlayColor?:
     | "blue"
@@ -35,10 +36,14 @@ export const Modal = ({
   whitoutBackground = false,
   closeButton = false,
   closeDisabled = false,
+  escapeToClose = true, // Por defecto Escape SÍ cierra el modal
   zIndexLevel = 100,
   overlayColor = "blue",
   ...props
 }: ModalProps) => {
+  // Referencias para el manejo de foco
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
   // Manejar el scroll del body cuando el modal está abierto
   useEffect(() => {
     if (isOpen) {
@@ -96,6 +101,35 @@ export const Modal = ({
     }
   }, [isOpen]);
 
+  // Manejar teclado (Escape) y foco del modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Escape solo funciona si escapeToClose es true Y closeDisabled es false
+      if (e.key === "Escape" && escapeToClose && !closeDisabled) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      // Guardar el elemento activo anterior
+      previousActiveElement.current = document.activeElement as HTMLElement;
+
+      // Enfocar el modal
+      modalRef.current?.focus();
+
+      // Agregar listener de teclado
+      document.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      // Restaurar foco al elemento anterior
+      if (previousActiveElement.current) {
+        previousActiveElement.current.focus();
+      }
+    };
+  }, [isOpen, onClose, closeDisabled, escapeToClose]);
+
   const getContainerClass = () => {
     const baseClass = "onpe-modal-container";
     if (isOpen) {
@@ -113,7 +147,12 @@ export const Modal = ({
 
   return (
     <Portal>
-      <div className={getContainerClass()} style={{ zIndex: zIndexLevel }}>
+      <div
+        ref={modalRef}
+        className={getContainerClass()}
+        style={{ zIndex: zIndexLevel }}
+        tabIndex={-1} // Hacer el modal enfocable
+      >
         <Overlay show={isOpen} onClick={closeDisabled ? undefined : onClose} color={overlayColor} />
         <div className="onpe-modal-content-wrapper">
           <div className={getContentClass()}>{children}</div>
