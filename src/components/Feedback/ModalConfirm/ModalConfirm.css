@@ -1,7 +1,7 @@
 /* ModalConfirm Component Styles */
 .onpe-modal-confirm-container {
-  max-width: 680px !important;
-  width: 680px !important;
+  width: 100%;
+  max-width: 780px !important; /* Tamaño específico para móvil */
   padding-top:30px !important; /* pt-5 */
   padding-bottom: 30px !important; /* pb-8 */
   padding-left: 30px !important; /* pl-5 */
@@ -69,10 +69,27 @@
   max-width: 200px;
 }
 
+/* Estilos específicos para móvil */
+@media (max-width: 640px) {
+  .onpe-modal-confirm-container {
+    padding-left: 20px !important; /* Menos padding en móvil */
+    padding-right: 20px !important;
+  }
+  
+  .onpe-modal-confirm-title {
+    font-size: 1rem; /* text-base para móvil */
+  }
+  
+  .onpe-modal-confirm-message {
+    font-size: 0.875rem; /* text-sm para móvil */
+    padding: 0 8px; /* Pequeño padding horizontal */
+  }
+}
+
 /* Responsive Design */
 @media (min-width: 768px) {
   .onpe-modal-confirm-container {
-    width: 680px !important;
+    /* Tablet: Tamaño específico de 680px */
     max-width: 680px !important;
     padding-left: 32px !important; /* pl-5 */
     padding-right: 32px !important; /* pr-5 */
@@ -81,7 +98,7 @@
 
 @media (min-width: 1024px) {
   .onpe-modal-confirm-container {
-    width: 680px !important;
+    /* Desktop grande: Tamaño específico de 680px */
     max-width: 680px !important;
   }
   
