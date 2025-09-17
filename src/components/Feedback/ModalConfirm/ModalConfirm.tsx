@@ -70,7 +70,7 @@ export const ModalConfirm = ({
       <p className="onpe-modal-confirm-message">{message}</p>
 
       <div className="onpe-modal-confirm-buttons-container">
-        {twoButtons && <Button className="onpe-modal-confirm-button" color="blue" title={textButtonCancel} onClick={handleCancel} />}
+        {twoButtons && <Button className="onpe-modal-confirm-button" color="skyblue" title={textButtonCancel} onClick={handleCancel} />}
         <Button className="onpe-modal-confirm-button" color="red" title={textButtonConfirm} onClick={handleConfirm} />
       </div>
     </Modal>
