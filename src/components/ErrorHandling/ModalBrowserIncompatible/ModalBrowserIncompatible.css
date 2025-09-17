@@ -2,7 +2,8 @@
 .onpe-modal-browser-incompatible-container {
   /* Solo contenido - el espaciado lo maneja el Modal base */
   width: 100%;
-  max-width: 780px !important; /* Tamaño específico para este modal */
+  max-width: 680px !important; /* Tamaño específico para este modal */
+
 }
 
 .onpe-modal-browser-incompatible-icon-container {

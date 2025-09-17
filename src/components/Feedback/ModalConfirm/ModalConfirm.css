@@ -1,11 +1,12 @@
 /* ModalConfirm Component Styles */
 .onpe-modal-confirm-container {
+  /* Solo contenido - el espaciado lo maneja el Modal base */
   width: 100%;
-  max-width: 780px !important; /* Tamaño específico para móvil */
-  padding-top:30px !important; /* pt-5 */
-  padding-bottom: 30px !important; /* pb-8 */
-  padding-left: 30px !important; /* pl-5 */
-  padding-right: 30px !important; /* pr-5 */
+  max-width: 719px !important; /* Tamaño específico para este modal */
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
 }
 
 .onpe-modal-confirm-icon-container {
@@ -15,8 +16,8 @@
 }
 
 .onpe-modal-confirm-icon {
-  width: 4rem; /* w-16 */
-  height: 4rem; /* h-16 */
+  width: 64px; /* 4rem = 64px */
+  height: 64px; /* 4rem = 64px */
   color: var(--onpe-ui-skyblue); /* Color por defecto: azul */
 }
 
@@ -30,8 +31,8 @@
 }
 
 .onpe-modal-confirm-title {
-  margin-top: 0rem; /* mt-3 */
-  font-size: 1.125rem; /* text-lg */
+  margin-top: 0px;
+  font-size: 18px; /* 1.125rem = 18px */
   font-weight: 600; /* font-semibold */
   text-align: center;
   color: var(--onpe-ui-skyblue); /* Color por defecto: azul */
@@ -47,8 +48,8 @@
 }
 
 .onpe-modal-confirm-message {
-  margin-top: 1.75rem; /* mt-7 */
-  font-size: 0.875rem; /* text-sm */
+  margin-top: 28px; /* 1.75rem = 28px */
+  font-size: 14px; /* 0.875rem = 14px */
   text-align: center;
   max-width: 100%;
   color: var(--onpe-ui-dark-gray); /* Usar variable CSS de ONPE, fallback a #333333 */
@@ -60,8 +61,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  gap: 1.25rem; /* gap-5 */
-  margin-top: 2.75rem; /* mt-11 */
+  gap: 20px; /* 1.25rem = 20px */
+  margin-top: 44px; /* 2.75rem = 44px */
 }
 
 .onpe-modal-confirm-button {
@@ -69,55 +70,33 @@
   max-width: 200px;
 }
 
-/* Estilos específicos para móvil */
-@media (max-width: 640px) {
-  .onpe-modal-confirm-container {
-    padding-left: 20px !important; /* Menos padding en móvil */
-    padding-right: 20px !important;
-  }
-  
-  .onpe-modal-confirm-title {
-    font-size: 1rem; /* text-base para móvil */
-  }
-  
-  .onpe-modal-confirm-message {
-    font-size: 0.875rem; /* text-sm para móvil */
-    padding: 0 8px; /* Pequeño padding horizontal */
-  }
-}
-
 /* Responsive Design */
 @media (min-width: 768px) {
   .onpe-modal-confirm-container {
-    /* Tablet: Tamaño específico de 680px */
-    max-width: 680px !important;
-    padding-left: 32px !important; /* pl-5 */
-    padding-right: 32px !important; /* pr-5 */
+    max-width: 719px !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
   }
-}
 
-@media (min-width: 1024px) {
-  .onpe-modal-confirm-container {
-    /* Desktop grande: Tamaño específico de 680px */
-    max-width: 680px !important;
-  }
-  
   .onpe-modal-confirm-title {
-    margin-top: 1rem; /* lg:mt-4 */
-    font-size: 1.5rem; /* lg:text-2xl */
+    margin-top: 16px; /* 1rem = 16px */
+    font-size: 24px; /* 1.5rem = 24px */
   }
   
   .onpe-modal-confirm-message {
-    font-size: 1.125rem; /* lg:text-lg */
-    max-width: 576px; /* lg:max-w-[576px] */
+    font-size: 18px; /* 1.125rem = 18px */
   }
   
   .onpe-modal-confirm-buttons-container {
     flex-direction: row; /* lg:flex-row */
-    margin-top: 5rem; /* lg:mt-20 */
+    margin-top: 80px; /* 5rem = 80px */
   }
   
   .onpe-modal-confirm-button {
-    width: 200px; /* lg:w-[200px] */
+    width: 200px;
   }
 }
+
+

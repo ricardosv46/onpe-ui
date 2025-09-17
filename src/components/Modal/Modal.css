@@ -65,28 +65,6 @@ body.onpe-modal-open {
   max-width: none !important; /* Permitir que el contenido interno defina su tamaño */
 }
 
-/* Tamaños de Modal con clases CSS */
-.onpe-modal-content.onpe-modal-size-sm {
-  max-width: 400px !important; /* Modal pequeño */
-}
-
-.onpe-modal-content.onpe-modal-size-md {
-  max-width: 500px !important; /* Modal mediano (por defecto) */
-}
-
-.onpe-modal-content.onpe-modal-size-lg {
-  max-width: 600px !important; /* Modal grande */
-}
-
-.onpe-modal-content.onpe-modal-size-xl {
-  max-width: 800px !important; /* Modal extra grande */
-}
-
-.onpe-modal-content.onpe-modal-size-full {
-  max-width: 95vw !important; /* Modal de ancho completo */
-  width: 95vw !important;
-}
-
 /* Estilos para el scrollbar en WebKit (Chrome, Safari, Edge) */
 .onpe-modal-content.onpe-modal-with-background::-webkit-scrollbar {
   width: 8px;
@@ -133,14 +111,10 @@ body.onpe-modal-open {
     padding: 35px 2rem 54px 2rem; /* Tablet: top 35px, bottom 54px, left/right 2rem */
   }
   
-  /* Tamaños responsive en tablet */
-  
 }
 
 @media (min-width: 768px) {
   .onpe-modal-content.onpe-modal-with-background {
-    width: 680px; /* Desktop: 680px automático */
-    max-width: 680px; /* Desktop: 680px automático */
     padding: 35px 2rem 54px 2rem; /* Desktop: top 35px, bottom 54px, left/right 2rem */
   }
   
@@ -149,39 +123,13 @@ body.onpe-modal-open {
     max-width: none !important; /* Permitir que el contenido interno defina su tamaño */
   }
   
-  /* Tamaños responsive en desktop */
-  .onpe-modal-content.onpe-modal-size-sm {
-    width: 400px !important;
-    max-width: 400px !important;
-  }
-  
-  .onpe-modal-content.onpe-modal-size-md {
-    width: 500px !important;
-    max-width: 500px !important;
-  }
-  
-  .onpe-modal-content.onpe-modal-size-lg {
-    width: 600px !important;
-    max-width: 600px !important;
-  }
-  
-  .onpe-modal-content.onpe-modal-size-xl {
-    width: 800px !important;
-    max-width: 800px !important;
-  }
-  
-  .onpe-modal-content.onpe-modal-size-full {
-    width: 95vw !important;
-    max-width: 95vw !important;
-  }
+
 }
 
 /* Desktop grande (> 1024px) - El usuario puede definir el tamaño */
 @media (min-width: 1024px) {
   .onpe-modal-content.onpe-modal-with-background {
-    /* Mantener 680px por defecto, pero permitir sobrescribir con clases */
-    width: 680px;
-    max-width: 680px;
+    /* Siempre 100% - cada modal define su max-width */
     padding: 35px 2rem 54px 2rem; /* Desktop grande: top 35px, bottom 54px, left/right 2rem */
   }
   
