@@ -56,7 +56,7 @@ export const ModalConfirm = ({
       isOpen={isOpen}
       onClose={onClose}
       className={`onpe-modal-confirm-container ${className}`}
-      closeButton={true}
+      closeButton={false}
       closeDisabled
       zIndexLevel={zIndexLevel}
     >
