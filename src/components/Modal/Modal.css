@@ -116,6 +116,7 @@ body.onpe-modal-open {
 @media (min-width: 768px) {
   .onpe-modal-content.onpe-modal-with-background {
     padding: 35px 2rem 54px 2rem; /* Desktop: top 35px, bottom 54px, left/right 2rem */
+    max-width: 1000px;
   }
   
   /* Permitir que el contenido interno defina su propio tamaño en desktop */
