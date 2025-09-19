@@ -12,12 +12,12 @@
 }
 
 .onpe-button:disabled {
-  cursor: not-allowed;
-  background-color: var(--onpe-ui-gray);
+  cursor: default;
+  background-color: var(--onpe-ui-gray) !important;
 }
 
 .onpe-button:disabled:hover {
-  background-color: var(--onpe-ui-gray);
+  background-color: var(--onpe-ui-gray) !important;
 }
 
 /* Button Sizes */
