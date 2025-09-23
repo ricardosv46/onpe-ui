@@ -60,18 +60,46 @@ export const ModalConfirm = ({
       closeDisabled
       zIndexLevel={zIndexLevel}
     >
-      <div className={`onpe-modal-confirm-icon-container onpe-modal-confirm-icon-${color}`}>
-        {icon === "warning" && <IconWarning className={`onpe-modal-confirm-icon onpe-modal-confirm-icon-${color}`} />}
-        {icon === "success" && <IconCheck className={`onpe-modal-confirm-icon onpe-modal-confirm-icon-${color}`} />}
+      <div
+        className={`onpe-modal-confirm-icon-container onpe-modal-confirm-icon-${color}`}
+      >
+        {icon === "warning" && (
+          <IconWarning
+            role="presentation"
+            className={`onpe-modal-confirm-icon onpe-modal-confirm-icon-${color}`}
+          />
+        )}
+        {icon === "success" && (
+          <IconCheck
+            role="presentation"
+            className={`onpe-modal-confirm-icon onpe-modal-confirm-icon-${color}`}
+          />
+        )}
       </div>
 
-      <p className={`onpe-modal-confirm-title onpe-modal-confirm-title-${color}`}>{title}</p>
+      <p
+        className={`onpe-modal-confirm-title onpe-modal-confirm-title-${color}`}
+      >
+        {title}
+      </p>
 
       <p className="onpe-modal-confirm-message">{message}</p>
 
       <div className="onpe-modal-confirm-buttons-container">
-        {twoButtons && <Button className="onpe-modal-confirm-button" color="skyblue" title={textButtonCancel} onClick={handleCancel} />}
-        <Button className="onpe-modal-confirm-button" color="red" title={textButtonConfirm} onClick={handleConfirm} />
+        {twoButtons && (
+          <Button
+            className="onpe-modal-confirm-button"
+            color="skyblue"
+            title={textButtonCancel}
+            onClick={handleCancel}
+          />
+        )}
+        <Button
+          className="onpe-modal-confirm-button"
+          color="red"
+          title={textButtonConfirm}
+          onClick={handleConfirm}
+        />
       </div>
     </Modal>
   );

@@ -29,20 +29,37 @@ export const ModalBrowserIncompatible = ({
       closeButton={true}
     >
       <div className="onpe-modal-browser-incompatible-icon-container">
-        <IconWarning className="onpe-modal-browser-incompatible-icon" />
+        <IconWarning
+          className="onpe-modal-browser-incompatible-icon"
+          role="presentation"
+        />
       </div>
 
-      <p className="onpe-modal-browser-incompatible-title">Navegador no recomendado</p>
+      <p className="onpe-modal-browser-incompatible-title">
+        Navegador no recomendado
+      </p>
 
       <p className="onpe-modal-browser-incompatible-message">
-        Para una mejor experiencia y mayor seguridad, debes ingresar con los siguientes navegadores:
+        Para una mejor experiencia y mayor seguridad, debes ingresar con los
+        siguientes navegadores:
       </p>
 
       <div className="onpe-modal-browser-incompatible-browsers-container">
-        <IconChromeColor className="onpe-modal-browser-incompatible-browser-icon" />
-        <IconSafariColor className="onpe-modal-browser-incompatible-browser-icon" />
-        {/* <IconMozillaColor className="onpe-modal-browser-incompatible-browser-icon" /> */}
-        <IconEdgeColor className="onpe-modal-browser-incompatible-browser-icon" />
+        <IconChromeColor
+          role="img"
+          aria-label="Google Chrome"
+          className="onpe-modal-browser-incompatible-browser-icon"
+        />
+        <IconSafariColor
+          role="img"
+          aria-label="Safari"
+          className="onpe-modal-browser-incompatible-browser-icon"
+        />
+        <IconEdgeColor
+          role="img"
+          aria-label="Microsoft Edge"
+          className="onpe-modal-browser-incompatible-browser-icon"
+        />
       </div>
     </Modal>
   );

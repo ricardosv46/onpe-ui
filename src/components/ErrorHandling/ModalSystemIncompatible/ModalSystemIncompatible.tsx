@@ -13,7 +13,12 @@ export interface ModalSystemIncompatibleProps {
   zIndexLevel?: number;
 }
 
-export const ModalSystemIncompatible = ({ isOpen = false, onClose = () => {}, className = "", zIndexLevel = 1000 }: ModalSystemIncompatibleProps) => {
+export const ModalSystemIncompatible = ({
+  isOpen = false,
+  onClose = () => {},
+  className = "",
+  zIndexLevel = 1000,
+}: ModalSystemIncompatibleProps) => {
   return (
     <Modal
       zIndexLevel={zIndexLevel}
@@ -24,19 +29,37 @@ export const ModalSystemIncompatible = ({ isOpen = false, onClose = () => {}, cl
       closeDisabled
     >
       <div className="onpe-modal-system-incompatible-icon-container">
-        <IconWarning className="onpe-modal-system-incompatible-icon" />
+        <IconWarning
+          className="onpe-modal-system-incompatible-icon"
+          role="presentation"
+        />
       </div>
 
-      <p className="onpe-modal-system-incompatible-title">Sistema Operativo no recomendado</p>
+      <p className="onpe-modal-system-incompatible-title">
+        Sistema Operativo no recomendado
+      </p>
 
       <p className="onpe-modal-system-incompatible-message">
-        Para descargar e instalar el ONPEID utiliza un dispositivo con sistema operativo Windows, macOS, Android o iOS.
+        Para descargar e instalar el ONPEID utiliza un dispositivo con sistema
+        operativo Windows, macOS, Android o iOS.
       </p>
 
       <div className="onpe-modal-system-incompatible-systems-container">
-        <IconWindow className="onpe-modal-system-incompatible-system-icon" />
-        <IconAndroid className="onpe-modal-system-incompatible-system-icon" />
-        <IconApple className="onpe-modal-system-incompatible-system-icon" />
+        <IconWindow
+          role="img"
+          aria-label="WindowS 10 o superior"
+          className="onpe-modal-system-incompatible-system-icon"
+        />
+        <IconAndroid
+          role="img"
+          aria-label="Android 7.0 o superior"
+          className="onpe-modal-system-incompatible-system-icon"
+        />
+        <IconApple
+          role="img"
+          aria-label="macOS 10.12 o superior / iOS 11.0 o superior"
+          className="onpe-modal-system-incompatible-system-icon"
+        />
       </div>
     </Modal>
   );
