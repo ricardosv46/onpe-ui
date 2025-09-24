@@ -57,9 +57,9 @@ export const ModalNfc = ({
           </p>
 
           <p className="onpe-modal-nfc-text">
-            En el sistema iOS es fácil ya que todos los modelos iPhone a partir
-            del iPhone 6 tienen NFC, es más, desde la actualización a iOS 13 o
-            iOS 14, todos los modelos iPhone 7 y superiores pueden leer y
+            En el sistema iOS es fácil, ya que todos los modelos iPhone a partir
+            del iPhone 6 tienen NFC. Es más, desde la actualización a iOS 13 o
+            iOS 14, todos los modelos iPhone 7 o superiores pueden leer y
             escribir una etiqueta NFC.
           </p>
         </div>
