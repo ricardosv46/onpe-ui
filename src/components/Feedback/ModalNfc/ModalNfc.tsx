@@ -35,7 +35,7 @@ export const ModalNfc = ({
         <div className="onpe-modal-nfc-section">
           <p className="onpe-modal-nfc-step">
             <span className="onpe-modal-nfc-step-number">1. </span>
-            Teléfono / Tablet Android
+            Ceular / Tablet Android
           </p>
           <ul role="none" className="onpe-modal-nfc-list">
             <li role="none" className="onpe-modal-nfc-list-item">
