@@ -55,10 +55,12 @@ export const ModalNfc = ({
             <span className="onpe-modal-nfc-step-number">2. </span>
             Celular iPhone
           </p>
-
-          <p className="onpe-modal-nfc-text">
-            Todos los modelos iPhone 7 en adelante ya cuentan con tecnología NFC activa.
-          </p>
+          <ul role="none" className="onpe-modal-nfc-list">
+            <li role="none" className="onpe-modal-nfc-list-item">
+              Todos los modelos iPhone 7 en adelante ya cuentan con tecnología
+              NFC activa.
+            </li>
+          </ul>
         </div>
         <div className="onpe-modal-nfc-section">
           <p className="onpe-modal-nfc-step">
@@ -66,12 +68,15 @@ export const ModalNfc = ({
             iPad
           </p>
 
-          <p className="onpe-modal-nfc-text">
-            No cuentan con NFC.
-          </p>
-          <p className="onpe-modal-nfc-text">
-            Para usar esta función deberás adquirir un dispostivo NFC externo compatible.
-          </p>
+          <ul role="none" className="onpe-modal-nfc-list">
+            <li role="none" className="onpe-modal-nfc-list-item">
+              No cuentan con NFC.
+            </li>
+            <li role="none" className="onpe-modal-nfc-list-item">
+              Para usar esta función deberás adquirir un dispostivo NFC externo
+              compatible.
+            </li>
+          </ul>
         </div>
         <h2 className="onpe-modal-nfc-subtitle">
           ¿Cómo usar el NFC correctamente?
@@ -83,7 +88,8 @@ export const ModalNfc = ({
               Busca en internet dónde está el lector NFC según tu modelo.
             </li>
             <li role="none">
-              Coloca tu DNIe sobre esa zona hasta que recibas una confirmación del sistema.
+              Coloca tu DNIe sobre esa zona hasta que recibas una confirmación
+              del sistema.
             </li>
           </ol>
         </div>
