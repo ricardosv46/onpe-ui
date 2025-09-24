@@ -28,7 +28,7 @@ export const ModalNfc = ({
       closeButton={true}
     >
       <h2 className="onpe-modal-nfc-title">
-        ¿Cómo saber si mi teléfono tiene NFC?
+        ¿Cómo saber si mi dispostivo móvil tiene NFC?
       </h2>
 
       <section className="onpe-modal-nfc-content">
