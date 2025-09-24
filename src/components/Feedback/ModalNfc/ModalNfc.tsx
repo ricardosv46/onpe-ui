@@ -53,14 +53,11 @@ export const ModalNfc = ({
         <div className="onpe-modal-nfc-section">
           <p className="onpe-modal-nfc-step">
             <span className="onpe-modal-nfc-step-number">2. </span>
-            Teléfono iPhone
+            Celular iPhone
           </p>
 
           <p className="onpe-modal-nfc-text">
-            En el sistema iOS es fácil, ya que todos los modelos iPhone a partir
-            del iPhone 6 tienen NFC. Es más, desde la actualización a iOS 13 o
-            iOS 14, todos los modelos iPhone 7 o superiores pueden leer y
-            escribir una etiqueta NFC.
+            Todos los modelos iPhone 7 en adelante ya cuentan con tecnología NFC activa.
           </p>
         </div>
         <div className="onpe-modal-nfc-section">
@@ -70,22 +67,23 @@ export const ModalNfc = ({
           </p>
 
           <p className="onpe-modal-nfc-text">
-            Los modelos iPad no poseen NFC, para utilizar este dispositivo
-            necesitarás adquirir un dispositivo NFC compatible.
+            No cuentan con NFC.
+          </p>
+          <p className="onpe-modal-nfc-text">
+            Para usar esta función deberás adquirir un dispostivo NFC externo compatible.
           </p>
         </div>
         <h2 className="onpe-modal-nfc-subtitle">
-          ¿Cómo utilizar tu NFC correctamente?
+          ¿Cómo usar el NFC correctamente?
         </h2>
         <div className="onpe-modal-nfc-instructions">
           <ol role="none" className="onpe-modal-nfc-ordered-list">
-            <li role="none">Activa el NFC en tu celular.</li>
+            <li role="none">Activa el NFC en tu celular o tablet.</li>
             <li role="none">
               Busca en internet dónde está el lector NFC según tu modelo.
             </li>
             <li role="none">
-              Coloca tu DNIe sobre esa zona hasta que recibas una confirmación o
-              respuesta por parte del sistema.
+              Coloca tu DNIe sobre esa zona hasta que recibas una confirmación del sistema.
             </li>
           </ol>
         </div>
