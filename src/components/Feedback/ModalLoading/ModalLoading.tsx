@@ -19,7 +19,15 @@ export const ModalLoading = ({
   zIndexLevel = 100,
 }: ModalLoadingProps) => {
   return (
-    <Modal zIndexLevel={zIndexLevel} isOpen={isOpen} onClose={onClose} className={className} closeDisabled whitoutBackground={true}>
+    <Modal
+      disableFocus
+      zIndexLevel={zIndexLevel}
+      isOpen={isOpen}
+      onClose={onClose}
+      className={className}
+      closeDisabled
+      whitoutBackground={true}
+    >
       <IconSpinnerDesktop className="onpe-modal-loading-spinner-desktop" />
       <IconSpinnerMobile className="onpe-modal-loading-spinner-mobile" />
       <p className="onpe-modal-loading-message">{message}</p>

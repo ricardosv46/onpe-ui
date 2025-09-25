@@ -13,6 +13,7 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   closeButton?: boolean;
   closeDisabled?: boolean;
   escapeToClose?: boolean; // Nueva prop para controlar si Escape cierra el modal
+  disableFocus?: boolean; // Nueva prop para deshabilitar el focus y tabindex
   zIndexLevel?: number;
   overlayColor?:
     | "blue"
@@ -38,6 +39,7 @@ export const Modal = ({
   closeButton = false,
   closeDisabled = false,
   escapeToClose = true, // Por defecto Escape SÍ cierra el modal
+  disableFocus = false, // Por defecto el focus SÍ está habilitado
   zIndexLevel = 100,
   overlayColor = "blue",
   ...props
@@ -65,7 +67,9 @@ export const Modal = ({
       // Función para resetear scroll de cualquier modal content
       const resetModalScroll = () => {
         // Buscar todos los elementos de contenido del modal
-        const modalContentElements = document.querySelectorAll(".onpe-modal-content");
+        const modalContentElements = document.querySelectorAll(
+          ".onpe-modal-content"
+        );
         modalContentElements.forEach((element) => {
           const htmlElement = element as HTMLElement;
           // Desactivar animación temporalmente para reset instantáneo
@@ -92,7 +96,9 @@ export const Modal = ({
       setTimeout(resetModalScroll, 200);
     } else {
       // Resetear scroll cuando se cierra para que no se vea la animación al reabrir
-      const modalContentElements = document.querySelectorAll(".onpe-modal-content");
+      const modalContentElements = document.querySelectorAll(
+        ".onpe-modal-content"
+      );
       modalContentElements.forEach((element) => {
         const htmlElement = element as HTMLElement;
         htmlElement.style.scrollBehavior = "auto";
@@ -111,7 +117,7 @@ export const Modal = ({
       }
     };
 
-    if (isOpen) {
+    if (isOpen && !disableFocus) {
       // Guardar el elemento activo anterior
       previousActiveElement.current = document.activeElement as HTMLElement;
 
@@ -120,16 +126,19 @@ export const Modal = ({
 
       // Agregar listener de teclado
       document.addEventListener("keydown", handleKeyDown);
+    } else if (isOpen && disableFocus) {
+      // Solo agregar listener de teclado, sin manejar focus
+      document.addEventListener("keydown", handleKeyDown);
     }
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      // Restaurar foco al elemento anterior
-      if (previousActiveElement.current) {
+      // Restaurar foco al elemento anterior solo si el focus estaba habilitado
+      if (!disableFocus && previousActiveElement.current) {
         previousActiveElement.current.focus();
       }
     };
-  }, [isOpen, onClose, closeDisabled, escapeToClose]);
+  }, [isOpen, onClose, closeDisabled, escapeToClose, disableFocus]);
 
   const getContainerClass = () => {
     const baseClass = "onpe-modal-container";
@@ -141,7 +150,9 @@ export const Modal = ({
 
   const getContentClass = () => {
     const baseClass = "onpe-modal-content";
-    const backgroundClass = whitoutBackground ? "onpe-modal-without-background" : "onpe-modal-with-background";
+    const backgroundClass = whitoutBackground
+      ? "onpe-modal-without-background"
+      : "onpe-modal-with-background";
     const customClass = props.className || "";
     return `${baseClass} ${backgroundClass} ${customClass}`.trim();
   };
@@ -169,9 +180,20 @@ export const Modal = ({
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="onpe-modal-content-wrapper" ref={modalRef} tabIndex={0} onClick={(e) => e.stopPropagation()}>
+              <div
+                className="onpe-modal-content-wrapper"
+                ref={modalRef}
+                tabIndex={disableFocus ? -1 : 0}
+                onClick={(e) => e.stopPropagation()}
+              >
                 <div className={getContentClass()}>{children}</div>
-                {closeButton && <IconCloseRadius onClick={onClose} className="onpe-modal-close-button" aria-label="Cerrar" />}
+                {closeButton && (
+                  <IconCloseRadius
+                    onClick={onClose}
+                    className="onpe-modal-close-button"
+                    aria-label="Cerrar"
+                  />
+                )}
               </div>
             </motion.div>
           </>
