@@ -28,14 +28,14 @@ export const ModalNfc = ({
       closeButton={true}
     >
       <h2 className="onpe-modal-nfc-title">
-        ¿Cómo saber si tu dispostivo móvil tiene NFC?
+        ¿Cómo saber si tu dispositivo móvil tiene NFC?
       </h2>
 
       <section className="onpe-modal-nfc-content">
         <div className="onpe-modal-nfc-section">
           <p className="onpe-modal-nfc-step">
             <span className="onpe-modal-nfc-step-number">1. </span>
-            Ceular / Tablet Android
+            Celular / Tablet Android
           </p>
           <ul role="none" className="onpe-modal-nfc-list">
             <li role="none" className="onpe-modal-nfc-list-item">
