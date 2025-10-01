@@ -3,6 +3,7 @@ import { Button } from "../../Button/Button";
 import { IconWarning } from "../../../icons/Actions/IconWarning/IconWarning";
 import { IconCheck } from "../../../icons/Actions/IconCheck/IconCheck";
 import { ReactNode } from "react";
+import "./ModalConfirm.css";
 
 export interface ModalConfirmProps {
   isOpen: boolean;
