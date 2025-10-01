@@ -91,7 +91,6 @@
   
   .onpe-modal-confirm-buttons-container {
     flex-direction: row; /* lg:flex-row */
-    margin-top: 80px; /* 5rem = 80px */
   }
   
   .onpe-modal-confirm-button {
