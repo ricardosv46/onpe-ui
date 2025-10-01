@@ -1,15 +1,14 @@
-import React from "react";
 import { Modal } from "../../Modal/Modal";
 import { Button } from "../../Button/Button";
 import { IconWarning } from "../../../icons/Actions/IconWarning/IconWarning";
 import { IconCheck } from "../../../icons/Actions/IconCheck/IconCheck";
-import "./ModalConfirm.css";
+import { ReactNode } from "react";
 
 export interface ModalConfirmProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  message: string;
+  message: ReactNode;
   icon?: "warning" | "success";
   color?: "blue" | "red";
   onConfirm?: () => void;
@@ -83,8 +82,7 @@ export const ModalConfirm = ({
         {title}
       </p>
 
-      <p className="onpe-modal-confirm-message">{message}</p>
-
+      <div className="onpe-modal-confirm-message">{message}</div>
       <div className="onpe-modal-confirm-buttons-container">
         {twoButtons && (
           <Button
