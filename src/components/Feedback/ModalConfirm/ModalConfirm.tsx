@@ -19,11 +19,13 @@ export interface ModalConfirmProps {
   twoButtons?: boolean;
   className?: string;
   zIndexLevel?: number;
+  withoutAutoClose?: boolean; // Nueva prop para auto cerrar el modal tras confirmar
 }
 
 export const ModalConfirm = ({
   isOpen = false,
   onClose = () => {},
+  withoutAutoClose = false,
   title,
   message,
   icon = "warning",
@@ -39,16 +41,22 @@ export const ModalConfirm = ({
   const handleConfirm = async () => {
     try {
       onConfirm();
-      onClose();
+      if (!withoutAutoClose) {
+        onClose();
+      }
     } catch (error) {
       console.error("Error en handleConfirm:", error);
-      onClose();
+      if (!withoutAutoClose) {
+        onClose();
+      }
     }
   };
 
   const handleCancel = () => {
     onCancel();
-    onClose();
+    if (!withoutAutoClose) {
+      onClose();
+    }
   };
 
   return (
