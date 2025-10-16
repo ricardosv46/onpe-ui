@@ -2,7 +2,7 @@
 .onpe-modal-confirm-container {
   /* Solo contenido - el espaciado lo maneja el Modal base */
   width: 100%;
-  max-width: 719px !important; /* Tamaño específico para este modal */
+  max-width: 337px !important; /* Móvil: máximo 337px */
   padding-top: 30px !important;
   padding-bottom: 30px !important;
   padding-left: 30px !important;
@@ -73,7 +73,7 @@
 /* Responsive Design */
 @media (min-width: 768px) {
   .onpe-modal-confirm-container {
-    max-width: 719px !important;
+    max-width: 719px !important; /* Desktop: tamaño original */
     padding-top: 30px !important;
     padding-bottom: 30px !important;
     padding-left: 30px !important;
