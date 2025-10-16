@@ -31,8 +31,8 @@
 }
 
 .onpe-modal-confirm-title {
-  margin-top: 0px;
-  font-size: 18px; /* 1.125rem = 18px */
+  margin-top: 8px;
+  font-size: 20px; /* 1.125rem = 18px */
   font-weight: 600; /* font-semibold */
   text-align: center;
   color: var(--onpe-ui-skyblue); /* Color por defecto: azul */
