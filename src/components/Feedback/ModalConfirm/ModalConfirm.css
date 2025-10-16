@@ -2,7 +2,7 @@
 .onpe-modal-confirm-container {
   /* Solo contenido - el espaciado lo maneja el Modal base */
   width: 100%;
-  max-width: 337px !important; /* Móvil: máximo 337px */
+  max-width: 719px !important; /* Desktop: tamaño original */
   padding-top: 30px !important;
   padding-bottom: 30px !important;
   padding-left: 30px !important;
@@ -31,8 +31,8 @@
 }
 
 .onpe-modal-confirm-title {
-  margin-top: 8px;
-  font-size: 20px; /* 1.125rem = 18px */
+  margin-top: 0px;
+  font-size: 18px; /* 1.125rem = 18px */
   font-weight: 600; /* font-semibold */
   text-align: center;
   color: var(--onpe-ui-skyblue); /* Color por defecto: azul */
