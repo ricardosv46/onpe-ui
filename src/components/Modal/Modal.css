@@ -51,7 +51,7 @@ body.onpe-modal-open {
   padding: 25px 1rem 50px 1rem; /* Móvil: top 25px, bottom 50px, left/right 1rem */
   min-width: 320px;
   width: 95vw; /* Móvil: 95vw automático */
-  max-width: 95vw; /* Móvil: 95vw automático */
+  max-width: 337px; /* Móvil: máximo 337px */
   max-height: 90vh;
   overflow-y: auto;
   scroll-behavior: smooth; /* Scroll suave */
