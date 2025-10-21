@@ -35,7 +35,7 @@ export const ModalNfc = ({
         <div className="onpe-modal-nfc-section">
           <p className="onpe-modal-nfc-step">
             <span className="onpe-modal-nfc-step-number">1. </span>
-            Celular / Tablet Android
+            Celular Android
           </p>
           <ul role="none" className="onpe-modal-nfc-list">
             <li role="none" className="onpe-modal-nfc-list-item">
@@ -62,7 +62,7 @@ export const ModalNfc = ({
             </li>
           </ul>
         </div>
-        <div className="onpe-modal-nfc-section">
+        {/* <div className="onpe-modal-nfc-section">
           <p className="onpe-modal-nfc-step">
             <span className="onpe-modal-nfc-step-number">3. </span>
             iPad
@@ -77,13 +77,13 @@ export const ModalNfc = ({
               compatible.
             </li>
           </ul>
-        </div>
+        </div> */}
         <h2 className="onpe-modal-nfc-subtitle">
           ¿Cómo usar el NFC correctamente?
         </h2>
         <div className="onpe-modal-nfc-instructions">
           <ol role="none" className="onpe-modal-nfc-ordered-list">
-            <li role="none">Activa el NFC en tu celular o tablet.</li>
+            <li role="none">Activa el NFC en tu celular.</li>
             <li role="none">
               Busca en internet dónde está el lector NFC según tu modelo.
             </li>
