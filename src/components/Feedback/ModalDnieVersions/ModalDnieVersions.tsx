@@ -29,12 +29,12 @@ export const ModalDnieVersions = ({
       className={`onpe-modal-dnie-versions-container ${className}`}
       closeButton={true}
     >
-      <h2 className="onpe-modal-dnie-versions-title">Versiones del DNIe</h2>
+      <h2 className="onpe-modal-dnie-versions-title" tabIndex={0}>Versiones del DNIe</h2>
 
       <section className="onpe-modal-dnie-versions-content">
         <article className="onpe-modal-dnie-versions-article">
           <div className="onpe-modal-dnie-versions-text">
-            <p className="onpe-modal-dnie-versions-subtitle">
+            <p className="onpe-modal-dnie-versions-subtitle" tabIndex={0}>
               <span className="onpe-modal-dnie-versions-bold">
                 DNIe versión 1
               </span>
@@ -42,10 +42,10 @@ export const ModalDnieVersions = ({
 
             <ul role="none" className="onpe-modal-dnie-versions-list">
               <li role="none">
-                <p>Chip en la parte delantera del DNIe.</p>
+                <p tabIndex={0}>Chip en la parte delantera del DNIe.</p>
               </li>
               <li role="none">
-                <p>
+                <p tabIndex={0}>
                   Compatible solo con el lector del DNIe{" "}
                   <span className="onpe-modal-dnie-versions-bold">
                     en PC, Mac o laptop.
@@ -62,17 +62,17 @@ export const ModalDnieVersions = ({
 
         <article className="onpe-modal-dnie-versions-article">
           <div className="onpe-modal-dnie-versions-text">
-            <p className="onpe-modal-dnie-versions-subtitle">
+            <p className="onpe-modal-dnie-versions-subtitle" tabIndex={0}>
               <span className="onpe-modal-dnie-versions-bold">
                 DNIe versión 2 y 3
               </span>
             </p>
             <ul role="none" className="onpe-modal-dnie-versions-list">
               <li role="none">
-                <p>Chip en la parte posterior del DNIe.</p>
+                <p tabIndex={0}>Chip en la parte posterior del DNIe.</p>
               </li>
               <li role="none">
-                <p>
+                <p tabIndex={0}>
                   Compatibles con el lector del DNIe{" "}
                   <span className="onpe-modal-dnie-versions-bold">
                     en PC, Mac o laptop y tecnología NFC (ISO 14443-B) en
