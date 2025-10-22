@@ -27,22 +27,22 @@ export const ModalNfc = ({
       className={`onpe-modal-nfc-container ${className}`}
       closeButton={true}
     >
-      <h2 className="onpe-modal-nfc-title">
+      <h2 className="onpe-modal-nfc-title" tabIndex={0}>
         ¿Cómo saber si tu dispositivo móvil tiene NFC?
       </h2>
 
       <section className="onpe-modal-nfc-content">
         <div className="onpe-modal-nfc-section">
-          <p className="onpe-modal-nfc-step">
+          <p className="onpe-modal-nfc-step" tabIndex={0}>
             <span className="onpe-modal-nfc-step-number">1. </span>
             Celular Android
           </p>
           <ul role="none" className="onpe-modal-nfc-list">
-            <li role="none" className="onpe-modal-nfc-list-item">
+            <li role="none" className="onpe-modal-nfc-list-item" tabIndex={0}>
               Desde la barra de notificaciones, simplemente deslizando hacia
               abajo desde tu pantalla y buscando el ícono del NFC.
             </li>
-            <li role="none" className="onpe-modal-nfc-list-item">
+            <li role="none" className="onpe-modal-nfc-list-item" tabIndex={0}>
               Otra forma es ir hacia Ajustes {"ㅤ>ㅤ"} Conexiones o Redes
               Inalámbricas {"ㅤ>ㅤ"} Buscar "NFC".
             </li>
@@ -51,12 +51,12 @@ export const ModalNfc = ({
         {/* <IconNfc className="onpe-modal-nfc-icon" /> */}
         {iconNfc1}
         <div className="onpe-modal-nfc-section">
-          <p className="onpe-modal-nfc-step">
+          <p className="onpe-modal-nfc-step" tabIndex={0}>
             <span className="onpe-modal-nfc-step-number">2. </span>
             Celular iPhone
           </p>
           <ul role="none" className="onpe-modal-nfc-list">
-            <li role="none" className="onpe-modal-nfc-list-item">
+            <li role="none" className="onpe-modal-nfc-list-item" tabIndex={0}>
               Todos los modelos iPhone 7 en adelante ya cuentan con tecnología
               NFC activa.
             </li>
@@ -78,16 +78,16 @@ export const ModalNfc = ({
             </li>
           </ul>
         </div> */}
-        <h2 className="onpe-modal-nfc-subtitle">
+        <h2 className="onpe-modal-nfc-subtitle" tabIndex={0}>
           ¿Cómo usar el NFC correctamente?
         </h2>
         <div className="onpe-modal-nfc-instructions">
           <ol role="none" className="onpe-modal-nfc-ordered-list">
-            <li role="none">Activa el NFC en tu celular.</li>
-            <li role="none">
+            <li role="none" tabIndex={0}>Activa el NFC en tu celular.</li>
+            <li role="none" tabIndex={0}>
               Busca en internet dónde está el lector NFC según tu modelo.
             </li>
-            <li role="none">
+            <li role="none" tabIndex={0}>
               Coloca tu DNIe sobre esa zona hasta que recibas una confirmación
               del sistema.
             </li>
