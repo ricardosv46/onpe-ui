@@ -110,10 +110,77 @@ export const Modal = ({
 
   // Manejar teclado (Escape) y foco del modal
   useEffect(() => {
+    const isElementVisible = (element: HTMLElement) => {
+      const style = window.getComputedStyle(element);
+      return (
+        style.visibility !== "hidden" &&
+        style.display !== "none" &&
+        element.offsetParent !== null
+      );
+    };
+
     const handleKeyDown = (e: KeyboardEvent) => {
       // Escape solo funciona si escapeToClose es true Y closeDisabled es false
       if (e.key === "Escape" && escapeToClose && !closeDisabled) {
         onClose();
+        return;
+      }
+
+      // Focus trap: Tab y Shift+Tab ciclan dentro del modal
+      if (!isOpen || disableFocus || e.key !== "Tab") return;
+
+      const wrapper = modalRef.current;
+      if (!wrapper) return;
+
+      const selector = [
+        'a[href]',
+        'area[href]',
+        'button:not([disabled])',
+        'input:not([disabled]):not([type="hidden"])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        'iframe',
+        'object',
+        'embed',
+        '[tabindex]:not([tabindex="-1"])',
+        '[contenteditable="true"]',
+      ].join(',');
+
+      let focusable = Array.from(
+        wrapper.querySelectorAll<HTMLElement>(selector)
+      ).filter((el) => isElementVisible(el) && el.tabIndex !== -1);
+
+      if (wrapper.tabIndex >= 0) {
+        focusable = [wrapper, ...focusable];
+      }
+
+      if (focusable.length === 0) {
+        e.preventDefault();
+        wrapper.focus();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = (document.activeElement as HTMLElement) || null;
+      const isShift = e.shiftKey;
+
+      // Si el foco está fuera del modal, iniciar en el primero
+      if (!active || !wrapper.contains(active)) {
+        e.preventDefault();
+        (isShift ? last : first).focus();
+        return;
+      }
+
+      if (!isShift && active === last) {
+        e.preventDefault();
+        first.focus();
+        return;
+      }
+
+      if (isShift && (active === first || active === wrapper)) {
+        e.preventDefault();
+        last.focus();
       }
     };
 
