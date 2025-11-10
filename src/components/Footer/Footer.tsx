@@ -43,17 +43,30 @@ export const Footer = ({
                   <p className="onpe-footer-contact-title">Contáctanos:</p>
                   <p className="onpe-footer-contact-text">informes@onpe.gob.pe</p>
                   <p className="onpe-footer-contact-text">+51 (01)4170630</p>
-                  <p className="onpe-footer-contact-text flex">
-                    <WhatsappIcon />&nbsp; Whatsapp: 995 404 991</p>
+                  <p className="onpe-footer-contact-text">
+                    <a href="https://wa.me/+51995404991" className="flex" target="_blank">
+                      <WhatsappIcon />&nbsp; Whatsapp: 995 404 991
+                    </a>
+                    </p>
                 </li>
                 <li tabIndex={0} className="onpe-footer-contact-item">
                   <p className="onpe-footer-contact-title">Síguenos:</p>
                   <p className="onpe-footer-contact-text flex gap-4">
+                    <a href="https://www.facebook.com/ONPEoficial" target="_blank">
                     <FaceBookIcon />
-                    <XIcon />
-                    <TikTokIcon />
-                    <InstagramIcon />
-                    <YoutubeIcon />
+                    </a>
+                    <a href="https://x.com/ONPE_oficial" target="_blank">
+                      <XIcon />
+                    </a>
+                    <a href="https://www.tiktok.com/@onpe_oficial" target="_blank">
+                      <TikTokIcon />
+                    </a>
+                    <a href="https://www.instagram.com/ONPE_oficial/" target="_blank">
+                      <InstagramIcon />
+                    </a>
+                    <a href="https://www.youtube.com/@onpeprensa" target="_blank">
+                      <YoutubeIcon />
+                    </a>
                   </p>
                 </li>
               </ul>
