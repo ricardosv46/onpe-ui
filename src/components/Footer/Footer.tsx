@@ -1,6 +1,12 @@
 import React, { ReactNode } from "react";
 import { BrowserRecommended } from "../BrowserRecommended/BrowserRecommended";
 import "./Footer.css";
+import FaceBookIcon from "../../icons/Redes/FaceBookIcon";
+import XIcon from "../../icons/Redes/XIcon";
+import TikTokIcon from "../../icons/Redes/TikTokIcon";
+import YoutubeIcon from "../../icons/Redes/YoutubeIcon";
+import InstagramIcon from "../../icons/Redes/InstagramIcon";
+import WhatsappIcon from "../../icons/Redes/WhatsappIcon";
 
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   showBrowserInfo?: boolean;
@@ -31,14 +37,24 @@ export const Footer = ({
                 <li tabIndex={0} className="onpe-footer-contact-item">
                   <p className="onpe-footer-contact-title">Oficina central</p>
                   <p className="onpe-footer-contact-text">Jr. Washington 1894 - Cercado de Lima</p>
+                  <p className="onpe-footer-contact-text">Lunes a viernes de 8:30 a.m. a 5:00 p. m.</p>
                 </li>
                 <li tabIndex={0} className="onpe-footer-contact-item">
-                  <p className="onpe-footer-contact-title">Escríbenos</p>
+                  <p className="onpe-footer-contact-title">Contáctanos:</p>
                   <p className="onpe-footer-contact-text">informes@onpe.gob.pe</p>
+                  <p className="onpe-footer-contact-text">+51 (01)4170630</p>
+                  <p className="onpe-footer-contact-text flex">
+                    <WhatsappIcon /> Whatsapp: 995 404 991</p>
                 </li>
                 <li tabIndex={0} className="onpe-footer-contact-item">
-                  <p className="onpe-footer-contact-title">Central telefónica</p>
-                  <p className="onpe-footer-contact-text">(01) 4170630 | Lunes a viernes de 8:30 a.m. a 4:30 p.m.</p>
+                  <p className="onpe-footer-contact-title">Síguenos:</p>
+                  <p className="onpe-footer-contact-text flex">
+                    <FaceBookIcon />
+                    <XIcon />
+                    <TikTokIcon />
+                    <InstagramIcon />
+                    <YoutubeIcon />
+                  </p>
                 </li>
               </ul>
             </div>
