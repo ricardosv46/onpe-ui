@@ -52,7 +52,7 @@
 .onpe-not-recommended-icon {
   width: 40px;
   height: 35px;
-  color: var(--onpe-ui-dark-gray); /* text-brand-black - usando dark-gray como equivalente */
+  color: var(--onpe-ui-black); /* text-brand-black - usando dark-gray como equivalente */
 }
 
 .onpe-not-recommended-message {

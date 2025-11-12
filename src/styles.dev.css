@@ -16,6 +16,8 @@
   --onpe-ui-dark-gray: #4f4f4f;
   --onpe-ui-green: #76bd43;
   --onpe-ui-yellow-light: #FFF1D2;
+  --onpe-ui-black: #000000;
+  --onpe-ui-white: #ffffff;
 }
 
 @theme {
