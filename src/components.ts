@@ -26,6 +26,9 @@ export type { ModalLoadingProps } from "./components/Feedback/ModalLoading";
 export { ModalSystemIncompatible } from "./components/ErrorHandling/ModalSystemIncompatible";
 export type { ModalSystemIncompatibleProps } from "./components/ErrorHandling/ModalSystemIncompatible";
 
+export { NotRecommended } from "./components/ErrorHandling/NotRecommended";
+export type { NotRecommendedProps } from "./components/ErrorHandling/NotRecommended";
+
 export { Footer } from "./components/Footer";
 export type { FooterProps } from "./components/Footer";
 

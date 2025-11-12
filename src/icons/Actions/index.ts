@@ -5,5 +5,6 @@ export * from "./IconSpinnerDesktop";
 export * from "./IconSpinnerMobile";
 export * from "./IconCheck";
 export * from "./IconWarning";
+export * from "./IconWarningNotRecommended";
 export * from "./IconHome";
 export * from "./IconInfo";
