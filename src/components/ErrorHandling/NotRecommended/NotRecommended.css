@@ -2,7 +2,7 @@
 .onpe-not-recommended-wrapper {
   position: fixed;
   right: 20px; /* right-5 = 1.25rem = 20px */
-  bottom: 40px; /* bottom-10 = 2.5rem = 40px */
+  bottom: 40px; /* bottom-10 = 2.5rem = 40px - valor por defecto, puede ser sobrescrito por prop */
   z-index: 99;
 }
 

@@ -20,6 +20,10 @@ const meta: Meta<typeof NotRecommended> = {
       control: { type: "boolean" },
       description: "Indica si hay un error de sistema operativo no recomendado",
     },
+    bottom: {
+      control: { type: "text" },
+      description: "Distancia desde el bottom en px, rem, % o cualquier unidad CSS válida. Por defecto: 40px",
+    },
   },
 };
 
@@ -107,6 +111,22 @@ export const Default: Story = {
   args: {
     isOpenBrowserError: true,
     isOpenDeviceError: false,
+  },
+};
+
+export const CustomBottom: Story = {
+  args: {
+    isOpenBrowserError: true,
+    isOpenDeviceError: false,
+    bottom: 80, // 80px desde el bottom
+  },
+};
+
+export const CustomBottomWithUnit: Story = {
+  args: {
+    isOpenBrowserError: true,
+    isOpenDeviceError: false,
+    bottom: "5rem", // Con unidad CSS personalizada
   },
 };
 
