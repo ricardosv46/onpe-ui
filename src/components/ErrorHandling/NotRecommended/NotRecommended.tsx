@@ -7,12 +7,14 @@ export interface NotRecommendedProps {
   isOpenBrowserError?: boolean;
   isOpenDeviceError?: boolean;
   bottom?: number | string; // Valor en px o string válido de CSS (ej: "40px", "2rem", "10%")
+  right?: number | string; // Valor en px o string válido de CSS (ej: "20px", "2rem", "10%")
 }
 
 export const NotRecommended = ({
   isOpenBrowserError = false,
   isOpenDeviceError = false,
   bottom = 40, // Valor por defecto: 40px
+  right = 20, // Valor por defecto: 20px
 }: NotRecommendedProps) => {
   const [isWarningClosed, setIsWarningClosed] = useState(false);
 
@@ -61,10 +63,16 @@ export const NotRecommended = ({
     return `${bottom}px`;
   };
 
+  // Convertir el valor de right a string CSS válido
+  const getRightValue = () => {
+    if (typeof right === "string") return right;
+    return `${right}px`;
+  };
+
   return (
     <div
       className="onpe-not-recommended-wrapper"
-      style={{ bottom: getBottomValue() }}
+      style={{ bottom: getBottomValue(), right: getRightValue() }}
     >
       <div
         className={getContainerClasses()}

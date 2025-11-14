@@ -25,6 +25,11 @@ const meta: Meta<typeof NotRecommended> = {
       description:
         "Distancia desde el bottom en px, rem, % o cualquier unidad CSS válida. Por defecto: 40px",
     },
+    right: {
+      control: { type: "text" },
+      description:
+        "Distancia desde el right en px, rem, % o cualquier unidad CSS válida. Por defecto: 20px",
+    },
   },
 };
 
@@ -128,5 +133,30 @@ export const CustomBottomWithUnit: Story = {
     isOpenBrowserError: true,
     isOpenDeviceError: false,
     bottom: "5rem", // Con unidad CSS personalizada
+  },
+};
+
+export const CustomRight: Story = {
+  args: {
+    isOpenBrowserError: true,
+    isOpenDeviceError: false,
+    right: 50, // 50px desde el right
+  },
+};
+
+export const CustomRightWithUnit: Story = {
+  args: {
+    isOpenBrowserError: true,
+    isOpenDeviceError: false,
+    right: "3rem", // Con unidad CSS personalizada
+  },
+};
+
+export const CustomBottomAndRight: Story = {
+  args: {
+    isOpenBrowserError: true,
+    isOpenDeviceError: false,
+    bottom: 100,
+    right: 50,
   },
 };
