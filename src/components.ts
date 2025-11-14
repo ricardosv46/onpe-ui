@@ -1,7 +1,6 @@
 // Exportaciones de componentes
 export { Button } from "./components/Button";
 export type { ButtonProps } from "./components/Button";
-
 export { Portal } from "./components/Portal";
 export type { PortalProps } from "./components/Portal";
 
