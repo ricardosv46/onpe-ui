@@ -22,7 +22,8 @@ const meta: Meta<typeof NotRecommended> = {
     },
     bottom: {
       control: { type: "text" },
-      description: "Distancia desde el bottom en px, rem, % o cualquier unidad CSS válida. Por defecto: 40px",
+      description:
+        "Distancia desde el bottom en px, rem, % o cualquier unidad CSS válida. Por defecto: 40px",
     },
   },
 };
@@ -129,4 +130,3 @@ export const CustomBottomWithUnit: Story = {
     bottom: "5rem", // Con unidad CSS personalizada
   },
 };
-
