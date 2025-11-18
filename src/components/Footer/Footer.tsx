@@ -32,7 +32,7 @@ export const Footer = ({
 
           {showBrowserInfo && <BrowserRecommended />}
           {showContactInfo && (
-            <div tabIndex={0} role="contentinfo" className="onpe-footer-contact">
+            <div className="onpe-footer-contact">
               <ul className="onpe-footer-contact-list">
                 <li tabIndex={0} className="onpe-footer-contact-item">
                   <p className="onpe-footer-contact-title">Oficina central</p>
