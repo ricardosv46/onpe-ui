@@ -52,20 +52,20 @@ export const Footer = ({
                 <li tabIndex={0} className="onpe-footer-contact-item">
                   <p className="onpe-footer-contact-title">Síguenos:</p>
                   <p className="onpe-footer-contact-text flex gap-4">
-                    <a href="https://www.facebook.com/ONPEoficial" target="_blank">
-                    <FaceBookIcon />
+                    <a href="https://www.facebook.com/ONPEoficial" target="_blank" rel="noopener noreferrer" aria-label="Facebook de ONPE">
+                    <span aria-hidden="true"><FaceBookIcon /></span>
                     </a>
-                    <a href="https://x.com/ONPE_oficial" target="_blank">
-                      <XIcon />
+                    <a href="https://x.com/ONPE_oficial" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter) de ONPE">
+                      <span aria-hidden="true"><XIcon /></span>
                     </a>
-                    <a href="https://www.tiktok.com/@onpe_oficial" target="_blank">
-                      <TikTokIcon />
+                    <a href="https://www.tiktok.com/@onpe_oficial" target="_blank" rel="noopener noreferrer" aria-label="TikTok de ONPE">
+                      <span aria-hidden="true"><TikTokIcon /></span>
                     </a>
-                    <a href="https://www.instagram.com/ONPE_oficial/" target="_blank">
-                      <InstagramIcon />
+                    <a href="https://www.instagram.com/ONPE_oficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de ONPE">
+                      <span aria-hidden="true"><InstagramIcon /></span>
                     </a>
-                    <a href="https://www.youtube.com/@onpeprensa" target="_blank">
-                      <YoutubeIcon />
+                    <a href="https://www.youtube.com/@onpeprensa" target="_blank" rel="noopener noreferrer" aria-label="YouTube de ONPE">
+                      <span aria-hidden="true"><YoutubeIcon /></span>
                     </a>
                   </p>
                 </li>
