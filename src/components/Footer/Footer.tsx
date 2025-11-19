@@ -1,12 +1,12 @@
-import React, { ReactNode } from "react";
-import { BrowserRecommended } from "../BrowserRecommended/BrowserRecommended";
-import "./Footer.css";
-import FaceBookIcon from "../../icons/Redes/FaceBookIcon";
-import XIcon from "../../icons/Redes/XIcon";
-import TikTokIcon from "../../icons/Redes/TikTokIcon";
-import YoutubeIcon from "../../icons/Redes/YoutubeIcon";
-import InstagramIcon from "../../icons/Redes/InstagramIcon";
-import WhatsappIcon from "../../icons/Redes/WhatsappIcon";
+import React, { ReactNode } from 'react';
+import { BrowserRecommended } from '../BrowserRecommended/BrowserRecommended';
+import './Footer.css';
+import FaceBookIcon from '../../icons/Redes/FaceBookIcon';
+import XIcon from '../../icons/Redes/XIcon';
+import TikTokIcon from '../../icons/Redes/TikTokIcon';
+import YoutubeIcon from '../../icons/Redes/YoutubeIcon';
+import InstagramIcon from '../../icons/Redes/InstagramIcon';
+import WhatsappIcon from '../../icons/Redes/WhatsappIcon';
 
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   showBrowserInfo?: boolean;
@@ -32,40 +32,86 @@ export const Footer = ({
 
           {showBrowserInfo && <BrowserRecommended />}
           {showContactInfo && (
-            <div className="onpe-footer-contact">
-              <ul className="onpe-footer-contact-list">
-                <li tabIndex={0} className="onpe-footer-contact-item">
-                  <p className="onpe-footer-contact-title">Oficina central</p>
-                  <p className="onpe-footer-contact-text">Jr. Washington 1894 - Cercado de Lima</p>
-                  <p className="onpe-footer-contact-text">Lunes a viernes de 8:30 a.m. a 5:00 p. m.</p>
+            <div className='onpe-footer-contact'>
+              <ul className='onpe-footer-contact-list'>
+                <li tabIndex={0} className='onpe-footer-contact-item'>
+                  <p className='onpe-footer-contact-title'>Oficina central</p>
+                  <p className='onpe-footer-contact-text'>
+                    Jr. Washington 1894 - Cercado de Lima
+                  </p>
+                  <p className='onpe-footer-contact-text'>
+                    Lunes a viernes de 8:30 a.m. a 5:00 p. m.
+                  </p>
                 </li>
-                <li tabIndex={0} className="onpe-footer-contact-item">
-                  <p className="onpe-footer-contact-title">Contáctanos:</p>
-                  <p className="onpe-footer-contact-text">informes@onpe.gob.pe</p>
-                  <p className="onpe-footer-contact-text">+51 (01)4170630</p>
-                  <p className="onpe-footer-contact-text">
-                    <a href="https://wa.me/+51995404991" className="flex" target="_blank">
-                      <WhatsappIcon />&nbsp; Whatsapp: 995 404 991
+                <li tabIndex={0} className='onpe-footer-contact-item'>
+                  <p className='onpe-footer-contact-title'>Contáctanos:</p>
+                  <p className='onpe-footer-contact-text'>
+                    informes@onpe.gob.pe
+                  </p>
+                  <p className='onpe-footer-contact-text'>+51 (01)4170630</p>
+                  <p className='onpe-footer-contact-text'>
+                    <a
+                      href='https://wa.me/+51995404991'
+                      className='flex'
+                      target='_blank'
+                    >
+                      <WhatsappIcon />
+                      &nbsp; Whatsapp: 995 404 991
                     </a>
-                    </p>
+                  </p>
                 </li>
-                <li tabIndex={0} className="onpe-footer-contact-item">
-                  <p className="onpe-footer-contact-title">Síguenos:</p>
-                  <p className="onpe-footer-contact-text flex gap-4">
-                    <a href="https://www.facebook.com/ONPEoficial" target="_blank" rel="noopener noreferrer" aria-label="Facebook de ONPE">
-                    <span aria-hidden="true"><FaceBookIcon /></span>
+                <li tabIndex={0} className='onpe-footer-contact-item'>
+                  <p className='onpe-footer-contact-title'>Síguenos:</p>
+                  <p className='onpe-footer-contact-text flex gap-4'>
+                    <a
+                      href='https://www.facebook.com/ONPEoficial'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      aria-label='Facebook de ONPE'
+                    >
+                      <span aria-hidden='true'>
+                        <FaceBookIcon />
+                      </span>
                     </a>
-                    <a href="https://x.com/ONPE_oficial" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter) de ONPE">
-                      <span aria-hidden="true"><XIcon /></span>
+                    <a
+                      href='https://x.com/ONPE_oficial'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      aria-label='X de ONPE (antes Twitter)'
+                    >
+                      <span aria-hidden='true'>
+                        <XIcon />
+                      </span>
                     </a>
-                    <a href="https://www.tiktok.com/@onpe_oficial" target="_blank" rel="noopener noreferrer" aria-label="TikTok de ONPE">
-                      <span aria-hidden="true"><TikTokIcon /></span>
+                    <a
+                      href='https://www.tiktok.com/@onpe_oficial'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      aria-label='TikTok de ONPE'
+                    >
+                      <span aria-hidden='true'>
+                        <TikTokIcon />
+                      </span>
                     </a>
-                    <a href="https://www.instagram.com/ONPE_oficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de ONPE">
-                      <span aria-hidden="true"><InstagramIcon /></span>
+                    <a
+                      href='https://www.instagram.com/ONPE_oficial/'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      aria-label='Instagram de ONPE'
+                    >
+                      <span aria-hidden='true'>
+                        <InstagramIcon />
+                      </span>
                     </a>
-                    <a href="https://www.youtube.com/@onpeprensa" target="_blank" rel="noopener noreferrer" aria-label="YouTube de ONPE">
-                      <span aria-hidden="true"><YoutubeIcon /></span>
+                    <a
+                      href='https://www.youtube.com/@onpeprensa'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      aria-label='YouTube de ONPE'
+                    >
+                      <span aria-hidden='true'>
+                        <YoutubeIcon />
+                      </span>
                     </a>
                   </p>
                 </li>
@@ -76,9 +122,10 @@ export const Footer = ({
       )}
 
       {isDevelopment && (
-        <div className="onpe-footer-development">
-          <p className="onpe-footer-development-text">
-            Versión en Desarrollo <br className="onpe-footer-development-break" /> - No Oficial
+        <div className='onpe-footer-development'>
+          <p className='onpe-footer-development-text'>
+            Versión en Desarrollo{' '}
+            <br className='onpe-footer-development-break' /> - No Oficial
           </p>
         </div>
       )}
