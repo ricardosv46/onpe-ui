@@ -1,6 +1,6 @@
-import { SVGProps } from "react"
+import { SVGProps } from "react";
 
-const InstagramIcon =  (props: SVGProps<SVGSVGElement>) => (
+const InstagramIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
@@ -8,6 +8,7 @@ const InstagramIcon =  (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     {...props}
   >
+    <title>Instagram</title>
     <path
       fill="#062A50"
       d="M24 12c0 6.625-5.375 12-12 12S0 18.625 0 12C.006 5.375 5.375 0 12.006 0 18.631 0 24 5.375 24 12Z"
@@ -21,5 +22,5 @@ const InstagramIcon =  (props: SVGProps<SVGSVGElement>) => (
       d="M12.012 8.745A3.253 3.253 0 0 0 8.757 12c0 1.8 1.455 3.255 3.255 3.255 1.8 0 3.255-1.455 3.255-3.255 0-1.8-1.461-3.255-3.255-3.255Zm0 5.423A2.17 2.17 0 0 1 9.844 12a2.17 2.17 0 0 1 2.168-2.168A2.17 2.17 0 0 1 14.18 12a2.17 2.17 0 0 1-2.168 2.168ZM15.485 9.18a.652.652 0 1 0 0-1.304.652.652 0 0 0 0 1.304Z"
     />
   </svg>
-)
-export default InstagramIcon
+);
+export default InstagramIcon;
