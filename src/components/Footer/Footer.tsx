@@ -37,7 +37,9 @@ export const Footer = ({
                 <li tabIndex={0} className="onpe-footer-contact-item">
                   <p className="onpe-footer-contact-title">Oficina central</p>
                   <p className="onpe-footer-contact-text">
-                    Jr. Washington 1894 - Cercado de Lima
+                    <span className="sr-only">Jiron</span>
+                    <span aria-hidden="true">Jr.</span> Washington 1894 -
+                    Cercado de Lima
                   </p>
                   <p className="onpe-footer-contact-text">
                     Lunes a viernes de 8:30 a.m. a 5:00 p. m.
@@ -46,6 +48,7 @@ export const Footer = ({
                 <li tabIndex={0} className="onpe-footer-contact-item">
                   <p className="onpe-footer-contact-title">Contáctanos:</p>
                   <p className="onpe-footer-contact-text">
+                    <span className="sr-only">Correo</span>
                     informes@onpe.gob.pe
                   </p>
                   <p className="onpe-footer-contact-text">+51 (01)4170630</p>
@@ -55,7 +58,7 @@ export const Footer = ({
                       className="flex"
                       target="_blank"
                     >
-                      <WhatsappIcon />
+                      <WhatsappIcon aria-hidden="true" />
                       &nbsp; Whatsapp: 995 404 991
                     </a>
                   </p>

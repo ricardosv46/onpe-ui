@@ -1,7 +1,6 @@
 import React from "react";
 import { IconChrome } from "../../icons/Browsers/IconChrome/IconChrome";
 import { IconSafari } from "../../icons/Browsers/IconSafari/IconSafari";
-import { IconMozilla } from "../../icons/Browsers/IconMozilla/IconMozilla";
 import { IconEdge } from "../../icons/Browsers/IconEdge/IconEdge";
 import "./BrowserRecommended.css";
 
