@@ -8,7 +8,6 @@ const TikTokIcon = (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     {...props}
   >
-    <title>TikTok</title>
     <path
       fill="#062A50"
       d="M24 12c0 6.625-5.375 12-12 12S0 18.625 0 12 5.375 0 12 0c6.631.006 12 5.375 12 12Z"

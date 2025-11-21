@@ -72,7 +72,9 @@ export const Footer = ({
                       rel="noopener noreferrer"
                       aria-label="Facebook de ONPE"
                     >
-                      <FaceBookIcon />
+                      <span aria-hidden="true">
+                        <FaceBookIcon />
+                      </span>
                     </a>
                     <a
                       href="https://x.com/ONPE_oficial"
