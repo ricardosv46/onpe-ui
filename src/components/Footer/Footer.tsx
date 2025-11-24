@@ -25,7 +25,7 @@ export const Footer = ({
   ...props
 }: FooterProps) => {
   return (
-    <footer {...props}>
+    <footer {...props} tabIndex={0} aria-label='Información para contactarnos'>
       {showFooterContent && (
         <>
           {children && children}
