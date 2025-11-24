@@ -1,7 +1,6 @@
 import React from "react";
 import { IconChrome } from "../../icons/Browsers/IconChrome/IconChrome";
 import { IconSafari } from "../../icons/Browsers/IconSafari/IconSafari";
-import { IconMozilla } from "../../icons/Browsers/IconMozilla/IconMozilla";
 import { IconEdge } from "../../icons/Browsers/IconEdge/IconEdge";
 import "./BrowserRecommended.css";
 
@@ -11,11 +10,11 @@ export const BrowserRecommended = () => {
       <p>Navegadores recomendados:</p>
       <div className="onpe-browser-list">
         <div className="onpe-browser-item">
-          <IconChrome />
+          <IconChrome aria-hidden="true" />
           <p className="onpe-browser-name">Google Chrome</p>
         </div>
         <div className="onpe-browser-item">
-          <IconSafari />
+          <IconSafari aria-hidden="true" />
           <p className="onpe-browser-name">Safari</p>
         </div>
         {/* <div className="onpe-browser-item">
@@ -23,7 +22,7 @@ export const BrowserRecommended = () => {
           <p className="onpe-browser-name">Mozilla Firefox</p>
         </div> */}
         <div className="onpe-browser-item">
-          <IconEdge />
+          <IconEdge aria-hidden="true" />
           <p className="onpe-browser-name">Microsoft Edge</p>
         </div>
       </div>
