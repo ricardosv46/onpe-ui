@@ -32,11 +32,17 @@ export const Footer = ({
 
           {showBrowserInfo && <BrowserRecommended />}
           {showContactInfo && (
-            <div className='onpe-footer-contact'>
+            <div
+              className='onpe-footer-contact'
+              aria-label='Información para contactarnos'
+            >
               <ul className='onpe-footer-contact-list'>
                 <li tabIndex={0} className='onpe-footer-contact-item'>
                   <p className='onpe-footer-contact-title'>Oficina central</p>
-                  <p className='onpe-footer-contact-text'>
+                  <p
+                    className='onpe-footer-contact-text'
+                    aria-label='Jirón Washington 1894 - Cercado de Lima'
+                  >
                     Jr. Washington 1894 - Cercado de Lima
                   </p>
                   <p className='onpe-footer-contact-text'>
@@ -45,11 +51,14 @@ export const Footer = ({
                 </li>
                 <li tabIndex={0} className='onpe-footer-contact-item'>
                   <p className='onpe-footer-contact-title'>Contáctanos:</p>
-                  <p className='onpe-footer-contact-text'>
+                  <p
+                    className='onpe-footer-contact-text'
+                    aria-label='correo, informes@onpe punto gob punto pe'
+                  >
                     informes@onpe.gob.pe
                   </p>
-                  <p className='onpe-footer-contact-text'>+51 (01)4170630</p>
-                  <p className='onpe-footer-contact-text'>
+                  <p className='onpe-footer-contact-text' aria-label='número de teléfono, +51 (01)4170630'>+51 (01)4170630</p>
+                  <p className='onpe-footer-contact-text' aria-label='Whatsapp, 995 404 991'>
                     <a
                       href='https://wa.me/+51995404991'
                       className='flex'
@@ -61,7 +70,7 @@ export const Footer = ({
                   </p>
                 </li>
                 <li tabIndex={0} className='onpe-footer-contact-item'>
-                  <p className='onpe-footer-contact-title'>Síguenos:</p>
+                  <p className='onpe-footer-contact-title' aria-label='Síguenos en nuestras redes sociales'>Síguenos:</p>
                   <p className='onpe-footer-contact-text flex gap-4'>
                     <a
                       href='https://www.facebook.com/ONPEoficial'

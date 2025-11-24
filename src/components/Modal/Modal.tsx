@@ -232,7 +232,7 @@ export const Modal = ({
         {isOpen && (
           <>
             <motion.div
-              className="onpe-modal-overlay"
+              className='onpe-modal-overlay'
               style={backdropStyle}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.8 }}
@@ -248,18 +248,21 @@ export const Modal = ({
               transition={{ duration: 0.2 }}
             >
               <div
-                className="onpe-modal-content-wrapper"
+                className='onpe-modal-content-wrapper'
                 ref={modalRef}
                 tabIndex={disableFocus ? -1 : 0}
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className={getContentClass()}>{children}</div>
                 {closeButton && (
-                  <IconCloseRadius
+                  <button
                     onClick={onClose}
-                    className="onpe-modal-close-button"
-                    aria-label="Cerrar"
-                  />
+                    className='onpe-modal-close-button'
+                    aria-label='Cerrar'
+                    type='button'
+                  >
+                    <IconCloseRadius aria-hidden='true' />
+                  </button>
                 )}
               </div>
             </motion.div>
