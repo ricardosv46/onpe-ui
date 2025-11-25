@@ -57,7 +57,7 @@ export const Footer = ({
                     className="onpe-footer-contact-text"
                     aria-label="Número de Teléfono, +51 (01)4170630,"
                   >
-                    +51 (01)4170630
+                    (01)4170630
                   </p>
                   <p className="onpe-footer-contact-text">
                     <a
