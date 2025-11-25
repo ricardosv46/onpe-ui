@@ -1,9 +1,9 @@
-import React, { HTMLAttributes, ReactNode, useEffect, useRef } from "react";
-import { Portal } from "../Portal/Portal";
-import { Overlay } from "../Overlay/Overlay";
-import "./Modal.css";
-import { IconCloseRadius } from "../../icons/Actions/IconCloseRadius";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { HTMLAttributes, ReactNode, useEffect, useRef } from 'react';
+import { Portal } from '../Portal/Portal';
+import { Overlay } from '../Overlay/Overlay';
+import './Modal.css';
+import { IconCloseRadius } from '../../icons/Actions/IconCloseRadius';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
@@ -16,19 +16,19 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   disableFocus?: boolean; // Nueva prop para deshabilitar el focus y tabindex
   zIndexLevel?: number;
   overlayColor?:
-    | "blue"
-    | "skyblue"
-    | "skyblue-light"
-    | "yellow"
-    | "light-skyblue"
-    | "gray"
-    | "gray-light"
-    | "gray-extra-light"
-    | "red"
-    | "dark-gray"
-    | "green"
-    | "yellow-light"
-    | "primary";
+    | 'blue'
+    | 'skyblue'
+    | 'skyblue-light'
+    | 'yellow'
+    | 'light-skyblue'
+    | 'gray'
+    | 'gray-light'
+    | 'gray-extra-light'
+    | 'red'
+    | 'dark-gray'
+    | 'green'
+    | 'yellow-light'
+    | 'primary';
 }
 
 export const Modal = ({
@@ -41,7 +41,7 @@ export const Modal = ({
   escapeToClose = true, // Por defecto Escape SÍ cierra el modal
   disableFocus = false, // Por defecto el focus SÍ está habilitado
   zIndexLevel = 100,
-  overlayColor = "blue",
+  overlayColor = 'blue',
   ...props
 }: ModalProps) => {
   // Referencias para el manejo de foco
@@ -50,14 +50,14 @@ export const Modal = ({
   // Manejar el scroll del body cuando el modal está abierto
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add("onpe-modal-open");
+      document.body.classList.add('onpe-modal-open');
     } else {
-      document.body.classList.remove("onpe-modal-open");
+      document.body.classList.remove('onpe-modal-open');
     }
 
     // Cleanup: remover la clase cuando el componente se desmonte
     return () => {
-      document.body.classList.remove("onpe-modal-open");
+      document.body.classList.remove('onpe-modal-open');
     };
   }, [isOpen]);
 
@@ -68,19 +68,19 @@ export const Modal = ({
       const resetModalScroll = () => {
         // Buscar todos los elementos de contenido del modal
         const modalContentElements = document.querySelectorAll(
-          ".onpe-modal-content"
+          '.onpe-modal-content'
         );
         modalContentElements.forEach((element) => {
           const htmlElement = element as HTMLElement;
           // Desactivar animación temporalmente para reset instantáneo
-          htmlElement.style.scrollBehavior = "auto";
+          htmlElement.style.scrollBehavior = 'auto';
           htmlElement.scrollTop = 0;
           // Forzar el reset con requestAnimationFrame
           requestAnimationFrame(() => {
             htmlElement.scrollTop = 0;
             // Reactivar animación después del reset
             setTimeout(() => {
-              htmlElement.style.scrollBehavior = "smooth";
+              htmlElement.style.scrollBehavior = 'smooth';
             }, 10);
           });
         });
@@ -97,13 +97,13 @@ export const Modal = ({
     } else {
       // Resetear scroll cuando se cierra para que no se vea la animación al reabrir
       const modalContentElements = document.querySelectorAll(
-        ".onpe-modal-content"
+        '.onpe-modal-content'
       );
       modalContentElements.forEach((element) => {
         const htmlElement = element as HTMLElement;
-        htmlElement.style.scrollBehavior = "auto";
+        htmlElement.style.scrollBehavior = 'auto';
         htmlElement.scrollTop = 0;
-        htmlElement.style.scrollBehavior = "smooth";
+        htmlElement.style.scrollBehavior = 'smooth';
       });
     }
   }, [isOpen]);
@@ -113,21 +113,21 @@ export const Modal = ({
     const isElementVisible = (element: HTMLElement) => {
       const style = window.getComputedStyle(element);
       return (
-        style.visibility !== "hidden" &&
-        style.display !== "none" &&
+        style.visibility !== 'hidden' &&
+        style.display !== 'none' &&
         element.offsetParent !== null
       );
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
       // Escape solo funciona si escapeToClose es true Y closeDisabled es false
-      if (e.key === "Escape" && escapeToClose && !closeDisabled) {
+      if (e.key === 'Escape' && escapeToClose && !closeDisabled) {
         onClose();
         return;
       }
 
       // Focus trap: Tab y Shift+Tab ciclan dentro del modal
-      if (!isOpen || disableFocus || e.key !== "Tab") return;
+      if (!isOpen || disableFocus || e.key !== 'Tab') return;
 
       const wrapper = modalRef.current;
       if (!wrapper) return;
@@ -172,15 +172,35 @@ export const Modal = ({
         return;
       }
 
-      if (!isShift && active === last) {
+      // Verificar si el elemento activo está en la lista de enfocables
+      const activeIndex = focusable.indexOf(active);
+
+      // Si está navegando hacia adelante (Tab) y está en el último elemento
+      if (
+        !isShift &&
+        (active === last || activeIndex === focusable.length - 1)
+      ) {
         e.preventDefault();
         first.focus();
         return;
       }
 
-      if (isShift && (active === first || active === wrapper)) {
+      // Si está navegando hacia atrás (Shift+Tab)
+      if (isShift) {
+        // Siempre prevenir el comportamiento por defecto cuando se presiona Shift+Tab dentro del modal
         e.preventDefault();
-        last.focus();
+
+        // Si está en el primer elemento o wrapper, ir al último
+        if (active === first || active === wrapper || activeIndex === 0) {
+          last.focus();
+        } else if (activeIndex > 0) {
+          // Si no está en el primer elemento, ir al anterior
+          focusable[activeIndex - 1].focus();
+        } else {
+          // Si no está en la lista de enfocables, ir al último
+          last.focus();
+        }
+        return;
       }
     };
 
@@ -192,14 +212,14 @@ export const Modal = ({
       modalRef.current?.focus();
 
       // Agregar listener de teclado
-      document.addEventListener("keydown", handleKeyDown);
+      document.addEventListener('keydown', handleKeyDown);
     } else if (isOpen && disableFocus) {
       // Solo agregar listener de teclado, sin manejar focus
-      document.addEventListener("keydown", handleKeyDown);
+      document.addEventListener('keydown', handleKeyDown);
     }
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
       // Restaurar foco al elemento anterior solo si el focus estaba habilitado
       if (!disableFocus && previousActiveElement.current) {
         previousActiveElement.current.focus();
@@ -208,7 +228,7 @@ export const Modal = ({
   }, [isOpen, onClose, closeDisabled, escapeToClose, disableFocus]);
 
   const getContainerClass = () => {
-    const baseClass = "onpe-modal-container";
+    const baseClass = 'onpe-modal-container';
     if (isOpen) {
       return `${baseClass} onpe-modal-open`;
     }
@@ -216,11 +236,11 @@ export const Modal = ({
   };
 
   const getContentClass = () => {
-    const baseClass = "onpe-modal-content";
+    const baseClass = 'onpe-modal-content';
     const backgroundClass = whitoutBackground
-      ? "onpe-modal-without-background"
-      : "onpe-modal-with-background";
-    const customClass = props.className || "";
+      ? 'onpe-modal-without-background'
+      : 'onpe-modal-with-background';
+    const customClass = props.className || '';
     return `${baseClass} ${backgroundClass} ${customClass}`.trim();
   };
   const backdropStyle = { zIndex: zIndexLevel };
