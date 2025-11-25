@@ -19,6 +19,14 @@ import {
   IconWindow,
   IconAndroid,
   IconApple,
+  IconHuawei,
+  // Redes
+  FaceBookIcon,
+  InstagramIcon,
+  TikTokIcon,
+  WhatsappIcon,
+  XIcon,
+  YoutubeIcon,
   // ONPE
   IconVotoDigital,
   IconElectionsGeneral,
@@ -120,6 +128,40 @@ export const ActionsIcons: Story = {
           <div className="p-4 text-center border rounded-lg border-gray">
             <IconApple width={24} height={24} className="mx-auto mb-2 text-onpe-ui-gray-dark" />
             <span className="text-sm text-onpe-ui-gray-dark">IconApple</span>
+          </div>
+          <div className="p-4 text-center border rounded-lg border-gray">
+            <IconHuawei width={24} height={24} className="mx-auto mb-2 text-onpe-ui-blue" />
+            <span className="text-sm text-onpe-ui-gray-dark">IconHuawei</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="mb-4 text-lg font-semibold text-onpe-ui-blue">Iconos de Redes</h3>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="p-4 text-center border rounded-lg border-gray">
+            <FaceBookIcon width={24} height={24} className="mx-auto mb-2 text-onpe-ui-blue" />
+            <span className="text-sm text-onpe-ui-gray-dark">FaceBookIcon</span>
+          </div>
+          <div className="p-4 text-center border rounded-lg border-gray">
+            <InstagramIcon width={24} height={24} className="mx-auto mb-2 text-onpe-ui-blue" />
+            <span className="text-sm text-onpe-ui-gray-dark">InstagramIcon</span>
+          </div>
+          <div className="p-4 text-center border rounded-lg border-gray">
+            <TikTokIcon width={24} height={24} className="mx-auto mb-2 text-onpe-ui-blue" />
+            <span className="text-sm text-onpe-ui-gray-dark">TikTokIcon</span>
+          </div>
+          <div className="p-4 text-center border rounded-lg border-gray">
+            <WhatsappIcon width={24} height={24} className="mx-auto mb-2 text-onpe-ui-blue" />
+            <span className="text-sm text-onpe-ui-gray-dark">WhatsappIcon</span>
+          </div>
+          <div className="p-4 text-center border rounded-lg border-gray">
+            <XIcon width={24} height={24} className="mx-auto mb-2 text-onpe-ui-blue" />
+            <span className="text-sm text-onpe-ui-gray-dark">XIcon</span>
+          </div>
+          <div className="p-4 text-center border rounded-lg border-gray">
+            <YoutubeIcon width={24} height={24} className="mx-auto mb-2 text-onpe-ui-blue" />
+            <span className="text-sm text-onpe-ui-gray-dark">YoutubeIcon</span>
           </div>
         </div>
       </div>

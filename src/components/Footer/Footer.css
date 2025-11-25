@@ -28,8 +28,13 @@
   max-width: 1460px;
 }
 
-.onpe-footer-contact-item {
+.onpe-footer-contact-item  {
   /* List item styles */
+}
+
+.onpe-footer-contact-item-color  {
+  /* List item styles */
+  color : var(--onpe-ui-blue-dark);
 }
 
 .onpe-footer-contact-title {

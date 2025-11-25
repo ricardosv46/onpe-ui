@@ -5,6 +5,7 @@
 /* Variables CSS con prefijo único para evitar conflictos */
 :root {
   --onpe-ui-blue: #003770;
+  --onpe-ui-blue-dark: #062A50;
   --onpe-ui-skyblue: #0073cf;
   --onpe-ui-skyblue-light: #69b2e8;
   --onpe-ui-yellow: #ffb81c;

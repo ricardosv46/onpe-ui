@@ -9,7 +9,7 @@ const XIcon = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      fill="#062A50"
+      fill="currentColor"
       d="M24 12c0 6.625-5.375 12-12 12S0 18.625 0 12C.006 5.375 5.375 0 12.006 0 18.631 0 24 5.375 24 12Z"
     />
     <path

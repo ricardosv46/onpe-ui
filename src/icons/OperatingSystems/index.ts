@@ -2,3 +2,4 @@
 export * from "./IconWindow";
 export * from "./IconAndroid";
 export * from "./IconApple";
+export * from "./IconHuawei";
