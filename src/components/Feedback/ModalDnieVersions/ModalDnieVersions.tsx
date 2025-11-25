@@ -46,10 +46,7 @@ export const ModalDnieVersions = ({
               </li>
               <li role="none">
                 <p tabIndex={0}>
-                  Compatible solo con el lector del DNIe{" "}
-                  <span className="onpe-modal-dnie-versions-bold">
-                    en PC, Mac o laptop.
-                  </span>
+                  Compatible solo con el lector del DNIe en PC, Mac o laptop.
                 </p>
               </li>
             </ul>
@@ -73,11 +70,8 @@ export const ModalDnieVersions = ({
               </li>
               <li role="none">
                 <p tabIndex={0}>
-                  Compatibles con el lector del DNIe{" "}
-                  <span className="onpe-modal-dnie-versions-bold">
-                    en PC, Mac o laptop y tecnología NFC (ISO 14443-B) en
-                    móviles.
-                  </span>
+                  Compatibles con el lector del DNIe en PC, Mac o laptop y
+                  tecnología NFC (ISO 14443-B) en móviles.
                 </p>
               </li>
             </ul>
