@@ -1,12 +1,12 @@
 import React, { ReactNode } from "react";
 import { BrowserRecommended } from "../BrowserRecommended/BrowserRecommended";
 import "./Footer.css";
-import FaceBookIcon from "../../icons/Redes/FaceBookIcon";
-import XIcon from "../../icons/Redes/XIcon";
-import TikTokIcon from "../../icons/Redes/TikTokIcon";
-import YoutubeIcon from "../../icons/Redes/YoutubeIcon";
-import InstagramIcon from "../../icons/Redes/InstagramIcon";
-import WhatsappIcon from "../../icons/Redes/WhatsappIcon";
+import { FaceBookIcon } from "../../icons/Redes/FaceBookIcon";
+import { XIcon } from "../../icons/Redes/XIcon";
+import { TikTokIcon } from "../../icons/Redes/TikTokIcon";
+import { YoutubeIcon } from "../../icons/Redes/YoutubeIcon";
+import { InstagramIcon } from "../../icons/Redes/InstagramIcon";
+import { WhatsappIcon } from "../../icons/Redes/WhatsappIcon";
 
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   showBrowserInfo?: boolean;
