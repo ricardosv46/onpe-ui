@@ -21,6 +21,15 @@ export { IconEdge } from "./icons/Browsers/IconEdge/IconEdge";
 export { IconWindow } from "./icons/OperatingSystems/IconWindow/IconWindow";
 export { IconAndroid } from "./icons/OperatingSystems/IconAndroid/IconAndroid";
 export { IconApple } from "./icons/OperatingSystems/IconApple/IconApple";
+export { IconHuawei } from "./icons/OperatingSystems/IconHuawei/IconHuawei";
+
+// Exportaciones de iconos - Redes
+export { FaceBookIcon } from "./icons/Redes/FaceBookIcon";
+export { InstagramIcon } from "./icons/Redes/InstagramIcon";
+export { TikTokIcon } from "./icons/Redes/TikTokIcon";
+export { WhatsappIcon } from "./icons/Redes/WhatsappIcon";
+export { XIcon } from "./icons/Redes/XIcon";
+export { YoutubeIcon } from "./icons/Redes/YoutubeIcon";
 
 // Exportaciones de iconos - ONPE
 export { IconVotoDigital } from "./icons/ONPE/IconVotoDigital/IconVotoDigital";

@@ -42,6 +42,11 @@
       "require": "./dist/icons-os.js",
       "types": "./dist/icons-os.d.ts"
     },
+    "./icons/redes": {
+      "import": "./dist/icons-redes.esm.js",
+      "require": "./dist/icons-redes.js",
+      "types": "./dist/icons-redes.d.ts"
+    },
     "./styles": "./dist/index.css",
     "./tailwind-preset": "./tailwind-preset.js",
     "./css": "./dist/index.css",

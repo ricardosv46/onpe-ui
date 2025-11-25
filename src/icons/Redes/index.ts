@@ -1,7 +1,7 @@
-export { default as FaceBookIcon } from "./FaceBookIcon";
-export { default as InstagramIcon } from "./InstagramIcon";
-export { default as TikTokIcon } from "./TikTokIcon";
-export { default as WhatsappIcon } from "./WhatsappIcon";
-export { default as XIcon } from "./XIcon";
-export { default as YoutubeIcon } from "./YoutubeIcon";
+export { FaceBookIcon } from "./FaceBookIcon";
+export { InstagramIcon } from "./InstagramIcon";
+export { TikTokIcon } from "./TikTokIcon";
+export { WhatsappIcon } from "./WhatsappIcon";
+export { XIcon } from "./XIcon";
+export { YoutubeIcon } from "./YoutubeIcon";
 

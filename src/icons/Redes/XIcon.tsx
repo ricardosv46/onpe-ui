@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-const XIcon = (props: SVGProps<SVGSVGElement>) => (
+export const XIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
@@ -18,4 +18,3 @@ const XIcon = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
-export default XIcon;

@@ -70,6 +70,7 @@ export default [
   buildConfig('src/icons-browsers.ts', 'icons-browsers'),
   buildConfig('src/icons-onpe.ts', 'icons-onpe'),
   buildConfig('src/icons-os.ts', 'icons-os'),
+  buildConfig('src/icons-redes.ts', 'icons-redes'),
   // Generate type definitions
   dtsConfig('src/index.ts', 'index'),
   dtsConfig('src/components.ts', 'components'),
@@ -78,4 +79,5 @@ export default [
   dtsConfig('src/icons-browsers.ts', 'icons-browsers'),
   dtsConfig('src/icons-onpe.ts', 'icons-onpe'),
   dtsConfig('src/icons-os.ts', 'icons-os'),
+  dtsConfig('src/icons-redes.ts', 'icons-redes'),
 ];

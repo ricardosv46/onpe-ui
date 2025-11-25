@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-const FaceBookIcon = (props: SVGProps<SVGSVGElement>) => (
+export const FaceBookIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
@@ -18,4 +18,3 @@ const FaceBookIcon = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
-export default FaceBookIcon;
