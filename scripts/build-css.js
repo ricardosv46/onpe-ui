@@ -12,7 +12,7 @@ import tailwindcss from '@tailwindcss/postcss';
 
 const buildCSS = async () => {
   console.log('🎨 Generando CSS compilado para producción...');
-  
+
   // Configuración sin prefijos para producción
   const configWithPrefix = {
     content: ['./src/**/*.{js,ts,jsx,tsx}'],
@@ -56,16 +56,16 @@ const buildCSS = async () => {
   try {
     // Leer el archivo de estilos base
     const cssFile = fs.readFileSync('./src/styles.css', 'utf8');
-    
+
     // Leer todos los archivos CSS de componentes
     const componentCssFiles = [];
-    
+
     // Buscar todos los archivos .css en src/components
     const componentsDir = './src/components';
     if (fs.existsSync(componentsDir)) {
       const readDir = (dir) => {
         const items = fs.readdirSync(dir);
-        items.forEach(item => {
+        items.forEach((item) => {
           const fullPath = path.join(dir, item);
           const stat = fs.statSync(fullPath);
           if (stat.isDirectory()) {
@@ -78,10 +78,10 @@ const buildCSS = async () => {
       };
       readDir(componentsDir);
     }
-    
+
     // Combinar todos los archivos CSS
     const allCss = cssFile + '\n\n' + componentCssFiles.join('\n\n');
-    
+
     // Generar CSS compilado SIN Tailwind para preservar variables CSS
     // Solo usar PostCSS básico para mantener las variables intactas
     const result = await postcss([
@@ -90,14 +90,17 @@ const buildCSS = async () => {
       from: './src/styles.css',
       to: './dist/index.css',
     });
-    
+
     // Escribir archivo CSS compilado
     fs.writeFileSync('./dist/index.css', result.css);
-    
+
     console.log('✅ CSS compilado generado exitosamente:');
-    console.log(`   📁 dist/index.css (incluye ${componentCssFiles.length + 1} archivos CSS)`);
+    console.log(
+      `   📁 dist/index.css (incluye ${
+        componentCssFiles.length + 1
+      } archivos CSS)`
+    );
     console.log('   🚀 Listo para importar sin conflictos con CSP');
-    
   } catch (error) {
     console.error('❌ Error generando CSS:', error);
     process.exit(1);
@@ -108,4 +111,3 @@ const buildCSS = async () => {
 buildCSS();
 
 export default buildCSS;
-
