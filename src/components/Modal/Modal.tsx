@@ -119,19 +119,7 @@ export const Modal = ({
       );
     };
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Escape solo funciona si escapeToClose es true Y closeDisabled es false
-      if (e.key === 'Escape' && escapeToClose && !closeDisabled) {
-        onClose();
-        return;
-      }
-
-      // Focus trap: Tab y Shift+Tab ciclan dentro del modal
-      if (!isOpen || disableFocus || e.key !== 'Tab') return;
-
-      const wrapper = modalRef.current;
-      if (!wrapper) return;
-
+    const getFocusableElements = (wrapper: HTMLElement) => {
       const selector = [
         'a[href]',
         'area[href]',
@@ -154,6 +142,127 @@ export const Modal = ({
         focusable = [wrapper, ...focusable];
       }
 
+      return focusable;
+    };
+
+    const handleFocusOut = (e: FocusEvent) => {
+      if (!isOpen || disableFocus) return;
+
+      const wrapper = modalRef.current;
+      if (!wrapper) return;
+
+      const relatedTarget = e.relatedTarget as HTMLElement;
+
+      // Si el foco se movió fuera del modal (y no es null, lo que indica que se movió fuera del documento)
+      // Solo interceptar si el foco va a un elemento que no está dentro del modal
+      if (relatedTarget && !wrapper.contains(relatedTarget)) {
+        // Usar setTimeout para permitir que el navegador procese el evento primero
+        // pero luego traer el foco de vuelta si salió del modal
+        setTimeout(() => {
+          const currentActive = document.activeElement as HTMLElement;
+          if (!currentActive || !wrapper.contains(currentActive)) {
+            const focusable = getFocusableElements(wrapper);
+            if (focusable.length > 0) {
+              // Mantener el foco en el último elemento enfocable del modal
+              focusable[focusable.length - 1].focus();
+            } else {
+              wrapper.focus();
+            }
+          }
+        }, 0);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Escape solo funciona si escapeToClose es true Y closeDisabled es false
+      if (e.key === 'Escape' && escapeToClose && !closeDisabled) {
+        onClose();
+        return;
+      }
+
+      if (!isOpen || disableFocus) return;
+
+      const wrapper = modalRef.current;
+      if (!wrapper) return;
+
+      const focusable = getFocusableElements(wrapper);
+      const active = (document.activeElement as HTMLElement) || null;
+
+      // Manejar flechas del teclado (usadas por narradores de pantalla)
+      const arrowKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+      if (arrowKeys.includes(e.key)) {
+        // Si el foco está dentro del modal
+        if (active && wrapper.contains(active)) {
+          const activeIndex = focusable.indexOf(active);
+
+          // Si está en el primer elemento y presiona ArrowUp/ArrowLeft, prevenir salida
+          if (
+            (e.key === 'ArrowUp' || e.key === 'ArrowLeft') &&
+            activeIndex === 0
+          ) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Mantener el foco en el primer elemento o moverlo al último (comportamiento circular)
+            if (focusable.length > 1) {
+              focusable[focusable.length - 1].focus();
+            } else {
+              active.focus();
+            }
+            return;
+          }
+
+          // Si está en el último elemento y presiona ArrowDown/ArrowRight, prevenir salida
+          if (
+            (e.key === 'ArrowDown' || e.key === 'ArrowRight') &&
+            activeIndex === focusable.length - 1
+          ) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Mantener el foco en el último elemento o moverlo al primero (comportamiento circular)
+            if (focusable.length > 1) {
+              focusable[0].focus();
+            } else {
+              active.focus();
+            }
+            return;
+          }
+
+          // Monitorear si el foco sale del modal después de la navegación con flechas
+          requestAnimationFrame(() => {
+            const currentActive = document.activeElement as HTMLElement;
+            if (!currentActive || !wrapper.contains(currentActive)) {
+              // Si el foco salió del modal, traerlo de vuelta
+              if (activeIndex !== -1 && focusable[activeIndex]) {
+                focusable[activeIndex].focus();
+              } else if (focusable.length > 0) {
+                focusable[0].focus();
+              } else {
+                wrapper.focus();
+              }
+            }
+          });
+          return;
+        } else {
+          // Si el foco está fuera del modal, traerlo de vuelta inmediatamente
+          e.preventDefault();
+          if (focusable.length > 0) {
+            // Para ArrowUp/ArrowLeft, ir al último elemento
+            // Para ArrowDown/ArrowRight, ir al primer elemento
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+              focusable[focusable.length - 1].focus();
+            } else {
+              focusable[0].focus();
+            }
+          } else {
+            wrapper.focus();
+          }
+          return;
+        }
+      }
+
+      // Focus trap: Tab y Shift+Tab ciclan dentro del modal
+      if (e.key !== 'Tab') return;
+
       if (focusable.length === 0) {
         e.preventDefault();
         wrapper.focus();
@@ -162,7 +271,6 @@ export const Modal = ({
 
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
-      const active = (document.activeElement as HTMLElement) || null;
       const isShift = e.shiftKey;
 
       // Si el foco está fuera del modal, iniciar en el primero
@@ -211,8 +319,12 @@ export const Modal = ({
       // Enfocar el modal
       modalRef.current?.focus();
 
-      // Agregar listener de teclado
+      // Agregar listeners
       document.addEventListener('keydown', handleKeyDown);
+      const wrapper = modalRef.current;
+      if (wrapper) {
+        wrapper.addEventListener('focusout', handleFocusOut);
+      }
     } else if (isOpen && disableFocus) {
       // Solo agregar listener de teclado, sin manejar focus
       document.addEventListener('keydown', handleKeyDown);
@@ -220,6 +332,10 @@ export const Modal = ({
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      const wrapper = modalRef.current;
+      if (wrapper) {
+        wrapper.removeEventListener('focusout', handleFocusOut);
+      }
       // Restaurar foco al elemento anterior solo si el focus estaba habilitado
       if (!disableFocus && previousActiveElement.current) {
         previousActiveElement.current.focus();
@@ -281,7 +397,10 @@ export const Modal = ({
                     aria-label='Cerrar'
                     type='button'
                   >
-                    <IconCloseRadius aria-hidden='true' className="w-full h-full" />
+                    <IconCloseRadius
+                      aria-hidden='true'
+                      className='w-full h-full'
+                    />
                   </button>
                 )}
               </div>
