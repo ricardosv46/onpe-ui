@@ -281,7 +281,7 @@ export const Modal = ({
                     aria-label='Cerrar'
                     type='button'
                   >
-                    <IconCloseRadius aria-hidden='true' />
+                    <IconCloseRadius aria-hidden='true' className="w-full h-full" />
                   </button>
                 )}
               </div>
