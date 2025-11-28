@@ -14,6 +14,7 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   closeDisabled?: boolean;
   escapeToClose?: boolean; // Nueva prop para controlar si Escape cierra el modal
   disableFocus?: boolean; // Nueva prop para deshabilitar el focus y tabindex
+  existTabIndex?: boolean; // Nueva prop para controlar si existe el atributo tabIndex
   zIndexLevel?: number;
   overlayColor?:
     | 'blue'
@@ -40,6 +41,7 @@ export const Modal = ({
   closeDisabled = false,
   escapeToClose = true, // Por defecto Escape SÍ cierra el modal
   disableFocus = false, // Por defecto el focus SÍ está habilitado
+  existTabIndex = true, // Por defecto el atributo tabIndex SÍ existe
   zIndexLevel = 100,
   overlayColor = 'blue',
   ...props
@@ -386,8 +388,8 @@ export const Modal = ({
               <div
                 className='onpe-modal-content-wrapper'
                 ref={modalRef}
-                tabIndex={disableFocus ? -1 : 0}
                 onClick={(e) => e.stopPropagation()}
+                {...(existTabIndex && { tabIndex: disableFocus ? -1 : 0 })}
               >
                 <div className={getContentClass()}>{children}</div>
                 {closeButton && (
