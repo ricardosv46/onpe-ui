@@ -8,24 +8,20 @@ export const BrowserRecommended = () => {
   return (
     <div className="onpe-browser-recommended">
       <p>Navegadores recomendados:</p>
-      <div className="onpe-browser-list">
-        <div className="onpe-browser-item">
+      <ul className="onpe-browser-list">
+        <li className="onpe-browser-item" aria-label="Google Chrome">
           <IconChrome aria-hidden="true" />
           <p className="onpe-browser-name">Google Chrome</p>
-        </div>
-        <div className="onpe-browser-item">
+        </li>
+        <li className="onpe-browser-item" aria-label="Safari">
           <IconSafari aria-hidden="true" />
           <p className="onpe-browser-name">Safari</p>
-        </div>
-        {/* <div className="onpe-browser-item">
-          <IconMozilla />
-          <p className="onpe-browser-name">Mozilla Firefox</p>
-        </div> */}
-        <div className="onpe-browser-item">
+        </li>
+        <li className="onpe-browser-item" aria-label="Microsoft Edge">
           <IconEdge aria-hidden="true" />
           <p className="onpe-browser-name">Microsoft Edge</p>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   );
 };
