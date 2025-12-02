@@ -73,10 +73,10 @@ export const Footer = ({
                       href="https://wa.me/+51995404991"
                       className="flex"
                       target="_blank"
-                      aria-label="Whatsapp: 995 404 991"
+                      aria-label="Whatsapp: +51 995 404 991"
                     >
                       <WhatsappIcon aria-hidden="true" />
-                      &nbsp; Whatsapp: 995 404 991
+                      &nbsp; Whatsapp: +51 995 404 991
                     </a>
                   </p>
                 </li>
