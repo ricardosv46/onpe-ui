@@ -38,6 +38,11 @@ export const ModalConfirm = ({
   className = "",
   zIndexLevel = 100,
 }: ModalConfirmProps) => {
+  // Generar IDs únicos para accesibilidad
+  const titleId = 'modal-confirm-title';
+  const messageId = 'modal-confirm-message';
+  const ariaLabel = 'modal-confirm-aria-label';
+
   const handleConfirm = async () => {
     try {
       onConfirm();
@@ -45,7 +50,7 @@ export const ModalConfirm = ({
         onClose();
       }
     } catch (error) {
-      console.error("Error en handleConfirm:", error);
+      console.error('Error en handleConfirm:', error);
       if (!withoutAutoClose) {
         onClose();
       }
@@ -67,19 +72,22 @@ export const ModalConfirm = ({
       closeButton={false}
       closeDisabled
       zIndexLevel={zIndexLevel}
+      aria-labelledby={titleId}
+      aria-describedby={messageId}
+      aria-label={ariaLabel}
     >
       <div
         className={`onpe-modal-confirm-icon-container onpe-modal-confirm-icon-${color}`}
       >
-        {icon === "warning" && (
+        {icon === 'warning' && (
           <IconWarning
-            role="presentation"
+            role='presentation'
             className={`onpe-modal-confirm-icon onpe-modal-confirm-icon-${color}`}
           />
         )}
-        {icon === "success" && (
+        {icon === 'success' && (
           <IconCheck
-            role="presentation"
+            role='presentation'
             className={`onpe-modal-confirm-icon onpe-modal-confirm-icon-${color}`}
           />
         )}
@@ -91,19 +99,19 @@ export const ModalConfirm = ({
         {title}
       </p>
 
-      <div className="onpe-modal-confirm-message">{message}</div>
-      <div className="onpe-modal-confirm-buttons-container">
+      <div className='onpe-modal-confirm-message'>{message}</div>
+      <div className='onpe-modal-confirm-buttons-container'>
         {twoButtons && (
           <Button
-            className="onpe-modal-confirm-button"
-            color="skyblue"
+            className='onpe-modal-confirm-button'
+            color='skyblue'
             title={textButtonCancel}
             onClick={handleCancel}
           />
         )}
         <Button
-          className="onpe-modal-confirm-button"
-          color="red"
+          className='onpe-modal-confirm-button'
+          color='red'
           title={textButtonConfirm}
           onClick={handleConfirm}
         />
