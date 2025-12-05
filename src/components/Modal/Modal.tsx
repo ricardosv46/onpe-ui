@@ -392,6 +392,9 @@ export const Modal = ({
                 {...(existTabIndex && { tabIndex: disableFocus ? -1 : 0 })}
                 role='dialog'
                 aria-modal='true'
+                aria-labelledby={props['aria-labelledby']}
+                aria-describedby={props['aria-describedby']}
+                aria-label={props['aria-label']}
               >
                 <div className={getContentClass()}>{children}</div>
                 {closeButton && (
