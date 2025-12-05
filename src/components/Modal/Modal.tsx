@@ -390,6 +390,8 @@ export const Modal = ({
                 ref={modalRef}
                 onClick={(e) => e.stopPropagation()}
                 {...(existTabIndex && { tabIndex: disableFocus ? -1 : 0 })}
+                role='dialog'
+                aria-modal='true'
               >
                 <div className={getContentClass()}>{children}</div>
                 {closeButton && (
