@@ -41,6 +41,7 @@ export const ModalConfirm = ({
   // Generar IDs únicos para accesibilidad
   const titleId = 'modal-confirm-title';
   const messageId = 'modal-confirm-message';
+  const ariaLabel = 'modal-confirm-aria-label';
 
   const handleConfirm = async () => {
     try {
@@ -73,6 +74,7 @@ export const ModalConfirm = ({
       zIndexLevel={zIndexLevel}
       aria-labelledby={titleId}
       aria-describedby={messageId}
+      aria-label={ariaLabel}
     >
       <div
         className={`onpe-modal-confirm-icon-container onpe-modal-confirm-icon-${color}`}
