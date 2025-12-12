@@ -35,7 +35,10 @@ export const Footer = ({
             <div className="onpe-footer-contact">
               <ul className="onpe-footer-contact-list">
                 <li tabIndex={0} className="onpe-footer-contact-item">
-                  <p className="onpe-footer-contact-title">Oficina central</p>
+                  <p className="onpe-footer-contact-title">
+                    <span className="sr-only">Oficina central</span>
+                    <span aria-hidden="true">Oficina central</span>
+                  </p>
                   <p className="onpe-footer-contact-text">
                     <span className="sr-only">
                       Dirección: Jiron Washington 1894 - Cercado de Lima
@@ -55,25 +58,33 @@ export const Footer = ({
                   </p>
                 </li>
                 <li tabIndex={0} className="onpe-footer-contact-item">
-                  <p className="onpe-footer-contact-title">Contáctanos:</p>
-                  <p
-                    className="onpe-footer-contact-text"
-                    aria-label="Correo electrónico, informes@onpe punto goob punto pe,"
-                  >
-                    informes@onpe.gob.pe
-                  </p>
-                  <p
-                    className="onpe-footer-contact-text"
-                    aria-label=" Número telefónico, (01)4170630,"
-                  >
-                    (01)4170630
+                  <p className="onpe-footer-contact-title">
+                    <span className="sr-only">Contáctanos</span>
+                    <span aria-hidden="true">Contáctanos:</span>
                   </p>
                   <p className="onpe-footer-contact-text">
+                    <span className="sr-only">
+                      Correo electrónico, informes@onpe punto goob punto pe,
+                    </span>
+                    <span aria-hidden="true">informes@onpe.gob.pe</span>
+                  </p>
+
+                  <p className="onpe-footer-contact-text">
+                    <span className="sr-only">
+                      Número telefónico, (01)4170630,
+                    </span>
+                    <span aria-hidden="true">(01)4170630</span>
+                  </p>
+
+                  <p className="onpe-footer-contact-text sr-only">
+                    Whatsapp: +51 novecientos noventa y cinco cuatrocientos
+                    cuatro novecientos noventa y uno
+                  </p>
+                  <p className="onpe-footer-contact-text" aria-hidden="true">
                     <a
                       href="https://wa.me/+51995404991"
                       className="flex"
                       target="_blank"
-                      aria-label="Whatsapp: +51 995 404 991"
                     >
                       <WhatsappIcon aria-hidden="true" />
                       &nbsp; Whatsapp: +51 995 404 991
@@ -81,11 +92,11 @@ export const Footer = ({
                   </p>
                 </li>
                 <li tabIndex={0} className="onpe-footer-contact-item">
-                  <p
-                    className="onpe-footer-contact-title"
-                    aria-label="Síguenos en nuestra redes sociales"
-                  >
-                    Síguenos:
+                  <p className="onpe-footer-contact-title">
+                    <span className="sr-only">
+                      Síguenos en nuestras redes sociales
+                    </span>
+                    <span aria-hidden="true">Síguenos:</span>
                   </p>
                   <p className="onpe-footer-contact-text flex gap-4">
                     <a
