@@ -33,8 +33,8 @@ export const Footer = ({
           {showBrowserInfo && <BrowserRecommended />}
           {showContactInfo && (
             <div className="onpe-footer-contact">
-              <ul className="onpe-footer-contact-list">
-                <li tabIndex={0} className="onpe-footer-contact-item">
+              <div className="onpe-footer-contact-list">
+                <div tabIndex={0} className="onpe-footer-contact-item">
                   <p className="onpe-footer-contact-title">
                     <span className="sr-only">Oficina central</span>
                     <span aria-hidden="true">Oficina central</span>
@@ -56,8 +56,8 @@ export const Footer = ({
                       Lunes a viernes de 8:30 a.m. a 5:00 p. m.
                     </span>
                   </p>
-                </li>
-                <li tabIndex={0} className="onpe-footer-contact-item">
+                </div>
+                <div tabIndex={0} className="onpe-footer-contact-item">
                   <p className="onpe-footer-contact-title">
                     <span className="sr-only">Contáctanos</span>
                     <span aria-hidden="true">Contáctanos:</span>
@@ -75,23 +75,25 @@ export const Footer = ({
                     </span>
                     <span aria-hidden="true">(01)4170630</span>
                   </p>
-
-                  <p className="onpe-footer-contact-text sr-only">
-                    Whatsapp: +51 novecientos noventa y cinco cuatrocientos
-                    cuatro novecientos noventa y uno
-                  </p>
-                  <p className="onpe-footer-contact-text" aria-hidden="true">
+                  <p className="onpe-footer-contact-text">
                     <a
                       href="https://wa.me/+51995404991"
                       className="flex"
                       target="_blank"
                     >
                       <WhatsappIcon aria-hidden="true" />
-                      &nbsp; Whatsapp: +51 995 404 991
+                      <span aria-hidden="true">
+                        &nbsp; Whatsapp: +51 995 404 991
+                      </span>
+
+                      <span className="sr-only">
+                        Whatsapp: +51 novecientos noventa y cinco cuatrocientos
+                        cuatro novecientos noventa y uno
+                      </span>
                     </a>
                   </p>
-                </li>
-                <li tabIndex={0} className="onpe-footer-contact-item">
+                </div>
+                <div tabIndex={0} className="onpe-footer-contact-item">
                   <p className="onpe-footer-contact-title">
                     <span className="sr-only">
                       Síguenos en nuestras redes sociales
@@ -155,8 +157,8 @@ export const Footer = ({
                       </span>
                     </a>
                   </p>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
           )}
         </>
