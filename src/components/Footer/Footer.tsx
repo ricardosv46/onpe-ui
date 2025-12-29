@@ -80,15 +80,12 @@ export const Footer = ({
                       href="https://wa.me/+51995404991"
                       className="flex"
                       target="_blank"
+                      aria-label="Whatsapp: +51 novecientos noventa y cinco cuatrocientos
+                        cuatro novecientos noventa y uno"
                     >
                       <WhatsappIcon aria-hidden="true" />
                       <span aria-hidden="true">
                         &nbsp; Whatsapp: +51 995 404 991
-                      </span>
-
-                      <span className="sr-only">
-                        Whatsapp: +51 novecientos noventa y cinco cuatrocientos
-                        cuatro novecientos noventa y uno
                       </span>
                     </a>
                   </p>
