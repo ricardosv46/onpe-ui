@@ -164,8 +164,8 @@ export const Footer = ({
       {isDevelopment && (
         <div className="onpe-footer-development">
           <p className="onpe-footer-development-text">
-            Versión en Desarrollo{" "}
-            <br className="onpe-footer-development-break" /> - No Oficial
+            Versión de prueba{" "}
+            {/* <br className="onpe-footer-development-break" /> - No Oficial */}
           </p>
         </div>
       )}
