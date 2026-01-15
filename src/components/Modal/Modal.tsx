@@ -14,6 +14,7 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   closeDisabled?: boolean;
   escapeToClose?: boolean; // Nueva prop para controlar si Escape cierra el modal
   disableFocus?: boolean; // Nueva prop para deshabilitar el focus y tabindex
+  disableFocusRestore?: boolean; // Nueva prop para deshabilitar restauración de foco al cerrar
   existTabIndex?: boolean; // Nueva prop para controlar si existe el atributo tabIndex
   zIndexLevel?: number;
   overlayColor?:
@@ -41,6 +42,7 @@ export const Modal = ({
   closeDisabled = false,
   escapeToClose = true, // Por defecto Escape SÍ cierra el modal
   disableFocus = false, // Por defecto el focus SÍ está habilitado
+  disableFocusRestore = false, // Por defecto SÍ restaura el foco
   existTabIndex = true, // Por defecto el atributo tabIndex SÍ existe
   zIndexLevel = 100,
   overlayColor = 'blue',
@@ -338,12 +340,25 @@ export const Modal = ({
       if (wrapper) {
         wrapper.removeEventListener('focusout', handleFocusOut);
       }
-      // Restaurar foco al elemento anterior solo si el focus estaba habilitado
-      if (!disableFocus && previousActiveElement.current) {
+      // Restaurar foco al elemento anterior solo si:
+      // - El focus estaba habilitado (disableFocus es false)
+      // - La restauración de foco está habilitada (disableFocusRestore es false)
+      if (
+        !disableFocus &&
+        !disableFocusRestore &&
+        previousActiveElement.current
+      ) {
         previousActiveElement.current.focus();
       }
     };
-  }, [isOpen, onClose, closeDisabled, escapeToClose, disableFocus]);
+  }, [
+    isOpen,
+    onClose,
+    closeDisabled,
+    escapeToClose,
+    disableFocus,
+    disableFocusRestore,
+  ]);
 
   const getContainerClass = () => {
     const baseClass = 'onpe-modal-container';
