@@ -17,6 +17,7 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   disableFocusRestore?: boolean; // Nueva prop para deshabilitar restauración de foco al cerrar
   existTabIndex?: boolean; // Nueva prop para controlar si existe el atributo tabIndex
   zIndexLevel?: number;
+  onCloseComplete?: () => void; // Callback que se ejecuta cuando la animación de cierre termina
   overlayColor?:
     | 'blue'
     | 'skyblue'
@@ -45,6 +46,7 @@ export const Modal = ({
   disableFocusRestore = false, // Por defecto SÍ restaura el foco
   existTabIndex = true, // Por defecto el atributo tabIndex SÍ existe
   zIndexLevel = 100,
+  onCloseComplete,
   overlayColor = 'blue',
   ...props
 }: ModalProps) => {
@@ -399,6 +401,12 @@ export const Modal = ({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
               transition={{ duration: 0.2 }}
+              onAnimationComplete={(definition) => {
+                // Solo ejecutar cuando termina la animación de salida (exit)
+                if (definition === 'exit' && onCloseComplete) {
+                  onCloseComplete();
+                }
+              }}
             >
               <div
                 className='onpe-modal-content-wrapper'
