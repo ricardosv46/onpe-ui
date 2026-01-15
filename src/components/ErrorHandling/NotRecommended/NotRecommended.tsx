@@ -29,15 +29,15 @@ export const NotRecommended = ({
   // Determinar el ancho del contenedor
   const getContainerWidth = () => {
     if (isWarningClosed) return "60px";
-    if (isOpenDeviceError) return "360px";
-    return "305px";
+    if (isOpenDeviceError) return "365px";
+    return "315px";
   };
 
   // Determinar el ancho del contenido del mensaje
   const getMessageWidth = () => {
     if (isWarningClosed) return "0";
-    if (isOpenDeviceError) return "330px";
-    return "275px";
+    if (isOpenDeviceError) return "335px";
+    return "285px";
   };
 
   // Determinar las clases del contenedor
@@ -104,12 +104,12 @@ export const NotRecommended = ({
 
             {isOpenDeviceError && (
               <p className="onpe-not-recommended-message-text">
-                Sistema operativo no recomendado
+                un sistema operativo no recomendado
               </p>
             )}
             {isOpenBrowserError && !isOpenDeviceError && (
               <p className="onpe-not-recommended-message-text">
-                Navegador no recomendado
+                un navegador no recomendado
               </p>
             )}
           </div>
