@@ -8,3 +8,4 @@ export * from "./IconWarning";
 export * from "./IconWarningNotRecommended";
 export * from "./IconHome";
 export * from "./IconInfo";
+export * from "./IconPhone";

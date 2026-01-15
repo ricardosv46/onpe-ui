@@ -37,7 +37,7 @@ export const Footer = ({
                 <div tabIndex={0} className="onpe-footer-contact-item">
                   <p className="onpe-footer-contact-title">
                     <span className="sr-only">Oficina central</span>
-                    <span aria-hidden="true">Oficina central</span>
+                    <span aria-hidden="true">Oficina central:</span>
                   </p>
                   <p className="onpe-footer-contact-text">
                     <span className="sr-only">
@@ -49,7 +49,7 @@ export const Footer = ({
                   </p>
                   <p className="onpe-footer-contact-text">
                     <span className="sr-only">
-                      Horario de atención: Lunes a viernes de 8:30 a.m. a 5:00
+                      Horario de atención: Lunes a viernes de 8:30 a. m. a 5:00
                       p. m.
                     </span>
                     <span aria-hidden="true">
@@ -85,7 +85,7 @@ export const Footer = ({
                     >
                       <WhatsappIcon aria-hidden="true" />
                       <span aria-hidden="true">
-                        &nbsp; Whatsapp: +51 995 404 991
+                        &nbsp; WhatsApp: +51 995 404 991
                       </span>
                     </a>
                   </p>
