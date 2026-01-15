@@ -44,6 +44,7 @@
 }
 
 .onpe-footer-contact-text {
+  display: flex;
   font-size: 0.875rem;
   font-weight: 500;
   color: white;

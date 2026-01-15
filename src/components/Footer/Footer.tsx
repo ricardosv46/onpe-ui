@@ -7,7 +7,7 @@ import { TikTokIcon } from "../../icons/Redes/TikTokIcon";
 import { YoutubeIcon } from "../../icons/Redes/YoutubeIcon";
 import { InstagramIcon } from "../../icons/Redes/InstagramIcon";
 import { WhatsappIcon } from "../../icons/Redes/WhatsappIcon";
-
+import { IconPhone } from "../../icons/Actions/IconPhone";
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   showBrowserInfo?: boolean;
   showContactInfo?: boolean;
@@ -53,7 +53,7 @@ export const Footer = ({
                       p. m.
                     </span>
                     <span aria-hidden="true">
-                      Lunes a viernes de 8:30 a.m. a 5:00 p. m.
+                      Lunes a viernes de 8:30 a. m. a 5:00 p. m.
                     </span>
                   </p>
                 </div>
@@ -70,6 +70,8 @@ export const Footer = ({
                   </p>
 
                   <p className="onpe-footer-contact-text">
+                    <IconPhone aria-hidden="true" />
+                    &nbsp;
                     <span className="sr-only">
                       Número telefónico, (01)4170630,
                     </span>
