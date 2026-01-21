@@ -41,10 +41,10 @@ export const Footer = ({
                   </p>
                   <p className="onpe-footer-contact-text">
                     <span className="sr-only">
-                      Dirección: Jiron Washington 1894 - Cercado de Lima
+                      Dirección: Jiron Washington 1894, Cercado de Lima
                     </span>
                     <span aria-hidden="true">
-                      Jr. Washington 1894 - Cercado de Lima
+                      Jr. Washington 1894, Cercado de Lima
                     </span>
                   </p>
                   <p className="onpe-footer-contact-text">
@@ -70,26 +70,10 @@ export const Footer = ({
                   </p>
 
                   <p className="onpe-footer-contact-text">
-                    <IconPhone aria-hidden="true" />
-                    &nbsp;
                     <span className="sr-only">
                       Número telefónico, (01)4170630,
                     </span>
                     <span aria-hidden="true">(01)4170630</span>
-                  </p>
-                  <p className="onpe-footer-contact-text">
-                    <a
-                      href="https://wa.me/+51995404991"
-                      className="flex"
-                      target="_blank"
-                      aria-label="Whatsapp: +51 novecientos noventa y cinco cuatrocientos
-                        cuatro novecientos noventa y uno"
-                    >
-                      <WhatsappIcon aria-hidden="true" />
-                      <span aria-hidden="true">
-                        &nbsp; WhatsApp: +51 995 404 991
-                      </span>
-                    </a>
                   </p>
                 </div>
                 <div tabIndex={0} className="onpe-footer-contact-item">
