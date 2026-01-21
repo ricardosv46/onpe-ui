@@ -36,7 +36,7 @@ export const ModalBrowserIncompatible = ({
       </div>
 
       <p className="onpe-modal-browser-incompatible-title">
-        Estas usando un navegador no recomendado
+        Estás usando un navegador no recomendado
       </p>
 
       <p className="onpe-modal-browser-incompatible-message">
