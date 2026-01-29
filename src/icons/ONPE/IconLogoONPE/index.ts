@@ -1,0 +1,1 @@
+export { IconLogoONPE } from "./IconLogoONPE";
