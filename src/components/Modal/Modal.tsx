@@ -1,9 +1,9 @@
-import React, { HTMLAttributes, ReactNode, useEffect, useRef } from 'react';
+import { HTMLAttributes, ReactNode, useEffect, useRef } from 'react';
 import { Portal } from '../Portal/Portal';
-import { Overlay } from '../Overlay/Overlay';
 import './Modal.css';
 import { IconCloseRadius } from '../../icons/Actions/IconCloseRadius';
 import { motion, AnimatePresence } from 'framer-motion';
+import { setupRobustFocusById } from '../../a11y/robustFocus';
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
@@ -18,6 +18,19 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   existTabIndex?: boolean; // Nueva prop para controlar si existe el atributo tabIndex
   zIndexLevel?: number;
   onCloseComplete?: () => void; // Callback que se ejecuta cuando la animación de cierre termina
+  /**
+   * IDs (en orden de preferencia) a los que se intentará enfocar al abrir.
+   * Útil cuando el contenido se renderiza/hidrata con delay.
+   */
+  initialFocusIds?: string | string[];
+  /**
+   * Intervalo de reintentos (ms) para `initialFocusIds`.
+   */
+  initialFocusIntervalMs?: number;
+  /**
+   * Tiempo máximo (ms) para reintentar `initialFocusIds`.
+   */
+  initialFocusTimeoutMs?: number;
   overlayColor?:
     | 'blue'
     | 'skyblue'
@@ -47,6 +60,9 @@ export const Modal = ({
   existTabIndex = true, // Por defecto el atributo tabIndex SÍ existe
   zIndexLevel = 100,
   onCloseComplete,
+  initialFocusIds,
+  initialFocusIntervalMs = 100,
+  initialFocusTimeoutMs = 2000,
   overlayColor = 'blue',
   ...props
 }: ModalProps) => {
@@ -116,6 +132,8 @@ export const Modal = ({
 
   // Manejar teclado (Escape) y foco del modal
   useEffect(() => {
+    let cleanupRobustFocus: (() => void) | null = null;
+
     const isElementVisible = (element: HTMLElement) => {
       const style = window.getComputedStyle(element);
       return (
@@ -322,8 +340,20 @@ export const Modal = ({
       // Guardar el elemento activo anterior
       previousActiveElement.current = document.activeElement as HTMLElement;
 
-      // Enfocar el modal
+      // Enfocar el modal primero (fallback) y luego intentar enfocar un target específico si se indicó.
       modalRef.current?.focus();
+
+      if (initialFocusIds) {
+        const ids = Array.isArray(initialFocusIds)
+          ? initialFocusIds
+          : [initialFocusIds];
+        cleanupRobustFocus = setupRobustFocusById({
+          ids,
+          intervalMs: initialFocusIntervalMs,
+          timeoutMs: initialFocusTimeoutMs,
+          scrollToTop: false,
+        });
+      }
 
       // Agregar listeners
       document.addEventListener('keydown', handleKeyDown);
@@ -337,6 +367,9 @@ export const Modal = ({
     }
 
     return () => {
+      if (cleanupRobustFocus) {
+        cleanupRobustFocus();
+      }
       document.removeEventListener('keydown', handleKeyDown);
       const wrapper = modalRef.current;
       if (wrapper) {
@@ -360,6 +393,9 @@ export const Modal = ({
     escapeToClose,
     disableFocus,
     disableFocusRestore,
+    initialFocusIds,
+    initialFocusIntervalMs,
+    initialFocusTimeoutMs,
   ]);
 
   const getContainerClass = () => {
