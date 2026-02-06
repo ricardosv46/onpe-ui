@@ -40,8 +40,8 @@ export const Footer = ({
                     <span aria-hidden="true">Oficina central:</span>
                   </p>
                   <p className="onpe-footer-contact-text">
-                    <span className="sr-only">
-                      Dirección: Jiron Washington 1894, Cercado de Lima
+                    <span className="sr-only" lang="es-PE">
+                      Dirección: jiroon Washington 1894, Cercado de Lima
                     </span>
                     <span aria-hidden="true">
                       Jr. Washington 1894, Cercado de Lima
