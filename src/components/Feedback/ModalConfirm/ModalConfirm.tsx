@@ -103,7 +103,30 @@ export const ModalConfirm = ({
       </p>
 
       {message && <div className="onpe-modal-confirm-message">{message}</div>}
-      <div className="onpe-modal-confirm-buttons-container">
+
+      {/*
+        En mobile el layout apila los botones. Para que Narrador lea en el mismo orden
+        visual (arriba -> abajo), renderizamos un orden DOM distinto por breakpoint.
+        Desktop se mantiene como estaba (Cancelar -> Confirmar).
+      */}
+      <div className="onpe-modal-confirm-buttons-container onpe-modal-confirm-buttons-mobile">
+        <Button
+          className="onpe-modal-confirm-button"
+          color="red"
+          title={textButtonConfirm}
+          onClick={handleConfirm}
+        />
+        {twoButtons && (
+          <Button
+            className="onpe-modal-confirm-button"
+            color="skyblue"
+            title={textButtonCancel}
+            onClick={handleCancel}
+          />
+        )}
+      </div>
+
+      <div className="onpe-modal-confirm-buttons-container onpe-modal-confirm-buttons-desktop">
         {twoButtons && (
           <Button
             className="onpe-modal-confirm-button"

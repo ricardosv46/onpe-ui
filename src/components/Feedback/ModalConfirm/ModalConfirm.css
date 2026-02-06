@@ -66,12 +66,16 @@
 
 .onpe-modal-confirm-buttons-container {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   gap: 20px; /* 1.25rem = 20px */
   margin-top: 44px; /* 2.75rem = 44px */
+}
+
+.onpe-modal-confirm-buttons-desktop {
+  display: none;
 }
 
 .onpe-modal-confirm-button {
@@ -105,6 +109,14 @@
   
   .onpe-modal-confirm-buttons-container {
     flex-direction: row; /* lg:flex-row */
+  }
+
+  .onpe-modal-confirm-buttons-mobile {
+    display: none;
+  }
+
+  .onpe-modal-confirm-buttons-desktop {
+    display: flex;
   }
   
   .onpe-modal-confirm-button {
