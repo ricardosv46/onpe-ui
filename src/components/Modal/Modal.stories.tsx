@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
 import { Button } from "../Button/Button";
 
@@ -96,6 +96,154 @@ export const WithCloseButton: Story = {
             <Button color="primary" title="Aceptar" className="w-full" />
             <Button color="red" title="Cancelar" onClick={() => setIsOpen(false)} className="w-full" />
           </div>
+        </Modal>
+      </div>
+    );
+  },
+  args: {
+    overlayColor: "blue",
+  },
+};
+
+/**
+ * Historia para REPLICAR el caso host:
+ * - abre modal con closeButton
+ * - simula carga async del contenido
+ * - simula un "foco externo" que cae en el botón Cerrar primero
+ * - luego el foco vuelve al contenedor del modal
+ * - emite un mensaje en aria-live cuando "termina de cargar"
+ *
+ * Útil para probar Narrador (Windows) y el orden de anuncios.
+ */
+export const WithCloseButtonAsyncLoadFocusJank: Story = {
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [isTitleLoaded, setIsTitleLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [liveMessage, setLiveMessage] = useState("");
+    const timeoutsRef = useRef<Array<ReturnType<typeof globalThis.setTimeout>>>(
+      []
+    );
+
+    useEffect(() => {
+      // limpiar timeouts previos (React strict mode / re-renders)
+      for (const id of timeoutsRef.current) {
+        globalThis.clearTimeout(id);
+      }
+      timeoutsRef.current = [];
+
+      if (!isOpen) {
+        setIsTitleLoaded(false);
+        setIsLoaded(false);
+        setLiveMessage("");
+        return;
+      }
+
+      setIsTitleLoaded(false);
+      setIsLoaded(false);
+      setLiveMessage("ONPEID LOADING");
+
+      // Simula contenido/hidratación que aparece tarde
+      timeoutsRef.current.push(
+        globalThis.setTimeout(() => {
+          setIsTitleLoaded(true);
+        }, 350)
+      );
+      timeoutsRef.current.push(
+        globalThis.setTimeout(() => {
+          setIsLoaded(true);
+        }, 650)
+      );
+
+      // Simula comportamiento del host: el foco cae primero en "Cerrar"
+      timeoutsRef.current.push(
+        globalThis.setTimeout(() => {
+          const closeBtn = document.querySelector<HTMLButtonElement>(
+            ".onpe-modal-close-button"
+          );
+          closeBtn?.focus();
+        }, 60)
+      );
+
+      // Luego vuelve el foco al wrapper del modal
+      timeoutsRef.current.push(
+        globalThis.setTimeout(() => {
+          const wrapper = document.querySelector<HTMLElement>(
+            ".onpe-modal-content-wrapper"
+          );
+          wrapper?.focus();
+        }, 200)
+      );
+
+      // Simula evento "finished loading" que Narrador anuncia por aria-live
+      timeoutsRef.current.push(
+        globalThis.setTimeout(() => {
+          setLiveMessage("ONPEID FINISHED LOADING");
+        }, 900)
+      );
+
+      return () => {
+        for (const id of timeoutsRef.current) {
+          globalThis.clearTimeout(id);
+        }
+        timeoutsRef.current = [];
+      };
+    }, [isOpen]);
+
+    return (
+      <div>
+        <div className="p-4 mb-4 bg-onpe-ui-gray-100 rounded">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="px-4 py-2 text-white bg-onpe-ui-green-500 rounded hover:bg-onpe-ui-green-600"
+          >
+            {isOpen ? "Cerrar Modal" : "Abrir Modal (async + focus jank)"}
+          </button>
+        </div>
+
+        <Modal
+          {...args}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          closeButton={true}
+        >
+          <div aria-live="polite" className="sr-only">
+            {liveMessage}
+          </div>
+
+          {!isLoaded ? (
+            <>
+              {isTitleLoaded ? (
+                <h2 className="mb-4 text-2xl font-bold text-onpe-ui-blue">
+                  ONPEID
+                </h2>
+              ) : (
+                <div className="mb-4 h-8" />
+              )}
+              <p className="mb-6 text-onpe-ui-gray-dark">
+                Cargando… (título y contenido aparecen con delay)
+              </p>
+            </>
+          ) : (
+            <>
+              <h2 className="mb-4 text-2xl font-bold text-onpe-ui-blue">
+                ONPEID
+              </h2>
+              <p className="mb-6 text-onpe-ui-gray-dark">
+                Contenido cargado. Prueba Narrador: debería anunciar “Cerrar
+                botón” y luego el diálogo, además del live region.
+              </p>
+              <div className="space-y-3">
+                <Button color="primary" title="Aceptar" className="w-full" />
+                <Button
+                  color="red"
+                  title="Cancelar"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full"
+                />
+              </div>
+            </>
+          )}
         </Modal>
       </div>
     );

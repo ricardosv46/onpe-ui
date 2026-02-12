@@ -1,6 +1,7 @@
 import { Modal } from "../../Modal/Modal";
 import { IconSpinnerDesktop } from "../../../icons/Actions/IconSpinnerDesktop/IconSpinnerDesktop";
 import { IconSpinnerMobile } from "../../../icons/Actions/IconSpinnerMobile/IconSpinnerMobile";
+import { useEffect, useState } from "react";
 import "./ModalLoading.css";
 
 export interface ModalLoadingProps {
@@ -18,6 +19,25 @@ export const ModalLoading = ({
   className = "",
   zIndexLevel = 100,
 }: ModalLoadingProps) => {
+  const [announceMessage, setAnnounceMessage] = useState("");
+
+  useEffect(() => {
+    if (!isOpen) {
+      setAnnounceMessage("");
+      return;
+    }
+
+    // Forzar anuncio en Narrador: insertar el texto en un tick posterior.
+    setAnnounceMessage("");
+    const t = globalThis.setTimeout(() => {
+      setAnnounceMessage(message);
+    }, 0);
+
+    return () => {
+      globalThis.clearTimeout(t);
+    };
+  }, [isOpen, message]);
+
   return (
     <Modal
       disableFocus
@@ -28,8 +48,17 @@ export const ModalLoading = ({
       closeDisabled
       whitoutBackground={true}
     >
-      <IconSpinnerDesktop className="onpe-modal-loading-spinner-desktop" />
-      <IconSpinnerMobile className="onpe-modal-loading-spinner-mobile" />
+      <output className="sr-only" aria-live="polite" aria-atomic="true">
+        {announceMessage}
+      </output>
+      <IconSpinnerDesktop
+        className="onpe-modal-loading-spinner-desktop"
+        aria-hidden="true"
+      />
+      <IconSpinnerMobile
+        className="onpe-modal-loading-spinner-mobile"
+        aria-hidden="true"
+      />
       <p className="onpe-modal-loading-message">{message}</p>
     </Modal>
   );
