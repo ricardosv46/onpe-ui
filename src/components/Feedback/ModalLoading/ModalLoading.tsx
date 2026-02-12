@@ -27,11 +27,12 @@ export const ModalLoading = ({
       return;
     }
 
-    // Forzar anuncio en Narrador: insertar el texto en un tick posterior.
+    // Forzar anuncio en Narrador: insertar el texto con un pequeño delay
+    // para evitar perder el anuncio durante el montaje/animación del Portal.
     setAnnounceMessage("");
     const t = globalThis.setTimeout(() => {
       setAnnounceMessage(message);
-    }, 0);
+    }, 150);
 
     return () => {
       globalThis.clearTimeout(t);
@@ -48,9 +49,9 @@ export const ModalLoading = ({
       closeDisabled
       whitoutBackground={true}
     >
-      <output className="sr-only" aria-live="polite" aria-atomic="true">
+      <div className="sr-only" aria-live="assertive" aria-atomic="true">
         {announceMessage}
-      </output>
+      </div>
       <IconSpinnerDesktop
         className="onpe-modal-loading-spinner-desktop"
         aria-hidden="true"
