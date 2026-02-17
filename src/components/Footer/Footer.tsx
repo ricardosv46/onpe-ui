@@ -150,7 +150,7 @@ export const Footer = ({
       {isDevelopment && (
         <div className="onpe-footer-development">
           <p className="onpe-footer-development-text">
-            Versión de prueba{" "}
+            Versión en Desarrollo - No Oficial
             {/* <br className="onpe-footer-development-break" /> - No Oficial */}
           </p>
         </div>
