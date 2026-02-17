@@ -100,16 +100,16 @@ export const NotRecommended = ({
           style={{ width: getMessageWidth() }}
         >
           <div className="onpe-not-recommended-message-content">
-            <p className="onpe-not-recommended-message-title">Estás usando</p>
+            <p className="onpe-not-recommended-message-title">Estás usando un</p>
 
             {isOpenDeviceError && (
               <p className="onpe-not-recommended-message-text">
-                un sistema operativo no recomendado
+                sistema operativo no recomendado
               </p>
             )}
             {isOpenBrowserError && !isOpenDeviceError && (
               <p className="onpe-not-recommended-message-text">
-                un navegador no recomendado
+                navegador no recomendado
               </p>
             )}
           </div>
