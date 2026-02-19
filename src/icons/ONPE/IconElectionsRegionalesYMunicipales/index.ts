@@ -1,0 +1,1 @@
+export { IconElectionsRegionalesYMunicipales } from "./IconElectionsRegionalesYMunicipales";

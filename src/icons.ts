@@ -35,3 +35,4 @@ export { YoutubeIcon } from "./icons/Redes/YoutubeIcon";
 export { IconVotoDigital } from "./icons/ONPE/IconVotoDigital/IconVotoDigital";
 export { IconElectionsGeneral } from "./icons/ONPE/IconElectionsGeneral/IconElectionsGeneral";
 export { IconLogoONPE } from "./icons/ONPE/IconLogoONPE/IconLogoONPE";
+export { IconElectionsRegionalesYMunicipales } from "./icons/ONPE/IconElectionsRegionalesYMunicipales/IconElectionsRegionalesYMunicipales";
