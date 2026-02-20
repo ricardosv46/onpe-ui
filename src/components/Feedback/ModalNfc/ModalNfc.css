@@ -16,7 +16,7 @@
   text-align: center;
   color: var(--onpe-ui-blue);
   font-weight: 700; /* font-bold */
-  font-size: 18px; /* text-lg */
+  font-size: 16px; /* text-lg */
 }
 
 .onpe-modal-nfc-content {
@@ -44,14 +44,15 @@
 
 .onpe-modal-nfc-list {
   list-style-type: disc;
-  padding-left: 16px; /* pl-4 */
+  padding-left: 26px; /* pl-4 */
   margin-top: 8px; /* space-y-2 */
 }
 
 .onpe-modal-nfc-list-item {
   font-size: 14px; /* text-sm */
-  text-align: justify;
+  text-align: left;
   margin-bottom: 8px; /* space-y-2 */
+  letter-spacing: 0.15px;
 }
 
 .onpe-modal-nfc-image {
@@ -70,7 +71,7 @@
   color: var(--onpe-ui-blue);
   font-weight: 700; /* font-bold */
   margin: 20px 0; /* my-5 */
-  font-size: 18px; /* text-lg */
+  font-size: 16px; /* text-lg */
 }
 
 .onpe-modal-nfc-instructions {
@@ -126,7 +127,7 @@
 /* Responsive Design */
 @media (min-width: 640px) {
   .onpe-modal-nfc-title {
-    font-size: 20px; /* text-xl para tablet y desktop */
+    font-size: 16px; /* text-xl para tablet y desktop */
   }
   
   .onpe-modal-nfc-content {
@@ -146,7 +147,7 @@
   }
   
   .onpe-modal-nfc-subtitle {
-    font-size: 20px; /* text-xl para tablet y desktop */
+    font-size: 16px; /* text-xl para tablet y desktop */
   }
   
   .onpe-modal-nfc-ordered-list {
@@ -170,4 +171,31 @@
     /* Desktop grande: Tamaño específico de 600px */
     max-width: 600px !important;
   }
+}
+
+.onpe-modal-nfc-icons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.onpe-modal-nfc-icon-container {
+  color: var(--onpe-ui-skyblue);
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition: color 120ms ease;
+}
+
+.onpe-modal-nfc-icon-container:focus-visible {
+  outline: 2px solid var(--onpe-ui-blue);
+  outline-offset: 2px;
 }

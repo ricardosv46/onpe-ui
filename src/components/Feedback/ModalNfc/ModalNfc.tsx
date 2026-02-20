@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Modal } from '../../Modal/Modal';
 import './ModalNfc.css';
+import { IconAndroid, IconApple } from '../../../icons-os';
 
 export interface ModalNfcProps {
   isOpen: boolean;
@@ -19,6 +20,9 @@ export const ModalNfc = ({
   iconNfc2,
   zIndexLevel = 100,
 }: ModalNfcProps) => {
+  const ANDROID_VIDEO_URL = 'https://www.youtube.com/watch?v=qlVVC9JHSro';
+  const IPHONE_VIDEO_URL = 'https://www.youtube.com/watch?v=wjzh_FUVXRE';
+
   return (
     <Modal
       zIndexLevel={zIndexLevel}
@@ -35,7 +39,7 @@ export const ModalNfc = ({
         <div className='onpe-modal-nfc-section'>
           <p className='onpe-modal-nfc-step' tabIndex={0}>
             <span className='onpe-modal-nfc-step-number'>1. </span>
-            Celular Android
+            Celular / Tablet Android
           </p>
           <ul role='presentation' className='onpe-modal-nfc-list'>
             <li role='presentation' className='onpe-modal-nfc-list-item'>
@@ -92,10 +96,35 @@ export const ModalNfc = ({
               Coloca tu DNIe sobre esa zona hasta que recibas una confirmación
               del sistema.
             </li>
+            <li role='presentation'>
+              Puedes consultar los videos "Aprende como leer tu DNIe con NFC":
+            </li>
           </ol>
         </div>
+        <div className='onpe-modal-nfc-icons'>
+          <a
+            className='onpe-modal-nfc-icon-container'
+            href={ANDROID_VIDEO_URL}
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label='Ver video para Android en YouTube'
+          >
+            <IconAndroid />
+            Android
+          </a>
+          <a
+            className='onpe-modal-nfc-icon-container'
+            href={IPHONE_VIDEO_URL}
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label='Ver video para iPhone en YouTube'
+          >
+            <IconApple />
+            iPhone
+          </a>
+        </div>
         {/* <IconMobileNfc className="onpe-modal-nfc-icon-mobile" /> */}
-        {iconNfc2}
+        {/* {iconNfc2} */}
       </section>
     </Modal>
   );
