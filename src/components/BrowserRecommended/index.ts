@@ -1,0 +1,1 @@
+export { BrowserRecommended } from "./BrowserRecommended";

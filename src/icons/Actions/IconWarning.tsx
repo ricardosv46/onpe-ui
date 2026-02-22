@@ -1,0 +1,22 @@
+import * as React from "react";
+import { SVGProps } from "react";
+
+export const IconWarning = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="5.040041067761807 0 89.93839835728953 75.564681724846"
+    style={{ maxHeight: 500 }}
+    width={89.93839835728953}
+    height={75.564681724846}
+    {...props}
+  >
+    <path strokeWidth={4} stroke="currentColor" fill="white" d="M89.8369 73H10.1631L50 4L89.8369 73Z" />
+    <path
+      fill="currentColor"
+      d="M53.2832 35.828L52.5632 53.072H47.3432L46.6232 35.828H53.2832ZM50.0432 62.288C48.9632 62.288 48.0752 61.976 47.3792 61.352C46.7072 60.704 46.3712 59.912 46.3712 58.976C46.3712 58.016 46.7072 57.212 47.3792 56.564C48.0752 55.916 48.9632 55.592 50.0432 55.592C51.0992 55.592 51.9632 55.916 52.6352 56.564C53.3312 57.212 53.6792 58.016 53.6792 58.976C53.6792 59.912 53.3312 60.704 52.6352 61.352C51.9632 61.976 51.0992 62.288 50.0432 62.288Z"
+    />
+  </svg>
+);
+
+export default IconWarning;

@@ -1,0 +1,29 @@
+/* CSS exclusivo para Storybook — incluye preflight para ver los componentes correctamente.
+   Este archivo NO se publica ni afecta al proyecto host. */
+@import "tailwindcss";
+
+@theme {
+  --color-onpe-primary: #C8171E;
+  --color-onpe-primary-dark: #A01218;
+  --color-onpe-primary-light: #E53E44;
+  --color-onpe-secondary: #1A3A6B;
+  --color-onpe-secondary-dark: #0F2347;
+  --color-onpe-secondary-light: #2A5499;
+
+  /* Colores de onpe-ui */
+  --color-onpe-blue: #003770;
+  --color-onpe-blue-dark: #062A50;
+  --color-onpe-skyblue: #0073cf;
+  --color-onpe-skyblue-light: #69b2e8;
+  --color-onpe-yellow: #ffb81c;
+  --color-onpe-light-skyblue: #aaeff6;
+  --color-onpe-gray: #bcbcbc;
+  --color-onpe-gray-light: #bdbdbd;
+  --color-onpe-gray-extra-light: #f2f2f2;
+  --color-onpe-red: #e3002b;
+  --color-onpe-dark-gray: #4f4f4f;
+  --color-onpe-green: #76bd43;
+  --color-onpe-yellow-light: #FFF1D2;
+  --color-onpe-black: #000000;
+  --color-onpe-white: #ffffff;
+}
