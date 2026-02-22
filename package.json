@@ -1,6 +1,6 @@
 {
-  "name": "onpe-voto",
-  "version": "0.1.12",
+  "name": "@votodigital-onpeui/react",
+  "version": "0.1.0",
   "description": "Librería de componentes UI para proyectos ONPE",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -25,6 +25,9 @@
     "./styles.css": "./dist/styles.css",
     "./dist/styles.css": "./dist/styles.css",
     "./dist/index.css": "./dist/styles.css"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist"
