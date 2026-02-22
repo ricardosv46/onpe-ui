@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import { BrowserRecommended } from "../BrowserRecommended/BrowserRecommended";
 import { FaceBookIcon } from "../../icons/Redes/FaceBookIcon";
 import { XIcon } from "../../icons/Redes/XIcon";
@@ -6,7 +6,7 @@ import { TikTokIcon } from "../../icons/Redes/TikTokIcon";
 import { YoutubeIcon } from "../../icons/Redes/YoutubeIcon";
 import { InstagramIcon } from "../../icons/Redes/InstagramIcon";
 
-export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
   showBrowserInfo?: boolean;
   showContactInfo?: boolean;
   children?: ReactNode;
