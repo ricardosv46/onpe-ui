@@ -40,7 +40,7 @@ export const ModalNfc = ({
         <div className="w-full">
           <p className="text-sm text-justify mb-3" tabIndex={0}>
             <span className="mr-1">1.</span>
-            Celular / Tablet Android
+            Celular Android
           </p>
           <ul role="presentation" className="list-disc pl-[26px] mt-2">
             <li role="presentation" className="text-sm text-left mb-2 tracking-[0.15px]">
