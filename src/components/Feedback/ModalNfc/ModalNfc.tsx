@@ -83,7 +83,7 @@ export const ModalNfc = ({
               Busca en internet dónde está el lector NFC según tu modelo.
             </li>
             <li role="presentation" className="mb-2">
-              Coloca tu DNIe sobre esa zona hasta que recibas una confirmación
+              Coloca tu DNIe sobre esa zona hasta que recibas la confirmación
               del sistema.
             </li>
             <li role="presentation" className="mb-2">
