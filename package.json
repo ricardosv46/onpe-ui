@@ -1,6 +1,6 @@
 {
   "name": "@votodigital-onpeui/react",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "description": "Librería de componentes UI para proyectos ONPE",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -39,6 +39,7 @@
     "dev:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "prepublishOnly": "npm run build",
     "lint": "eslint src --ext .ts,.tsx"
   },
   "peerDependencies": {
