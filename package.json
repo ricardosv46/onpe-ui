@@ -1,6 +1,6 @@
 {
   "name": "@votodigital-onpeui/react",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Librería de componentes UI para proyectos ONPE",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -42,7 +42,6 @@
     "prepublishOnly": "npm run build",
     "lint": "eslint src --ext .ts,.tsx",
     "publish": "npm run build && npm publish"
-
   },
   "peerDependencies": {
     "react": ">=18",
