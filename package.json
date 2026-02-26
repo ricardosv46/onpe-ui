@@ -40,8 +40,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepublishOnly": "npm run build",
-    "lint": "eslint src --ext .ts,.tsx",
-    "publish": "npm run build && npm publish"
+    "lint": "eslint src --ext .ts,.tsx"
   },
   "peerDependencies": {
     "react": ">=18",
