@@ -61,7 +61,7 @@ export const ModalDnieVersions = ({
               </li>
             </ul>
           </div>
-          <div className="w-[240px] sm:w-[200px] relative">
+          <div className="w-[240px] sm:w-[200px] relative flex justify-center">
             {iconDnie1}
           </div>
         </article>
