@@ -4,7 +4,8 @@
       "Bash(npm whoami:*)",
       "Bash(npm run build:*)",
       "Bash(npm show:*)",
-      "Bash(npm publish:*)"
+      "Bash(npm publish:*)",
+      "Bash(npm version:*)"
     ]
   }
 }
