@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import { Modal } from "../../Modal/Modal";
 import { Button } from "../../Button/Button";
-import { IconWarning } from "../../../icons/Actions/IconWarning";
 import { IconCheck } from "../../../icons/Actions/IconCheck";
+import { IconWarningNotRecommended } from "../../../icons";
 
 export interface ModalConfirmProps {
   isOpen: boolean;
@@ -71,7 +71,8 @@ export const ModalConfirm = ({
     >
       <div className="flex items-center justify-center">
         {icon === "warning" && (
-          <IconWarning
+          <IconWarningNotRecommended
+          
             role="presentation"
             className={`w-16 h-16 ${iconColorClass}`}
           />
