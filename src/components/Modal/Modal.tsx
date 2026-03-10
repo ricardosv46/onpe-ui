@@ -115,6 +115,9 @@ export const Modal = ({
 
   // Keyboard handling and focus trap
   useEffect(() => {
+    let focusOutWrapper: HTMLDivElement | null = null;
+    const pendingTasks: Array<ReturnType<typeof globalThis.setTimeout>> = [];
+
     const isElementVisible = (element: HTMLElement) => {
       const style = window.getComputedStyle(element);
       return (
@@ -263,23 +266,66 @@ export const Modal = ({
 
     if (isOpen && !disableFocus) {
       previousActiveElement.current = document.activeElement as HTMLElement;
-      modalRef.current?.focus();
+      const labelledById = props["aria-labelledby"];
+
+      const focusInitial = (wrapper: HTMLElement) => {
+        if (labelledById) {
+          const labelEl = document.getElementById(labelledById);
+          if (labelEl instanceof HTMLElement) {
+            if (!labelEl.hasAttribute("tabindex")) labelEl.setAttribute("tabindex", "-1");
+            labelEl.focus({ preventScroll: true });
+            return;
+          }
+        }
+        const focusable = getFocusableElements(wrapper);
+        const first = focusable[0];
+        if (first) first.focus({ preventScroll: true });
+        else wrapper.focus();
+      };
+
+      const bindFocusManagement = (attempt = 0) => {
+        const wrapper = modalRef.current;
+        if (!wrapper) {
+          if (attempt < 10) {
+            pendingTasks.push(
+              globalThis.setTimeout(() => bindFocusManagement(attempt + 1), 25)
+            );
+          }
+          return;
+        }
+
+        if (focusOutWrapper !== wrapper) {
+          focusOutWrapper?.removeEventListener("focusout", handleFocusOut);
+          wrapper.addEventListener("focusout", handleFocusOut);
+          focusOutWrapper = wrapper;
+        }
+
+        focusInitial(wrapper);
+      };
+
       document.addEventListener("keydown", handleKeyDown);
-      const wrapper = modalRef.current;
-      if (wrapper) wrapper.addEventListener("focusout", handleFocusOut);
+      pendingTasks.push(globalThis.setTimeout(() => bindFocusManagement(), 0));
     } else if (isOpen && disableFocus) {
       document.addEventListener("keydown", handleKeyDown);
     }
 
     return () => {
+      pendingTasks.forEach((task) => globalThis.clearTimeout(task));
       document.removeEventListener("keydown", handleKeyDown);
-      const wrapper = modalRef.current;
-      if (wrapper) wrapper.removeEventListener("focusout", handleFocusOut);
+      focusOutWrapper?.removeEventListener("focusout", handleFocusOut);
       if (!disableFocus && !disableFocusRestore && previousActiveElement.current) {
         previousActiveElement.current.focus();
       }
     };
-  }, [isOpen, onClose, closeDisabled, escapeToClose, disableFocus, disableFocusRestore]);
+  }, [
+    isOpen,
+    onClose,
+    closeDisabled,
+    escapeToClose,
+    disableFocus,
+    disableFocusRestore,
+    props["aria-labelledby"],
+  ]);
 
   if (!mounted) return null;
 
