@@ -43,7 +43,7 @@ export const OnpeIdModal = ({
       <Modal
         isOpen={isOpenModal && isOnline}
         onClose={onClose}
-        className="max-w-custom-673 relative"
+        className="max-w-custom-673 p-10 relative"
         closeButton={!isOpenLaunchApp && isIframeLoaded}
         escapeToClose={false}
       >
@@ -56,7 +56,7 @@ export const OnpeIdModal = ({
               handleModalIframeReady();
               setIsIframeLoaded(true);
             }}
-            className="w-full h-[380px] md:h-[312px]"
+            className="w-full h-[380px] md:h-[315px]"
             title="Aplicativo ONPEID para autenticación y registro"
           />
         )}
