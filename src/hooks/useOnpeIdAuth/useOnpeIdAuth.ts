@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import {
   useIframeCommunication,
@@ -12,11 +12,15 @@ interface UseOnpeIdAuthParams {
   secure?: boolean;
   navigate: (url: string) => void;
   onConnectionChange?: (connected: boolean) => void;
+  connectionApp?: boolean;
+  onPageReload?: () => void;
   onComplete?: (data: SocketEventData) => void;
   onDisconnectClient?: () => void;
   onExpiredApp?: () => void;
   onDisconnect?: () => void;
   onMaxReconnects?: () => void;
+  onHomeApp?: () => void;
+  onNotApp?: () => void;
 }
 
 export const useOnpeIdAuth = ({
@@ -24,7 +28,11 @@ export const useOnpeIdAuth = ({
   secure = false,
   navigate,
   onConnectionChange,
+  connectionApp,
+  onPageReload,
   onComplete,
+  onHomeApp,
+  onNotApp,
   onDisconnectClient,
   onExpiredApp,
   onDisconnect,
@@ -58,6 +66,14 @@ export const useOnpeIdAuth = ({
     resetIframeState();
   }, [closeModal, closeLaunchApp, resetIframeState, onConnectionChange]);
 
+  useEffect(() => {
+    if (connectionApp) {
+      onConnectionChange?.(false);
+      onPageReload?.();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- solo se ejecuta en el primer render
+  }, []);
+
   const { attempts } = useSocketConnection({
     socketUrl,
     secure,
@@ -84,6 +100,14 @@ export const useOnpeIdAuth = ({
     onLaunchApp: (data) => {
       openLaunchApp();
       setDataOpenLaunchApp((data.data as Record<string, unknown>) ?? {});
+    },
+    onHomeApp: () => {
+      handleClose();
+      onHomeApp?.();
+    },
+    onNotApp: () => {
+      handleClose();
+      onNotApp?.();
     },
   });
 

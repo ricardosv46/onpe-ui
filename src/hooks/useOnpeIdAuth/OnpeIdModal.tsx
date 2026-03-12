@@ -56,7 +56,7 @@ export const OnpeIdModal = ({
               handleModalIframeReady();
               setIsIframeLoaded(true);
             }}
-            className="w-full h-[380px] md:h-[315px]"
+            className="w-full h-[390px] md:h-[312px]"
             title="Aplicativo ONPEID para autenticación y registro"
           />
         )}

@@ -1,18 +1,21 @@
 import { useEffect, useRef, useCallback } from "react";
 
-export type MessageStatus = "EXPIRED_APP" | "OPEN_APP" | "LAUNCH_APP";
+export type MessageStatus = "EXPIRED_APP" | "OPEN_APP" | "LAUNCH_APP" | "HOME_APP" | "NOT_APP";
 
 export interface IframeMessage {
   status: MessageStatus;
   url?: string;
   data?: unknown;
   token?: string;
+  type?: "LOGIN" | "FIRMA";
 }
 
 interface UseIframeCommunicationParams {
   onExpiredApp?: (data: IframeMessage) => void;
   onOpenApp?: (data: IframeMessage) => void;
   onLaunchApp?: (data: IframeMessage) => void;
+  onHomeApp?: (data: IframeMessage) => void;
+  onNotApp?: (data: IframeMessage) => void;
   enabled?: boolean;
   allowedOrigin?: string;
 }
@@ -21,6 +24,8 @@ export const useIframeCommunication = ({
   onExpiredApp,
   onOpenApp,
   onLaunchApp,
+  onHomeApp,
+  onNotApp,
   enabled = true,
   allowedOrigin,
 }: UseIframeCommunicationParams = {}) => {
@@ -28,6 +33,8 @@ export const useIframeCommunication = ({
     onExpiredApp,
     onOpenApp,
     onLaunchApp,
+    onHomeApp,
+    onNotApp,
   });
 
   useEffect(() => {
@@ -35,8 +42,10 @@ export const useIframeCommunication = ({
       onExpiredApp,
       onOpenApp,
       onLaunchApp,
+      onHomeApp,
+      onNotApp,
     };
-  }, [onExpiredApp, onOpenApp, onLaunchApp]);
+  }, [onExpiredApp, onOpenApp, onLaunchApp, onHomeApp, onNotApp]);
 
   useEffect(() => {
     if (!enabled) return;
@@ -44,7 +53,7 @@ export const useIframeCommunication = ({
     const handler = (event: MessageEvent) => {
       if (allowedOrigin && event.origin !== allowedOrigin) {
         console.warn(
-          `Mensaje rechazado de origen no permitido: ${event.origin}`
+          `Mensaje rechazado de origen no permitido: ${event.origin}`,
         );
         return;
       }
@@ -63,6 +72,12 @@ export const useIframeCommunication = ({
           break;
         case "LAUNCH_APP":
           handlers.onLaunchApp?.(data);
+          break;
+        case "HOME_APP":
+          handlers.onHomeApp?.(data);
+          break;
+        case "NOT_APP":
+          handlers.onNotApp?.(data);
           break;
         default:
           break;
@@ -94,7 +109,7 @@ export const useSendMessageToIframe = ({
         console.error("Error al enviar mensaje al iframe:", error);
       }
     },
-    [iframeRef, modalUrl]
+    [iframeRef, modalUrl],
   );
 
   return { sendMessageToIframe };
