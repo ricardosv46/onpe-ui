@@ -12,6 +12,7 @@ interface OnpeIdModalProps {
   preloadIframeRef: React.RefObject<HTMLIFrameElement | null>;
   handlePreloadIframeReady: () => void;
   handleModalIframeReady: () => void;
+  disableFocus?: boolean;
 }
 
 export const OnpeIdModal = ({
@@ -24,6 +25,7 @@ export const OnpeIdModal = ({
   preloadIframeRef,
   handlePreloadIframeReady,
   handleModalIframeReady,
+  disableFocus = false,
 }: OnpeIdModalProps) => {
   const [isIframeLoaded, setIsIframeLoaded] = useState(false);
 
@@ -46,6 +48,7 @@ export const OnpeIdModal = ({
         className="max-w-custom-673 p-10 relative"
         closeButton={!isOpenLaunchApp && isIframeLoaded}
         escapeToClose={false}
+        disableFocus={disableFocus}
       >
         {!!modalUrl && isOnline && (
           // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- iframe onLoad es necesario para el flujo de autenticación
