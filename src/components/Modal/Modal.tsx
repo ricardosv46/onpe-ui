@@ -269,13 +269,9 @@ export const Modal = ({
       const labelledById = props["aria-labelledby"];
 
       const focusInitial = (wrapper: HTMLElement) => {
-        if (labelledById) {
-          const labelEl = document.getElementById(labelledById);
-          if (labelEl instanceof HTMLElement) {
-            if (!labelEl.hasAttribute("tabindex")) labelEl.setAttribute("tabindex", "-1");
-            labelEl.focus({ preventScroll: true });
-            return;
-          }
+        if (labelledById && document.getElementById(labelledById)) {
+          wrapper.focus({ preventScroll: true });
+          return;
         }
         const focusable = getFocusableElements(wrapper);
         const first = focusable[0];
