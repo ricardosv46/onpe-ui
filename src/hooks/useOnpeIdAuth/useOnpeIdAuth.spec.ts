@@ -116,6 +116,14 @@ describe("useOnpeIdAuth", () => {
     expect(onPageReload).not.toHaveBeenCalled();
   });
 
+  test("llama reset al desmontar el hook", () => {
+    const { unmount } = renderHook(() => useOnpeIdAuth(defaultParams));
+
+    unmount();
+
+    expect(mockUseIframePreload.reset).toHaveBeenCalled();
+  });
+
   test("onOpenApp navega a la URL recibida", () => {
     const navigate = vi.fn();
     let iframeCommArgs: { onOpenApp?: (data: { url: string }) => void } = {};

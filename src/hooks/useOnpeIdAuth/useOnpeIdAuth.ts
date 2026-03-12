@@ -21,6 +21,7 @@ interface UseOnpeIdAuthParams {
   onMaxReconnects?: () => void;
   onHomeApp?: () => void;
   onNotApp?: () => void;
+  isSessionExpired?: boolean;
 }
 
 export const useOnpeIdAuth = ({
@@ -34,6 +35,7 @@ export const useOnpeIdAuth = ({
   onHomeApp,
   onNotApp,
   onDisconnectClient,
+  isSessionExpired,
   onExpiredApp,
   onDisconnect,
   onMaxReconnects,
@@ -71,6 +73,9 @@ export const useOnpeIdAuth = ({
       onConnectionChange?.(false);
       onPageReload?.();
     }
+    return () => {
+      resetIframeState();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- solo se ejecuta en el primer render
   }, []);
 
@@ -87,6 +92,7 @@ export const useOnpeIdAuth = ({
     onMaxReconnects,
     onConnectionChange,
     enabled: isOpenModal && !!modalUrl,
+    isSessionExpired,
   });
 
   useIframeCommunication({

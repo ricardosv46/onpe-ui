@@ -21,6 +21,7 @@ interface UseSocketConnectionParams {
   onMaxReconnects?: () => void;
   onConnectionChange?: (connected: boolean) => void;
   enabled?: boolean;
+  isSessionExpired?: boolean;
 }
 
 export const useSocketConnection = ({
@@ -36,6 +37,7 @@ export const useSocketConnection = ({
   onMaxReconnects,
   onConnectionChange,
   enabled = true,
+  isSessionExpired = false,
 }: UseSocketConnectionParams) => {
   const socketRef = useRef<Socket | null>(null);
   const [attempts, setAttempts] = useState(0);
@@ -206,6 +208,12 @@ export const useSocketConnection = ({
       }
     };
   }, [enabled, isOpenLaunchApp, socketUrl, secure]);
+
+  useEffect(() => {
+    if (isSessionExpired && socketRef.current) {
+      socketRef.current.emit("setToken", "TIMEOUT_APP");
+    }
+  }, [isSessionExpired]);
 
   useEffect(() => {
     return () => {
