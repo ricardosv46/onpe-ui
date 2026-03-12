@@ -1,11 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm whoami:*)",
-      "Bash(npm run build:*)",
-      "Bash(npm show:*)",
-      "Bash(npm publish:*)",
-      "Bash(npm version:*)"
+      "Bash(rm \"C:/Users/rsolis/Desktop/ONPE/VOTO/frontend/node_modules/@votodigital-onpeui/react\" && ln -s \"/c/Users/rsolis/Desktop/ONPE/ONPE UI\" \"C:/Users/rsolis/Desktop/ONPE/VOTO/frontend/node_modules/@votodigital-onpeui/react\" && echo \"ok\")"
     ]
   }
 }

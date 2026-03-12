@@ -22,6 +22,11 @@
       "import": "./dist/icons.mjs",
       "require": "./dist/icons.js"
     },
+    "./hooks": {
+      "types": "./dist/hooks.d.ts",
+      "import": "./dist/hooks.mjs",
+      "require": "./dist/hooks.js"
+    },
     "./styles.css": "./dist/styles.css",
     "./dist/styles.css": "./dist/styles.css",
     "./dist/index.css": "./dist/styles.css"
@@ -44,7 +49,9 @@
   },
   "peerDependencies": {
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "zustand": ">=5",
+    "socket.io-client": ">=4"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.6.17",

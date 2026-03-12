@@ -46,3 +46,6 @@ export type { ModalDnieVersionsProps } from "./components/Feedback/ModalDnieVers
 
 export { ModalNfc } from "./components/Feedback/ModalNfc";
 export type { ModalNfcProps } from "./components/Feedback/ModalNfc";
+
+// ONPE ID hooks
+export * from "./hooks";
