@@ -28,7 +28,7 @@ export const ModalNfc = ({
       zIndexLevel={zIndexLevel}
       isOpen={isOpen}
       onClose={onClose}
-      className={`!max-w-[600px] !pt-[46px] !pb-[46px] !px-[30px] md:!px-[50px] ${className}`}
+      className={`max-w-[600px]! pt-[46px]! pb-[46px]! px-[30px]! md:px-[50px]! ${className}`}
       closeButton={true}
     >
       <h2 className="text-center text-onpe-blue font-bold text-base" tabIndex={0}>
