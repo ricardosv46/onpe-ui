@@ -97,7 +97,7 @@ export const ModalNfc = ({
         {/* OS links */}
         <div className="flex flex-row gap-5 justify-center items-center">
           <a
-            className="text-onpe-skyblue flex flex-row gap-2.5 justify-center items-center no-underline cursor-pointer rounded-lg px-2.5 py-1.5 transition-colors duration-[120ms] focus-visible:outline-2 focus-visible:outline-onpe-blue focus-visible:outline-offset-2"
+            className="text-onpe-skyblue flex flex-row gap-2.5 justify-center items-center no-underline cursor-pointer rounded-lg px-2.5 py-1.5 transition-colors duration-120 focus-visible:outline-2 focus-visible:outline-onpe-blue focus-visible:outline-offset-2"
             href={ANDROID_VIDEO_URL}
             target="_blank"
             rel="noopener noreferrer"
@@ -107,7 +107,7 @@ export const ModalNfc = ({
             Android
           </a>
           <a
-            className="text-onpe-skyblue flex flex-row gap-2.5 justify-center items-center no-underline cursor-pointer rounded-lg px-2.5 py-1.5 transition-colors duration-[120ms] focus-visible:outline-2 focus-visible:outline-onpe-blue focus-visible:outline-offset-2"
+            className="text-onpe-skyblue flex flex-row gap-2.5 justify-center items-center no-underline cursor-pointer rounded-lg px-2.5 py-1.5 transition-colors duration-120 focus-visible:outline-2 focus-visible:outline-onpe-blue focus-visible:outline-offset-2"
             href={IPHONE_VIDEO_URL}
             target="_blank"
             rel="noopener noreferrer"
