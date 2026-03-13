@@ -20,27 +20,29 @@ const meta: Meta<typeof ModalDnieVersions> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+function DefaultStory() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+      >
+        Ver versiones DNIe
+      </button>
+      <ModalDnieVersions
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        iconDnie1={<PlaceholderDnie label="DNIe v1" />}
+        iconDnie2={<PlaceholderDnie label="DNIe v2" />}
+        iconDnie3={<PlaceholderDnie label="DNIe v3" />}
+      />
+    </>
+  );
+}
+
 export const Default: Story = {
-  render: () => {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-      <>
-        <button
-          onClick={() => setIsOpen(true)}
-          className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
-        >
-          Ver versiones DNIe
-        </button>
-        <ModalDnieVersions
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          iconDnie1={<PlaceholderDnie label="DNIe v1" />}
-          iconDnie2={<PlaceholderDnie label="DNIe v2" />}
-          iconDnie3={<PlaceholderDnie label="DNIe v3" />}
-        />
-      </>
-    );
-  },
+  render: () => <DefaultStory />,
 };
 
 export const Abierto: Story = {

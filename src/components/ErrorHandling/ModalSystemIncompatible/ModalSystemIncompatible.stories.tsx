@@ -14,24 +14,26 @@ const meta: Meta<typeof ModalSystemIncompatible> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+function DefaultStory() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+      >
+        Mostrar modal (sistema incompatible)
+      </button>
+      <ModalSystemIncompatible
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
+    </>
+  );
+}
+
 export const Default: Story = {
-  render: () => {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-      <>
-        <button
-          onClick={() => setIsOpen(true)}
-          className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
-        >
-          Mostrar modal (sistema incompatible)
-        </button>
-        <ModalSystemIncompatible
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-        />
-      </>
-    );
-  },
+  render: () => <DefaultStory />,
 };
 
 export const Abierto: Story = {
