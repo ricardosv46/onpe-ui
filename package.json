@@ -1,6 +1,6 @@
 {
   "name": "@votodigital-onpeui/react",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "description": "Librería de componentes UI para proyectos ONPE",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -26,6 +26,11 @@
       "types": "./dist/hooks.d.ts",
       "import": "./dist/hooks.mjs",
       "require": "./dist/hooks.js"
+    },
+    "./modal": {
+      "types": "./dist/modal.d.ts",
+      "import": "./dist/modal.mjs",
+      "require": "./dist/modal.js"
     },
     "./styles.css": "./dist/styles.css",
     "./dist/styles.css": "./dist/styles.css",

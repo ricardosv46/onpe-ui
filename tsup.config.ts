@@ -6,6 +6,7 @@ export default defineConfig({
     components: "src/components/index.ts",
     icons: "src/icons/index.ts",
     hooks: "src/hooks/index.ts",
+    modal: "src/modal/index.ts",
   },
   format: ["cjs", "esm"],
   dts: true,
