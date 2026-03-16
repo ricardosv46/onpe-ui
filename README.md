@@ -2,6 +2,7 @@
 
 Librería de componentes de interfaz de usuario para aplicaciones de la Oficina Nacional de Procesos Electorales (ONPE) del Perú, construida con React, TypeScript y Tailwind CSS v4.
 
+
 ## Características
 
 - **Colores oficiales ONPE** — Paleta de colores institucional completa
