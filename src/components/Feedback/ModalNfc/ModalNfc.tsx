@@ -17,7 +17,7 @@ export const ModalNfc = ({
   onClose = () => {},
   className = "",
   iconNfc1,
-  iconNfc2: _iconNfc2,
+  iconNfc2,
   zIndexLevel = 100,
 }: ModalNfcProps) => {
   const ANDROID_VIDEO_URL = "https://www.youtube.com/watch?v=qlVVC9JHSro";
@@ -28,7 +28,7 @@ export const ModalNfc = ({
       zIndexLevel={zIndexLevel}
       isOpen={isOpen}
       onClose={onClose}
-      className={`!max-w-[600px] !pt-[46px] !pb-[46px] !px-[30px] md:!px-[50px] ${className}`}
+      className={`max-w-[600px]! pt-[46px]! pb-[46px]! px-[30px]! md:px-[50px]! ${className}`}
       closeButton={true}
     >
       <h2 className="text-center text-onpe-blue font-bold text-base" tabIndex={0}>
@@ -50,7 +50,7 @@ export const ModalNfc = ({
             <li role="presentation" className="text-sm text-left mb-2 tracking-[0.15px]">
               Otra forma es ir hacia Ajustes
               <span aria-hidden="true">{" > "}</span>Conexiones o Redes
-              Inalámbricas<span aria-hidden="true">{" > "}</span>Buscar "NFC".
+              Inalámbricas<span aria-hidden="true">{" > "}</span>Buscar &quot;NFC&quot;.
             </li>
           </ul>
         </div>
@@ -71,6 +71,8 @@ export const ModalNfc = ({
           </ul>
         </div>
 
+        {iconNfc2}
+
         {/* How to use NFC */}
         <h2 className="text-center text-onpe-blue font-bold my-5 text-base" tabIndex={0}>
           ¿Cómo usar el NFC correctamente?
@@ -87,7 +89,7 @@ export const ModalNfc = ({
               del sistema.
             </li>
             <li role="presentation" className="mb-2">
-              Puedes consultar los videos "Aprende como leer tu DNIe con NFC":
+              Puedes consultar los videos &quot;Aprende como leer tu DNIe con NFC&quot;:
             </li>
           </ol>
         </div>
@@ -95,7 +97,7 @@ export const ModalNfc = ({
         {/* OS links */}
         <div className="flex flex-row gap-5 justify-center items-center">
           <a
-            className="text-onpe-skyblue flex flex-row gap-2.5 justify-center items-center no-underline cursor-pointer rounded-lg px-2.5 py-1.5 transition-colors duration-[120ms] focus-visible:outline-2 focus-visible:outline-onpe-blue focus-visible:outline-offset-2"
+            className="text-onpe-skyblue flex flex-row gap-2.5 justify-center items-center no-underline cursor-pointer rounded-lg px-2.5 py-1.5 transition-colors duration-120 focus-visible:outline-2 focus-visible:outline-onpe-blue focus-visible:outline-offset-2"
             href={ANDROID_VIDEO_URL}
             target="_blank"
             rel="noopener noreferrer"
@@ -105,7 +107,7 @@ export const ModalNfc = ({
             Android
           </a>
           <a
-            className="text-onpe-skyblue flex flex-row gap-2.5 justify-center items-center no-underline cursor-pointer rounded-lg px-2.5 py-1.5 transition-colors duration-[120ms] focus-visible:outline-2 focus-visible:outline-onpe-blue focus-visible:outline-offset-2"
+            className="text-onpe-skyblue flex flex-row gap-2.5 justify-center items-center no-underline cursor-pointer rounded-lg px-2.5 py-1.5 transition-colors duration-120 focus-visible:outline-2 focus-visible:outline-onpe-blue focus-visible:outline-offset-2"
             href={IPHONE_VIDEO_URL}
             target="_blank"
             rel="noopener noreferrer"

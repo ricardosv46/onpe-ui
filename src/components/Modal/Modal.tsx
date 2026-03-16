@@ -44,9 +44,11 @@ export const Modal = ({
   existTabIndex = true,
   zIndexLevel = 100,
   onCloseComplete,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- overlayColor reservado para uso futuro
   overlayColor: _overlayColor = "blue",
   ...props
 }: ModalProps) => {
+  const ariaLabelledBy = props["aria-labelledby"];
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
@@ -119,7 +121,7 @@ export const Modal = ({
     const pendingTasks: Array<ReturnType<typeof globalThis.setTimeout>> = [];
 
     const isElementVisible = (element: HTMLElement) => {
-      const style = window.getComputedStyle(element);
+      const style = globalThis.getComputedStyle(element);
       return (
         style.visibility !== "hidden" &&
         style.display !== "none" &&
@@ -266,10 +268,9 @@ export const Modal = ({
 
     if (isOpen && !disableFocus) {
       previousActiveElement.current = document.activeElement as HTMLElement;
-      const labelledById = props["aria-labelledby"];
 
       const focusInitial = (wrapper: HTMLElement) => {
-        if (labelledById && document.getElementById(labelledById)) {
+        if (ariaLabelledBy && document.getElementById(ariaLabelledBy)) {
           wrapper.focus({ preventScroll: true });
           return;
         }
@@ -320,7 +321,7 @@ export const Modal = ({
     escapeToClose,
     disableFocus,
     disableFocusRestore,
-    props["aria-labelledby"],
+    ariaLabelledBy,
   ]);
 
   if (!mounted) return null;

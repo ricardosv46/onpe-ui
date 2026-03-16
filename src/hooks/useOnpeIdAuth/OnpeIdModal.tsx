@@ -32,7 +32,6 @@ export const OnpeIdModal = ({
   return (
     <>
       {modalUrl && !isOpenModal && isOnline && (
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- iframe onLoad es necesario para detección de precarga
         <iframe
           ref={preloadIframeRef}
           src={modalUrl}
@@ -51,7 +50,6 @@ export const OnpeIdModal = ({
         disableFocus={disableFocus}
       >
         {!!modalUrl && isOnline && (
-          // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- iframe onLoad es necesario para el flujo de autenticación
           <iframe
             ref={iframeRef}
             src={modalUrl}

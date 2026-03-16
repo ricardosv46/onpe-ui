@@ -20,26 +20,28 @@ const meta: Meta<typeof ModalNfc> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+function DefaultStory() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+      >
+        Ver información NFC
+      </button>
+      <ModalNfc
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        iconNfc1={<PlaceholderNfc label="Imagen NFC Android" />}
+        iconNfc2={<PlaceholderNfc label="Imagen NFC iPhone" />}
+      />
+    </>
+  );
+}
+
 export const Default: Story = {
-  render: () => {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-      <>
-        <button
-          onClick={() => setIsOpen(true)}
-          className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
-        >
-          Ver información NFC
-        </button>
-        <ModalNfc
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          iconNfc1={<PlaceholderNfc label="Imagen NFC Android" />}
-          iconNfc2={<PlaceholderNfc label="Imagen NFC iPhone" />}
-        />
-      </>
-    );
-  },
+  render: () => <DefaultStory />,
 };
 
 export const Abierto: Story = {

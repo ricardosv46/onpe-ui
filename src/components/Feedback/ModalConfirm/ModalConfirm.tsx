@@ -19,6 +19,7 @@ export interface ModalConfirmProps {
   className?: string;
   zIndexLevel?: number;
   withoutAutoClose?: boolean;
+  disableFocus?: boolean;
 }
 
 export const ModalConfirm = ({
@@ -36,6 +37,7 @@ export const ModalConfirm = ({
   twoButtons = true,
   className = "",
   zIndexLevel = 100,
+  disableFocus = false,
 }: ModalConfirmProps) => {
   const titleId = "modal-confirm-title";
   const messageId = "modal-confirm-message";
@@ -62,12 +64,13 @@ export const ModalConfirm = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      className={`!max-w-[719px] !pt-[30px] !pb-[30px] !px-[30px] ${className}`}
+      className={`max-w-[719px]! pt-[30px]! pb-[30px]! px-[30px]! ${className}`}
       closeButton={false}
       closeDisabled
       zIndexLevel={zIndexLevel}
       aria-labelledby={titleId}
       aria-describedby={messageId}
+      disableFocus={disableFocus}
     >
       <div className="flex items-center justify-center">
         {icon === "warning" && (
