@@ -3,9 +3,10 @@ import { Modal } from "../../Modal/Modal";
 import { Button } from "../../Button/Button";
 import { IconCheck } from "../../../icons/Actions/IconCheck";
 import { IconWarningNotRecommended } from "../../../icons";
+import { IconQuestion } from "../../../icons/Actions/IconQuestion";
 import { IconInfo } from "../../../icons/Actions/IconInfo";
 
-export type ModalType = "error" | "warning" | "success" | "question";
+export type ModalType = "warning" | "success" | "question" | "info" | "none";
 
 /** Mapa de override de color a clase CSS (icono + título) */
 const colorOverrideMap: Record<string, string> = {
@@ -16,12 +17,17 @@ const colorOverrideMap: Record<string, string> = {
 };
 
 function renderIcon(type: ModalType, colorClass: string): ReactNode {
+  if (type === "none") return null;
   if (type === "success") {
     return <IconCheck role="presentation" className={`w-16 h-16 ${colorClass}`} />;
   }
   if (type === "question") {
+    return <IconQuestion role="presentation" className={`w-16 h-16 ${colorClass}`} />;
+  }
+  if (type === "info") {
     return <IconInfo role="presentation" className={`w-16 h-16 ${colorClass}`} />;
   }
+  // error | warning
   return <IconWarningNotRecommended role="presentation" className={`w-16 h-16 ${colorClass}`} />;
 }
 
@@ -63,7 +69,7 @@ export const ModalConfirm = ({
   title,
   message,
   content,
-  type = "error",
+  type = "warning",
   buttonMode,
   disabledConfirmButton = false,
   closeDisabled = false,
@@ -122,8 +128,7 @@ export const ModalConfirm = ({
       <p
         id={titleId}
         className={[
-          effectiveMessage ? "mt-0 md:mt-4" : "mt-0",
-          "text-lg md:text-2xl font-semibold text-center",
+          "text-lg md:text-2xl font-semibold text-center mt-0 md:mt-4",
           effectiveColorClass,
         ].join(" ")}
       >

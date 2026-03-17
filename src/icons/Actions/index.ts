@@ -4,6 +4,7 @@ export * from "./IconCloseRadius";
 export * from "./IconHome";
 export * from "./IconInfo";
 export * from "./IconPhone";
+export * from "./IconQuestion";
 export * from "./IconSpinnerDesktop";
 export * from "./IconSpinnerMobile";
 export * from "./IconWarning";
