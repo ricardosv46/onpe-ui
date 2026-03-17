@@ -4,40 +4,36 @@ import type { ReactNode } from "react";
 import { useModalGlobalStore } from "../../store/modalGlobal/useModalGlobalStore";
 import { useModalLoadingStore } from "../../store/modalGlobal/useModalLoadingStore";
 import { useModalLoadingPercentageStore } from "../../store/modalGlobal/useModalLoadingPercentageStore";
-import { ModalGlobalComponent } from "./ModalGlobalComponent";
+import { ModalConfirm } from "../Feedback/ModalConfirm/ModalConfirm";
 import { ModalLoading } from "../Feedback/ModalLoading/ModalLoading";
 import { ModalLoadingPercentage } from "./ModalLoadingPercentage";
 
 interface ModalGlobalProviderProps {
   children: ReactNode;
-  /** z-index for the main global modal (default: 200) */
+  /** z-index del modal principal (default: 200) */
   zIndexLevel?: number;
-  /** z-index for the loading modal (default: 300) */
+  /** z-index del modal de loading (default: 300) */
   zIndexLoading?: number;
-  /** z-index for the loading percentage modal (default: 300) */
+  /** z-index del modal de loading con porcentaje (default: 300) */
   zIndexLoadingPercentage?: number;
 }
 
 /**
- * Wrap your app (or layout) with this provider.
- * It renders the global modal, loading modal, and loading percentage modal via portals.
+ * Envuelve tu app (o layout) con este provider.
+ * Renderiza ModalConfirm, ModalLoading y ModalLoadingPercentage vía portals.
  *
- * Usage:
- * ```tsx
- * // _app.tsx or layout.tsx
+ * @example
+ * // layout.tsx
  * <ModalGlobalProvider>
  *   {children}
  * </ModalGlobalProvider>
- * ```
  *
- * Then anywhere in the app:
- * ```ts
- * import {
- *   showGlobalModal,
- *   showGlobalLoading, closeGlobalLoading,
- *   showGlobalLoadingPercentage, updateGlobalLoadingPercentage, closeGlobalLoadingPercentage,
- * } from "@votodigital-onpeui/react";
- * ```
+ * // Desde cualquier parte del código:
+ * import { showGlobalModal, showGlobalLoading, closeGlobalLoading } from "@votodigital-onpeui/react/modal";
+ *
+ * await showGlobalModal({ title: "¿Continuar?", twoButtons: true });
+ * showGlobalLoading("Procesando...");
+ * closeGlobalLoading();
  */
 export const ModalGlobalProvider = ({
   children,
@@ -45,11 +41,13 @@ export const ModalGlobalProvider = ({
   zIndexLoading = 300,
   zIndexLoadingPercentage = 300,
 }: ModalGlobalProviderProps) => {
-  const { isOpen, payload, closeModal, closeModalWithResult } = useModalGlobalStore();
-  const { isOpen: isLoadingOpen, message: loadingMessage } = useModalLoadingStore();
+  const { isOpen, payload, closeModal, closeModalWithResult } =
+    useModalGlobalStore();
+  const { isOpen: isLoadingOpen, message: loadingMessage } =
+    useModalLoadingStore();
   const {
-    isOpen: isLoadingPercentageOpen,
-    message: loadingPercentageMessage,
+    isOpen: isPercentageOpen,
+    message: percentageMessage,
     percentage,
   } = useModalLoadingPercentageStore();
 
@@ -57,37 +55,43 @@ export const ModalGlobalProvider = ({
     <>
       {children}
 
-      {/* Main global modal */}
-      <ModalGlobalComponent
+      {/* Modal principal — usa ModalConfirm de la librería directamente */}
+      <ModalConfirm
         isOpen={isOpen}
-        type={payload?.type ?? "error"}
-        title={payload?.title}
+        onClose={() => closeModalWithResult("close")}
+        title={payload?.title ?? ""}
         message={payload?.message}
         content={payload?.content}
-        onConfirm={payload?.onConfirm}
-        onCancel={payload?.onCancel}
+        type={payload?.type}
         buttonMode={payload?.buttonMode}
-        textButtonConfirm={payload?.textButtonConfirm}
-        textButtonCancel={payload?.textButtonCancel}
         disabledConfirmButton={payload?.disabledConfirmButton}
         closeDisabled={payload?.closeDisabled}
-        onConfirmAction={() => closeModal(true)}
-        onCancelAction={() => closeModal(false)}
-        onCloseAction={() => closeModalWithResult("close")}
+        color={payload?.color}
+        onConfirm={async () => {
+          await payload?.onConfirm?.();
+          closeModal(true);
+        }}
+        onCancel={() => {
+          payload?.onCancel?.();
+          closeModal(false);
+        }}
+        withoutAutoClose
+        textButtonConfirm={payload?.textButtonConfirm}
+        textButtonCancel={payload?.textButtonCancel}
         zIndexLevel={zIndexLevel}
       />
 
-      {/* Global loading modal */}
+      {/* Loading */}
       <ModalLoading
         isOpen={isLoadingOpen}
         message={loadingMessage}
         zIndexLevel={zIndexLoading}
       />
 
-      {/* Global loading percentage modal */}
+      {/* Loading con porcentaje */}
       <ModalLoadingPercentage
-        isOpen={isLoadingPercentageOpen}
-        message={loadingPercentageMessage}
+        isOpen={isPercentageOpen}
+        message={percentageMessage}
         percentage={percentage}
         zIndexLevel={zIndexLoadingPercentage}
       />

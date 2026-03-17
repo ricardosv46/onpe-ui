@@ -1,21 +1,55 @@
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { Modal } from "../../Modal/Modal";
 import { Button } from "../../Button/Button";
 import { IconCheck } from "../../../icons/Actions/IconCheck";
 import { IconWarningNotRecommended } from "../../../icons";
+import { IconInfo } from "../../../icons/Actions/IconInfo";
+
+export type ModalType = "error" | "warning" | "success" | "question";
+
+/** Mapa de override de color a clase CSS (icono + título) */
+const colorOverrideMap: Record<string, string> = {
+  red: "text-onpe-red",
+  blue: "text-onpe-blue",
+  skyblue: "text-onpe-skyblue",
+  yellow: "text-onpe-yellow",
+};
+
+function renderIcon(type: ModalType, colorClass: string): ReactNode {
+  if (type === "success") {
+    return <IconCheck role="presentation" className={`w-16 h-16 ${colorClass}`} />;
+  }
+  if (type === "question") {
+    return <IconInfo role="presentation" className={`w-16 h-16 ${colorClass}`} />;
+  }
+  return <IconWarningNotRecommended role="presentation" className={`w-16 h-16 ${colorClass}`} />;
+}
 
 export interface ModalConfirmProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  message: ReactNode;
-  icon?: "warning" | "success";
-  color?: "blue" | "red";
-  onConfirm?: () => void;
-  onCancel?: () => void;
+  /** Contenido del modal (string o JSX) */
+  message?: ReactNode;
+  /** Alias de message */
+  content?: ReactNode;
+  /** Tipo semántico: determina icono, color de título y color de botón confirmar */
+  type?: ModalType;
+  /** "double" muestra el botón cancelar */
+  buttonMode?: "single" | "double";
+  /** Deshabilita el botón confirmar */
+  disabledConfirmButton?: boolean;
+  /** Deshabilita el cierre del modal */
+  closeDisabled?: boolean;
+  /**
+   * Override del color del icono y título.
+   * Si no se provee, se deriva automáticamente del `type`.
+   */
+  color?: "red" | "blue" | "skyblue" | "yellow";
+  onConfirm?: () => void | Promise<void>;
+  onCancel?: () => void | Promise<void>;
   textButtonConfirm?: string;
   textButtonCancel?: string;
-  twoButtons?: boolean;
   className?: string;
   zIndexLevel?: number;
   withoutAutoClose?: boolean;
@@ -28,13 +62,16 @@ export const ModalConfirm = ({
   withoutAutoClose = false,
   title,
   message,
-  icon = "warning",
-  color = "blue",
+  content,
+  type = "error",
+  buttonMode,
+  disabledConfirmButton = false,
+  closeDisabled = false,
+  color,
   onConfirm = () => {},
   onCancel = () => {},
   textButtonConfirm = "Confirmar",
   textButtonCancel = "Cancelar",
-  twoButtons = true,
   className = "",
   zIndexLevel = 100,
   disableFocus = false,
@@ -42,9 +79,16 @@ export const ModalConfirm = ({
   const titleId = "modal-confirm-title";
   const messageId = "modal-confirm-message";
 
+  const effectiveMessage = message ?? content;
+  // Título e ícono siempre skyblue por defecto; `color` es el único override
+  const effectiveColorClass = color
+    ? (colorOverrideMap[color] ?? "text-onpe-skyblue")
+    : "text-onpe-skyblue";
+  const showTwoButtons = buttonMode === "double";
+
   const handleConfirm = async () => {
     try {
-      onConfirm();
+      await onConfirm();
       if (!withoutAutoClose) onClose();
     } catch (error) {
       console.error("Error en handleConfirm:", error);
@@ -57,66 +101,55 @@ export const ModalConfirm = ({
     if (!withoutAutoClose) onClose();
   };
 
-  const iconColorClass = color === "red" ? "text-onpe-red" : "text-onpe-skyblue";
-  const titleColorClass = color === "red" ? "text-onpe-red" : "text-onpe-skyblue";
-
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
       className={`max-w-[719px]! pt-[30px]! pb-[30px]! px-[30px]! ${className}`}
       closeButton={false}
-      closeDisabled
+      closeDisabled={closeDisabled}
       zIndexLevel={zIndexLevel}
       aria-labelledby={titleId}
       aria-describedby={messageId}
       disableFocus={disableFocus}
     >
+      {/* Icono */}
       <div className="flex items-center justify-center">
-        {icon === "warning" && (
-          <IconWarningNotRecommended
-          
-            role="presentation"
-            className={`w-16 h-16 ${iconColorClass}`}
-          />
-        )}
-        {icon === "success" && (
-          <IconCheck
-            role="presentation"
-            className={`w-16 h-16 ${iconColorClass}`}
-          />
-        )}
+        {renderIcon(type, effectiveColorClass)}
       </div>
 
+      {/* Título */}
       <p
         id={titleId}
         className={[
-          message ? "mt-0 md:mt-4" : "mt-0",
+          effectiveMessage ? "mt-0 md:mt-4" : "mt-0",
           "text-lg md:text-2xl font-semibold text-center",
-          titleColorClass,
+          effectiveColorClass,
         ].join(" ")}
       >
         {title}
       </p>
 
-      {message && (
+      {/* Mensaje / Contenido */}
+      {effectiveMessage && (
         <div
           id={messageId}
           className="mt-7 text-sm md:text-lg text-center max-w-full text-onpe-dark-gray"
         >
-          {message}
+          {effectiveMessage}
         </div>
       )}
 
-      {/* Mobile: stacked (confirm first, cancel second) */}
+      {/* Mobile: apilado */}
       <div className="flex flex-col items-center justify-center w-full gap-5 mt-11 md:hidden">
         <Button
           className="w-full max-w-[200px]"
           color="red"
           title={textButtonConfirm}
           onClick={handleConfirm}
+          disabled={disabledConfirmButton}
         />
-        {twoButtons && (
+        {showTwoButtons && (
           <Button
             className="w-full max-w-[200px]"
             color="skyblue"
@@ -126,9 +159,9 @@ export const ModalConfirm = ({
         )}
       </div>
 
-      {/* Desktop: row (cancel first, confirm second) */}
+      {/* Desktop: fila */}
       <div className="hidden md:flex md:flex-row items-center justify-center w-full gap-5 mt-11">
-        {twoButtons && (
+        {showTwoButtons && (
           <Button
             className="w-[200px]"
             color="skyblue"
@@ -141,6 +174,7 @@ export const ModalConfirm = ({
           color="red"
           title={textButtonConfirm}
           onClick={handleConfirm}
+          disabled={disabledConfirmButton}
         />
       </div>
     </Modal>

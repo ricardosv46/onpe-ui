@@ -1,8 +1,7 @@
-// Provider & component
+// Provider
 export { ModalGlobalProvider } from "../components/ModalGlobal/ModalGlobalProvider";
-export { ModalGlobalComponent } from "../components/ModalGlobal/ModalGlobalComponent";
 
-// Stores (for direct access if needed)
+// Stores (acceso directo si se necesita)
 export { useModalGlobalStore } from "../store/modalGlobal/useModalGlobalStore";
 export { useModalLoadingStore } from "../store/modalGlobal/useModalLoadingStore";
 export { useModalLoadingPercentageStore } from "../store/modalGlobal/useModalLoadingPercentageStore";
@@ -10,12 +9,11 @@ export { useModalLoadingPercentageStore } from "../store/modalGlobal/useModalLoa
 // Types
 export type {
   ModalPayload,
-  ModalType,
   ModalResult,
-  ButtonMode,
+  ModalType,
 } from "../store/modalGlobal/useModalGlobalStore";
 
-// Utility functions
+// Funciones utilitarias
 export {
   showGlobalModal,
   showGlobalModalWithClose,
