@@ -1,27 +1,40 @@
 import { create } from "zustand";
 import type { ReactNode } from "react";
+import type { ModalType } from "../../components/Feedback/ModalConfirm/ModalConfirm";
 
-export type ModalType = "error" | "success" | "warning" | "question";
+export type { ModalType };
+
 export type ModalResult = "confirm" | "cancel" | "close";
-export type ButtonMode = "single" | "double";
 
+/**
+ * Payload del modal global.
+ * Combina los props de ModalGlobalComponent (type, buttonMode, content)
+ * con los de ModalConfirm (icon, color, twoButtons).
+ * Los props del global component predominan; color e icon son overrides manuales.
+ */
 export interface ModalPayload {
-  type?: ModalType;
-  title?: string;
-  /** Plain text or simple string message */
-  message?: string;
-  /** Custom JSX content — replaces message when provided */
+  title: string;
+  /** Contenido del modal (string o JSX). Alias: content */
+  message?: ReactNode;
+  /** Alias de message para compatibilidad */
   content?: ReactNode;
+  /** Tipo semántico: determina color de icono, título y botón */
+  type?: ModalType;
+  /** "double" muestra el botón cancelar */
+  buttonMode?: "single" | "double";
+  /** Deshabilita el botón confirmar */
+  disabledConfirmButton?: boolean;
+  /** Deshabilita el cierre del modal */
+  closeDisabled?: boolean;
+  /** Override manual del color del icono y título */
+  color?: "red" | "blue" | "skyblue" | "yellow";
   onConfirm?: () => void | Promise<void>;
   onCancel?: () => void | Promise<void>;
-  buttonMode?: ButtonMode;
   textButtonConfirm?: string;
   textButtonCancel?: string;
-  disabledConfirmButton?: boolean;
-  closeDisabled?: boolean;
   /**
-   * Mark this modal as handled by axios interceptor.
-   * When true, route-change handlers should NOT auto-close it.
+   * Marca este modal como controlado por axios interceptor.
+   * Cuando es true, los handlers de cambio de ruta NO deben cerrarlo.
    */
   alreadyHandled?: boolean;
 }
