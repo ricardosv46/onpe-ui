@@ -77,6 +77,7 @@ export const Modal = ({
   }, [isOpen, children]);
 
   useEffect(() => {
+    if (!animated) return;
     if (isOpen) {
       setMounted(true);
       const raf = requestAnimationFrame(() => {
@@ -91,7 +92,7 @@ export const Modal = ({
       }, 200);
       return () => clearTimeout(timer);
     }
-  }, [isOpen, onCloseComplete]);
+  }, [isOpen, animated, onCloseComplete]);
 
   // Body scroll lock
   useEffect(() => {
@@ -334,7 +335,10 @@ export const Modal = ({
     ariaLabelledBy,
   ]);
 
-  if (!mounted) return null;
+  // Sin animación: renderizar directo desde isOpen (sin delay de useEffect)
+  if (!animated && !isOpen) return null;
+  // Con animación: usar mounted para controlar enter/exit transitions
+  if (animated && !mounted) return null;
 
   const contentClass = [
     "relative flex flex-col items-center justify-start",
