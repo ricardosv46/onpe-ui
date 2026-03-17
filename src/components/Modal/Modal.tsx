@@ -393,7 +393,7 @@ export const Modal = ({
             aria-label={props["aria-label"]}
           >
             <div ref={contentRef} className={contentClass}>
-              {cachedChildren}
+              {isOpen ? children : cachedChildren}
             </div>
             {closeButton && (
               <button
