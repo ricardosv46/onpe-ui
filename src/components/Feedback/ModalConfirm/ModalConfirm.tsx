@@ -117,9 +117,10 @@ export const ModalConfirm = ({
   const effectiveColorClass = color
     ? (colorOverrideMap[color] ?? "text-onpe-skyblue")
     : "text-onpe-skyblue";
-  const isConfirmMode = buttonMode === "confirm";
-  const showTwoButtons = buttonMode === "double" || isConfirmMode;
-  const confirmLabel = textButtonConfirm ?? (isConfirmMode ? "Sí" : "Aceptar");
+  const effectiveButtonMode = buttonMode ?? (type === "question" ? "confirm" : "single");
+  const isConfirmMode = effectiveButtonMode === "confirm";
+  const showTwoButtons = effectiveButtonMode === "double" || isConfirmMode;
+  const confirmLabel = textButtonConfirm ?? (isConfirmMode ? "Sí" : effectiveButtonMode === "double" ? "Confirmar" : "Aceptar");
   const cancelLabel = textButtonCancel ?? (isConfirmMode ? "No" : "Cancelar");
 
   const handleConfirm = async () => {
