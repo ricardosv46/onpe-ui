@@ -26,6 +26,10 @@ interface ModalGlobalProviderProps {
   loadingPercentageAlignTop?: boolean;
   /** Reemplaza el contenido del ModalLoadingPercentage con un render personalizado */
   loadingPercentageContent?: (percentage: number, message: string) => ReactNode;
+  /** Texto por defecto del botón confirmar cuando el payload no lo especifica */
+  defaultTextButtonConfirm?: string;
+  /** Texto por defecto del botón cancelar cuando el payload no lo especifica */
+  defaultTextButtonCancel?: string;
 }
 
 export const ModalGlobalProvider = ({
@@ -38,6 +42,8 @@ export const ModalGlobalProvider = ({
   loadingSpinner,
   loadingPercentageAlignTop = false,
   loadingPercentageContent,
+  defaultTextButtonConfirm,
+  defaultTextButtonCancel,
 }: ModalGlobalProviderProps) => {
   const isOpen = useModalGlobalStore((s) => s.isOpen);
   const payload = useModalGlobalStore((s) => s.payload);
@@ -88,8 +94,8 @@ export const ModalGlobalProvider = ({
           closeModal(false);
         }}
         withoutAutoClose
-        textButtonConfirm={payload?.textButtonConfirm}
-        textButtonCancel={payload?.textButtonCancel}
+        textButtonConfirm={payload?.textButtonConfirm ?? defaultTextButtonConfirm}
+        textButtonCancel={payload?.textButtonCancel ?? defaultTextButtonCancel}
         closeButton={payload?.closeButton ?? isTriState}
         alignJustify={payload?.alignJustify}
         alignTop={payload?.top}
