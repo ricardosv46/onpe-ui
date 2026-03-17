@@ -22,6 +22,10 @@ interface ModalGlobalProviderProps {
   preventBodyScroll?: boolean;
   /** Spinner personalizado para ModalLoading. Si no se provee, se usa el spinner por defecto. */
   loadingSpinner?: ReactNode;
+  /** Alinea el ModalLoadingPercentage al tope de la pantalla (default: false) */
+  loadingPercentageAlignTop?: boolean;
+  /** Reemplaza el contenido del ModalLoadingPercentage con un render personalizado */
+  loadingPercentageContent?: (percentage: number, message: string) => ReactNode;
 }
 
 export const ModalGlobalProvider = ({
@@ -32,6 +36,8 @@ export const ModalGlobalProvider = ({
   animated = true,
   preventBodyScroll = true,
   loadingSpinner,
+  loadingPercentageAlignTop = false,
+  loadingPercentageContent,
 }: ModalGlobalProviderProps) => {
   const { isOpen, payload, modalId, isTriState, closeModal, closeModalWithResult } =
     useModalGlobalStore();
@@ -108,6 +114,8 @@ export const ModalGlobalProvider = ({
         zIndexLevel={zIndexLoadingPercentage}
         animated={animated}
         preventBodyScroll={preventBodyScroll}
+        alignTop={loadingPercentageAlignTop}
+        renderContent={loadingPercentageContent}
       />
     </>
   );
