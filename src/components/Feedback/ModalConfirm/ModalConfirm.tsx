@@ -31,10 +31,17 @@ function renderIcon(type: ModalType, colorClass: string): ReactNode {
   return <IconWarningNotRecommended role="presentation" className={`w-16 h-16 ${colorClass}`} />;
 }
 
+const defaultTitleByType: Record<string, string> = {
+  success: "Confirmación",
+  warning: "Advertencia",
+  question: "Atención",
+  info: "Información",
+};
+
 export interface ModalConfirmProps {
   isOpen: boolean;
   onClose: () => void;
-  title: string;
+  title?: string;
   /** Contenido del modal (string o JSX) */
   message?: ReactNode;
   /** Alias de message */
@@ -104,6 +111,7 @@ export const ModalConfirm = ({
   const titleId = "modal-confirm-title";
   const messageId = "modal-confirm-message";
 
+  const effectiveTitle = title ?? defaultTitleByType[type] ?? "";
   const effectiveMessage = message ?? content;
   // Título e ícono siempre skyblue por defecto; `color` es el único override
   const effectiveColorClass = color
@@ -157,7 +165,7 @@ export const ModalConfirm = ({
           effectiveColorClass,
         ].join(" ")}
       >
-        {title}
+        {effectiveTitle}
       </p>
 
       {/* Mensaje / Contenido */}
