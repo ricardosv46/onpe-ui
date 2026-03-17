@@ -10,13 +10,17 @@ const meta: Meta<typeof ModalConfirm> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    icon: {
+    type: {
       control: { type: "select" },
-      options: ["warning", "success"],
+      options: ["warning", "success", "question", "info", "none"],
+    },
+    buttonMode: {
+      control: { type: "select" },
+      options: ["single", "double", "confirm"],
     },
     color: {
       control: { type: "select" },
-      options: ["blue", "red"],
+      options: ["blue", "red", "skyblue", "yellow"],
     },
   },
 };
@@ -61,10 +65,11 @@ function AdvertenciaStory() {
         onClose={() => setIsOpen(false)}
         title="¿Estás seguro?"
         message="Esta operación eliminará los datos permanentemente."
-        icon="warning"
+        type="warning"
         color="red"
         textButtonConfirm="Eliminar"
         textButtonCancel="Cancelar"
+        buttonMode="double"
         onConfirm={() => alert("Eliminado")}
       />
     </>
@@ -86,9 +91,9 @@ function ExitoStory() {
         onClose={() => setIsOpen(false)}
         title="Operación completada"
         message="Los datos se han guardado correctamente."
-        icon="success"
+        type="success"
         color="blue"
-        twoButtons={false}
+        buttonMode="single"
         textButtonConfirm="Aceptar"
       />
     </>
@@ -110,8 +115,32 @@ function UnSoloBotonStory() {
         onClose={() => setIsOpen(false)}
         title="Información"
         message="Por favor, revisa los datos antes de continuar."
-        twoButtons={false}
+        buttonMode="single"
         textButtonConfirm="Entendido"
+      />
+    </>
+  );
+}
+
+function ConfirmarStory() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+      >
+        Abrir Sí/No
+      </button>
+      <ModalConfirm
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="¿Deseas iniciar el proceso?"
+        message="Esta acción iniciará el flujo de importación."
+        type="question"
+        buttonMode="confirm"
+        onConfirm={() => alert("Sí")}
+        onCancel={() => setIsOpen(false)}
       />
     </>
   );
@@ -133,15 +162,19 @@ export const UnSoloBoton: Story = {
   render: () => <UnSoloBotonStory />,
 };
 
+export const ConfirmarSiNo: Story = {
+  render: () => <ConfirmarStory />,
+};
+
 export const Abierto: Story = {
   args: {
     isOpen: true,
     onClose: () => {},
     title: "¿Deseas continuar?",
     message: "Esta acción no se puede deshacer.",
-    icon: "warning",
+    type: "warning",
     color: "blue",
-    twoButtons: true,
+    buttonMode: "double",
     textButtonConfirm: "Confirmar",
     textButtonCancel: "Cancelar",
   },

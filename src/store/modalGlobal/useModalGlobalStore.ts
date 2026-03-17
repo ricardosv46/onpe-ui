@@ -18,10 +18,19 @@ export interface ModalPayload {
   message?: ReactNode;
   /** Alias de message para compatibilidad */
   content?: ReactNode;
-  /** Tipo semántico: determina color de icono, título y botón */
+  /** Tipo semántico: determina icono y color */
   type?: ModalType;
-  /** "double" muestra el botón cancelar */
-  buttonMode?: "single" | "double";
+  /**
+   * Override del icono independiente del `type`.
+   * Usa los mismos valores que `type`. Si se provee, tiene prioridad sobre `type` para el icono.
+   */
+  iconType?: ModalType;
+  /**
+   * "single" → un botón "Confirmar".
+   * "double" → "Cancelar" + "Confirmar".
+   * "confirm" → "No" + "Sí" (diálogo de confirmación).
+   */
+  buttonMode?: "single" | "double" | "confirm";
   /** Deshabilita el botón confirmar */
   disabledConfirmButton?: boolean;
   /** Deshabilita el cierre del modal */
@@ -32,6 +41,17 @@ export interface ModalPayload {
   onCancel?: () => void | Promise<void>;
   textButtonConfirm?: string;
   textButtonCancel?: string;
+  /** Muestra el botón X para cerrar el modal */
+  closeButton?: boolean;
+  /** Alinea el texto del mensaje a la izquierda (justify) en vez de centrado */
+  alignJustify?: boolean;
+  /** Alinea el modal al tope de la pantalla en vez de al centro */
+  top?: boolean;
+  /**
+   * Tiempo en ms para auto-confirmar el modal (ej: 30000 = 30s).
+   * Útil para modales de error de sesión/red que deben cerrarse solos.
+   */
+  autoConfirmTimeout?: number;
   /**
    * Marca este modal como controlado por axios interceptor.
    * Cuando es true, los handlers de cambio de ruta NO deben cerrarlo.
@@ -43,6 +63,8 @@ interface ModalGlobalState {
   isOpen: boolean;
   payload: ModalPayload | null;
   modalId: number;
+  /** true cuando fue abierto con openModalWithClose (3 estados) */
+  isTriState: boolean;
   _resolve: ((result: boolean) => void) | null;
   _resolveWithClose: ((result: ModalResult) => void) | null;
 
@@ -56,6 +78,7 @@ export const useModalGlobalStore = create<ModalGlobalState>((set, get) => ({
   isOpen: false,
   payload: null,
   modalId: 0,
+  isTriState: false,
   _resolve: null,
   _resolveWithClose: null,
 
@@ -65,6 +88,7 @@ export const useModalGlobalStore = create<ModalGlobalState>((set, get) => ({
         isOpen: true,
         payload,
         modalId: state.modalId + 1,
+        isTriState: false,
         _resolve: resolve,
         _resolveWithClose: null,
       }));
@@ -77,6 +101,7 @@ export const useModalGlobalStore = create<ModalGlobalState>((set, get) => ({
         isOpen: true,
         payload,
         modalId: state.modalId + 1,
+        isTriState: true,
         _resolve: null,
         _resolveWithClose: resolve,
       }));
@@ -87,13 +112,13 @@ export const useModalGlobalStore = create<ModalGlobalState>((set, get) => ({
     const { _resolve, _resolveWithClose } = get();
     _resolve?.(confirmed);
     _resolveWithClose?.(confirmed ? "confirm" : "cancel");
-    set({ isOpen: false, payload: null, _resolve: null, _resolveWithClose: null });
+    set({ isOpen: false, payload: null, isTriState: false, _resolve: null, _resolveWithClose: null });
   },
 
   closeModalWithResult: (result) => {
     const { _resolve, _resolveWithClose } = get();
     _resolve?.(result === "confirm");
     _resolveWithClose?.(result);
-    set({ isOpen: false, payload: null, _resolve: null, _resolveWithClose: null });
+    set({ isOpen: false, payload: null, isTriState: false, _resolve: null, _resolveWithClose: null });
   },
 }));

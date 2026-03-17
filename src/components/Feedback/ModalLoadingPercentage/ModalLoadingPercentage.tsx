@@ -1,6 +1,6 @@
 "use client";
 
-import { Modal } from "../Modal/Modal";
+import { Modal } from "../../Modal/Modal";
 
 interface ModalLoadingPercentageProps {
   isOpen: boolean;

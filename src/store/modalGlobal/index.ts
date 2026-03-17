@@ -1,5 +1,5 @@
 export { useModalGlobalStore } from "./useModalGlobalStore";
-export type { ModalPayload, ModalType, ModalResult, ButtonMode } from "./useModalGlobalStore";
+export type { ModalPayload, ModalType, ModalResult } from "./useModalGlobalStore";
 
 export { useModalLoadingStore } from "./useModalLoadingStore";
 
