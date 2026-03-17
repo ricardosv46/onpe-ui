@@ -111,7 +111,7 @@ export const ModalConfirm = ({
     : "text-onpe-skyblue";
   const isConfirmMode = buttonMode === "confirm";
   const showTwoButtons = buttonMode === "double" || isConfirmMode;
-  const confirmLabel = textButtonConfirm ?? (isConfirmMode ? "Sí" : "Confirmar");
+  const confirmLabel = textButtonConfirm ?? (isConfirmMode ? "Sí" : "Aceptar");
   const cancelLabel = textButtonCancel ?? (isConfirmMode ? "No" : "Cancelar");
 
   const handleConfirm = async () => {
