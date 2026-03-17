@@ -39,15 +39,17 @@ export const ModalGlobalProvider = ({
   loadingPercentageAlignTop = false,
   loadingPercentageContent,
 }: ModalGlobalProviderProps) => {
-  const { isOpen, payload, modalId, isTriState, closeModal, closeModalWithResult } =
-    useModalGlobalStore();
-  const { isOpen: isLoadingOpen, message: loadingMessage } =
-    useModalLoadingStore();
-  const {
-    isOpen: isPercentageOpen,
-    message: percentageMessage,
-    percentage,
-  } = useModalLoadingPercentageStore();
+  const isOpen = useModalGlobalStore((s) => s.isOpen);
+  const payload = useModalGlobalStore((s) => s.payload);
+  const modalId = useModalGlobalStore((s) => s.modalId);
+  const isTriState = useModalGlobalStore((s) => s.isTriState);
+  const closeModal = useModalGlobalStore((s) => s.closeModal);
+  const closeModalWithResult = useModalGlobalStore((s) => s.closeModalWithResult);
+  const isLoadingOpen = useModalLoadingStore((s) => s.isOpen);
+  const loadingMessage = useModalLoadingStore((s) => s.message);
+  const isPercentageOpen = useModalLoadingPercentageStore((s) => s.isOpen);
+  const percentageMessage = useModalLoadingPercentageStore((s) => s.message);
+  const percentage = useModalLoadingPercentageStore((s) => s.percentage);
 
   // Auto-confirmar el modal después del timeout especificado
   useEffect(() => {
