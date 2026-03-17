@@ -6,7 +6,7 @@ import { useModalLoadingStore } from "../../store/modalGlobal/useModalLoadingSto
 import { useModalLoadingPercentageStore } from "../../store/modalGlobal/useModalLoadingPercentageStore";
 import { ModalConfirm } from "../Feedback/ModalConfirm/ModalConfirm";
 import { ModalLoading } from "../Feedback/ModalLoading/ModalLoading";
-import { ModalLoadingPercentage } from "./ModalLoadingPercentage";
+import { ModalLoadingPercentage } from "../Feedback/ModalLoadingPercentage/ModalLoadingPercentage";
 
 interface ModalGlobalProviderProps {
   children: ReactNode;

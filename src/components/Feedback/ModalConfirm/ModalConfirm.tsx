@@ -139,7 +139,7 @@ export const ModalConfirm = ({
       {effectiveMessage && (
         <div
           id={messageId}
-          className="mt-7 text-sm md:text-lg text-center max-w-full text-onpe-dark-gray"
+          className="mt-7 text-sm md:text-lg text-center max-w-full text-black"
         >
           {effectiveMessage}
         </div>
