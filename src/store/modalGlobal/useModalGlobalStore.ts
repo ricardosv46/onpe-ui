@@ -13,7 +13,7 @@ export type ModalResult = "confirm" | "cancel" | "close";
  * Los props del global component predominan; color e icon son overrides manuales.
  */
 export interface ModalPayload {
-  title: string;
+  title?: string;
   /** Contenido del modal (string o JSX). Alias: content */
   message?: ReactNode;
   /** Alias de message para compatibilidad */

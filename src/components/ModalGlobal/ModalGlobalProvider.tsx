@@ -77,7 +77,7 @@ export const ModalGlobalProvider = ({
       <ModalConfirm
         isOpen={isOpen}
         onClose={() => closeModalWithResult("close")}
-        title={payload?.title ?? ""}
+        title={payload?.title}
         message={payload?.message}
         content={payload?.content}
         type={payload?.iconType ?? payload?.type}
