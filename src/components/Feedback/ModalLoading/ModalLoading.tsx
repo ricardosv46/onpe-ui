@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { Modal } from "../../Modal/Modal";
 import { IconSpinnerDesktop } from "../../../icons/Actions/IconSpinnerDesktop";
 import { IconSpinnerMobile } from "../../../icons/Actions/IconSpinnerMobile";
@@ -9,6 +9,10 @@ export interface ModalLoadingProps {
   message?: string;
   className?: string;
   zIndexLevel?: number;
+  animated?: boolean;
+  preventBodyScroll?: boolean;
+  /** Spinner personalizado. Si no se provee, se usa el spinner por defecto de la librería. */
+  spinner?: ReactNode;
 }
 
 export const ModalLoading = ({
@@ -17,6 +21,9 @@ export const ModalLoading = ({
   message = "Cargando...",
   className = "",
   zIndexLevel = 100,
+  animated = true,
+  preventBodyScroll = true,
+  spinner,
 }: ModalLoadingProps) => {
   const [announceMessage, setAnnounceMessage] = useState("");
 
@@ -43,18 +50,24 @@ export const ModalLoading = ({
       className={className}
       closeDisabled
       whitoutBackground={true}
+      animated={animated}
+      preventBodyScroll={preventBodyScroll}
     >
       <div className="sr-only" aria-live="assertive" aria-atomic="true">
         {announceMessage}
       </div>
-      <IconSpinnerDesktop
-        className="hidden md:block text-white animate-spin"
-        aria-hidden="true"
-      />
-      <IconSpinnerMobile
-        className="block md:hidden text-white animate-spin"
-        aria-hidden="true"
-      />
+      {spinner ?? (
+        <>
+          <IconSpinnerDesktop
+            className="hidden md:block text-white animate-spin"
+            aria-hidden="true"
+          />
+          <IconSpinnerMobile
+            className="block md:hidden text-white animate-spin"
+            aria-hidden="true"
+          />
+        </>
+      )}
       <p className="text-white leading-normal text-2xl md:text-[64px] text-center mt-10 md:mt-20">
         {message}
       </p>

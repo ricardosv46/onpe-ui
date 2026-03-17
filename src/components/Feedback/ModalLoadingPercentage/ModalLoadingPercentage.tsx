@@ -7,6 +7,8 @@ interface ModalLoadingPercentageProps {
   message: string;
   percentage: number;
   zIndexLevel?: number;
+  animated?: boolean;
+  preventBodyScroll?: boolean;
 }
 
 export const ModalLoadingPercentage = ({
@@ -14,6 +16,8 @@ export const ModalLoadingPercentage = ({
   message,
   percentage,
   zIndexLevel = 300,
+  animated = true,
+  preventBodyScroll = true,
 }: ModalLoadingPercentageProps) => {
   const clamped = Math.min(100, Math.max(0, percentage));
 
@@ -25,6 +29,8 @@ export const ModalLoadingPercentage = ({
       closeDisabled
       whitoutBackground
       zIndexLevel={zIndexLevel}
+      animated={animated}
+      preventBodyScroll={preventBodyScroll}
     >
       <div className="flex flex-col items-center gap-6 px-4 w-full max-w-xs md:max-w-sm">
         {/* Percentage number */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode, useEffect } from "react";
 import { useModalGlobalStore } from "../../store/modalGlobal/useModalGlobalStore";
 import { useModalLoadingStore } from "../../store/modalGlobal/useModalLoadingStore";
 import { useModalLoadingPercentageStore } from "../../store/modalGlobal/useModalLoadingPercentageStore";
@@ -16,6 +16,12 @@ interface ModalGlobalProviderProps {
   zIndexLoading?: number;
   /** z-index del modal de loading con porcentaje (default: 300) */
   zIndexLoadingPercentage?: number;
+  /** Habilita animación de entrada/salida en todos los modales (default: true) */
+  animated?: boolean;
+  /** Bloquea el scroll del body en todos los modales (default: true) */
+  preventBodyScroll?: boolean;
+  /** Spinner personalizado para ModalLoading. Si no se provee, se usa el spinner por defecto. */
+  loadingSpinner?: ReactNode;
 }
 
 export const ModalGlobalProvider = ({
@@ -23,6 +29,9 @@ export const ModalGlobalProvider = ({
   zIndexLevel = 200,
   zIndexLoading = 300,
   zIndexLoadingPercentage = 300,
+  animated = true,
+  preventBodyScroll = true,
+  loadingSpinner,
 }: ModalGlobalProviderProps) => {
   const { isOpen, payload, modalId, isTriState, closeModal, closeModalWithResult } =
     useModalGlobalStore();
@@ -77,6 +86,8 @@ export const ModalGlobalProvider = ({
         alignJustify={payload?.alignJustify}
         alignTop={payload?.top}
         zIndexLevel={zIndexLevel}
+        animated={animated}
+        preventBodyScroll={preventBodyScroll}
       />
 
       {/* Loading */}
@@ -84,6 +95,9 @@ export const ModalGlobalProvider = ({
         isOpen={isLoadingOpen}
         message={loadingMessage}
         zIndexLevel={zIndexLoading}
+        animated={animated}
+        preventBodyScroll={preventBodyScroll}
+        spinner={loadingSpinner}
       />
 
       {/* Loading con porcentaje */}
@@ -92,6 +106,8 @@ export const ModalGlobalProvider = ({
         message={percentageMessage}
         percentage={percentage}
         zIndexLevel={zIndexLoadingPercentage}
+        animated={animated}
+        preventBodyScroll={preventBodyScroll}
       />
     </>
   );
