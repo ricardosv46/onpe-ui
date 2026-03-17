@@ -162,12 +162,20 @@ export const ModalConfirm = ({
 
       {/* Mensaje / Contenido */}
       {effectiveMessage && (
-        <div
-          id={messageId}
-          className={`mt-7 text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
-        >
-          {effectiveMessage}
-        </div>
+        typeof effectiveMessage === "string" ? (
+          <div
+            id={messageId}
+            className={`mt-7 text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+            dangerouslySetInnerHTML={{ __html: effectiveMessage }}
+          />
+        ) : (
+          <div
+            id={messageId}
+            className={`mt-7 text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+          >
+            {effectiveMessage}
+          </div>
+        )
       )}
 
       {/* Mobile: apilado */}
