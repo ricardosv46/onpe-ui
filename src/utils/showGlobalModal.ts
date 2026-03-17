@@ -109,16 +109,22 @@ import { useModalLoadingPercentageStore } from "../store/modalGlobal/useModalLoa
  * }
  * closeGlobalLoadingPercentage();
  */
-export const showGlobalLoadingPercentage = (message?: string): void =>
+/**
+ * Abre el modal de loading con porcentaje. Retorna un sessionId para evitar
+ * interferencias si se abre otro modal del mismo tipo antes de cerrar el actual.
+ * Pasar el sessionId a updateGlobalLoadingPercentage y closeGlobalLoadingPercentage
+ * garantiza que solo la instancia activa pueda actualizar o cerrar el modal.
+ */
+export const showGlobalLoadingPercentage = (message?: string): number =>
   useModalLoadingPercentageStore.getState().openLoadingPercentage(message);
 
-/** Update the percentage value (0–100). Clamped automatically. */
-export const updateGlobalLoadingPercentage = (percentage: number): void =>
-  useModalLoadingPercentageStore.getState().updatePercentage(percentage);
+/** Update the percentage value (0–100). Si se pasa sessionId y no coincide con la sesión activa, se ignora. */
+export const updateGlobalLoadingPercentage = (percentage: number, sessionId?: number): void =>
+  useModalLoadingPercentageStore.getState().updatePercentage(percentage, sessionId);
 
-/** Close the global loading percentage modal. */
-export const closeGlobalLoadingPercentage = (): void =>
-  useModalLoadingPercentageStore.getState().closeLoadingPercentage();
+/** Close the global loading percentage modal. Si se pasa sessionId y no coincide con la sesión activa, se ignora. */
+export const closeGlobalLoadingPercentage = (sessionId?: number): void =>
+  useModalLoadingPercentageStore.getState().closeLoadingPercentage(sessionId);
 
 /** Returns true if the global loading percentage modal is currently visible. */
 export const isGlobalLoadingPercentageOpen = (): boolean =>
