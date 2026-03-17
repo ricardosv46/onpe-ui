@@ -19,7 +19,7 @@ export interface ModalPayload {
   /** Alias de message para compatibilidad */
   content?: ReactNode;
   /** Tipo semántico: determina icono y color */
-  type?: ModalType;
+  type: ModalType;
   /**
    * Override del icono independiente del `type`.
    * Usa los mismos valores que `type`. Si se provee, tiene prioridad sobre `type` para el icono.
