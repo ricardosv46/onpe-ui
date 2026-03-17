@@ -1,5 +1,6 @@
 import { useModalGlobalStore } from "../store/modalGlobal/useModalGlobalStore";
 import { useModalLoadingStore } from "../store/modalGlobal/useModalLoadingStore";
+import { useModalLoadingPercentageStore } from "../store/modalGlobal/useModalLoadingPercentageStore";
 import type { ModalPayload, ModalResult } from "../store/modalGlobal/useModalGlobalStore";
 
 /**
@@ -21,8 +22,12 @@ import type { ModalPayload, ModalResult } from "../store/modalGlobal/useModalGlo
  *   content: <SesionExpiredDetails />,
  * });
  */
-export const showGlobalModal = (payload: ModalPayload): Promise<boolean> =>
-  useModalGlobalStore.getState().openModal(payload);
+export const showGlobalModal = (payload: ModalPayload): Promise<boolean> => {
+  // Close loading modals first (ModalGlobal handles its own pending promise internally)
+  useModalLoadingStore.getState().closeLoading();
+  useModalLoadingPercentageStore.getState().closeLoadingPercentage();
+  return useModalGlobalStore.getState().openModal(payload);
+};
 
 /**
  * Like `showGlobalModal` but resolves to `"confirm"`, `"cancel"`, or `"close"`,
@@ -37,8 +42,12 @@ export const showGlobalModal = (payload: ModalPayload): Promise<boolean> =>
  * if (result === "confirm") save();
  * if (result === "close")   navigateAway();
  */
-export const showGlobalModalWithClose = (payload: ModalPayload): Promise<ModalResult> =>
-  useModalGlobalStore.getState().openModalWithClose(payload);
+export const showGlobalModalWithClose = (payload: ModalPayload): Promise<ModalResult> => {
+  // Close loading modals first (ModalGlobal handles its own pending promise internally)
+  useModalLoadingStore.getState().closeLoading();
+  useModalLoadingPercentageStore.getState().closeLoadingPercentage();
+  return useModalGlobalStore.getState().openModalWithClose(payload);
+};
 
 /**
  * Programmatically close the global modal (resolves as cancelled).
@@ -81,12 +90,15 @@ export const isAlreadyHandled = (): boolean =>
  * await api.save(data);
  * closeGlobalLoading();
  */
-export const showGlobalLoading = (message?: string): void =>
-  useModalLoadingStore.getState().openLoading(message);
+export const showGlobalLoading = (message?: string): number => {
+  // Close the other loading modal (safe — no pending promises)
+  useModalLoadingPercentageStore.getState().closeLoadingPercentage();
+  return useModalLoadingStore.getState().openLoading(message);
+};
 
-/** Close the global loading modal. */
-export const closeGlobalLoading = (): void =>
-  useModalLoadingStore.getState().closeLoading();
+/** Close the global loading modal. If sessionId is provided, only closes if it matches. */
+export const closeGlobalLoading = (sessionId?: number): void =>
+  useModalLoadingStore.getState().closeLoading(sessionId);
 
 /** Returns true if the global loading modal is currently visible. */
 export const isGlobalLoadingOpen = (): boolean =>
@@ -95,8 +107,6 @@ export const isGlobalLoadingOpen = (): boolean =>
 // ---------------------------------------------------------------------------
 // Loading percentage helpers
 // ---------------------------------------------------------------------------
-
-import { useModalLoadingPercentageStore } from "../store/modalGlobal/useModalLoadingPercentageStore";
 
 /**
  * Show the global loading modal with a percentage progress bar.
@@ -115,8 +125,11 @@ import { useModalLoadingPercentageStore } from "../store/modalGlobal/useModalLoa
  * Pasar el sessionId a updateGlobalLoadingPercentage y closeGlobalLoadingPercentage
  * garantiza que solo la instancia activa pueda actualizar o cerrar el modal.
  */
-export const showGlobalLoadingPercentage = (message?: string): number =>
-  useModalLoadingPercentageStore.getState().openLoadingPercentage(message);
+export const showGlobalLoadingPercentage = (message?: string, initialPercentage?: number): number => {
+  // Close the other loading modal (safe — no pending promises)
+  useModalLoadingStore.getState().closeLoading();
+  return useModalLoadingPercentageStore.getState().openLoadingPercentage(message, initialPercentage);
+};
 
 /** Update the percentage value (0–100). Si se pasa sessionId y no coincide con la sesión activa, se ignora. */
 export const updateGlobalLoadingPercentage = (percentage: number, sessionId?: number): void =>

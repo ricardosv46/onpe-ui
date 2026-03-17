@@ -6,7 +6,7 @@ interface ModalLoadingPercentageState {
   percentage: number;
   /** ID de sesión actual — se incrementa en cada apertura */
   sessionId: number;
-  openLoadingPercentage: (message?: string) => number;
+  openLoadingPercentage: (message?: string, initialPercentage?: number) => number;
   updatePercentage: (percentage: number, sessionId?: number) => void;
   closeLoadingPercentage: (sessionId?: number) => void;
 }
@@ -16,9 +16,9 @@ export const useModalLoadingPercentageStore = create<ModalLoadingPercentageState
   message: "Cargando...",
   percentage: 0,
   sessionId: 0,
-  openLoadingPercentage: (message = "Cargando...") => {
+  openLoadingPercentage: (message = "Cargando...", initialPercentage = 0) => {
     const nextId = get().sessionId + 1;
-    set({ isOpen: true, message, percentage: 0, sessionId: nextId });
+    set({ isOpen: true, message, percentage: Math.min(100, Math.max(0, initialPercentage)), sessionId: nextId });
     return nextId;
   },
   updatePercentage: (percentage, sessionId) => {
