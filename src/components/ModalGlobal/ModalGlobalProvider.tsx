@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useModalGlobalStore } from "../../store/modalGlobal/useModalGlobalStore";
 import { useModalLoadingStore } from "../../store/modalGlobal/useModalLoadingStore";
 import { useModalLoadingPercentageStore } from "../../store/modalGlobal/useModalLoadingPercentageStore";
@@ -18,30 +18,13 @@ interface ModalGlobalProviderProps {
   zIndexLoadingPercentage?: number;
 }
 
-/**
- * Envuelve tu app (o layout) con este provider.
- * Renderiza ModalConfirm, ModalLoading y ModalLoadingPercentage vía portals.
- *
- * @example
- * // layout.tsx
- * <ModalGlobalProvider>
- *   {children}
- * </ModalGlobalProvider>
- *
- * // Desde cualquier parte del código:
- * import { showGlobalModal, showGlobalLoading, closeGlobalLoading } from "@votodigital-onpeui/react/modal";
- *
- * await showGlobalModal({ title: "¿Continuar?", twoButtons: true });
- * showGlobalLoading("Procesando...");
- * closeGlobalLoading();
- */
 export const ModalGlobalProvider = ({
   children,
   zIndexLevel = 200,
   zIndexLoading = 300,
   zIndexLoadingPercentage = 300,
 }: ModalGlobalProviderProps) => {
-  const { isOpen, payload, closeModal, closeModalWithResult } =
+  const { isOpen, payload, modalId, closeModal, closeModalWithResult } =
     useModalGlobalStore();
   const { isOpen: isLoadingOpen, message: loadingMessage } =
     useModalLoadingStore();
@@ -50,6 +33,18 @@ export const ModalGlobalProvider = ({
     message: percentageMessage,
     percentage,
   } = useModalLoadingPercentageStore();
+
+  // Auto-confirmar el modal después del timeout especificado
+  useEffect(() => {
+    if (!isOpen || !payload?.autoConfirmTimeout) return;
+
+    const timerId = setTimeout(async () => {
+      await payload?.onConfirm?.();
+      closeModal(true);
+    }, payload.autoConfirmTimeout);
+
+    return () => clearTimeout(timerId);
+  }, [isOpen, modalId]);
 
   return (
     <>

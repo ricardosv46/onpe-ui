@@ -33,6 +33,11 @@ export interface ModalPayload {
   textButtonConfirm?: string;
   textButtonCancel?: string;
   /**
+   * Tiempo en ms para auto-confirmar el modal (ej: 30000 = 30s).
+   * Útil para modales de error de sesión/red que deben cerrarse solos.
+   */
+  autoConfirmTimeout?: number;
+  /**
    * Marca este modal como controlado por axios interceptor.
    * Cuando es true, los handlers de cambio de ruta NO deben cerrarlo.
    */
