@@ -17,6 +17,10 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   onCloseComplete?: () => void;
   /** Alinea el modal al tope de la pantalla en vez de al centro */
   alignTop?: boolean;
+  /** Habilita animación de entrada/salida (default: true) */
+  animated?: boolean;
+  /** Bloquea el scroll del body mientras el modal está abierto (default: true) */
+  preventBodyScroll?: boolean;
   overlayColor?:
     | "blue"
     | "skyblue"
@@ -47,6 +51,8 @@ export const Modal = ({
   zIndexLevel = 100,
   onCloseComplete,
   alignTop = false,
+  animated = true,
+  preventBodyScroll = true,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars -- overlayColor reservado para uso futuro
   overlayColor: _overlayColor = "blue",
   ...props
@@ -89,6 +95,7 @@ export const Modal = ({
 
   // Body scroll lock
   useEffect(() => {
+    if (!preventBodyScroll) return;
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
@@ -97,7 +104,7 @@ export const Modal = ({
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isOpen]);
+  }, [isOpen, preventBodyScroll]);
 
   // Scroll reset when opening
   useEffect(() => {
@@ -351,8 +358,9 @@ export const Modal = ({
       <div
         style={{ zIndex: zIndexLevel }}
         className={[
-          "fixed inset-0 bg-onpe-blue transition-opacity duration-200",
-          visible ? "opacity-80" : "opacity-0",
+          "fixed inset-0 bg-onpe-blue",
+          animated ? "transition-opacity duration-200" : "",
+          animated ? (visible ? "opacity-80" : "opacity-0") : "opacity-80",
         ].join(" ")}
         onClick={onClose}
       />
@@ -363,10 +371,10 @@ export const Modal = ({
         className={[
           "fixed top-0 w-full h-screen grid",
           alignTop ? "place-items-start pt-8" : "place-items-center",
-          "transition-all duration-200",
-          visible
-            ? "opacity-100 scale-100 translate-y-0"
-            : "opacity-[0.2] scale-95 -translate-y-5",
+          animated ? "transition-all duration-200" : "",
+          animated
+            ? (visible ? "opacity-100 scale-100 translate-y-0" : "opacity-[0.2] scale-95 -translate-y-5")
+            : "opacity-100 scale-100 translate-y-0",
         ].join(" ")}
       >
         <div className="relative grid place-items-center">

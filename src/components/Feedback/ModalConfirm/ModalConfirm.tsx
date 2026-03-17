@@ -70,6 +70,10 @@ export interface ModalConfirmProps {
   alignJustify?: boolean;
   /** Alinea el modal al tope de la pantalla en vez de al centro */
   alignTop?: boolean;
+  /** Habilita animación de entrada/salida (default: true) */
+  animated?: boolean;
+  /** Bloquea el scroll del body mientras el modal está abierto (default: true) */
+  preventBodyScroll?: boolean;
 }
 
 export const ModalConfirm = ({
@@ -94,6 +98,8 @@ export const ModalConfirm = ({
   closeButton = false,
   alignJustify = false,
   alignTop = false,
+  animated = true,
+  preventBodyScroll = true,
 }: ModalConfirmProps) => {
   const titleId = "modal-confirm-title";
   const messageId = "modal-confirm-message";
@@ -135,6 +141,8 @@ export const ModalConfirm = ({
       aria-describedby={messageId}
       disableFocus={disableFocus}
       alignTop={alignTop}
+      animated={animated}
+      preventBodyScroll={preventBodyScroll}
     >
       {/* Icono */}
       <div className="flex items-center justify-center">
