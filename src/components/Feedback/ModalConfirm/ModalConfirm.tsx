@@ -41,8 +41,12 @@ export interface ModalConfirmProps {
   content?: ReactNode;
   /** Tipo semántico: determina icono, color de título y color de botón confirmar */
   type?: ModalType;
-  /** "double" muestra el botón cancelar */
-  buttonMode?: "single" | "double";
+  /**
+   * "single" → un botón "Confirmar".
+   * "double" → "Cancelar" + "Confirmar".
+   * "confirm" → "No" + "Sí" (diálogo de confirmación Sí/No).
+   */
+  buttonMode?: "single" | "double" | "confirm";
   /** Deshabilita el botón confirmar */
   disabledConfirmButton?: boolean;
   /** Deshabilita el cierre del modal */
@@ -60,6 +64,12 @@ export interface ModalConfirmProps {
   zIndexLevel?: number;
   withoutAutoClose?: boolean;
   disableFocus?: boolean;
+  /** Muestra el botón X para cerrar el modal */
+  closeButton?: boolean;
+  /** Alinea el texto del mensaje a la izquierda (justify) en vez de centrado */
+  alignJustify?: boolean;
+  /** Alinea el modal al tope de la pantalla en vez de al centro */
+  alignTop?: boolean;
 }
 
 export const ModalConfirm = ({
@@ -76,11 +86,14 @@ export const ModalConfirm = ({
   color,
   onConfirm = () => {},
   onCancel = () => {},
-  textButtonConfirm = "Confirmar",
-  textButtonCancel = "Cancelar",
+  textButtonConfirm,
+  textButtonCancel,
   className = "",
   zIndexLevel = 100,
   disableFocus = false,
+  closeButton = false,
+  alignJustify = false,
+  alignTop = false,
 }: ModalConfirmProps) => {
   const titleId = "modal-confirm-title";
   const messageId = "modal-confirm-message";
@@ -90,7 +103,10 @@ export const ModalConfirm = ({
   const effectiveColorClass = color
     ? (colorOverrideMap[color] ?? "text-onpe-skyblue")
     : "text-onpe-skyblue";
-  const showTwoButtons = buttonMode === "double";
+  const isConfirmMode = buttonMode === "confirm";
+  const showTwoButtons = buttonMode === "double" || isConfirmMode;
+  const confirmLabel = textButtonConfirm ?? (isConfirmMode ? "Sí" : "Confirmar");
+  const cancelLabel = textButtonCancel ?? (isConfirmMode ? "No" : "Cancelar");
 
   const handleConfirm = async () => {
     try {
@@ -112,12 +128,13 @@ export const ModalConfirm = ({
       isOpen={isOpen}
       onClose={onClose}
       className={`max-w-[719px]! pt-[30px]! pb-[30px]! px-[30px]! ${className}`}
-      closeButton={false}
+      closeButton={closeButton}
       closeDisabled={closeDisabled}
       zIndexLevel={zIndexLevel}
       aria-labelledby={titleId}
       aria-describedby={messageId}
       disableFocus={disableFocus}
+      alignTop={alignTop}
     >
       {/* Icono */}
       <div className="flex items-center justify-center">
@@ -139,7 +156,7 @@ export const ModalConfirm = ({
       {effectiveMessage && (
         <div
           id={messageId}
-          className="mt-7 text-sm md:text-lg text-center max-w-full text-black"
+          className={`mt-7 text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
         >
           {effectiveMessage}
         </div>
@@ -150,7 +167,7 @@ export const ModalConfirm = ({
         <Button
           className="w-full max-w-[200px]"
           color="red"
-          title={textButtonConfirm}
+          title={confirmLabel}
           onClick={handleConfirm}
           disabled={disabledConfirmButton}
         />
@@ -158,7 +175,7 @@ export const ModalConfirm = ({
           <Button
             className="w-full max-w-[200px]"
             color="skyblue"
-            title={textButtonCancel}
+            title={cancelLabel}
             onClick={handleCancel}
           />
         )}
@@ -170,14 +187,14 @@ export const ModalConfirm = ({
           <Button
             className="w-[200px]"
             color="skyblue"
-            title={textButtonCancel}
+            title={cancelLabel}
             onClick={handleCancel}
           />
         )}
         <Button
           className="w-[200px]"
           color="red"
-          title={textButtonConfirm}
+          title={confirmLabel}
           onClick={handleConfirm}
           disabled={disabledConfirmButton}
         />

@@ -24,7 +24,7 @@ export const ModalGlobalProvider = ({
   zIndexLoading = 300,
   zIndexLoadingPercentage = 300,
 }: ModalGlobalProviderProps) => {
-  const { isOpen, payload, modalId, closeModal, closeModalWithResult } =
+  const { isOpen, payload, modalId, isTriState, closeModal, closeModalWithResult } =
     useModalGlobalStore();
   const { isOpen: isLoadingOpen, message: loadingMessage } =
     useModalLoadingStore();
@@ -57,7 +57,7 @@ export const ModalGlobalProvider = ({
         title={payload?.title ?? ""}
         message={payload?.message}
         content={payload?.content}
-        type={payload?.type}
+        type={payload?.iconType ?? payload?.type}
         buttonMode={payload?.buttonMode}
         disabledConfirmButton={payload?.disabledConfirmButton}
         closeDisabled={payload?.closeDisabled}
@@ -73,6 +73,9 @@ export const ModalGlobalProvider = ({
         withoutAutoClose
         textButtonConfirm={payload?.textButtonConfirm}
         textButtonCancel={payload?.textButtonCancel}
+        closeButton={payload?.closeButton ?? isTriState}
+        alignJustify={payload?.alignJustify}
+        alignTop={payload?.top}
         zIndexLevel={zIndexLevel}
       />
 

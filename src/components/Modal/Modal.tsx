@@ -15,6 +15,8 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   existTabIndex?: boolean;
   zIndexLevel?: number;
   onCloseComplete?: () => void;
+  /** Alinea el modal al tope de la pantalla en vez de al centro */
+  alignTop?: boolean;
   overlayColor?:
     | "blue"
     | "skyblue"
@@ -44,6 +46,7 @@ export const Modal = ({
   existTabIndex = true,
   zIndexLevel = 100,
   onCloseComplete,
+  alignTop = false,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars -- overlayColor reservado para uso futuro
   overlayColor: _overlayColor = "blue",
   ...props
@@ -358,7 +361,8 @@ export const Modal = ({
       <div
         style={{ zIndex: zIndexLevel + 10 }}
         className={[
-          "fixed top-0 w-full h-screen grid place-items-center",
+          "fixed top-0 w-full h-screen grid",
+          alignTop ? "place-items-start pt-8" : "place-items-center",
           "transition-all duration-200",
           visible
             ? "opacity-100 scale-100 translate-y-0"
