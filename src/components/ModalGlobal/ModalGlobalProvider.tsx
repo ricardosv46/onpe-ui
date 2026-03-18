@@ -1,6 +1,7 @@
 "use client";
 
-import { type ReactNode, useEffect } from "react";
+import { type ReactNode, useEffect, useMemo } from "react";
+import { ModalGlobalContext } from "./ModalGlobalContext";
 import { useModalGlobalStore } from "../../store/modalGlobal/useModalGlobalStore";
 import { useModalLoadingStore } from "../../store/modalGlobal/useModalLoadingStore";
 import { useModalLoadingPercentageStore } from "../../store/modalGlobal/useModalLoadingPercentageStore";
@@ -69,8 +70,10 @@ export const ModalGlobalProvider = ({
     return () => clearTimeout(timerId);
   }, [isOpen, modalId]);
 
+  const contextValue = useMemo(() => ({ animated }), [animated]);
+
   return (
-    <>
+    <ModalGlobalContext.Provider value={contextValue}>
       {children}
 
       {/* Modal principal — usa ModalConfirm de la librería directamente */}
@@ -125,7 +128,7 @@ export const ModalGlobalProvider = ({
         alignTop={loadingPercentageAlignTop}
         renderContent={loadingPercentageContent}
       />
-    </>
+    </ModalGlobalContext.Provider>
   );
 };
 

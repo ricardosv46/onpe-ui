@@ -1,6 +1,7 @@
 import { HTMLAttributes, ReactNode, useEffect, useRef, useState } from "react";
 import { Portal } from "../Portal/Portal";
 import { IconCloseRadius } from "../../icons/Actions/IconCloseRadius";
+import { useModalGlobalContext } from "../ModalGlobal/ModalGlobalContext";
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
@@ -51,12 +52,14 @@ export const Modal = ({
   zIndexLevel = 100,
   onCloseComplete,
   alignTop = false,
-  animated = true,
+  animated: animatedProp,
   preventBodyScroll = true,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars -- overlayColor reservado para uso futuro
   overlayColor: _overlayColor = "blue",
   ...props
 }: ModalProps) => {
+  const ctx = useModalGlobalContext();
+  const animated = animatedProp ?? ctx?.animated ?? true;
   const ariaLabelledBy = props["aria-labelledby"];
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
