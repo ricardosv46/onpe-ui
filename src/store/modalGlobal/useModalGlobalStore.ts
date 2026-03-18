@@ -37,8 +37,6 @@ export interface ModalPayload {
   closeDisabled?: boolean;
   /** Override manual del color del icono y título */
   color?: "red" | "blue" | "skyblue" | "yellow";
-  onConfirm?: () => void | Promise<void>;
-  onCancel?: () => void | Promise<void>;
   textButtonConfirm?: string;
   textButtonCancel?: string;
   /** Muestra el botón X para cerrar el modal */
