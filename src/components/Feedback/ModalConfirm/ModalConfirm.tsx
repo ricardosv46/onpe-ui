@@ -142,7 +142,7 @@ export const ModalConfirm = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      className={`max-w-[719px]! pt-[30px]! pb-[30px]! px-[30px]! ${className}`}
+      className={`bg-white pt-[30px] pb-[30px] px-[30px] max-w-[719px]! ${className}`}
       closeButton={closeButton}
       closeDisabled={closeDisabled}
       zIndexLevel={zIndexLevel}

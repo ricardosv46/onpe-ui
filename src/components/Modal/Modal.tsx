@@ -348,11 +348,9 @@ export const Modal = ({
     whitoutBackground
       ? "bg-transparent"
       : [
-          "bg-white",
-          "pt-[25px] px-4 pb-[50px]",
           "min-w-[320px] w-[95vw] max-w-[95vw] max-h-[90vh]",
           "overflow-y-auto scroll-smooth",
-          "md:pt-[35px] md:px-8 md:pb-[54px] md:max-w-[1000px]",
+          "md:max-w-[1000px]",
         ].join(" "),
     props.className || "",
   ]

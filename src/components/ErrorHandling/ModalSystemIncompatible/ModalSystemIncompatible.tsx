@@ -22,7 +22,7 @@ export const ModalSystemIncompatible = ({
       zIndexLevel={zIndexLevel}
       isOpen={isOpen}
       onClose={onClose}
-      className={`!max-w-[680px] ${className}`}
+      className={`bg-white pt-[25px] px-4 pb-[50px] md:pt-[35px] md:px-8 md:pb-[54px] max-w-[680px]! ${className}`}
       closeButton={true}
       closeDisabled
     >
