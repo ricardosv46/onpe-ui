@@ -62,8 +62,7 @@ export const ModalGlobalProvider = ({
   useEffect(() => {
     if (!isOpen || !payload?.autoConfirmTimeout) return;
 
-    const timerId = setTimeout(async () => {
-      await payload?.onConfirm?.();
+    const timerId = setTimeout(() => {
       closeModal(true);
     }, payload.autoConfirmTimeout);
 
@@ -88,14 +87,8 @@ export const ModalGlobalProvider = ({
         disabledConfirmButton={payload?.disabledConfirmButton}
         closeDisabled={payload?.closeDisabled}
         color={payload?.color}
-        onConfirm={async () => {
-          await payload?.onConfirm?.();
-          closeModal(true);
-        }}
-        onCancel={() => {
-          payload?.onCancel?.();
-          closeModal(false);
-        }}
+        onConfirm={() => closeModal(true)}
+        onCancel={() => closeModal(false)}
         withoutAutoClose
         textButtonConfirm={payload?.textButtonConfirm ?? defaultTextButtonConfirm}
         textButtonCancel={payload?.textButtonCancel ?? defaultTextButtonCancel}
