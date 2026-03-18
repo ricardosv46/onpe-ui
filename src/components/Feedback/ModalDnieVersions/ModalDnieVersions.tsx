@@ -25,7 +25,7 @@ export const ModalDnieVersions = ({
       zIndexLevel={zIndexLevel}
       isOpen={isOpen}
       onClose={onClose}
-      className={`max-w-[590px]! pt-[30px]! pb-[38px]! ${className}`}
+      className={`bg-white max-w-[590px]! pt-[30px] pb-[38px] ${className}`}
       closeButton={true}
     >
       <h2
