@@ -28,10 +28,13 @@ export const ModalNfc = ({
       zIndexLevel={zIndexLevel}
       isOpen={isOpen}
       onClose={onClose}
-      className={`bg-white max-w-[600px]! pt-[46px] pb-[46px] px-[30px] md:px-[50px] ${className}`}
+      className={`bg-white max-w-[600px]! pt-[46px] pb-[46px] px-[30px] md:px-[50px] md:pt-[35px] md:pb-[54px]  ${className}`}
       closeButton={true}
     >
-      <h2 className="text-center text-onpe-blue font-bold text-base" tabIndex={0}>
+      <h2
+        className="text-center text-onpe-blue font-bold text-base"
+        tabIndex={0}
+      >
         ¿Cómo saber si tu dispositivo móvil tiene NFC?
       </h2>
 
@@ -43,14 +46,21 @@ export const ModalNfc = ({
             Celular Android
           </p>
           <ul role="presentation" className="list-disc pl-[26px] mt-2">
-            <li role="presentation" className="text-sm text-left mb-2 tracking-[0.15px]">
+            <li
+              role="presentation"
+              className="text-sm text-left mb-2 tracking-[0.15px]"
+            >
               Desde la barra de notificaciones, simplemente deslizando hacia
               abajo desde tu pantalla y buscando el ícono del NFC.
             </li>
-            <li role="presentation" className="text-sm text-left mb-2 tracking-[0.15px]">
+            <li
+              role="presentation"
+              className="text-sm text-left mb-2 tracking-[0.15px]"
+            >
               Otra forma es ir hacia Ajustes
               <span aria-hidden="true">{" > "}</span>Conexiones o Redes
-              Inalámbricas<span aria-hidden="true">{" > "}</span>Buscar &quot;NFC&quot;.
+              Inalámbricas<span aria-hidden="true">{" > "}</span>Buscar
+              &quot;NFC&quot;.
             </li>
           </ul>
         </div>
@@ -64,7 +74,10 @@ export const ModalNfc = ({
             Celular iPhone
           </p>
           <ul role="presentation" className="list-disc pl-[26px] mt-2">
-            <li role="presentation" className="text-sm text-left mb-2 tracking-[0.15px]">
+            <li
+              role="presentation"
+              className="text-sm text-left mb-2 tracking-[0.15px]"
+            >
               Todos los modelos iPhone 7 en adelante ya cuentan con tecnología
               NFC activa.
             </li>
@@ -74,13 +87,21 @@ export const ModalNfc = ({
         {iconNfc2}
 
         {/* How to use NFC */}
-        <h2 className="text-center text-onpe-blue font-bold my-5 text-base" tabIndex={0}>
+        <h2
+          className="text-center text-onpe-blue font-bold my-5 text-base"
+          tabIndex={0}
+        >
           ¿Cómo usar el NFC correctamente?
         </h2>
 
         <div className="pl-3 w-full">
-          <ol role="presentation" className="text-sm text-justify list-decimal list-outside">
-            <li role="presentation" className="mb-2">Activa el NFC en tu celular.</li>
+          <ol
+            role="presentation"
+            className="text-sm text-justify list-decimal list-outside"
+          >
+            <li role="presentation" className="mb-2">
+              Activa el NFC en tu celular.
+            </li>
             <li role="presentation" className="mb-2">
               Busca en internet dónde está el lector NFC según tu modelo.
             </li>
@@ -89,7 +110,8 @@ export const ModalNfc = ({
               del sistema.
             </li>
             <li role="presentation" className="mb-2">
-              Puedes consultar los videos &quot;Aprende como leer tu DNIe con NFC&quot;:
+              Puedes consultar los videos &quot;Aprende como leer tu DNIe con
+              NFC&quot;:
             </li>
           </ol>
         </div>

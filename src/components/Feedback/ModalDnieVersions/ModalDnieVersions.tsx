@@ -25,7 +25,7 @@ export const ModalDnieVersions = ({
       zIndexLevel={zIndexLevel}
       isOpen={isOpen}
       onClose={onClose}
-      className={`bg-white max-w-[590px]! pt-[30px] pb-[38px] ${className}`}
+      className={`bg-white max-w-[590px]! pt-[30px] pb-[38px] md:pt-[35px] px-4 md:pb-[54px] md:px-8 ${className}`}
       closeButton={true}
     >
       <h2
@@ -46,17 +46,30 @@ export const ModalDnieVersions = ({
                 <span aria-hidden="true">DNIe versión 1</span>
               </span>
             </p>
-            <ul role="none" className="text-sm list-disc text-justify self-start pl-8">
+            <ul
+              role="none"
+              className="text-sm list-disc text-justify self-start pl-8"
+            >
               <li role="none" className="mb-2">
                 <p tabIndex={0}>
-                  <span className="sr-only">Chip en la parte delantera del DNI electrónico.</span>
-                  <span aria-hidden="true">Chip en la parte delantera del DNIe.</span>
+                  <span className="sr-only">
+                    Chip en la parte delantera del DNI electrónico.
+                  </span>
+                  <span aria-hidden="true">
+                    Chip en la parte delantera del DNIe.
+                  </span>
                 </p>
               </li>
               <li role="none" className="mb-2">
                 <p tabIndex={0}>
-                  <span className="sr-only">Compatible solo con el lector del DNI electrónico en PC, Mac o laptop.</span>
-                  <span aria-hidden="true">Compatible solo con el lector del DNIe en <strong>PC, Mac o laptop</strong>.</span>
+                  <span className="sr-only">
+                    Compatible solo con el lector del DNI electrónico en PC, Mac
+                    o laptop.
+                  </span>
+                  <span aria-hidden="true">
+                    Compatible solo con el lector del DNIe en{" "}
+                    <strong>PC, Mac o laptop</strong>.
+                  </span>
                 </p>
               </li>
             </ul>
@@ -75,20 +88,33 @@ export const ModalDnieVersions = ({
                 <span aria-hidden="true">DNIe versión 2 y 3</span>
               </span>
             </p>
-            <ul role="none" className="text-sm list-disc text-justify self-start pl-8">
+            <ul
+              role="none"
+              className="text-sm list-disc text-justify self-start pl-8"
+            >
               <li role="none" className="mb-2">
                 <p tabIndex={0}>
-                  <span className="sr-only">Chip en la parte posterior del DNI electrónico.</span>
-                  <span aria-hidden="true">Chip en la parte posterior del DNIe.</span>
+                  <span className="sr-only">
+                    Chip en la parte posterior del DNI electrónico.
+                  </span>
+                  <span aria-hidden="true">
+                    Chip en la parte posterior del DNIe.
+                  </span>
                 </p>
               </li>
               <li role="none" className="mb-2">
                 <p tabIndex={0}>
                   <span className="sr-only">
-                    Compatibles con el lector del DNI electrónico en PC, Mac o laptop y tecnología NFC (ISO 14443-B) en móviles.
+                    Compatibles con el lector del DNI electrónico en PC, Mac o
+                    laptop y tecnología NFC (ISO 14443-B) en móviles.
                   </span>
                   <span aria-hidden="true">
-                    Compatibles con el lector del DNIe en <strong> PC, Mac o laptop y tecnología NFC (ISO 14443-B) en móviles</strong>.
+                    Compatibles con el lector del DNIe en{" "}
+                    <strong>
+                      {" "}
+                      PC, Mac o laptop y tecnología NFC (ISO 14443-B) en móviles
+                    </strong>
+                    .
                   </span>
                 </p>
               </li>
