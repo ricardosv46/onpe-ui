@@ -159,7 +159,7 @@ export const Modal = ({
       ].join(",");
 
       let focusable = Array.from(
-        wrapper.querySelectorAll<HTMLElement>(selector)
+        wrapper.querySelectorAll<HTMLElement>(selector),
       ).filter((el) => isElementVisible(el) && el.tabIndex !== -1);
 
       if (wrapper.tabIndex >= 0) {
@@ -265,7 +265,10 @@ export const Modal = ({
       }
 
       const activeIndex = focusable.indexOf(active);
-      if (!isShift && (active === last || activeIndex === focusable.length - 1)) {
+      if (
+        !isShift &&
+        (active === last || activeIndex === focusable.length - 1)
+      ) {
         e.preventDefault();
         first.focus();
         return;
@@ -299,7 +302,7 @@ export const Modal = ({
         if (!wrapper) {
           if (attempt < 10) {
             pendingTasks.push(
-              globalThis.setTimeout(() => bindFocusManagement(attempt + 1), 25)
+              globalThis.setTimeout(() => bindFocusManagement(attempt + 1), 25),
             );
           }
           return;
@@ -324,7 +327,11 @@ export const Modal = ({
       pendingTasks.forEach((task) => globalThis.clearTimeout(task));
       document.removeEventListener("keydown", handleKeyDown);
       focusOutWrapper?.removeEventListener("focusout", handleFocusOut);
-      if (!disableFocus && !disableFocusRestore && previousActiveElement.current) {
+      if (
+        !disableFocus &&
+        !disableFocusRestore &&
+        previousActiveElement.current
+      ) {
         previousActiveElement.current.focus();
       }
     };
@@ -378,7 +385,9 @@ export const Modal = ({
           alignTop ? "place-items-start pt-8" : "place-items-center",
           animated ? "transition-all duration-200" : "",
           animated
-            ? (visible ? "opacity-100 scale-100 translate-y-0" : "opacity-[0.2] scale-95 -translate-y-5")
+            ? visible
+              ? "opacity-100 scale-100 translate-y-0"
+              : "opacity-[0.2] scale-95 -translate-y-5"
             : "opacity-100 scale-100 translate-y-0",
         ].join(" ")}
       >
