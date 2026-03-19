@@ -112,7 +112,6 @@ export const ModalConfirm = ({
   const messageId = "modal-confirm-message";
 
   const effectiveTitle = title ?? defaultTitleByType[type] ?? "";
-  const effectiveMessage = message ?? content;
   // Título e ícono siempre skyblue por defecto; `color` es el único override
   const effectiveColorClass = color
     ? (colorOverrideMap[color] ?? "text-onpe-skyblue")
@@ -170,21 +169,29 @@ export const ModalConfirm = ({
       </p>
 
       {/* Mensaje / Contenido */}
-      {effectiveMessage && (
-        typeof effectiveMessage === "string" ? (
+      {message && (
+        typeof message === "string" ? (
           <div
             id={messageId}
             className={`mt-7 text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
-            dangerouslySetInnerHTML={{ __html: effectiveMessage }}
+            dangerouslySetInnerHTML={{ __html: message }}
           />
         ) : (
           <div
             id={messageId}
             className={`mt-7 text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
           >
-            {effectiveMessage}
+            {message}
           </div>
         )
+      )}
+      {content && (
+        <div
+          id={message ? undefined : messageId}
+          className={`mt-7 text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+        >
+          {content}
+        </div>
       )}
 
       {/* Mobile: apilado */}
