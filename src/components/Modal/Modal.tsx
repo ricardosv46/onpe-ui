@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode, useEffect, useRef, useState } from "react";
+import { HTMLAttributes, ReactNode, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { Portal } from "../Portal/Portal";
 import { IconCloseRadius } from "../../icons/Actions/IconCloseRadius";
 import { useModalGlobalContext } from "../ModalGlobal/ModalGlobalContext";
@@ -38,6 +38,24 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
     | "primary";
 }
 
+const openModals: Set<string> =
+  (globalThis as unknown as Record<string, unknown>).__openModals as Set<string> ||
+  ((globalThis as unknown as Record<string, Set<string>>).__openModals = new Set<string>());
+
+const lockBodyScroll = (id: string, enabled: boolean) => {
+  if (!enabled || typeof document === "undefined") return;
+  openModals.add(id);
+  document.body.style.overflow = "hidden";
+};
+
+const unlockBodyScroll = (id: string, enabled: boolean) => {
+  if (!enabled || typeof document === "undefined") return;
+  openModals.delete(id);
+  if (openModals.size === 0) {
+    document.body.style.overflow = "";
+  }
+};
+
 export const Modal = ({
   isOpen,
   onClose,
@@ -58,6 +76,7 @@ export const Modal = ({
   overlayColor: _overlayColor = "blue",
   ...props
 }: ModalProps) => {
+  const modalId = useId();
   const ctx = useModalGlobalContext();
   const animated = animatedProp ?? ctx?.animated ?? true;
   const ariaLabelledBy = props["aria-labelledby"];
@@ -97,18 +116,13 @@ export const Modal = ({
     }
   }, [isOpen, animated, onCloseComplete]);
 
-  // Body scroll lock
-  useEffect(() => {
-    if (!preventBodyScroll) return;
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+  // Body scroll lock — usa counter global para soportar múltiples modales simultáneos
+  useLayoutEffect(() => {
+    if (isOpen) lockBodyScroll(modalId, preventBodyScroll);
     return () => {
-      document.body.style.overflow = "";
+      if (isOpen) unlockBodyScroll(modalId, preventBodyScroll);
     };
-  }, [isOpen, preventBodyScroll]);
+  }, [isOpen, preventBodyScroll, modalId]);
 
   // Scroll reset when opening
   useEffect(() => {
