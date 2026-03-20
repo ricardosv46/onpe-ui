@@ -21,6 +21,7 @@ interface UseOnpeIdAuthParams {
   onMaxReconnects?: () => void;
   onHomeApp?: () => void;
   onNotApp?: () => void;
+  onOpenMobile?: (data: Record<string, unknown>) => void;
   isSessionExpired?: boolean;
 }
 
@@ -39,6 +40,7 @@ export const useOnpeIdAuth = ({
   onExpiredApp,
   onDisconnect,
   onMaxReconnects,
+  onOpenMobile,
 }: UseOnpeIdAuthParams) => {
   const [isOpenLaunchApp, setIsOpenLaunchApp] = useState(false);
   const [dataOpenLaunchApp, setDataOpenLaunchApp] = useState<
@@ -106,6 +108,9 @@ export const useOnpeIdAuth = ({
     onLaunchApp: (data) => {
       openLaunchApp();
       setDataOpenLaunchApp((data.data as Record<string, unknown>) ?? {});
+    },
+    onOpenMobile: (data) => {
+      onOpenMobile?.((data.data as Record<string, unknown>) ?? {});
     },
     onHomeApp: () => {
       handleClose();
