@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from "react";
 
-export type MessageStatus = "EXPIRED_APP" | "OPEN_APP" | "LAUNCH_APP" | "HOME_APP" | "NOT_APP";
+export type MessageStatus = "EXPIRED_APP" | "OPEN_APP" | "LAUNCH_APP" | "HOME_APP" | "NOT_APP" | "OPEN_MOBILE";
 
 export interface IframeMessage {
   status: MessageStatus;
@@ -16,6 +16,7 @@ interface UseIframeCommunicationParams {
   onLaunchApp?: (data: IframeMessage) => void;
   onHomeApp?: (data: IframeMessage) => void;
   onNotApp?: (data: IframeMessage) => void;
+  onOpenMobile?: (data: IframeMessage) => void;
   enabled?: boolean;
   allowedOrigin?: string;
 }
@@ -26,6 +27,7 @@ export const useIframeCommunication = ({
   onLaunchApp,
   onHomeApp,
   onNotApp,
+  onOpenMobile,
   enabled = true,
   allowedOrigin,
 }: UseIframeCommunicationParams = {}) => {
@@ -35,6 +37,7 @@ export const useIframeCommunication = ({
     onLaunchApp,
     onHomeApp,
     onNotApp,
+    onOpenMobile,
   });
 
   useEffect(() => {
@@ -44,8 +47,9 @@ export const useIframeCommunication = ({
       onLaunchApp,
       onHomeApp,
       onNotApp,
+      onOpenMobile,
     };
-  }, [onExpiredApp, onOpenApp, onLaunchApp, onHomeApp, onNotApp]);
+  }, [onExpiredApp, onOpenApp, onLaunchApp, onHomeApp, onNotApp, onOpenMobile]);
 
   useEffect(() => {
     if (!enabled) return;
@@ -78,6 +82,9 @@ export const useIframeCommunication = ({
           break;
         case "NOT_APP":
           handlers.onNotApp?.(data);
+          break;
+        case "OPEN_MOBILE":
+          handlers.onOpenMobile?.(data);
           break;
         default:
           break;
