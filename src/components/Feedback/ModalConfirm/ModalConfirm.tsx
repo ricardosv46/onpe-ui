@@ -19,16 +19,27 @@ const colorOverrideMap: Record<string, string> = {
 function renderIcon(type: ModalType, colorClass: string): ReactNode {
   if (type === "none") return null;
   if (type === "success") {
-    return <IconCheck role="presentation" className={`w-16 h-16 ${colorClass}`} />;
+    return (
+      <IconCheck role="presentation" className={`w-16 h-16 ${colorClass}`} />
+    );
   }
   if (type === "question") {
-    return <IconQuestion role="presentation" className={`w-16 h-16 ${colorClass}`} />;
+    return (
+      <IconQuestion role="presentation" className={`w-16 h-16 ${colorClass}`} />
+    );
   }
   if (type === "info") {
-    return <IconInfo role="presentation" className={`w-16 h-16 ${colorClass}`} />;
+    return (
+      <IconInfo role="presentation" className={`w-16 h-16 ${colorClass}`} />
+    );
   }
   // error | warning
-  return <IconWarningNotRecommended role="presentation" className={`w-16 h-16 ${colorClass}`} />;
+  return (
+    <IconWarningNotRecommended
+      role="presentation"
+      className={`w-16 h-16 ${colorClass}`}
+    />
+  );
 }
 
 const defaultTitleByType: Record<string, string> = {
@@ -116,10 +127,17 @@ export const ModalConfirm = ({
   const effectiveColorClass = color
     ? (colorOverrideMap[color] ?? "text-onpe-skyblue")
     : "text-onpe-skyblue";
-  const effectiveButtonMode = buttonMode ?? (type === "question" ? "confirm" : "single");
+  const effectiveButtonMode =
+    buttonMode ?? (type === "question" ? "confirm" : "single");
   const isConfirmMode = effectiveButtonMode === "confirm";
   const showTwoButtons = effectiveButtonMode === "double" || isConfirmMode;
-  const confirmLabel = textButtonConfirm ?? (isConfirmMode ? "Sí" : effectiveButtonMode === "double" ? "Confirmar" : "Aceptar");
+  const confirmLabel =
+    textButtonConfirm ??
+    (isConfirmMode
+      ? "Sí"
+      : effectiveButtonMode === "double"
+        ? "Confirmar"
+        : "Aceptar");
   const cancelLabel = textButtonCancel ?? (isConfirmMode ? "No" : "Cancelar");
 
   const handleConfirm = async () => {
@@ -169,8 +187,8 @@ export const ModalConfirm = ({
       </p>
 
       {/* Mensaje / Contenido */}
-      {message && (
-        typeof message === "string" ? (
+      {message &&
+        (typeof message === "string" ? (
           <div
             id={messageId}
             className={`mt-7 text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
@@ -183,12 +201,11 @@ export const ModalConfirm = ({
           >
             {message}
           </div>
-        )
-      )}
+        ))}
       {content && (
         <div
           id={message ? undefined : messageId}
-          className={`mt-7 text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+          className={`text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
         >
           {content}
         </div>
