@@ -31,6 +31,8 @@ interface ModalGlobalProviderProps {
   defaultTextButtonConfirm?: string;
   /** Texto por defecto del botón cancelar cuando el payload no lo especifica */
   defaultTextButtonCancel?: string;
+  /** Deshabilita el manejo de focus en todos los modales (default: false) */
+  disableFocus?: boolean;
 }
 
 export const ModalGlobalProvider = ({
@@ -45,13 +47,16 @@ export const ModalGlobalProvider = ({
   loadingPercentageContent,
   defaultTextButtonConfirm,
   defaultTextButtonCancel,
+  disableFocus = false,
 }: ModalGlobalProviderProps) => {
   const isOpen = useModalGlobalStore((s) => s.isOpen);
   const payload = useModalGlobalStore((s) => s.payload);
   const modalId = useModalGlobalStore((s) => s.modalId);
   const isTriState = useModalGlobalStore((s) => s.isTriState);
   const closeModal = useModalGlobalStore((s) => s.closeModal);
-  const closeModalWithResult = useModalGlobalStore((s) => s.closeModalWithResult);
+  const closeModalWithResult = useModalGlobalStore(
+    (s) => s.closeModalWithResult,
+  );
   const isLoadingOpen = useModalLoadingStore((s) => s.isOpen);
   const loadingMessage = useModalLoadingStore((s) => s.message);
   const isPercentageOpen = useModalLoadingPercentageStore((s) => s.isOpen);
@@ -69,7 +74,7 @@ export const ModalGlobalProvider = ({
     return () => clearTimeout(timerId);
   }, [isOpen, modalId]);
 
-  const contextValue = useMemo(() => ({ animated }), [animated]);
+  const contextValue = useMemo(() => ({ animated, disableFocus }), [animated, disableFocus]);
 
   return (
     <ModalGlobalContext.Provider value={contextValue}>
@@ -90,7 +95,9 @@ export const ModalGlobalProvider = ({
         onConfirm={() => closeModal(true)}
         onCancel={() => closeModal(false)}
         withoutAutoClose
-        textButtonConfirm={payload?.textButtonConfirm ?? defaultTextButtonConfirm}
+        textButtonConfirm={
+          payload?.textButtonConfirm ?? defaultTextButtonConfirm
+        }
         textButtonCancel={payload?.textButtonCancel ?? defaultTextButtonCancel}
         closeButton={payload?.closeButton ?? isTriState}
         alignJustify={payload?.alignJustify}
@@ -98,6 +105,7 @@ export const ModalGlobalProvider = ({
         zIndexLevel={zIndexLevel}
         animated={animated}
         preventBodyScroll={preventBodyScroll}
+        disableFocus={disableFocus}
       />
 
       {/* Loading */}

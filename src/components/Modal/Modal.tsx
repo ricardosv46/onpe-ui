@@ -64,7 +64,7 @@ export const Modal = ({
   closeButton = false,
   closeDisabled = false,
   escapeToClose = true,
-  disableFocus = false,
+  disableFocus: disableFocusProp,
   disableFocusRestore = false,
   existTabIndex = true,
   zIndexLevel = 100,
@@ -79,6 +79,7 @@ export const Modal = ({
   const modalId = useId();
   const ctx = useModalGlobalContext();
   const animated = animatedProp ?? ctx?.animated ?? true;
+  const disableFocus = disableFocusProp ?? ctx?.disableFocus ?? false;
   const ariaLabelledBy = props["aria-labelledby"];
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
