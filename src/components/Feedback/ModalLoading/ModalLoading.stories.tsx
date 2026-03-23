@@ -81,3 +81,40 @@ export const Abierto: Story = {
     message: "Cargando...",
   },
 };
+
+function SpinnerPersonalizadoStory() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+      >
+        Spinner personalizado
+      </button>
+      {isOpen && (
+        <button
+          onClick={() => setIsOpen(false)}
+          className="ml-4 px-4 py-2 bg-onpe-red text-white rounded cursor-pointer"
+        >
+          Detener
+        </button>
+      )}
+      <ModalLoading
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        message="Subiendo archivo..."
+        spinner={
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-16 h-16 rounded-full border-4 border-white border-t-transparent animate-spin" />
+            <span className="text-white text-lg">📁</span>
+          </div>
+        }
+      />
+    </>
+  );
+}
+
+export const SpinnerPersonalizado: Story = {
+  render: () => <SpinnerPersonalizadoStory />,
+};

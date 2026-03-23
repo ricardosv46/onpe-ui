@@ -1,6 +1,6 @@
 {
   "name": "@votodigital-onpeui/react",
-  "version": "0.1.56",
+  "version": "0.1.57",
   "description": "Librería de componentes UI para proyectos ONPE",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -52,7 +52,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepublishOnly": "npm run build",
-    "lint": "npx eslint src --ext .ts,.tsx"
+    "lint": "npx eslint src --ext .ts,.tsx",
+    "deploy-storybook": "npm run build-storybook && netlify deploy --prod --dir=storybook-static"
   },
   "peerDependencies": {
     "react": ">=18",

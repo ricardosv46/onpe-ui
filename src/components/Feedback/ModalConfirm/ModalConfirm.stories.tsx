@@ -66,7 +66,6 @@ function AdvertenciaStory() {
         title="¿Estás seguro?"
         message="Esta operación eliminará los datos permanentemente."
         type="warning"
-        color="red"
         textButtonConfirm="Eliminar"
         textButtonCancel="Cancelar"
         buttonMode="double"
@@ -92,7 +91,6 @@ function ExitoStory() {
         title="Operación completada"
         message="Los datos se han guardado correctamente."
         type="success"
-        color="blue"
         buttonMode="single"
         textButtonConfirm="Aceptar"
       />
@@ -173,9 +171,48 @@ export const Abierto: Story = {
     title: "¿Deseas continuar?",
     message: "Esta acción no se puede deshacer.",
     type: "warning",
-    color: "blue",
     buttonMode: "double",
     textButtonConfirm: "Confirmar",
     textButtonCancel: "Cancelar",
   },
+};
+
+function ColoresStory() {
+  const [color, setColor] = useState<"red" | "blue" | "skyblue" | "yellow">("blue");
+  const [isOpen, setIsOpen] = useState(false);
+  const colores: Array<{ value: "red" | "blue" | "skyblue" | "yellow"; label: string; bg: string }> = [
+    { value: "blue", label: "Azul", bg: "bg-onpe-blue" },
+    { value: "red", label: "Rojo", bg: "bg-onpe-red" },
+    { value: "skyblue", label: "Celeste", bg: "bg-onpe-skyblue" },
+    { value: "yellow", label: "Amarillo", bg: "bg-onpe-yellow" },
+  ];
+  return (
+    <>
+      <div className="flex gap-2 flex-wrap">
+        {colores.map((c) => (
+          <button
+            key={c.value}
+            onClick={() => { setColor(c.value); setIsOpen(true); }}
+            className={`px-4 py-2 ${c.bg} text-white rounded cursor-pointer`}
+          >
+            {c.label}
+          </button>
+        ))}
+      </div>
+      <ModalConfirm
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="Color personalizado"
+        message={`Este modal usa el color "${color}" para el ícono y el título.`}
+        color={color}
+        buttonMode="single"
+        textButtonConfirm="Entendido"
+        onConfirm={() => setIsOpen(false)}
+      />
+    </>
+  );
+}
+
+export const Colores: Story = {
+  render: () => <ColoresStory />,
 };

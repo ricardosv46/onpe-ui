@@ -115,7 +115,7 @@ function App() {
     <>
       <button onClick={() => setIsOpen(true)}>Abrir Modal</button>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} closeButton>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} closeButton className="bg-white">
         <h2>Título del Modal</h2>
         <p>Contenido del modal.</p>
       </Modal>
@@ -163,8 +163,9 @@ function App() {
         onClose={() => setIsOpen(false)}
         title="¿Estás seguro?"
         message="Esta acción no se puede deshacer."
-        icon="warning"
+        type="warning"
         color="red"
+        buttonMode="double"
         textButtonConfirm="Eliminar"
         textButtonCancel="Cancelar"
         onConfirm={() => console.log("confirmado")}
@@ -181,17 +182,26 @@ function App() {
 |------|------|---------|-------------|
 | `isOpen` | `boolean` | — | **(requerido)** |
 | `onClose` | `() => void` | — | **(requerido)** |
-| `title` | `string` | — | Título del modal **(requerido)** |
-| `message` | `ReactNode` | — | Mensaje descriptivo **(requerido)** |
-| `icon` | `'warning' \| 'success'` | `'warning'` | Icono a mostrar |
-| `color` | `'blue' \| 'red'` | `'blue'` | Color del icono y título |
-| `twoButtons` | `boolean` | `true` | Muestra dos botones (confirmar + cancelar) |
+| `title` | `string` | — | Título del modal |
+| `message` | `ReactNode` | — | Mensaje descriptivo (string o JSX) |
+| `content` | `ReactNode` | — | Alias de `message` |
+| `type` | `'warning' \| 'success' \| 'question' \| 'info' \| 'none'` | `'warning'` | Determina el icono y el color por defecto |
+| `buttonMode` | `'single' \| 'double' \| 'confirm'` | — | `single` = un botón, `double` = Cancelar + Confirmar, `confirm` = No + Sí |
+| `color` | `'blue' \| 'red' \| 'skyblue' \| 'yellow'` | — | Override manual del color del icono y título |
 | `textButtonConfirm` | `string` | `'Confirmar'` | Texto del botón de confirmación |
 | `textButtonCancel` | `string` | `'Cancelar'` | Texto del botón de cancelación |
-| `onConfirm` | `() => void` | — | Acción al confirmar |
-| `onCancel` | `() => void` | — | Acción al cancelar |
+| `onConfirm` | `() => void \| Promise<void>` | — | Acción al confirmar |
+| `onCancel` | `() => void \| Promise<void>` | — | Acción al cancelar |
 | `withoutAutoClose` | `boolean` | `false` | Evita que el modal se cierre automáticamente al confirmar/cancelar |
+| `disabledConfirmButton` | `boolean` | `false` | Deshabilita el botón confirmar |
+| `closeDisabled` | `boolean` | `false` | Deshabilita el cierre por click fuera y Escape |
+| `closeButton` | `boolean` | `false` | Muestra botón X para cerrar |
+| `alignJustify` | `boolean` | `false` | Alinea el texto del mensaje en justify en vez de centrado |
+| `alignTop` | `boolean` | `false` | Alinea el modal al tope de la pantalla |
+| `animated` | `boolean` | `true` | Habilita animación de entrada/salida |
+| `preventBodyScroll` | `boolean` | `true` | Bloquea el scroll del body mientras el modal está abierto |
 | `zIndexLevel` | `number` | `100` | Nivel de z-index |
+| `className` | `string` | — | Clases adicionales |
 
 ---
 
@@ -202,9 +212,17 @@ Modal de carga con spinner animado y mensaje.
 ```tsx
 import { ModalLoading } from "@votodigital-onpeui/react";
 
+// Uso básico
 <ModalLoading
   isOpen={loading}
   message="Procesando información..."
+/>
+
+// Con spinner personalizado
+<ModalLoading
+  isOpen={loading}
+  message="Subiendo archivo..."
+  spinner={<div className="w-16 h-16 rounded-full border-4 border-white border-t-transparent animate-spin" />}
 />
 ```
 
@@ -213,8 +231,156 @@ import { ModalLoading } from "@votodigital-onpeui/react";
 | Prop | Tipo | Default | Descripción |
 |------|------|---------|-------------|
 | `isOpen` | `boolean` | — | **(requerido)** |
+| `onClose` | `() => void` | — | Callback al cerrar |
 | `message` | `string` | `'Cargando...'` | Mensaje de carga |
+| `spinner` | `ReactNode` | — | Spinner personalizado. Si no se provee, se usa el spinner por defecto |
+| `animated` | `boolean` | `true` | Habilita animación de entrada/salida |
+| `preventBodyScroll` | `boolean` | `true` | Bloquea el scroll del body |
 | `zIndexLevel` | `number` | `100` | Nivel de z-index |
+| `className` | `string` | — | Clases adicionales |
+
+---
+
+### ModalLoadingPercentage
+
+Modal de carga con barra de progreso y porcentaje.
+
+```tsx
+import { ModalLoadingPercentage } from "@votodigital-onpeui/react";
+
+<ModalLoadingPercentage
+  isOpen={isOpen}
+  message="Importando padrón electoral"
+  percentage={progress}
+/>
+```
+
+#### Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `isOpen` | `boolean` | — | **(requerido)** |
+| `message` | `string` | — | **(requerido)** Texto que aparece sobre la barra de progreso |
+| `percentage` | `number` | — | **(requerido)** Valor entre 0 y 100. Se clampea automáticamente |
+| `alignTop` | `boolean` | `false` | Alinea el modal al tope de la pantalla en vez de al centro |
+| `animated` | `boolean` | `true` | Habilita animación de entrada/salida |
+| `preventBodyScroll` | `boolean` | `true` | Bloquea el scroll del body |
+| `zIndexLevel` | `number` | `300` | Nivel de z-index |
+
+---
+
+### ModalGlobalProvider
+
+Proveedor centralizado que gestiona los tres modales (ModalConfirm, ModalLoading, ModalLoadingPercentage) desde cualquier parte de la app sin props drilling. Usa Zustand internamente.
+
+#### Setup
+
+Envuelve tu app una sola vez:
+
+```tsx
+import { ModalGlobalProvider } from "@votodigital-onpeui/react";
+
+function App() {
+  return (
+    <ModalGlobalProvider>
+      <Router />
+    </ModalGlobalProvider>
+  );
+}
+```
+
+#### Usar el modal de confirmación
+
+```tsx
+import { useModalGlobalStore } from "@votodigital-onpeui/react";
+
+function MiComponente() {
+  const { openModal, openModalWithClose } = useModalGlobalStore();
+
+  const handleEliminar = async () => {
+    // Retorna true (confirmar) o false (cancelar)
+    const confirmed = await openModal({
+      type: "warning",
+      title: "¿Estás seguro?",
+      message: "Esta acción no se puede deshacer.",
+      buttonMode: "double",
+      color: "red",
+      textButtonConfirm: "Eliminar",
+    });
+
+    if (confirmed) {
+      // lógica de eliminación
+    }
+  };
+
+  const handleConX = async () => {
+    // Retorna 'confirm' | 'cancel' | 'close'
+    const result = await openModalWithClose({
+      type: "info",
+      title: "Aviso",
+      message: "Revisa los datos antes de continuar.",
+      buttonMode: "single",
+    });
+  };
+}
+```
+
+#### Usar el modal de loading
+
+```tsx
+import { useModalLoadingStore } from "@votodigital-onpeui/react";
+
+function MiComponente() {
+  const { openLoading, closeLoading } = useModalLoadingStore();
+
+  const handleGuardar = async () => {
+    const sessionId = openLoading("Guardando...");
+    try {
+      await guardarDatos();
+    } finally {
+      closeLoading(sessionId);
+    }
+  };
+}
+```
+
+#### Usar el modal de loading con porcentaje
+
+```tsx
+import { useModalLoadingPercentageStore } from "@votodigital-onpeui/react";
+
+function MiComponente() {
+  const { openLoadingPercentage, updatePercentage, closeLoadingPercentage } =
+    useModalLoadingPercentageStore();
+
+  const handleImportar = async () => {
+    const sessionId = openLoadingPercentage("Importando padrón", 0);
+    for (let i = 0; i <= 100; i += 10) {
+      await procesarLote(i);
+      updatePercentage(i, sessionId);
+    }
+    closeLoadingPercentage(sessionId);
+  };
+}
+```
+
+> **Nota sobre sessionId:** `openLoading`, `openLoadingPercentage` retornan un `sessionId`. Pasarlo a `closeLoading` / `closeLoadingPercentage` evita que una llamada tardía cierre un loading abierto por otra operación posterior.
+
+#### Props de ModalGlobalProvider
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | **(requerido)** |
+| `zIndexLevel` | `number` | `200` | z-index del ModalConfirm |
+| `zIndexLoading` | `number` | `300` | z-index del ModalLoading |
+| `zIndexLoadingPercentage` | `number` | `300` | z-index del ModalLoadingPercentage |
+| `animated` | `boolean` | `true` | Animación en todos los modales |
+| `preventBodyScroll` | `boolean` | `true` | Scroll lock en todos los modales |
+| `loadingSpinner` | `ReactNode` | — | Spinner personalizado para ModalLoading |
+| `loadingPercentageAlignTop` | `boolean` | `false` | Alinea el ModalLoadingPercentage al tope |
+| `defaultTextButtonConfirm` | `string` | — | Texto por defecto del botón confirmar |
+| `defaultTextButtonCancel` | `string` | — | Texto por defecto del botón cancelar |
+| `disableFocus` | `boolean` | `false` | Deshabilita el manejo de focus en todos los modales |
 
 ---
 
@@ -495,12 +661,18 @@ Modal
 ├── Portal
 └── IconCloseRadius
 
-ModalConfirm → Modal
-ModalLoading → Modal
+ModalConfirm           → Modal
+ModalLoading           → Modal
+ModalLoadingPercentage → Modal
 ModalBrowserIncompatible → Modal + IconWarning + IconChromeColor + IconSafariColor + IconEdgeColor
 ModalSystemIncompatible  → Modal + IconWarning + IconWindow + IconAndroid + IconApple
-ModalDnieVersions → Modal
-ModalNfc → Modal + IconAndroid + IconApple
+ModalDnieVersions        → Modal
+ModalNfc                 → Modal + IconAndroid + IconApple
+
+ModalGlobalProvider → ModalConfirm + ModalLoading + ModalLoadingPercentage
+  useModalGlobalStore             (Zustand) — openModal, openModalWithClose
+  useModalLoadingStore            (Zustand) — openLoading, closeLoading
+  useModalLoadingPercentageStore  (Zustand) — openLoadingPercentage, updatePercentage, closeLoadingPercentage
 
 Footer → BrowserRecommended + iconos de redes sociales
 NotRecommended → IconWarningNotRecommended + IconCloseRadius
