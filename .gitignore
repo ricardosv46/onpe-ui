@@ -4,3 +4,7 @@ dist
 .claude
 coverage
 .npmrc-push
+# Local Netlify folder
+.netlify
+storybook-static
+

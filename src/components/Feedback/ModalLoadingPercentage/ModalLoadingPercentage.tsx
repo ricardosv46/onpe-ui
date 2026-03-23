@@ -43,7 +43,7 @@ export const ModalLoadingPercentage = ({
         <div className="w-[600px] h-10 bg-white inline-block">
           <div
             style={{ width: `${clamped}%` }}
-            className="h-10 bg-blue border-white border-2 transition-all ease-in-out duration-300"
+            className="h-10 bg-onpe-blue border-white border-2 transition-all ease-in-out duration-300"
           />
         </div>
       </div>
