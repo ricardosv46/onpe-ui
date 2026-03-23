@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { Modal } from "./Modal";
 
@@ -95,6 +95,46 @@ describe("Modal", () => {
       );
       fireEvent.keyDown(document, { key: "Escape" });
       expect(onClose).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("focus trap", () => {
+    test("enfoca el dialog al abrirse aunque exista botón de cierre", async () => {
+      render(
+        <Modal {...defaultProps} animated={false} closeButton>
+          <button type="button">Acción</button>
+        </Modal>
+      );
+
+      await waitFor(() => {
+        expect(screen.getByRole("dialog")).toHaveFocus();
+      });
+    });
+
+    test("reencierra el foco si un elemento externo intenta recibirlo", async () => {
+      render(
+        <>
+          <button type="button">Elemento externo</button>
+          <Modal {...defaultProps} animated={false} closeButton>
+            <button type="button">Acción interna</button>
+          </Modal>
+        </>
+      );
+
+      const dialog = screen.getByRole("dialog");
+      const outsideButton = screen.getByRole("button", { name: "Elemento externo" });
+
+      await waitFor(() => {
+        expect(dialog).toHaveFocus();
+      });
+
+      act(() => {
+        outsideButton.focus();
+      });
+
+      await waitFor(() => {
+        expect(dialog.contains(document.activeElement)).toBe(true);
+      });
     });
   });
 

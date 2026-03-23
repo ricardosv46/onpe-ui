@@ -44,7 +44,7 @@ function DefaultStory() {
       >
         Abrir Modal
       </button>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} className="bg-white p-6">
         <h2 className="text-xl font-bold mb-4 text-onpe-blue">Título del Modal</h2>
         <p className="text-gray-600">Contenido del modal de ejemplo.</p>
       </Modal>
@@ -62,7 +62,7 @@ function ConBotonCerrarStory() {
       >
         Abrir Modal con botón cerrar
       </button>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} closeButton>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} closeButton className="bg-white p-6">
         <h2 className="text-xl font-bold mb-4 text-onpe-blue">Modal con botón cerrar</h2>
         <p className="text-gray-600">
           Este modal tiene un botón X en la esquina superior derecha.
@@ -110,6 +110,7 @@ function CierreDeshabilitadoStory() {
         onClose={() => setIsOpen(false)}
         closeDisabled
         escapeToClose={false}
+        className="bg-white p-6"
       >
         <h2 className="text-xl font-bold mb-4 text-onpe-blue">Modal bloqueado</h2>
         <p className="text-gray-600 mb-6">
