@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
+import { IconCheck } from "../../icons/Actions/IconCheck";
+import { IconHome } from "../../icons/Actions/IconHome";
+import { IconPhone } from "../../icons/Actions/IconPhone";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -31,6 +34,27 @@ const meta: Meta<typeof Button> = {
       control: { type: "select" },
       options: ["small", "normal", "large"],
     },
+    colorBgIcon: {
+      control: { type: "select" },
+      options: [
+        undefined,
+        "blue",
+        "skyblue",
+        "skyblue-light",
+        "yellow",
+        "light-skyblue",
+        "gray",
+        "gray-light",
+        "gray-extra-light",
+        "red",
+        "dark-gray",
+        "green",
+        "yellow-light",
+        "primary",
+      ],
+    },
+    hoverEffect: { control: "boolean" },
+    disableEnterClick: { control: "boolean" },
   },
 };
 
@@ -144,4 +168,53 @@ export const AllSizes: Story = {
       <Button color="primary" size="large" title="Grande" />
     </div>
   ),
+};
+
+// Con icono
+export const WithIcon: Story = {
+  args: {
+    color: "primary",
+    title: "Con Icono",
+    icon: <IconCheck className="w-6 h-6 text-white" />,
+  },
+};
+
+export const WithIconCustomBg: Story = {
+  args: {
+    color: "skyblue",
+    title: "Icono con fondo diferente",
+    icon: <IconHome className="w-6 h-6 text-white" />,
+    colorBgIcon: "blue",
+  },
+};
+
+export const WithIconDisabled: Story = {
+  args: {
+    color: "primary",
+    title: "Icono deshabilitado",
+    icon: <IconPhone className="w-6 h-6 text-white" />,
+    disabled: true,
+  },
+};
+
+// Galería de iconos con distintos colores de fondo
+export const AllIconColors: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-4">
+      <Button color="blue" title="Blue" icon={<IconCheck className="w-6 h-6 text-white" />} />
+      <Button color="skyblue" title="Skyblue" icon={<IconCheck className="w-6 h-6 text-white" />} />
+      <Button color="red" title="Rojo" icon={<IconCheck className="w-6 h-6 text-white" />} colorBgIcon="dark-gray" />
+      <Button color="green" title="Verde" icon={<IconCheck className="w-6 h-6 text-white" />} colorBgIcon="blue" />
+      <Button color="yellow" title="Amarillo" icon={<IconHome className="w-6 h-6 text-white" />} colorBgIcon="red" />
+    </div>
+  ),
+};
+
+// Con hover activo
+export const WithHover: Story = {
+  args: {
+    color: "primary",
+    title: "Con hover",
+    hoverEffect: true,
+  },
 };
