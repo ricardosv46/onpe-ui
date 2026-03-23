@@ -68,7 +68,9 @@ export const ModalLoading = ({
           />
         </>
       )}
-      <p className="text-white leading-normal text-2xl md:text-[64px] text-center mt-10 md:mt-20">
+      <p
+        className={`text-white leading-normal text-2xl md:text-[64px] text-center ${spinner ? "mt-5" : "mt-10 md:mt-20"}`}
+      >
         {message}
       </p>
     </Modal>
