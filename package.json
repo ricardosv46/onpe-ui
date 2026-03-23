@@ -1,6 +1,6 @@
 {
   "name": "@votodigital-onpeui/react",
-  "version": "0.1.55",
+  "version": "0.1.56",
   "description": "Librería de componentes UI para proyectos ONPE",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
