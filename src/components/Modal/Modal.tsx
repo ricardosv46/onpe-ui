@@ -38,19 +38,33 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
     | "primary";
 }
 
-const openModals: Set<string> =
-  (globalThis as unknown as Record<string, unknown>).__openModals as Set<string> ||
-  ((globalThis as unknown as Record<string, Set<string>>).__openModals = new Set<string>());
+// Registry: modalId -> assigned zIndexLevel (backdrop level)
+const openModals: Map<string, number> =
+  (globalThis as unknown as Record<string, unknown>).__openModals as Map<string, number> ||
+  ((globalThis as unknown as Record<string, Map<string, number>>).__openModals = new Map<string, number>());
 
-const lockBodyScroll = (id: string, enabled: boolean) => {
+/**
+ * Calcula el z-index a usar para el nuevo modal.
+ * Si el zIndexLevel solicitado quedaría por debajo del contenido del modal
+ * más alto abierto actualmente (assigned + 10), lo eleva automáticamente.
+ */
+const computeZIndex = (requested: number): number => {
+  if (openModals.size === 0) return requested;
+  const maxAssigned = Math.max(...openModals.values());
+  // El contenido del modal más alto está en maxAssigned + 10.
+  // El backdrop del nuevo modal debe estar por encima de eso.
+  return Math.max(requested, maxAssigned + 20);
+};
+
+const registerModal = (id: string, zIndex: number, enabled: boolean) => {
+  openModals.set(id, zIndex);
   if (!enabled || typeof document === "undefined") return;
-  openModals.add(id);
   document.body.style.overflow = "hidden";
 };
 
-const unlockBodyScroll = (id: string, enabled: boolean) => {
-  if (!enabled || typeof document === "undefined") return;
+const unregisterModal = (id: string, enabled: boolean) => {
   openModals.delete(id);
+  if (!enabled || typeof document === "undefined") return;
   if (openModals.size === 0) {
     document.body.style.overflow = "";
   }
@@ -158,6 +172,7 @@ export const Modal = ({
   const ctx = useModalGlobalContext();
   const animated = animatedProp ?? ctx?.animated ?? true;
   const disableFocus = disableFocusProp ?? ctx?.disableFocus ?? false;
+  const [assignedZIndex, setAssignedZIndex] = useState(zIndexLevel);
   const ariaLabelledBy = props["aria-labelledby"];
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -205,13 +220,17 @@ export const Modal = ({
     }
   }, [isOpen, animated, onCloseComplete]);
 
-  // Body scroll lock — usa counter global para soportar múltiples modales simultáneos
+  // Body scroll lock + z-index auto-stacking
   useLayoutEffect(() => {
-    if (isOpen) lockBodyScroll(modalId, preventBodyScroll);
+    if (isOpen) {
+      const computed = computeZIndex(zIndexLevel);
+      setAssignedZIndex(computed);
+      registerModal(modalId, computed, preventBodyScroll);
+    }
     return () => {
-      if (isOpen) unlockBodyScroll(modalId, preventBodyScroll);
+      if (isOpen) unregisterModal(modalId, preventBodyScroll);
     };
-  }, [isOpen, preventBodyScroll, modalId]);
+  }, [isOpen, preventBodyScroll, modalId, zIndexLevel]);
 
   // Scroll reset when opening
   useEffect(() => {
@@ -429,7 +448,7 @@ export const Modal = ({
     <Portal>
       {/* Backdrop */}
       <div
-        style={{ zIndex: zIndexLevel }}
+        style={{ zIndex: assignedZIndex }}
         className={[
           "fixed inset-0 bg-onpe-blue",
           animated ? "transition-opacity duration-200" : "",
@@ -440,7 +459,7 @@ export const Modal = ({
 
       {/* Container */}
       <div
-        style={{ zIndex: zIndexLevel + 10 }}
+        style={{ zIndex: assignedZIndex + 10 }}
         className={[
           "fixed top-0 w-full h-screen grid",
           alignTop ? "place-items-start pt-8" : "place-items-center",
