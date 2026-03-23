@@ -47,7 +47,7 @@ function DefaultStory() {
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        className="bg-white p-10"
+        className="bg-white p-6"
       >
         <h2 className="text-xl font-bold mb-4 text-onpe-blue">
           Título del Modal
@@ -72,7 +72,7 @@ function ConBotonCerrarStory() {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         closeButton
-        className="bg-white p-10"
+        className="bg-white p-6"
       >
         <h2 className="text-xl font-bold mb-4 text-onpe-blue">
           Modal con botón cerrar
@@ -119,7 +119,7 @@ function CierreDeshabilitadoStory() {
         onClose={() => setIsOpen(false)}
         closeDisabled
         escapeToClose={false}
-        className="bg-white p-10"
+        className="bg-white p-6"
       >
         <h2 className="text-xl font-bold mb-4 text-onpe-blue">
           Modal bloqueado

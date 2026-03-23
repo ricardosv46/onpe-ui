@@ -56,6 +56,84 @@ const unlockBodyScroll = (id: string, enabled: boolean) => {
   }
 };
 
+const FOCUSABLE_SELECTOR = [
+  "a[href]",
+  "area[href]",
+  "button:not([disabled])",
+  'input:not([disabled]):not([type="hidden"])',
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "iframe",
+  "object",
+  "embed",
+  '[tabindex]:not([tabindex="-1"])',
+  '[contenteditable="true"]',
+].join(",");
+
+const FOCUS_GUARD_ATTRIBUTE = "data-focus-guard";
+
+const focusGuardStyle = {
+  position: "absolute",
+  width: "1px",
+  height: "1px",
+  padding: 0,
+  margin: 0,
+  overflow: "hidden",
+  clip: "rect(0, 0, 0, 0)",
+  whiteSpace: "nowrap",
+  border: 0,
+} as const;
+
+const isElementVisible = (element: HTMLElement) => {
+  const style = globalThis.getComputedStyle(element);
+  return (
+    style.visibility !== "hidden" &&
+    style.display !== "none" &&
+    element.offsetParent !== null
+  );
+};
+
+const getFocusableElements = (wrapper: HTMLElement, includeWrapper = true) => {
+  let focusable = Array.from(wrapper.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(
+    (el) =>
+      !el.hasAttribute(FOCUS_GUARD_ATTRIBUTE) &&
+      isElementVisible(el) &&
+      el.tabIndex !== -1,
+  );
+
+  if (includeWrapper && wrapper.tabIndex >= 0) {
+    focusable = [wrapper, ...focusable];
+  }
+
+  return focusable;
+};
+
+const focusWrapper = (wrapper: HTMLElement, options?: FocusOptions) => {
+  if (wrapper.tabIndex >= 0) {
+    wrapper.focus(options);
+    return;
+  }
+
+  const focusable = getFocusableElements(wrapper, false);
+  focusable[0]?.focus(options);
+};
+
+const focusEdgeElement = (
+  wrapper: HTMLElement,
+  position: "first" | "last",
+  options?: FocusOptions,
+) => {
+  const focusable = getFocusableElements(wrapper, false);
+  const target = position === "last" ? focusable.at(-1) : focusable[0];
+
+  if (target) {
+    target.focus(options);
+    return;
+  }
+
+  focusWrapper(wrapper, options);
+};
+
 export const Modal = ({
   isOpen,
   onClose,
@@ -84,6 +162,16 @@ export const Modal = ({
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
+  const handleStartFocusGuard = () => {
+    const wrapper = modalRef.current;
+    if (!wrapper) return;
+    focusEdgeElement(wrapper, "last", { preventScroll: true });
+  };
+  const handleEndFocusGuard = () => {
+    const wrapper = modalRef.current;
+    if (!wrapper) return;
+    focusEdgeElement(wrapper, "first", { preventScroll: true });
+  };
 
   // CSS animation state (replaces framer-motion AnimatePresence)
   const [mounted, setMounted] = useState(false);
@@ -146,61 +234,25 @@ export const Modal = ({
 
   // Keyboard handling and focus trap
   useEffect(() => {
-    let focusOutWrapper: HTMLDivElement | null = null;
     const pendingTasks: Array<ReturnType<typeof globalThis.setTimeout>> = [];
 
-    const isElementVisible = (element: HTMLElement) => {
-      const style = globalThis.getComputedStyle(element);
-      return (
-        style.visibility !== "hidden" &&
-        style.display !== "none" &&
-        element.offsetParent !== null
-      );
-    };
-
-    const getFocusableElements = (wrapper: HTMLElement) => {
-      const selector = [
-        "a[href]",
-        "area[href]",
-        "button:not([disabled])",
-        'input:not([disabled]):not([type="hidden"])',
-        "select:not([disabled])",
-        "textarea:not([disabled])",
-        "iframe",
-        "object",
-        "embed",
-        '[tabindex]:not([tabindex="-1"])',
-        '[contenteditable="true"]',
-      ].join(",");
-
-      let focusable = Array.from(
-        wrapper.querySelectorAll<HTMLElement>(selector),
-      ).filter((el) => isElementVisible(el) && el.tabIndex !== -1);
-
-      if (wrapper.tabIndex >= 0) {
-        focusable = [wrapper, ...focusable];
-      }
-      return focusable;
-    };
-
-    const handleFocusOut = (e: FocusEvent) => {
+    const handleDocumentFocusIn = (e: FocusEvent) => {
       if (!isOpen || disableFocus) return;
       const wrapper = modalRef.current;
-      if (!wrapper) return;
-      const relatedTarget = e.relatedTarget as HTMLElement;
-      if (relatedTarget && !wrapper.contains(relatedTarget)) {
-        setTimeout(() => {
-          const currentActive = document.activeElement as HTMLElement;
-          if (!currentActive || !wrapper.contains(currentActive)) {
-            const focusable = getFocusableElements(wrapper);
-            if (focusable.length > 0) {
-              focusable[focusable.length - 1].focus();
-            } else {
-              wrapper.focus();
-            }
-          }
-        }, 0);
+      const target = e.target;
+
+      if (!wrapper || !(target instanceof HTMLElement) || wrapper.contains(target)) {
+        return;
       }
+
+      requestAnimationFrame(() => {
+        const currentActive = document.activeElement;
+        if (currentActive instanceof HTMLElement && wrapper.contains(currentActive)) {
+          return;
+        }
+
+        focusWrapper(wrapper, { preventScroll: true });
+      });
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -226,7 +278,7 @@ export const Modal = ({
           ) {
             e.preventDefault();
             e.stopPropagation();
-            if (focusable.length > 1) focusable[focusable.length - 1].focus();
+            if (focusable.length > 1) focusable.at(-1)?.focus();
             else active.focus();
             return;
           }
@@ -253,7 +305,7 @@ export const Modal = ({
           e.preventDefault();
           if (focusable.length > 0) {
             if (e.key === "ArrowUp" || e.key === "ArrowLeft")
-              focusable[focusable.length - 1].focus();
+              focusable.at(-1)?.focus();
             else focusable[0].focus();
           } else {
             wrapper.focus();
@@ -270,8 +322,14 @@ export const Modal = ({
       }
 
       const first = focusable[0];
-      const last = focusable[focusable.length - 1];
+      const last = focusable.at(-1);
       const isShift = e.shiftKey;
+
+      if (!first || !last) {
+        e.preventDefault();
+        wrapper.focus();
+        return;
+      }
 
       if (!active || !wrapper.contains(active)) {
         e.preventDefault();
@@ -302,14 +360,7 @@ export const Modal = ({
       previousActiveElement.current = document.activeElement as HTMLElement;
 
       const focusInitial = (wrapper: HTMLElement) => {
-        if (ariaLabelledBy && document.getElementById(ariaLabelledBy)) {
-          wrapper.focus({ preventScroll: true });
-          return;
-        }
-        const focusable = getFocusableElements(wrapper);
-        const first = focusable[0];
-        if (first) first.focus({ preventScroll: true });
-        else wrapper.focus();
+        focusWrapper(wrapper, { preventScroll: true });
       };
 
       const bindFocusManagement = (attempt = 0) => {
@@ -323,16 +374,11 @@ export const Modal = ({
           return;
         }
 
-        if (focusOutWrapper !== wrapper) {
-          focusOutWrapper?.removeEventListener("focusout", handleFocusOut);
-          wrapper.addEventListener("focusout", handleFocusOut);
-          focusOutWrapper = wrapper;
-        }
-
         focusInitial(wrapper);
       };
 
       document.addEventListener("keydown", handleKeyDown);
+      document.addEventListener("focusin", handleDocumentFocusIn, true);
       pendingTasks.push(globalThis.setTimeout(() => bindFocusManagement(), 0));
     } else if (isOpen && disableFocus) {
       document.addEventListener("keydown", handleKeyDown);
@@ -341,7 +387,7 @@ export const Modal = ({
     return () => {
       pendingTasks.forEach((task) => globalThis.clearTimeout(task));
       document.removeEventListener("keydown", handleKeyDown);
-      focusOutWrapper?.removeEventListener("focusout", handleFocusOut);
+      document.removeEventListener("focusin", handleDocumentFocusIn, true);
       if (
         !disableFocus &&
         !disableFocusRestore &&
@@ -417,6 +463,13 @@ export const Modal = ({
             aria-describedby={props["aria-describedby"]}
             aria-label={props["aria-label"]}
           >
+            <span
+              tabIndex={disableFocus ? -1 : 0}
+              aria-hidden="true"
+              {...{ [FOCUS_GUARD_ATTRIBUTE]: "start" }}
+              style={focusGuardStyle}
+              onFocus={handleStartFocusGuard}
+            />
             <div ref={contentRef} className={contentClass}>
               {isOpen ? children : cachedChildren}
             </div>
@@ -430,6 +483,13 @@ export const Modal = ({
                 <IconCloseRadius aria-hidden="true" className="w-full h-full" />
               </button>
             )}
+            <span
+              tabIndex={disableFocus ? -1 : 0}
+              aria-hidden="true"
+              {...{ [FOCUS_GUARD_ATTRIBUTE]: "end" }}
+              style={focusGuardStyle}
+              onFocus={handleEndFocusGuard}
+            />
           </div>
         </div>
       </div>
