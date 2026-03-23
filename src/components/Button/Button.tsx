@@ -1,3 +1,5 @@
+import { type ReactNode } from "react";
+
 type ButtonColor =
   | "blue"
   | "skyblue"
@@ -15,11 +17,18 @@ type ButtonColor =
 
 type ButtonSize = "small" | "normal" | "large";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color: ButtonColor;
   title: string;
   size?: ButtonSize;
+  /** Icono opcional que se muestra a la izquierda del texto */
+  icon?: ReactNode;
+  /** Color de fondo del contenedor del icono. Si no se especifica, usa el mismo color del botón */
+  colorBgIcon?: ButtonColor;
+  /** Deshabilita el click al presionar Enter o Espacio */
+  disableEnterClick?: boolean;
+  /** Activa el efecto hover (default: true) */
+  hoverEffect?: boolean;
 }
 
 const colorClasses: Record<ButtonColor, string> = {
@@ -49,25 +58,50 @@ export function Button({
   title,
   size = "normal",
   className = "",
+  icon,
+  colorBgIcon,
+  disableEnterClick,
+  hoverEffect = false,
   ...props
 }: ButtonProps) {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+    }
+  };
+
   return (
     <button
       className={[
-        "inline-flex items-center justify-center",
+        "inline-flex items-center",
+        icon ? "" : "justify-center",
         "min-w-[200px] border-none",
         "text-white font-semibold cursor-pointer",
         "transition-all duration-300 ease-in-out",
-        "disabled:cursor-default disabled:!bg-onpe-gray",
+        "disabled:cursor-default disabled:bg-onpe-gray!",
+        hoverEffect ? "hover:opacity-50 disabled:hover:opacity-100" : "",
         colorClasses[color],
         sizeClasses[size],
         className,
       ]
         .filter(Boolean)
         .join(" ")}
+      onKeyDown={disableEnterClick ? handleKeyDown : undefined}
       {...props}
     >
-      {title}
+      {icon && (
+        <div
+          className={[
+            "w-12 h-12 flex justify-center items-center shrink-0",
+            props.disabled
+              ? "bg-onpe-gray"
+              : colorClasses[colorBgIcon ?? color],
+          ].join(" ")}
+        >
+          {icon}
+        </div>
+      )}
+      <span className="flex-1 text-center">{title}</span>
     </button>
   );
 }
