@@ -191,13 +191,13 @@ export const ModalConfirm = ({
         (typeof message === "string" ? (
           <div
             id={messageId}
-            className={`mt-7 text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+            className={`mt-7 w-full text-sm md:text-lg text-black ${alignJustify ? "text-justify" : "text-center"}`}
             dangerouslySetInnerHTML={{ __html: message }}
           />
         ) : (
           <div
             id={messageId}
-            className={`mt-7 text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+            className={`mt-7 w-full text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
           >
             {message}
           </div>
@@ -205,7 +205,7 @@ export const ModalConfirm = ({
       {content && (
         <div
           id={message ? undefined : messageId}
-          className={`text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+          className={`text-sm w-full md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
         >
           {content}
         </div>
