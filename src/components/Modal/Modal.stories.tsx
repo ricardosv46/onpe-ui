@@ -138,6 +138,51 @@ function CierreDeshabilitadoStory() {
   );
 }
 
+function ModalApilados() {
+  const [modal1, setModal1] = useState(false);
+  const [modal2, setModal2] = useState(false);
+  const [modal3, setModal3] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setModal1(true)}
+        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+      >
+        Abrir modal 1
+      </button>
+
+      <Modal isOpen={modal1} onClose={() => setModal1(false)} className="bg-white p-6">
+        <h2 className="text-xl font-bold mb-4 text-onpe-blue">Modal 1</h2>
+        <p className="text-gray-600 mb-4">Este es el primer modal.</p>
+        <button
+          onClick={() => setModal2(true)}
+          className="px-4 py-2 bg-onpe-skyblue text-white rounded cursor-pointer"
+        >
+          Abrir modal 2 encima
+        </button>
+      </Modal>
+
+      <Modal isOpen={modal2} onClose={() => setModal2(false)} className="bg-white p-6">
+        <h2 className="text-xl font-bold mb-4 text-onpe-skyblue">Modal 2</h2>
+        <p className="text-gray-600 mb-4">
+          Este modal se apila sobre el anterior. El overlay tapa el contenido del modal 1.
+        </p>
+        <button
+          onClick={() => setModal3(true)}
+          className="px-4 py-2 bg-onpe-red text-white rounded cursor-pointer"
+        >
+          Abrir modal 3 encima
+        </button>
+      </Modal>
+
+      <Modal isOpen={modal3} onClose={() => setModal3(false)} className="bg-white p-6">
+        <h2 className="text-xl font-bold mb-4 text-onpe-red">Modal 3</h2>
+        <p className="text-gray-600">Tercer nivel. El overlay tapa todo lo anterior.</p>
+      </Modal>
+    </>
+  );
+}
+
 export const Default: Story = {
   render: () => <DefaultStory />,
 };
@@ -152,4 +197,8 @@ export const SinFondo: Story = {
 
 export const CierreDeshabilitado: Story = {
   render: () => <CierreDeshabilitadoStory />,
+};
+
+export const Apilados: Story = {
+  render: () => <ModalApilados />,
 };
