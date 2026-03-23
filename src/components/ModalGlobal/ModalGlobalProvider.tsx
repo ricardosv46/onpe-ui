@@ -25,8 +25,6 @@ interface ModalGlobalProviderProps {
   loadingSpinner?: ReactNode;
   /** Alinea el ModalLoadingPercentage al tope de la pantalla (default: false) */
   loadingPercentageAlignTop?: boolean;
-  /** Reemplaza el contenido del ModalLoadingPercentage con un render personalizado */
-  loadingPercentageContent?: (percentage: number, message: string) => ReactNode;
   /** Texto por defecto del botón confirmar cuando el payload no lo especifica */
   defaultTextButtonConfirm?: string;
   /** Texto por defecto del botón cancelar cuando el payload no lo especifica */
@@ -44,7 +42,6 @@ export const ModalGlobalProvider = ({
   preventBodyScroll = true,
   loadingSpinner,
   loadingPercentageAlignTop = false,
-  loadingPercentageContent,
   defaultTextButtonConfirm,
   defaultTextButtonCancel,
   disableFocus = false,
@@ -74,7 +71,10 @@ export const ModalGlobalProvider = ({
     return () => clearTimeout(timerId);
   }, [isOpen, modalId]);
 
-  const contextValue = useMemo(() => ({ animated, disableFocus }), [animated, disableFocus]);
+  const contextValue = useMemo(
+    () => ({ animated, disableFocus }),
+    [animated, disableFocus],
+  );
 
   return (
     <ModalGlobalContext.Provider value={contextValue}>
@@ -127,7 +127,6 @@ export const ModalGlobalProvider = ({
         animated={animated}
         preventBodyScroll={preventBodyScroll}
         alignTop={loadingPercentageAlignTop}
-        renderContent={loadingPercentageContent}
       />
     </ModalGlobalContext.Provider>
   );
