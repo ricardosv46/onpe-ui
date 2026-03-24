@@ -412,7 +412,11 @@ export const Modal = ({
         !disableFocusRestore &&
         previousActiveElement.current
       ) {
-        previousActiveElement.current.focus();
+        try {
+          previousActiveElement.current.focus({ preventScroll: true });
+        } catch {
+          previousActiveElement.current.focus();
+        }
       }
     };
   }, [
