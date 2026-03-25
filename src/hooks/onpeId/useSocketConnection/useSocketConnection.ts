@@ -211,7 +211,7 @@ export const useSocketConnection = ({
 
   useEffect(() => {
     if (isSessionExpired && socketRef.current) {
-      socketRef.current.emit("setToken", "TIMEOUT_APP");
+      socketRef.current.emit("setTimeout", "TIMEOUT_APP");
     }
   }, [isSessionExpired]);
 
