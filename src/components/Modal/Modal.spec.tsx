@@ -136,6 +136,48 @@ describe("Modal", () => {
         expect(dialog.contains(document.activeElement)).toBe(true);
       });
     });
+
+    test("restaura el foco previo sin desplazar el scroll", async () => {
+      const { rerender } = render(
+        <>
+          <button type="button">Elemento externo</button>
+          <Modal {...defaultProps} isOpen={false} animated={false}>
+            <button type="button">Acción interna</button>
+          </Modal>
+        </>
+      );
+
+      const outsideButton = screen.getByRole("button", { name: "Elemento externo" });
+      outsideButton.focus();
+
+      const focusSpy = vi.spyOn(outsideButton, "focus");
+
+      rerender(
+        <>
+          <button type="button">Elemento externo</button>
+          <Modal {...defaultProps} isOpen animated={false}>
+            <button type="button">Acción interna</button>
+          </Modal>
+        </>
+      );
+
+      await waitFor(() => {
+        expect(screen.getByRole("dialog")).toHaveFocus();
+      });
+
+      rerender(
+        <>
+          <button type="button">Elemento externo</button>
+          <Modal {...defaultProps} isOpen={false} animated={false}>
+            <button type="button">Acción interna</button>
+          </Modal>
+        </>
+      );
+
+      await waitFor(() => {
+        expect(focusSpy).toHaveBeenCalledWith({ preventScroll: true });
+      });
+    });
   });
 
   describe("backdrop", () => {
