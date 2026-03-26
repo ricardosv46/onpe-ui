@@ -210,7 +210,10 @@ export const useSocketConnection = ({
   }, [enabled, isOpenLaunchApp, socketUrl, secure]);
 
   useEffect(() => {
+    console.log({ isSessionExpired });
     if (isSessionExpired && socketRef.current) {
+      console.log("desconectando");
+
       socketRef.current.removeAllListeners();
       socketRef.current.disconnect();
       socketRef.current = null;

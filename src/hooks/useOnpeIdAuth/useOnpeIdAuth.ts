@@ -49,7 +49,7 @@ export const useOnpeIdAuth = ({
 
   const openLaunchApp = useCallback(() => setIsOpenLaunchApp(true), []);
   const closeLaunchApp = useCallback(() => setIsOpenLaunchApp(false), []);
-
+  console.log({ isSessionExpired });
   const {
     modalUrl,
     setModalUrl,
