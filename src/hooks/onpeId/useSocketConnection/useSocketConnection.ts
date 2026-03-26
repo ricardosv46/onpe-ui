@@ -202,12 +202,16 @@ export const useSocketConnection = ({
 
     return () => {
       if (socketRef.current && (!enabled || !isOpenLaunchApp)) {
+        if (isSessionExpired) {
+          socketRef.current.emit("setTimeout", "TIMEOUT_APP");
+        }
+
         socketRef.current.removeAllListeners();
         socketRef.current.disconnect();
         socketRef.current = null;
       }
     };
-  }, [enabled, isOpenLaunchApp, socketUrl, secure]);
+  }, [enabled, isOpenLaunchApp, socketUrl, secure, isSessionExpired]);
 
   useEffect(() => {
     if (isSessionExpired && socketRef.current) {
