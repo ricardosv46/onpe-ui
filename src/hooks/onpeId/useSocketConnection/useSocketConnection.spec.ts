@@ -183,7 +183,7 @@ describe("useSocketConnection", () => {
   });
 
   describe("isSessionExpired", () => {
-    test("emite setToken con TIMEOUT_APP al socket cuando isSessionExpired cambia a true", () => {
+    test("emite setTimeout con TIMEOUT_APP al socket cuando isSessionExpired cambia a true", () => {
       let isSessionExpired = false;
       const { rerender } = renderHook(() =>
         useSocketConnection({ ...defaultProps, isSessionExpired }),
@@ -198,14 +198,14 @@ describe("useSocketConnection", () => {
       isSessionExpired = true;
       rerender();
 
-      expect(mockSocketEmit).toHaveBeenCalledWith("setToken", "TIMEOUT_APP");
+      expect(mockSocketEmit).toHaveBeenCalledWith("setTimeout", "TIMEOUT_APP");
     });
 
     test("no emite si el socket no está inicializado", () => {
       renderHook(() =>
         useSocketConnection({ ...defaultProps, isOpenLaunchApp: false, isSessionExpired: true }),
       );
-      expect(mockSocketEmit).not.toHaveBeenCalledWith("setToken", "TIMEOUT_APP");
+      expect(mockSocketEmit).not.toHaveBeenCalledWith("setTimeout", "TIMEOUT_APP");
     });
   });
 

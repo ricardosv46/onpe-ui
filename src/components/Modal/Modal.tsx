@@ -2,6 +2,7 @@ import { HTMLAttributes, ReactNode, useEffect, useId, useLayoutEffect, useRef, u
 import { Portal } from "../Portal/Portal";
 import { IconCloseRadius } from "../../icons/Actions/IconCloseRadius";
 import { useModalGlobalContext } from "../ModalGlobal/ModalGlobalContext";
+import { useScrollLock } from "./useScrollLock";
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
@@ -56,18 +57,12 @@ const computeZIndex = (requested: number): number => {
   return Math.max(requested, maxAssigned + 20);
 };
 
-const registerModal = (id: string, zIndex: number, enabled: boolean) => {
+const registerModal = (id: string, zIndex: number) => {
   openModals.set(id, zIndex);
-  if (!enabled || typeof document === "undefined") return;
-  document.body.style.overflow = "hidden";
 };
 
-const unregisterModal = (id: string, enabled: boolean) => {
+const unregisterModal = (id: string) => {
   openModals.delete(id);
-  if (!enabled || typeof document === "undefined") return;
-  if (openModals.size === 0) {
-    document.body.style.overflow = "";
-  }
 };
 
 const FOCUSABLE_SELECTOR = [
@@ -177,6 +172,9 @@ export const Modal = ({
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
+
+  useScrollLock(isOpen && preventBodyScroll);
+
   const handleStartFocusGuard = () => {
     const wrapper = modalRef.current;
     if (!wrapper) return;
@@ -225,12 +223,12 @@ export const Modal = ({
     if (isOpen) {
       const computed = computeZIndex(zIndexLevel);
       setAssignedZIndex(computed);
-      registerModal(modalId, computed, preventBodyScroll);
+      registerModal(modalId, computed);
     }
     return () => {
-      if (isOpen) unregisterModal(modalId, preventBodyScroll);
+      if (isOpen) unregisterModal(modalId);
     };
-  }, [isOpen, preventBodyScroll, modalId, zIndexLevel]);
+  }, [isOpen, modalId, zIndexLevel]);
 
   // Scroll reset when opening
   useEffect(() => {
