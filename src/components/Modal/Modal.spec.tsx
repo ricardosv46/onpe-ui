@@ -24,6 +24,11 @@ const defaultProps = {
 describe("Modal", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    document.body.style.overflow = "";
+    document.body.style.paddingRight = "";
+    document.body.style.touchAction = "";
+    document.documentElement.style.overflow = "";
+    document.documentElement.style.touchAction = "";
   });
 
   describe("renderizado básico", () => {
@@ -214,12 +219,30 @@ describe("Modal", () => {
     test("bloquea el scroll del body cuando isOpen es true", () => {
       render(<Modal {...defaultProps} animated={false} preventBodyScroll />);
       expect(document.body.style.overflow).toBe("hidden");
+      expect(document.documentElement.style.overflow).toBe("hidden");
+      expect(document.body.style.touchAction).toBe("none");
+      expect(document.documentElement.style.touchAction).toBe("none");
     });
 
     test("no bloquea el scroll cuando preventBodyScroll es false", () => {
       document.body.style.overflow = "";
       render(<Modal {...defaultProps} animated={false} preventBodyScroll={false} />);
       expect(document.body.style.overflow).toBe("");
+      expect(document.documentElement.style.overflow).toBe("");
+    });
+
+    test("restaura estilos de scroll al cerrar el modal", () => {
+      const { rerender } = render(<Modal {...defaultProps} animated={false} preventBodyScroll />);
+
+      expect(document.body.style.overflow).toBe("hidden");
+      expect(document.documentElement.style.overflow).toBe("hidden");
+
+      rerender(<Modal {...defaultProps} isOpen={false} animated={false} preventBodyScroll />);
+
+      expect(document.body.style.overflow).toBe("");
+      expect(document.documentElement.style.overflow).toBe("");
+      expect(document.body.style.touchAction).toBe("");
+      expect(document.documentElement.style.touchAction).toBe("");
     });
   });
 });
