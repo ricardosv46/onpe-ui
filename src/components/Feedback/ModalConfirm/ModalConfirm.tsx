@@ -202,14 +202,21 @@ export const ModalConfirm = ({
             {message}
           </div>
         ))}
-      {content && (
-        <div
-          id={message ? undefined : messageId}
-          className={`text-sm w-full md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
-        >
-          {content}
-        </div>
-      )}
+      {content &&
+        (typeof content === "string" ? (
+          <div
+            id={message ? undefined : messageId}
+            className={`text-sm w-full md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+        ) : (
+          <div
+            id={message ? undefined : messageId}
+            className={`text-sm w-full md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+          >
+            {content}
+          </div>
+        ))}
 
       {/* Mobile: apilado */}
       <div className="flex flex-col items-center justify-center w-full gap-5 mt-11 md:hidden">
