@@ -110,7 +110,7 @@ export const ModalNfc = ({
               del sistema.
             </li>
             <li role="presentation" className="mb-2">
-              Puedes consultar los videos &quot;Aprende como leer tu DNIe con
+              Puedes consultar los videos &quot;Aprende cómo leer tu DNIe con
               NFC&quot;:
             </li>
           </ol>
