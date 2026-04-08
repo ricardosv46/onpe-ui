@@ -29,6 +29,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   disableEnterClick?: boolean;
   /** Activa el efecto hover (default: true) */
   hoverEffect?: boolean;
+  srOnlyText?: string;
 }
 
 const colorClasses: Record<ButtonColor, string> = {
@@ -62,6 +63,7 @@ export function Button({
   colorBgIcon,
   disableEnterClick,
   hoverEffect = false,
+  srOnlyText,
   ...props
 }: ButtonProps) {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -101,7 +103,17 @@ export function Button({
           {icon}
         </div>
       )}
-      <span className="flex-1 text-center">{title}</span>
+
+      {srOnlyText ? (
+        <>
+          <span className="sr-only">{srOnlyText}</span>
+          <span className="flex-1 text-center" aria-hidden="true">
+            {title}
+          </span>
+        </>
+      ) : (
+        <span className="flex-1 text-center">{title}</span>
+      )}
     </button>
   );
 }
