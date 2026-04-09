@@ -1,4 +1,12 @@
-import { HTMLAttributes, ReactNode, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import {
+  HTMLAttributes,
+  ReactNode,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { Portal } from "../Portal/Portal";
 import { IconCloseRadius } from "../../icons/Actions/IconCloseRadius";
 import { useModalGlobalContext } from "../ModalGlobal/ModalGlobalContext";
@@ -41,8 +49,12 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
 
 // Registry: modalId -> assigned zIndexLevel (backdrop level)
 const openModals: Map<string, number> =
-  (globalThis as unknown as Record<string, unknown>).__openModals as Map<string, number> ||
-  ((globalThis as unknown as Record<string, Map<string, number>>).__openModals = new Map<string, number>());
+  ((globalThis as unknown as Record<string, unknown>).__openModals as Map<
+    string,
+    number
+  >) ||
+  ((globalThis as unknown as Record<string, Map<string, number>>).__openModals =
+    new Map<string, number>());
 
 /**
  * Calcula el z-index a usar para el nuevo modal.
@@ -103,7 +115,9 @@ const isElementVisible = (element: HTMLElement) => {
 };
 
 const getFocusableElements = (wrapper: HTMLElement, includeWrapper = true) => {
-  let focusable = Array.from(wrapper.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(
+  let focusable = Array.from(
+    wrapper.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+  ).filter(
     (el) =>
       !el.hasAttribute(FOCUS_GUARD_ATTRIBUTE) &&
       isElementVisible(el) &&
@@ -153,7 +167,7 @@ export const Modal = ({
   escapeToClose = true,
   disableFocus: disableFocusProp,
   disableFocusRestore = false,
-  existTabIndex = true,
+  existTabIndex = false,
   zIndexLevel = 100,
   onCloseComplete,
   alignTop = false,
@@ -258,13 +272,20 @@ export const Modal = ({
       const wrapper = modalRef.current;
       const target = e.target;
 
-      if (!wrapper || !(target instanceof HTMLElement) || wrapper.contains(target)) {
+      if (
+        !wrapper ||
+        !(target instanceof HTMLElement) ||
+        wrapper.contains(target)
+      ) {
         return;
       }
 
       requestAnimationFrame(() => {
         const currentActive = document.activeElement;
-        if (currentActive instanceof HTMLElement && wrapper.contains(currentActive)) {
+        if (
+          currentActive instanceof HTMLElement &&
+          wrapper.contains(currentActive)
+        ) {
           return;
         }
 
