@@ -321,7 +321,13 @@ export const Modal = ({
         return;
       }
 
-      if (!isOpen || disableFocus) return;
+      if (!isOpen) return;
+      if (disableFocus) {
+        // Modal sin interacción (ej. loading): bloquear Tab para que
+        // no se pueda navegar a elementos detrás del overlay.
+        if (e.key === "Tab") e.preventDefault();
+        return;
+      }
       const wrapper = modalRef.current;
       if (!wrapper) return;
 
