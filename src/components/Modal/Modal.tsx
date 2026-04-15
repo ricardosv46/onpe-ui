@@ -186,8 +186,30 @@ export const Modal = ({
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
+  const prevIsOpenRef = useRef(isOpen);
 
   useScrollLock(isOpen && preventBodyScroll);
+
+  // Restaura el foco al elemento previo solo cuando el modal realmente cierra
+  // (isOpen: true → false). No corre si el efecto se re-ejecuta por otras deps.
+  useEffect(() => {
+    const wasOpen = prevIsOpenRef.current;
+    prevIsOpenRef.current = isOpen;
+
+    if (
+      wasOpen &&
+      !isOpen &&
+      !disableFocus &&
+      !disableFocusRestore &&
+      previousActiveElement.current
+    ) {
+      try {
+        previousActiveElement.current.focus({ preventScroll: true });
+      } catch {
+        previousActiveElement.current.focus();
+      }
+    }
+  }, [isOpen, disableFocus, disableFocusRestore]);
 
   const handleStartFocusGuard = () => {
     const wrapper = modalRef.current;
@@ -426,17 +448,6 @@ export const Modal = ({
       pendingTasks.forEach((task) => globalThis.clearTimeout(task));
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("focusin", handleDocumentFocusIn, true);
-      if (
-        !disableFocus &&
-        !disableFocusRestore &&
-        previousActiveElement.current
-      ) {
-        try {
-          previousActiveElement.current.focus({ preventScroll: true });
-        } catch {
-          previousActiveElement.current.focus();
-        }
-      }
     };
   }, [
     isOpen,
@@ -444,7 +455,6 @@ export const Modal = ({
     closeDisabled,
     escapeToClose,
     disableFocus,
-    disableFocusRestore,
     ariaLabelledBy,
   ]);
 
