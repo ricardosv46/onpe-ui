@@ -447,6 +447,11 @@ export const Modal = ({
       document.addEventListener("focusin", handleDocumentFocusIn, true);
       pendingTasks.push(globalThis.setTimeout(() => bindFocusManagement(), 0));
     } else if (isOpen && disableFocus) {
+      // Quitar foco del elemento activo para que nada quede enfocado
+      // mientras el modal de carga está abierto.
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
       document.addEventListener("keydown", handleKeyDown);
     }
 
