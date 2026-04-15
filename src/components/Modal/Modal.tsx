@@ -107,11 +107,7 @@ const focusGuardStyle = {
 
 const isElementVisible = (element: HTMLElement) => {
   const style = globalThis.getComputedStyle(element);
-  return (
-    style.visibility !== "hidden" &&
-    style.display !== "none" &&
-    element.offsetParent !== null
-  );
+  return style.visibility !== "hidden" && style.display !== "none";
 };
 
 const getFocusableElements = (wrapper: HTMLElement, includeWrapper = true) => {
@@ -325,11 +321,19 @@ export const Modal = ({
       if (disableFocus) {
         // Modal sin interacción (ej. loading): bloquear Tab para que
         // no se pueda navegar a elementos detrás del overlay.
-        if (e.key === "Tab") e.preventDefault();
+        if (e.key === "Tab") {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+        }
         return;
       }
       const wrapper = modalRef.current;
-      if (!wrapper) return;
+      if (!wrapper) {
+        // DOM del modal aún no está montado (animación de entrada):
+        // bloquear Tab para que no navegue fuera durante la inicialización.
+        if (e.key === "Tab") e.preventDefault();
+        return;
+      }
 
       const focusable = getFocusableElements(wrapper);
       const active = (document.activeElement as HTMLElement) || null;
@@ -437,6 +441,16 @@ export const Modal = ({
               globalThis.setTimeout(() => bindFocusManagement(attempt + 1), 25),
             );
           }
+          return;
+        }
+
+        // Reintentar si el wrapper existe pero aún no hay elementos focusables
+        // (puede ocurrir cuando position:fixed hace offsetParent=null en algunos browsers).
+        const focusable = getFocusableElements(wrapper, false);
+        if (focusable.length === 0 && wrapper.tabIndex < 0 && attempt < 10) {
+          pendingTasks.push(
+            globalThis.setTimeout(() => bindFocusManagement(attempt + 1), 25),
+          );
           return;
         }
 
