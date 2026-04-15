@@ -443,7 +443,7 @@ export const Modal = ({
         focusInitial(wrapper);
       };
 
-      document.addEventListener("keydown", handleKeyDown, true);
+      document.addEventListener("keydown", handleKeyDown);
       document.addEventListener("focusin", handleDocumentFocusIn, true);
       pendingTasks.push(globalThis.setTimeout(() => bindFocusManagement(), 0));
     } else if (isOpen && disableFocus) {
@@ -452,13 +452,18 @@ export const Modal = ({
       if (document.activeElement instanceof HTMLElement) {
         document.activeElement.blur();
       }
-      document.addEventListener("keydown", handleKeyDown);
+      // Capture para interceptar Tab antes que el navegador mueva el foco.
+      document.addEventListener("keydown", handleKeyDown, true);
     }
 
     return () => {
       pendingTasks.forEach((task) => globalThis.clearTimeout(task));
-      document.removeEventListener("keydown", handleKeyDown, true);
-      document.removeEventListener("focusin", handleDocumentFocusIn, true);
+      if (disableFocus) {
+        document.removeEventListener("keydown", handleKeyDown, true);
+      } else {
+        document.removeEventListener("keydown", handleKeyDown);
+        document.removeEventListener("focusin", handleDocumentFocusIn, true);
+      }
     };
   }, [
     isOpen,
