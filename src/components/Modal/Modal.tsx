@@ -296,6 +296,7 @@ export const Modal = ({
   // Keyboard handling and focus trap
   useEffect(() => {
     const pendingTasks: Array<ReturnType<typeof globalThis.setTimeout>> = [];
+    const pendingRafs: number[] = [];
 
     const handleDocumentFocusIn = (e: FocusEvent) => {
       if (!isOpen || disableFocus) return;
@@ -461,7 +462,15 @@ export const Modal = ({
 
       document.addEventListener("keydown", handleKeyDown);
       document.addEventListener("focusin", handleDocumentFocusIn, true);
-      pendingTasks.push(globalThis.setTimeout(() => bindFocusManagement(), 0));
+      // doble rAF: garantiza que el DOM del modal esté montado y pintado
+      // antes de intentar el foco inicial.
+      pendingRafs.push(
+        requestAnimationFrame(() => {
+          pendingRafs.push(
+            requestAnimationFrame(() => bindFocusManagement()),
+          );
+        }),
+      );
     } else if (isOpen && disableFocus) {
       // Quitar foco del elemento activo para que nada quede enfocado
       // mientras el modal de carga está abierto.
@@ -474,6 +483,7 @@ export const Modal = ({
 
     return () => {
       pendingTasks.forEach((task) => globalThis.clearTimeout(task));
+      pendingRafs.forEach((raf) => cancelAnimationFrame(raf));
       if (disableFocus) {
         document.removeEventListener("keydown", handleKeyDown, true);
       } else {
