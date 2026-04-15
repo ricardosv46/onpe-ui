@@ -219,18 +219,6 @@ export const Modal = ({
     }
   }, [isOpen, disableFocus, disableFocusRestore]);
 
-  // Foco inicial: dispara cuando el DOM del modal está garantizadamente listo.
-  // Para animated=true: cuando mounted=true (DOM añadido por la animación).
-  // Para animated=false: cuando isOpen=true (renderiza directo).
-  useEffect(() => {
-    const domReady = animated ? mounted : isOpen;
-    if (!domReady || !isOpen || disableFocus) return;
-    const wrapper = modalRef.current;
-    if (!wrapper) return;
-    previousActiveElement.current = document.activeElement as HTMLElement;
-    focusWrapper(wrapper, { preventScroll: true });
-  }, [mounted, isOpen, animated, disableFocus]);
-
   const handleStartFocusGuard = () => {
     const wrapper = modalRef.current;
     if (!wrapper) return;
@@ -245,6 +233,18 @@ export const Modal = ({
   // CSS animation state (replaces framer-motion AnimatePresence)
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  // Foco inicial: dispara cuando el DOM del modal está garantizadamente listo.
+  // Para animated=true: cuando mounted=true (DOM añadido por la animación).
+  // Para animated=false: cuando isOpen=true (renderiza directo).
+  useEffect(() => {
+    const domReady = animated ? mounted : isOpen;
+    if (!domReady || !isOpen || disableFocus) return;
+    const wrapper = modalRef.current;
+    if (!wrapper) return;
+    previousActiveElement.current = document.activeElement as HTMLElement;
+    focusWrapper(wrapper, { preventScroll: true });
+  }, [mounted, isOpen, animated, disableFocus]);
 
   // Cache children during exit animation (replicates AnimatePresence behavior):
   // when global state clears data before the modal finishes closing, the cached
