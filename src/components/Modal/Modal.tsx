@@ -107,7 +107,11 @@ const focusGuardStyle = {
 
 const isElementVisible = (element: HTMLElement) => {
   const style = globalThis.getComputedStyle(element);
-  return style.visibility !== "hidden" && style.display !== "none";
+  return (
+    style.visibility !== "hidden" &&
+    style.display !== "none" &&
+    element.offsetParent !== null
+  );
 };
 
 const getFocusableElements = (wrapper: HTMLElement, includeWrapper = true) => {
@@ -134,7 +138,13 @@ const focusWrapper = (wrapper: HTMLElement, options?: FocusOptions) => {
   }
 
   const focusable = getFocusableElements(wrapper, false);
-  focusable[0]?.focus(options);
+  if (focusable.length > 0) {
+    focusable[0].focus(options);
+  } else {
+    // Sin elementos focusables: enfocar el wrapper directamente
+    // (igual que hace el handler de Tab cuando focusable está vacío).
+    wrapper.focus(options);
+  }
 };
 
 const focusEdgeElement = (
@@ -441,16 +451,6 @@ export const Modal = ({
               globalThis.setTimeout(() => bindFocusManagement(attempt + 1), 25),
             );
           }
-          return;
-        }
-
-        // Reintentar si el wrapper existe pero aún no hay elementos focusables
-        // (puede ocurrir cuando position:fixed hace offsetParent=null en algunos browsers).
-        const focusable = getFocusableElements(wrapper, false);
-        if (focusable.length === 0 && wrapper.tabIndex < 0 && attempt < 10) {
-          pendingTasks.push(
-            globalThis.setTimeout(() => bindFocusManagement(attempt + 1), 25),
-          );
           return;
         }
 
