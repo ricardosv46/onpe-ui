@@ -190,6 +190,8 @@ export const Modal = ({
   const [assignedZIndex, setAssignedZIndex] = useState(zIndexLevel);
   const ariaLabelledBy = props["aria-labelledby"];
   const modalRef = useRef<HTMLDivElement>(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
   const contentRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
   const prevIsOpenRef = useRef(isOpen);
@@ -323,7 +325,7 @@ export const Modal = ({
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && escapeToClose && !closeDisabled) {
-        onClose();
+        onCloseRef.current();
         return;
       }
 
@@ -481,7 +483,6 @@ export const Modal = ({
     };
   }, [
     isOpen,
-    onClose,
     closeDisabled,
     escapeToClose,
     disableFocus,
