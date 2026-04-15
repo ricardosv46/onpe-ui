@@ -219,6 +219,18 @@ export const Modal = ({
     }
   }, [isOpen, disableFocus, disableFocusRestore]);
 
+  // Foco inicial: dispara cuando el DOM del modal está garantizadamente listo.
+  // Para animated=true: cuando mounted=true (DOM añadido por la animación).
+  // Para animated=false: cuando isOpen=true (renderiza directo).
+  useEffect(() => {
+    const domReady = animated ? mounted : isOpen;
+    if (!domReady || !isOpen || disableFocus) return;
+    const wrapper = modalRef.current;
+    if (!wrapper) return;
+    previousActiveElement.current = document.activeElement as HTMLElement;
+    focusWrapper(wrapper, { preventScroll: true });
+  }, [mounted, isOpen, animated, disableFocus]);
+
   const handleStartFocusGuard = () => {
     const wrapper = modalRef.current;
     if (!wrapper) return;
@@ -440,37 +452,8 @@ export const Modal = ({
     };
 
     if (isOpen && !disableFocus) {
-      previousActiveElement.current = document.activeElement as HTMLElement;
-
-      const focusInitial = (wrapper: HTMLElement) => {
-        focusWrapper(wrapper, { preventScroll: true });
-      };
-
-      const bindFocusManagement = (attempt = 0) => {
-        const wrapper = modalRef.current;
-        if (!wrapper) {
-          if (attempt < 10) {
-            pendingTasks.push(
-              globalThis.setTimeout(() => bindFocusManagement(attempt + 1), 25),
-            );
-          }
-          return;
-        }
-
-        focusInitial(wrapper);
-      };
-
       document.addEventListener("keydown", handleKeyDown);
       document.addEventListener("focusin", handleDocumentFocusIn, true);
-      // doble rAF: garantiza que el DOM del modal esté montado y pintado
-      // antes de intentar el foco inicial.
-      pendingRafs.push(
-        requestAnimationFrame(() => {
-          pendingRafs.push(
-            requestAnimationFrame(() => bindFocusManagement()),
-          );
-        }),
-      );
     } else if (isOpen && disableFocus) {
       // Quitar foco del elemento activo para que nada quede enfocado
       // mientras el modal de carga está abierto.
