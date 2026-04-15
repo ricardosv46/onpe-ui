@@ -443,7 +443,7 @@ export const Modal = ({
         focusInitial(wrapper);
       };
 
-      document.addEventListener("keydown", handleKeyDown);
+      document.addEventListener("keydown", handleKeyDown, true);
       document.addEventListener("focusin", handleDocumentFocusIn, true);
       pendingTasks.push(globalThis.setTimeout(() => bindFocusManagement(), 0));
     } else if (isOpen && disableFocus) {
@@ -457,7 +457,7 @@ export const Modal = ({
 
     return () => {
       pendingTasks.forEach((task) => globalThis.clearTimeout(task));
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown, true);
       document.removeEventListener("focusin", handleDocumentFocusIn, true);
     };
   }, [
