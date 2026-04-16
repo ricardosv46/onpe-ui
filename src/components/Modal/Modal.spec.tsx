@@ -2,7 +2,7 @@ import { render, screen, fireEvent, act, waitFor } from "@testing-library/react"
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { Modal } from "./Modal";
 
-// Portal renderiza directamente en document.body — no hace falta mockear
+// Portal renderiza directamente en document.body ��� no hace falta mockear
 vi.mock("../Portal/Portal", () => ({
   Portal: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
@@ -31,7 +31,7 @@ describe("Modal", () => {
     document.documentElement.style.touchAction = "";
   });
 
-  describe("renderizado básico", () => {
+  describe("renderizado b?sico", () => {
     test("renderiza el contenido cuando isOpen es true y animated es false", () => {
       render(<Modal {...defaultProps} animated={false} />);
       expect(screen.getByText("Contenido del modal")).toBeInTheDocument();
@@ -57,18 +57,18 @@ describe("Modal", () => {
     });
   });
 
-  describe("botón de cierre", () => {
-    test("no muestra botón de cierre por defecto", () => {
+  describe("bot?n de cierre", () => {
+    test("no muestra bot?n de cierre por defecto", () => {
       render(<Modal {...defaultProps} animated={false} />);
       expect(screen.queryByRole("button", { name: "Cerrar" })).not.toBeInTheDocument();
     });
 
-    test("muestra botón de cierre cuando closeButton es true", () => {
+    test("muestra bot?n de cierre cuando closeButton es true", () => {
       render(<Modal {...defaultProps} animated={false} closeButton />);
       expect(screen.getByRole("button", { name: "Cerrar" })).toBeInTheDocument();
     });
 
-    test("llama onClose al hacer clic en el botón cerrar", () => {
+    test("llama onClose al hacer clic en el bot?n cerrar", () => {
       const onClose = vi.fn();
       render(<Modal {...defaultProps} animated={false} closeButton onClose={onClose} />);
       fireEvent.click(screen.getByRole("button", { name: "Cerrar" }));
@@ -104,10 +104,10 @@ describe("Modal", () => {
   });
 
   describe("focus trap", () => {
-    test("enfoca el dialog al abrirse aunque exista botón de cierre", async () => {
+    test("enfoca el dialog al abrirse aunque exista bot?n de cierre", async () => {
       render(
-        <Modal {...defaultProps} animated={false} closeButton>
-          <button type="button">Acción</button>
+        <Modal {...defaultProps} animated={false} closeButton existTabIndex>
+          <button type="button">Acci?n</button>
         </Modal>
       );
 
@@ -120,8 +120,8 @@ describe("Modal", () => {
       render(
         <>
           <button type="button">Elemento externo</button>
-          <Modal {...defaultProps} animated={false} closeButton>
-            <button type="button">Acción interna</button>
+          <Modal {...defaultProps} animated={false} closeButton existTabIndex>
+            <button type="button">Acci?n interna</button>
           </Modal>
         </>
       );
@@ -146,8 +146,8 @@ describe("Modal", () => {
       const { rerender } = render(
         <>
           <button type="button">Elemento externo</button>
-          <Modal {...defaultProps} isOpen={false} animated={false}>
-            <button type="button">Acción interna</button>
+          <Modal {...defaultProps} isOpen={false} animated={false} existTabIndex>
+            <button type="button">Acci?n interna</button>
           </Modal>
         </>
       );
@@ -160,8 +160,8 @@ describe("Modal", () => {
       rerender(
         <>
           <button type="button">Elemento externo</button>
-          <Modal {...defaultProps} isOpen animated={false}>
-            <button type="button">Acción interna</button>
+          <Modal {...defaultProps} isOpen animated={false} existTabIndex>
+            <button type="button">Acci?n interna</button>
           </Modal>
         </>
       );
@@ -173,8 +173,8 @@ describe("Modal", () => {
       rerender(
         <>
           <button type="button">Elemento externo</button>
-          <Modal {...defaultProps} isOpen={false} animated={false}>
-            <button type="button">Acción interna</button>
+          <Modal {...defaultProps} isOpen={false} animated={false} existTabIndex>
+            <button type="button">Acci?n interna</button>
           </Modal>
         </>
       );
