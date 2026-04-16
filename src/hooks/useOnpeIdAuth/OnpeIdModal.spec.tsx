@@ -10,15 +10,25 @@ vi.mock("../../components/Modal", () => ({
     onClose,
     closeButton,
     children,
+    "aria-label": ariaLabel,
+    existTabIndex,
   }: {
     isOpen: boolean;
     onClose: () => void;
     closeButton: boolean;
     children: React.ReactNode;
+    "aria-label"?: string;
+    existTabIndex?: boolean;
   }) => {
     if (!isOpen) return null;
     return (
-      <div data-testid="modal">
+      <div
+        data-testid="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label={ariaLabel}
+        tabIndex={existTabIndex ? 0 : undefined}
+      >
         {closeButton && (
           <button data-testid="modal-close" onClick={onClose}>
             Close
@@ -88,6 +98,16 @@ describe("OnpeIdModal", () => {
 
     // Aparece el botón tras cargar
     expect(screen.getByTestId("modal-close")).toBeInTheDocument();
+  });
+
+  test("el modal tiene aria-label y tabIndex para accesibilidad con lectores de pantalla", () => {
+    render(<OnpeIdModal {...defaultProps} isOpenModal={true} />);
+
+    const modal = screen.getByTestId("modal");
+    expect(modal).toHaveAttribute("role", "dialog");
+    expect(modal).toHaveAttribute("aria-modal", "true");
+    expect(modal).toHaveAttribute("aria-label", "Autenticación ONPE ID");
+    expect(modal).toHaveAttribute("tabIndex", "0");
   });
 
   test("oculta el botón cerrar si isOpenLaunchApp es true aunque el iframe ya cargó", () => {
