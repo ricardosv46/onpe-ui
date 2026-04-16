@@ -27,6 +27,7 @@ export const ModalDnieVersions = ({
       onClose={onClose}
       className={`bg-white max-w-[590px]! pt-[30px] pb-[38px] md:pt-[35px] px-4 md:pb-[54px] md:px-8 ${className}`}
       closeButton={true}
+      aria-label="Versiones del DNI electrónico"
     >
       <h2
         className="text-center text-onpe-blue font-bold mb-2 text-lg sm:text-xl"
