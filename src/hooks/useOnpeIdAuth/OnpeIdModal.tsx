@@ -45,7 +45,8 @@ export const OnpeIdModal = ({
         isOpen={isOpenModal && isOnline}
         onClose={onClose}
         className="bg-white max-w-custom-673 p-10 relative"
-        closeButton={!isOpenLaunchApp && isIframeLoaded}
+        closeButton={!isOpenLaunchApp}
+        closeDisabled={!isIframeLoaded}
         escapeToClose={false}
         disableFocus={disableFocus}
         existTabIndex

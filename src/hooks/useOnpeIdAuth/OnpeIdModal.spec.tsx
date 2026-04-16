@@ -9,6 +9,7 @@ vi.mock("../../components/Modal", () => ({
     isOpen,
     onClose,
     closeButton,
+    closeDisabled,
     children,
     "aria-label": ariaLabel,
     existTabIndex,
@@ -16,6 +17,7 @@ vi.mock("../../components/Modal", () => ({
     isOpen: boolean;
     onClose: () => void;
     closeButton: boolean;
+    closeDisabled?: boolean;
     children: React.ReactNode;
     "aria-label"?: string;
     existTabIndex?: boolean;
@@ -30,7 +32,7 @@ vi.mock("../../components/Modal", () => ({
         tabIndex={existTabIndex ? 0 : undefined}
       >
         {closeButton && (
-          <button data-testid="modal-close" onClick={onClose}>
+          <button data-testid="modal-close" onClick={onClose} disabled={closeDisabled}>
             Close
           </button>
         )}
@@ -90,14 +92,15 @@ describe("OnpeIdModal", () => {
     expect(iframe).toBeInTheDocument();
     expect(iframe).toHaveAttribute("src", "http://test.url");
 
-    // Botón de cerrar oculto hasta que cargue el iframe
-    expect(screen.queryByTestId("modal-close")).not.toBeInTheDocument();
+    // Botón de cerrar visible pero deshabilitado hasta que cargue el iframe
+    const closeBtn = screen.getByTestId("modal-close");
+    expect(closeBtn).toBeDisabled();
 
     fireEvent.load(iframe);
     expect(defaultProps.handleModalIframeReady).toHaveBeenCalled();
 
-    // Aparece el botón tras cargar
-    expect(screen.getByTestId("modal-close")).toBeInTheDocument();
+    // Botón habilitado tras cargar
+    expect(closeBtn).toBeEnabled();
   });
 
   test("el modal tiene aria-label y tabIndex para accesibilidad con lectores de pantalla", () => {

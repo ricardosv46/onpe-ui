@@ -562,7 +562,8 @@ export const Modal = ({
             {closeButton && (
               <button
                 onClick={onClose}
-                className="absolute top-2.5 right-2.5 text-onpe-red cursor-pointer w-4 h-4 border-none bg-transparent p-0 md:w-6 md:h-6"
+                disabled={closeDisabled}
+                className="absolute top-2.5 right-2.5 text-onpe-red cursor-pointer w-4 h-4 border-none bg-transparent p-0 md:w-6 md:h-6 disabled:opacity-40 disabled:cursor-default"
                 aria-label="Cerrar"
                 type="button"
               >
