@@ -234,16 +234,26 @@ export const Modal = ({
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
 
-  // Foco inicial: dispara cuando el DOM del modal está garantizadamente listo.
-  // Para animated=true: cuando mounted=true (DOM añadido por la animación).
-  // Para animated=false: cuando isOpen=true (renderiza directo).
+  // Foco inicial al abrir el modal. Si modalRef.current aún es null
+  // (Portal tiene un ciclo de montaje extra), reintenta hasta encontrarlo.
   useEffect(() => {
     const domReady = animated ? mounted : isOpen;
     if (!domReady || !isOpen || disableFocus) return;
-    const wrapper = modalRef.current;
-    if (!wrapper) return;
-    previousActiveElement.current = document.activeElement as HTMLElement;
-    focusWrapper(wrapper, { preventScroll: true });
+
+    const tryFocus = () => {
+      const wrapper = modalRef.current;
+      if (!wrapper) return false;
+      previousActiveElement.current = document.activeElement as HTMLElement;
+      focusWrapper(wrapper, { preventScroll: true });
+      return true;
+    };
+
+    if (tryFocus()) return;
+
+    const retryTimers = [0, 16, 50].map((delay) =>
+      setTimeout(() => tryFocus(), delay),
+    );
+    return () => retryTimers.forEach(clearTimeout);
   }, [mounted, isOpen, animated, disableFocus]);
 
   // Cache children during exit animation (replicates AnimatePresence behavior):

@@ -13,7 +13,6 @@ interface OnpeIdModalProps {
   handlePreloadIframeReady: () => void;
   handleModalIframeReady: () => void;
   disableFocus?: boolean;
-  existTabIndex?: boolean;
 }
 
 export const OnpeIdModal = ({
@@ -27,7 +26,6 @@ export const OnpeIdModal = ({
   handlePreloadIframeReady,
   handleModalIframeReady,
   disableFocus = false,
-  existTabIndex = false,
 }: OnpeIdModalProps) => {
   const [isIframeLoaded, setIsIframeLoaded] = useState(false);
 
@@ -50,7 +48,7 @@ export const OnpeIdModal = ({
         closeButton={!isOpenLaunchApp && isIframeLoaded}
         escapeToClose={false}
         disableFocus={disableFocus}
-        existTabIndex={existTabIndex}
+        existTabIndex
         aria-label="Autenticación ONPE ID"
       >
         {!!modalUrl && isOnline && (

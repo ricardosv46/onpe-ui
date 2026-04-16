@@ -107,7 +107,7 @@ describe("OnpeIdModal", () => {
     expect(modal).toHaveAttribute("role", "dialog");
     expect(modal).toHaveAttribute("aria-modal", "true");
     expect(modal).toHaveAttribute("aria-label", "Autenticación ONPE ID");
-    expect(modal).toHaveAttribute("tabIndex", "0");
+    expect(modal).toHaveAttribute("tabindex", "0");
   });
 
   test("oculta el botón cerrar si isOpenLaunchApp es true aunque el iframe ya cargó", () => {
