@@ -48,7 +48,8 @@ export const OnpeIdModal = ({
         closeButton={!isOpenLaunchApp && isIframeLoaded}
         escapeToClose={false}
         disableFocus={disableFocus}
-        existTabIndex={false}
+        existTabIndex
+        aria-label="Autenticación ONPE ID"
       >
         {!!modalUrl && isOnline && (
           <iframe
