@@ -30,6 +30,7 @@ export const ModalNfc = ({
       onClose={onClose}
       className={`bg-white max-w-[600px]! pt-[46px] pb-[46px] px-[30px] md:px-[50px] md:pt-[35px] md:pb-[54px]  ${className}`}
       closeButton={true}
+      aria-label="¿Cómo saber si tu dispositivo móvil tiene NFC?"
     >
       <h2
         className="text-center text-onpe-blue font-bold text-base"
