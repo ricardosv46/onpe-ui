@@ -20,17 +20,17 @@ describe("Button", () => {
 
   test("aplica tamaño normal por defecto", () => {
     render(<Button color="blue" title="Test" />);
-    expect(screen.getByRole("button").className).toContain("h-12");
+    expect(screen.getByRole("button").className).toContain("min-h-12");
   });
 
   test("aplica tamaño small correctamente", () => {
     render(<Button color="blue" title="Test" size="small" />);
-    expect(screen.getByRole("button").className).toContain("h-10");
+    expect(screen.getByRole("button").className).toContain("min-h-10");
   });
 
   test("aplica tamaño large correctamente", () => {
     render(<Button color="blue" title="Test" size="large" />);
-    expect(screen.getByRole("button").className).toContain("h-14");
+    expect(screen.getByRole("button").className).toContain("min-h-14");
   });
 
   test("llama onClick al hacer clic", () => {
@@ -66,5 +66,19 @@ describe("Button", () => {
   test("el botón deshabilitado tiene el atributo disabled", () => {
     render(<Button color="blue" title="Test" disabled />);
     expect(screen.getByRole("button")).toBeDisabled();
+  });
+
+  test("por defecto usa ancho fijo", () => {
+    render(<Button color="blue" title="Test" />);
+    const button = screen.getByRole("button");
+    expect(button.className).toContain("w-[200px]");
+    expect(button.className).toContain("px-3");
+  });
+
+  test("fitContent ajusta el botón al contenido", () => {
+    render(<Button color="blue" title="Test" fitContent />);
+    const button = screen.getByRole("button");
+    expect(button.className).toContain("w-fit");
+    expect(button.className).toContain("px-3");
   });
 });

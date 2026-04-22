@@ -55,6 +55,7 @@ const meta: Meta<typeof Button> = {
     },
     hoverEffect: { control: "boolean" },
     disableEnterClick: { control: "boolean" },
+    fitContent: { control: "boolean" },
   },
 };
 
@@ -217,4 +218,22 @@ export const WithHover: Story = {
     title: "Con hover",
     hoverEffect: true,
   },
+};
+
+export const FixedWidthVsFitContent: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4 w-full max-w-3xl">
+      <Button color="primary" title="Texto corto fijo (200px)" />
+      <Button
+        color="primary"
+        title="Texto muy largo fijo: no debe crecer más de 200px"
+      />
+      <Button color="primary" title="Texto corto fitContent" fitContent />
+      <Button
+        color="primary"
+        title="Texto muy largo fitContent: crece según contenido"
+        fitContent
+      />
+    </div>
+  ),
 };
