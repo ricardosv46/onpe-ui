@@ -29,6 +29,8 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   disableEnterClick?: boolean;
   /** Activa el efecto hover (default: true) */
   hoverEffect?: boolean;
+  /** Ajusta el ancho al contenido (usa padding horizontal interno) */
+  fitContent?: boolean;
   srOnlyText?: string;
 }
 
@@ -49,9 +51,9 @@ const colorClasses: Record<ButtonColor, string> = {
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  small: "h-10 text-sm",
-  normal: "h-12 text-base",
-  large: "h-14 text-lg",
+  small: "min-h-10 text-sm",
+  normal: "min-h-12 text-base",
+  large: "min-h-14 text-lg",
 };
 
 export function Button({
@@ -63,6 +65,7 @@ export function Button({
   colorBgIcon,
   disableEnterClick,
   hoverEffect = false,
+  fitContent = false,
   srOnlyText,
   ...props
 }: ButtonProps) {
@@ -77,7 +80,8 @@ export function Button({
       className={[
         "inline-flex items-center",
         icon ? "" : "justify-center",
-        "min-w-[200px] border-none",
+        fitContent ? "w-fit min-w-0" : "w-[200px]",
+        "px-3",
         "text-white font-semibold cursor-pointer",
         "transition-all duration-300 ease-in-out",
         "disabled:cursor-default disabled:bg-onpe-gray!",
