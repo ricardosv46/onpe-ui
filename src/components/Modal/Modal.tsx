@@ -521,7 +521,7 @@ export const Modal = ({
           animated ? "oui:transition-opacity oui:duration-200" : "",
           animated ? (visible ? "oui:opacity-80" : "oui:opacity-0") : "oui:opacity-80",
         ].join(" ")}
-        onClick={onClose}
+        onClick={closeDisabled ? undefined : onClose}
       />
 
       {/* Container */}

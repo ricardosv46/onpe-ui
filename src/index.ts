@@ -5,6 +5,31 @@ export * from "./icons";
 export { Button } from "./components/Button";
 export type { ButtonProps } from "./components/Button";
 
+export { Select } from "./components/Select";
+export type { SelectProps, SelectOption, Option } from "./components/Select";
+
+export { Input, InputArea, Radio } from "./components/Input";
+export type {
+  InputProps,
+  InputAreaProps,
+  RadioProps,
+} from "./components/Input";
+
+export { Spinner } from "./components/Spinner";
+export type { SpinnerProps } from "./components/Spinner";
+
+export { Stepper } from "./components/Stepper";
+export type { StepperProps } from "./components/Stepper";
+
+export {
+  PaginatorNumbers,
+  PaginatorSelectPerPage,
+} from "./components/Paginator";
+export type {
+  PaginatorNumbersProps,
+  PaginatorSelectPerPageProps,
+} from "./components/Paginator";
+
 export { Footer } from "./components/Footer";
 export type { FooterProps } from "./components/Footer";
 

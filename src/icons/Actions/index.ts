@@ -1,3 +1,4 @@
+export * from "./IconArrowDown";
 export * from "./IconCheck";
 export * from "./IconClose";
 export * from "./IconCloseRadius";
@@ -9,3 +10,6 @@ export * from "./IconSpinnerDesktop";
 export * from "./IconSpinnerMobile";
 export * from "./IconWarning";
 export * from "./IconWarningNotRecommended";
+export * from "./IconShowPassword";
+export * from "./IconShowPasswordSlash";
+export * from "./IconPaginatorArrows";
