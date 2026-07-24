@@ -81,4 +81,12 @@ describe("Button", () => {
     expect(button.className).toContain("oui:w-fit");
     expect(button.className).toContain("oui:px-3");
   });
+
+  test("no aplica ancho por defecto si className trae w-*", () => {
+    render(<Button color="blue" title="Test" className="w-[300px]" />);
+    const button = screen.getByRole("button");
+    expect(button.className).toContain("w-[300px]");
+    expect(button.className).not.toContain("oui:w-[200px]");
+    expect(button.className).not.toContain("oui:w-fit");
+  });
 });

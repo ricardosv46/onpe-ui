@@ -56,6 +56,9 @@ const sizeClasses: Record<ButtonSize, string> = {
   large: "oui:min-h-14 oui:text-lg",
 };
 
+const hasWidthClass = (className: string) =>
+  /\b(oui:)?!?w-|(?:^|\s)(oui:)?min-w-|(?:^|\s)(oui:)?max-w-/.test(className);
+
 export function Button({
   color,
   title,
@@ -80,7 +83,8 @@ export function Button({
       className={[
         "oui:inline-flex oui:items-center",
         icon ? "" : "oui:justify-center",
-        fitContent ? "oui:w-fit oui:min-w-0" : "oui:w-[200px]",
+        !hasWidthClass(className) &&
+          (fitContent ? "oui:w-fit oui:min-w-0" : "oui:w-[200px]"),
         "oui:px-3",
         "oui:text-white oui:font-semibold oui:cursor-pointer",
         "oui:transition-all oui:duration-300 oui:ease-in-out",

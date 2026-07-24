@@ -1,6 +1,24 @@
 export { Button } from "./Button";
 export type { ButtonProps } from "./Button";
 
+export { Select } from "./Select";
+export type { SelectProps, SelectOption, Option } from "./Select";
+
+export { Input, InputArea, Radio } from "./Input";
+export type { InputProps, InputAreaProps, RadioProps } from "./Input";
+
+export { Spinner } from "./Spinner";
+export type { SpinnerProps } from "./Spinner";
+
+export { Stepper } from "./Stepper";
+export type { StepperProps } from "./Stepper";
+
+export { PaginatorNumbers, PaginatorSelectPerPage } from "./Paginator";
+export type {
+  PaginatorNumbersProps,
+  PaginatorSelectPerPageProps,
+} from "./Paginator";
+
 export { Footer } from "./Footer";
 export type { FooterProps } from "./Footer";
 
@@ -38,4 +56,3 @@ export type { ModalDnieVersionsProps } from "./Feedback/ModalDnieVersions";
 
 export { ModalNfc } from "./Feedback/ModalNfc";
 export type { ModalNfcProps } from "./Feedback/ModalNfc";
-
