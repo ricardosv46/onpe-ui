@@ -30,23 +30,23 @@ export const Footer = ({
 
           {showBrowserInfo && <BrowserRecommended />}
           {showContactInfo && (
-            <div className="relative z-10 flex w-full min-h-[100px] bg-onpe-blue">
-              <div className="flex justify-between items-start w-full flex-col gap-6 mx-auto py-14 px-4 max-w-[1460px] md:py-5 md:px-4 lg:flex-row lg:items-center">
+            <div className="oui:relative oui:z-10 oui:flex oui:w-full oui:min-h-[100px] oui:bg-onpe-blue">
+              <div className="oui:flex oui:justify-between oui:items-start oui:w-full oui:flex-col oui:gap-6 oui:mx-auto oui:py-14 oui:px-4 oui:max-w-[1460px] oui:md:py-5 oui:md:px-4 oui:lg:flex-row oui:lg:items-center">
                 <div tabIndex={0}>
-                  <p className="font-semibold text-onpe-yellow mb-1">
-                    <span className="sr-only">Oficina central</span>
+                  <p className="oui:font-semibold oui:text-onpe-yellow oui:mb-1">
+                    <span className="oui:sr-only">Oficina central</span>
                     <span aria-hidden="true">Oficina central:</span>
                   </p>
-                  <p className="flex text-sm font-medium text-white">
-                    <span className="sr-only" lang="es-PE">
+                  <p className="oui:flex oui:text-sm oui:font-medium oui:text-white">
+                    <span className="oui:sr-only" lang="es-PE">
                       Dirección: jiroon Washington 1894, Cercado de Lima
                     </span>
                     <span aria-hidden="true">
                       Jr. Washington 1894, Cercado de Lima
                     </span>
                   </p>
-                  <p className="flex text-sm font-medium text-white">
-                    <span className="sr-only">
+                  <p className="oui:flex oui:text-sm oui:font-medium oui:text-white">
+                    <span className="oui:sr-only">
                       Horario de atención: Lunes a viernes de 8:30 a. m. a 5:00
                       p. m.
                     </span>
@@ -56,37 +56,37 @@ export const Footer = ({
                   </p>
                 </div>
                 <div tabIndex={0}>
-                  <p className="font-semibold text-onpe-yellow mb-1">
-                    <span className="sr-only">Contáctanos</span>
+                  <p className="oui:font-semibold oui:text-onpe-yellow oui:mb-1">
+                    <span className="oui:sr-only">Contáctanos</span>
                     <span aria-hidden="true">Contáctanos:</span>
                   </p>
-                  <p className="flex text-sm font-medium text-white">
-                    <span className="sr-only">
+                  <p className="oui:flex oui:text-sm oui:font-medium oui:text-white">
+                    <span className="oui:sr-only">
                       Correo electrónico, informes@onpe punto goob punto pe,
                     </span>
                     <span aria-hidden="true">informes@onpe.gob.pe</span>
                   </p>
-                  <p className="flex text-sm font-medium text-white">
-                    <span className="sr-only">
+                  <p className="oui:flex oui:text-sm oui:font-medium oui:text-white">
+                    <span className="oui:sr-only">
                       Número telefónico, (01)4170630,
                     </span>
                     <span aria-hidden="true">(01)4170630</span>
                   </p>
                 </div>
                 <div tabIndex={0}>
-                  <p className="font-semibold text-onpe-yellow mb-1">
-                    <span className="sr-only">
+                  <p className="oui:font-semibold oui:text-onpe-yellow oui:mb-1">
+                    <span className="oui:sr-only">
                       Síguenos en nuestras redes sociales
                     </span>
                     <span aria-hidden="true">Síguenos:</span>
                   </p>
-                  <p className="flex text-sm font-medium text-white gap-4">
+                  <p className="oui:flex oui:text-sm oui:font-medium oui:text-white oui:gap-4">
                     <a
                       href="https://www.facebook.com/ONPEoficial"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Facebook de ONPE,"
-                      className="text-onpe-blue-dark"
+                      className="oui:text-onpe-blue-dark"
                     >
                       <span aria-hidden="true">
                         <FaceBookIcon />
@@ -97,7 +97,7 @@ export const Footer = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="X de ONPE (antes Twitter),"
-                      className="text-onpe-blue-dark"
+                      className="oui:text-onpe-blue-dark"
                     >
                       <span aria-hidden="true">
                         <XIcon />
@@ -108,7 +108,7 @@ export const Footer = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="TikTok de ONPE,"
-                      className="text-onpe-blue-dark"
+                      className="oui:text-onpe-blue-dark"
                     >
                       <span aria-hidden="true">
                         <TikTokIcon />
@@ -119,7 +119,7 @@ export const Footer = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Instagram de ONPE,"
-                      className="text-onpe-blue-dark"
+                      className="oui:text-onpe-blue-dark"
                     >
                       <span aria-hidden="true">
                         <InstagramIcon />
@@ -130,7 +130,7 @@ export const Footer = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="YouTube de ONPE,"
-                      className="text-onpe-blue-dark"
+                      className="oui:text-onpe-blue-dark"
                     >
                       <span aria-hidden="true">
                         <YoutubeIcon />
@@ -145,8 +145,8 @@ export const Footer = ({
       )}
 
       {isDevelopment && (
-        <div className="h-[93px] w-full text-center flex items-center justify-center bg-onpe-yellow-light/75 fixed z-10 right-0 bottom-0 lg:h-[46px]">
-          <p className="py-2 px-2 text-2xl text-onpe-blue font-[Consolas,monospace] font-black">
+        <div className="oui:h-[93px] oui:w-full oui:text-center oui:flex oui:items-center oui:justify-center oui:bg-onpe-yellow-light/75 oui:fixed oui:z-10 oui:right-0 oui:bottom-0 oui:lg:h-[46px]">
+          <p className="oui:py-2 oui:px-2 oui:text-2xl oui:text-onpe-blue oui:font-[Consolas,monospace] oui:font-black">
             Versión en Desarrollo - No Oficial
           </p>
         </div>

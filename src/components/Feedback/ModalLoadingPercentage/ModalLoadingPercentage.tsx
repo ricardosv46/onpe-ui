@@ -36,14 +36,14 @@ export const ModalLoadingPercentage = ({
       preventBodyScroll={preventBodyScroll}
       alignTop={alignTop}
     >
-      <div className="bg-transparent flex-col flex items-center p-[50px]">
-        <p className="text-white leading-normal text-6xl text-center mt-4">
+      <div className="oui:bg-transparent oui:flex-col oui:flex oui:items-center oui:p-[50px]">
+        <p className="oui:text-white oui:leading-normal oui:text-6xl oui:text-center oui:mt-4">
           {message} {Math.floor(clamped)}%
         </p>
-        <div className="w-[600px] h-10 bg-white inline-block">
+        <div className="oui:w-[600px] oui:h-10 oui:bg-white oui:inline-block">
           <div
             style={{ width: `${clamped}%` }}
-            className="h-10 bg-onpe-blue border-white border-2 transition-all ease-in-out duration-300"
+            className="oui:h-10 oui:bg-onpe-blue oui:border-white oui:border-2 oui:transition-all oui:ease-in-out oui:duration-300"
           />
         </div>
       </div>

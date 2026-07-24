@@ -40,19 +40,19 @@ function DefaultStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Abrir Modal
       </button>
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        className="bg-white p-6"
+        className="oui:bg-white oui:p-6"
       >
-        <h2 className="text-xl font-bold mb-4 text-onpe-blue">
+        <h2 className="oui:text-xl oui:font-bold oui:mb-4 oui:text-onpe-blue">
           Título del Modal
         </h2>
-        <p className="text-gray-600">Contenido del modal de ejemplo.</p>
+        <p className="oui:text-gray-600">Contenido del modal de ejemplo.</p>
       </Modal>
     </>
   );
@@ -64,7 +64,7 @@ function ConBotonCerrarStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Abrir Modal con botón cerrar
       </button>
@@ -72,12 +72,12 @@ function ConBotonCerrarStory() {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         closeButton
-        className="bg-white p-6"
+        className="oui:bg-white oui:p-6"
       >
-        <h2 className="text-xl font-bold mb-4 text-onpe-blue">
+        <h2 className="oui:text-xl oui:font-bold oui:mb-4 oui:text-onpe-blue">
           Modal con botón cerrar
         </h2>
-        <p className="text-gray-600">
+        <p className="oui:text-gray-600">
           Este modal tiene un botón X en la esquina superior derecha.
         </p>
       </Modal>
@@ -91,13 +91,13 @@ function SinFondoStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Abrir Modal sin fondo
       </button>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} whitoutBackground>
-        <div className="p-8 bg-white rounded shadow-lg text-center">
-          <p className="text-gray-700">Modal sin fondo blanco propio</p>
+        <div className="oui:p-8 oui:bg-white oui:rounded oui:shadow-lg oui:text-center">
+          <p className="oui:text-gray-700">Modal sin fondo blanco propio</p>
         </div>
       </Modal>
     </>
@@ -110,7 +110,7 @@ function CierreDeshabilitadoStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Abrir Modal (cierre deshabilitado)
       </button>
@@ -119,17 +119,17 @@ function CierreDeshabilitadoStory() {
         onClose={() => setIsOpen(false)}
         closeDisabled
         escapeToClose={false}
-        className="bg-white p-6"
+        className="oui:bg-white oui:p-6"
       >
-        <h2 className="text-xl font-bold mb-4 text-onpe-blue">
+        <h2 className="oui:text-xl oui:font-bold oui:mb-4 oui:text-onpe-blue">
           Modal bloqueado
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="oui:text-gray-600 oui:mb-6">
           No se puede cerrar haciendo clic fuera ni con Escape.
         </p>
         <button
           onClick={() => setIsOpen(false)}
-          className="px-4 py-2 bg-onpe-red text-white rounded cursor-pointer"
+          className="oui:px-4 oui:py-2 oui:bg-onpe-red oui:text-white oui:rounded oui:cursor-pointer"
         >
           Cerrar manualmente
         </button>
@@ -146,38 +146,38 @@ function ModalApilados() {
     <>
       <button
         onClick={() => setModal1(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Abrir modal 1
       </button>
 
-      <Modal isOpen={modal1} onClose={() => setModal1(false)} className="bg-white p-6">
-        <h2 className="text-xl font-bold mb-4 text-onpe-blue">Modal 1</h2>
-        <p className="text-gray-600 mb-4">Este es el primer modal.</p>
+      <Modal isOpen={modal1} onClose={() => setModal1(false)} className="oui:bg-white oui:p-6">
+        <h2 className="oui:text-xl oui:font-bold oui:mb-4 oui:text-onpe-blue">Modal 1</h2>
+        <p className="oui:text-gray-600 oui:mb-4">Este es el primer modal.</p>
         <button
           onClick={() => setModal2(true)}
-          className="px-4 py-2 bg-onpe-skyblue text-white rounded cursor-pointer"
+          className="oui:px-4 oui:py-2 oui:bg-onpe-skyblue oui:text-white oui:rounded oui:cursor-pointer"
         >
           Abrir modal 2 encima
         </button>
       </Modal>
 
-      <Modal isOpen={modal2} onClose={() => setModal2(false)} className="bg-white p-6">
-        <h2 className="text-xl font-bold mb-4 text-onpe-skyblue">Modal 2</h2>
-        <p className="text-gray-600 mb-4">
+      <Modal isOpen={modal2} onClose={() => setModal2(false)} className="oui:bg-white oui:p-6">
+        <h2 className="oui:text-xl oui:font-bold oui:mb-4 oui:text-onpe-skyblue">Modal 2</h2>
+        <p className="oui:text-gray-600 oui:mb-4">
           Este modal se apila sobre el anterior. El overlay tapa el contenido del modal 1.
         </p>
         <button
           onClick={() => setModal3(true)}
-          className="px-4 py-2 bg-onpe-red text-white rounded cursor-pointer"
+          className="oui:px-4 oui:py-2 oui:bg-onpe-red oui:text-white oui:rounded oui:cursor-pointer"
         >
           Abrir modal 3 encima
         </button>
       </Modal>
 
-      <Modal isOpen={modal3} onClose={() => setModal3(false)} className="bg-white p-6">
-        <h2 className="text-xl font-bold mb-4 text-onpe-red">Modal 3</h2>
-        <p className="text-gray-600">Tercer nivel. El overlay tapa todo lo anterior.</p>
+      <Modal isOpen={modal3} onClose={() => setModal3(false)} className="oui:bg-white oui:p-6">
+        <h2 className="oui:text-xl oui:font-bold oui:mb-4 oui:text-onpe-red">Modal 3</h2>
+        <p className="oui:text-gray-600">Tercer nivel. El overlay tapa todo lo anterior.</p>
       </Modal>
     </>
   );

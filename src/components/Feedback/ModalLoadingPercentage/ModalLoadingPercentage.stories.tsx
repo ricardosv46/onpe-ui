@@ -44,7 +44,7 @@ function DefaultStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Iniciar proceso
       </button>
@@ -83,7 +83,7 @@ function MensajePersonalizadoStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Importar padrón
       </button>

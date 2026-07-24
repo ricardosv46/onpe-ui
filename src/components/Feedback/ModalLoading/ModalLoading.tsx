@@ -53,23 +53,23 @@ export const ModalLoading = ({
       animated={animated}
       preventBodyScroll={preventBodyScroll}
     >
-      <div className="sr-only" aria-live="assertive" aria-atomic="true">
+      <div className="oui:sr-only" aria-live="assertive" aria-atomic="true">
         {announceMessage}
       </div>
       {spinner ?? (
         <>
           <IconSpinnerDesktop
-            className="hidden md:block text-white animate-spin"
+            className="oui:hidden oui:md:block oui:text-white oui:animate-spin"
             aria-hidden="true"
           />
           <IconSpinnerMobile
-            className="block md:hidden text-white animate-spin"
+            className="oui:block oui:md:hidden oui:text-white oui:animate-spin"
             aria-hidden="true"
           />
         </>
       )}
       <p
-        className={`text-white leading-normal text-2xl md:text-[64px] text-center ${spinner ? "mt-5" : "mt-10 md:mt-20"}`}
+        className={`oui:text-white oui:leading-normal oui:text-2xl oui:md:text-[64px] oui:text-center ${spinner ? "oui:mt-5" : "oui:mt-10 oui:md:mt-20"}`}
       >
         {message}
       </p>

@@ -22,40 +22,40 @@ export const ModalBrowserIncompatible = ({
       zIndexLevel={zIndexLevel}
       isOpen={isOpen}
       onClose={onClose}
-      className={`bg-white pt-[25px] px-4 pb-[50px] md:pt-[35px] md:px-8 md:pb-[54px] max-w-[680px]! ${className}`}
+      className={`oui:bg-white oui:pt-[25px] oui:px-4 oui:pb-[50px] oui:md:pt-[35px] oui:md:px-8 oui:md:pb-[54px] oui:max-w-[680px]! ${className}`}
       closeButton={true}
     >
-      <div className="flex items-center justify-center">
+      <div className="oui:flex oui:items-center oui:justify-center">
         <IconWarning
-          className="w-16 h-16 sm:w-[84px] sm:h-[84px] text-onpe-skyblue"
+          className="oui:w-16 oui:h-16 oui:sm:w-[84px] oui:sm:h-[84px] oui:text-onpe-skyblue"
           role="presentation"
         />
       </div>
 
-      <p className="mt-1 text-base sm:text-2xl font-semibold text-center text-onpe-skyblue">
+      <p className="oui:mt-1 oui:text-base oui:sm:text-2xl oui:font-semibold oui:text-center oui:text-onpe-skyblue">
         Estás usando un navegador no recomendado
       </p>
 
-      <p className="mt-6 text-base sm:text-lg text-center sm:px-2">
+      <p className="oui:mt-6 oui:text-base oui:sm:text-lg oui:text-center oui:sm:px-2">
         Para una mejor experiencia y mayor seguridad, debes ingresar con los
         siguientes navegadores:
       </p>
 
-      <div className="flex items-center justify-center gap-8 mt-[47px] sm:gap-12">
+      <div className="oui:flex oui:items-center oui:justify-center oui:gap-8 oui:mt-[47px] oui:sm:gap-12">
         <IconChromeColor
           role="img"
           aria-label="Google Chrome"
-          className="w-7 h-7 sm:w-12 sm:h-12"
+          className="oui:w-7 oui:h-7 oui:sm:w-12 oui:sm:h-12"
         />
         <IconSafariColor
           role="img"
           aria-label="Safari"
-          className="w-7 h-7 sm:w-12 sm:h-12"
+          className="oui:w-7 oui:h-7 oui:sm:w-12 oui:sm:h-12"
         />
         <IconEdgeColor
           role="img"
           aria-label="Microsoft Edge"
-          className="w-7 h-7 sm:w-12 sm:h-12"
+          className="oui:w-7 oui:h-7 oui:sm:w-12 oui:sm:h-12"
         />
       </div>
     </Modal>

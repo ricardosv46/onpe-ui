@@ -52,13 +52,13 @@ describe("NotRecommended", () => {
 
   test("aplica bottom y right numéricos como px", () => {
     const { container } = render(<NotRecommended bottom={100} right={50} />);
-    const fixed = container.querySelector(".fixed");
+    const fixed = container.querySelector(".oui\\:fixed");
     expect(fixed).toHaveStyle({ bottom: "100px", right: "50px" });
   });
 
   test("aplica bottom y right como string directamente", () => {
     const { container } = render(<NotRecommended bottom="2rem" right="1rem" />);
-    const fixed = container.querySelector(".fixed");
+    const fixed = container.querySelector(".oui\\:fixed");
     expect(fixed).toHaveStyle({ bottom: "2rem", right: "1rem" });
   });
 });

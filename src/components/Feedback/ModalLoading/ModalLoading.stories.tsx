@@ -23,14 +23,14 @@ function DefaultStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Mostrar loading
       </button>
       {isOpen && (
         <button
           onClick={() => setIsOpen(false)}
-          className="ml-4 px-4 py-2 bg-onpe-red text-white rounded cursor-pointer"
+          className="oui:ml-4 oui:px-4 oui:py-2 oui:bg-onpe-red oui:text-white oui:rounded oui:cursor-pointer"
         >
           Detener
         </button>
@@ -46,14 +46,14 @@ function MensajePersonalizadoStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Procesar datos
       </button>
       {isOpen && (
         <button
           onClick={() => setIsOpen(false)}
-          className="ml-4 px-4 py-2 bg-onpe-red text-white rounded cursor-pointer"
+          className="oui:ml-4 oui:px-4 oui:py-2 oui:bg-onpe-red oui:text-white oui:rounded oui:cursor-pointer"
         >
           Detener
         </button>
@@ -88,14 +88,14 @@ function SpinnerPersonalizadoStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Spinner personalizado
       </button>
       {isOpen && (
         <button
           onClick={() => setIsOpen(false)}
-          className="ml-4 px-4 py-2 bg-onpe-red text-white rounded cursor-pointer"
+          className="oui:ml-4 oui:px-4 oui:py-2 oui:bg-onpe-red oui:text-white oui:rounded oui:cursor-pointer"
         >
           Detener
         </button>
@@ -105,9 +105,9 @@ function SpinnerPersonalizadoStory() {
         onClose={() => setIsOpen(false)}
         message="Subiendo archivo..."
         spinner={
-          <div className="flex flex-col items-center gap-3">
-            <div className="w-16 h-16 rounded-full border-4 border-white border-t-transparent animate-spin" />
-            <span className="text-white text-lg">📁</span>
+          <div className="oui:flex oui:flex-col oui:items-center oui:gap-3">
+            <div className="oui:w-16 oui:h-16 oui:rounded-full oui:border-4 oui:border-white oui:border-t-transparent oui:animate-spin" />
+            <span className="oui:text-white oui:text-lg">📁</span>
           </div>
         }
       />

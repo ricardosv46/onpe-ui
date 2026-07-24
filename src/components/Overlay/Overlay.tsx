@@ -20,19 +20,19 @@ export interface OverlayProps {
 }
 
 const colorClasses: Record<OverlayColor, string> = {
-  blue: "bg-onpe-blue/80",
-  skyblue: "bg-onpe-skyblue/80",
-  "skyblue-light": "bg-onpe-skyblue-light/80",
-  yellow: "bg-onpe-yellow/80",
-  "light-skyblue": "bg-onpe-light-skyblue/80",
-  gray: "bg-onpe-gray/80",
-  "gray-light": "bg-onpe-gray-light/80",
-  "gray-extra-light": "bg-onpe-gray-extra-light/80",
-  red: "bg-onpe-red/80",
-  "dark-gray": "bg-onpe-dark-gray/80",
-  green: "bg-onpe-green/80",
-  "yellow-light": "bg-onpe-yellow-light/80",
-  primary: "bg-onpe-blue/80",
+  blue: "oui:bg-onpe-blue/80",
+  skyblue: "oui:bg-onpe-skyblue/80",
+  "skyblue-light": "oui:bg-onpe-skyblue-light/80",
+  yellow: "oui:bg-onpe-yellow/80",
+  "light-skyblue": "oui:bg-onpe-light-skyblue/80",
+  gray: "oui:bg-onpe-gray/80",
+  "gray-light": "oui:bg-onpe-gray-light/80",
+  "gray-extra-light": "oui:bg-onpe-gray-extra-light/80",
+  red: "oui:bg-onpe-red/80",
+  "dark-gray": "oui:bg-onpe-dark-gray/80",
+  green: "oui:bg-onpe-green/80",
+  "yellow-light": "oui:bg-onpe-yellow-light/80",
+  primary: "oui:bg-onpe-blue/80",
 };
 
 export const Overlay = ({ show, onClick, color = "blue" }: OverlayProps) => {
@@ -40,8 +40,8 @@ export const Overlay = ({ show, onClick, color = "blue" }: OverlayProps) => {
     <div
       onClick={onClick}
       className={[
-        "absolute inset-0 w-full h-screen z-10 transition-all duration-500",
-        show ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
+        "oui:absolute oui:inset-0 oui:w-full oui:h-screen oui:z-10 oui:transition-all oui:duration-500",
+        show ? "oui:pointer-events-auto oui:opacity-100" : "oui:pointer-events-none oui:opacity-0",
         colorClasses[color],
       ].join(" ")}
     />

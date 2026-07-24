@@ -40,8 +40,8 @@ export const Visible: Story = {
     color: "blue",
   },
   render: (args) => (
-    <div className="relative h-64">
-      <div className="p-8 text-xl font-semibold">Contenido detrás del overlay</div>
+    <div className="oui:relative oui:h-64">
+      <div className="oui:p-8 oui:text-xl oui:font-semibold">Contenido detrás del overlay</div>
       <Overlay {...args} />
     </div>
   ),
@@ -53,8 +53,8 @@ export const Hidden: Story = {
     color: "blue",
   },
   render: (args) => (
-    <div className="relative h-64">
-      <div className="p-8 text-xl font-semibold">Sin overlay (oculto)</div>
+    <div className="oui:relative oui:h-64">
+      <div className="oui:p-8 oui:text-xl oui:font-semibold">Sin overlay (oculto)</div>
       <Overlay {...args} />
     </div>
   ),
@@ -66,8 +66,8 @@ export const ColorRed: Story = {
     color: "red",
   },
   render: (args) => (
-    <div className="relative h-64">
-      <div className="p-8 text-xl font-semibold">Overlay rojo</div>
+    <div className="oui:relative oui:h-64">
+      <div className="oui:p-8 oui:text-xl oui:font-semibold">Overlay rojo</div>
       <Overlay {...args} />
     </div>
   ),
@@ -79,8 +79,8 @@ export const ColorSkyblue: Story = {
     color: "skyblue",
   },
   render: (args) => (
-    <div className="relative h-64">
-      <div className="p-8 text-xl font-semibold">Overlay skyblue</div>
+    <div className="oui:relative oui:h-64">
+      <div className="oui:p-8 oui:text-xl oui:font-semibold">Overlay skyblue</div>
       <Overlay {...args} />
     </div>
   ),

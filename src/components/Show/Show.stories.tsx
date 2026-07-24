@@ -17,12 +17,12 @@ export const EnCarga: Story = {
   args: {
     condition: true,
     loadingComponent: (
-      <div className="p-6 bg-gray-100 rounded text-center text-gray-600">
+      <div className="oui:p-6 oui:bg-gray-100 oui:rounded oui:text-center oui:text-gray-600">
         Cargando...
       </div>
     ),
     children: (
-      <div className="p-6 bg-green-100 rounded text-center text-green-700 font-semibold">
+      <div className="oui:p-6 oui:bg-green-100 oui:rounded oui:text-center oui:text-green-700 oui:font-semibold">
         Contenido cargado correctamente
       </div>
     ),
@@ -33,12 +33,12 @@ export const ContenidoCargado: Story = {
   args: {
     condition: false,
     loadingComponent: (
-      <div className="p-6 bg-gray-100 rounded text-center text-gray-600">
+      <div className="oui:p-6 oui:bg-gray-100 oui:rounded oui:text-center oui:text-gray-600">
         Cargando...
       </div>
     ),
     children: (
-      <div className="p-6 bg-green-100 rounded text-center text-green-700 font-semibold">
+      <div className="oui:p-6 oui:bg-green-100 oui:rounded oui:text-center oui:text-green-700 oui:font-semibold">
         Contenido cargado correctamente
       </div>
     ),

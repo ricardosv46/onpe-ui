@@ -498,13 +498,13 @@ export const Modal = ({
   if (animated && !mounted) return null;
 
   const contentClass = [
-    "relative flex flex-col items-center justify-start",
+    "oui:relative oui:flex oui:flex-col oui:items-center oui:justify-start",
     whitoutBackground
-      ? "bg-transparent"
+      ? "oui:bg-transparent"
       : [
-          "min-w-[320px] w-[95vw] max-w-[95vw] max-h-[90vh]",
-          "overflow-y-auto scroll-smooth",
-          "md:max-w-[1000px]",
+          "oui:min-w-[320px] oui:w-[95vw] oui:max-w-[95vw] oui:max-h-[90vh]",
+          "oui:overflow-y-auto oui:scroll-smooth",
+          "oui:md:max-w-[1000px]",
         ].join(" "),
     props.className || "",
   ]
@@ -517,9 +517,9 @@ export const Modal = ({
       <div
         style={{ zIndex: assignedZIndex }}
         className={[
-          "fixed inset-0 bg-onpe-blue",
-          animated ? "transition-opacity duration-200" : "",
-          animated ? (visible ? "opacity-80" : "opacity-0") : "opacity-80",
+          "oui:fixed oui:inset-0 oui:bg-onpe-blue",
+          animated ? "oui:transition-opacity oui:duration-200" : "",
+          animated ? (visible ? "oui:opacity-80" : "oui:opacity-0") : "oui:opacity-80",
         ].join(" ")}
         onClick={onClose}
       />
@@ -528,17 +528,17 @@ export const Modal = ({
       <div
         style={{ zIndex: assignedZIndex + 10 }}
         className={[
-          "fixed top-0 w-full h-screen grid",
-          alignTop ? "place-items-start pt-8" : "place-items-center",
-          animated ? "transition-all duration-200" : "",
+          "oui:fixed oui:top-0 oui:w-full oui:h-screen oui:grid",
+          alignTop ? "oui:place-items-start oui:pt-8" : "oui:place-items-center",
+          animated ? "oui:transition-all oui:duration-200" : "",
           animated
             ? visible
-              ? "opacity-100 scale-100 translate-y-0"
-              : "opacity-[0.2] scale-95 -translate-y-5"
-            : "opacity-100 scale-100 translate-y-0",
+              ? "oui:opacity-100 oui:scale-100 oui:translate-y-0"
+              : "oui:opacity-[0.2] oui:scale-95 oui:-translate-y-5"
+            : "oui:opacity-100 oui:scale-100 oui:translate-y-0",
         ].join(" ")}
       >
-        <div className="relative grid place-items-center">
+        <div className="oui:relative oui:grid oui:place-items-center">
           <div
             ref={modalRef}
             onClick={(e) => e.stopPropagation()}
@@ -563,11 +563,11 @@ export const Modal = ({
               <button
                 onClick={onClose}
                 disabled={closeDisabled}
-                className="absolute top-2.5 right-2.5 text-onpe-red cursor-pointer w-4 h-4 border-none bg-transparent p-0 md:w-6 md:h-6 disabled:opacity-40 disabled:cursor-default"
+                className="oui:absolute oui:top-2.5 oui:right-2.5 oui:text-onpe-red oui:cursor-pointer oui:w-4 oui:h-4 oui:border-none oui:bg-transparent oui:p-0 oui:md:w-6 oui:md:h-6 oui:disabled:opacity-40 oui:disabled:cursor-default"
                 aria-label="Cerrar"
                 type="button"
               >
-                <IconCloseRadius aria-hidden="true" className="w-full h-full" />
+                <IconCloseRadius aria-hidden="true" className="oui:w-full oui:h-full" />
               </button>
             )}
             <span

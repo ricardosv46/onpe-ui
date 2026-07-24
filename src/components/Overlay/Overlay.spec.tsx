@@ -10,22 +10,22 @@ describe("Overlay", () => {
 
   test("tiene opacity-100 cuando show es true", () => {
     const { container } = render(<Overlay show={true} />);
-    expect((container.firstChild as HTMLElement).className).toContain("opacity-100");
+    expect((container.firstChild as HTMLElement).className).toContain("oui:opacity-100");
   });
 
   test("tiene opacity-0 cuando show es false", () => {
     const { container } = render(<Overlay show={false} />);
-    expect((container.firstChild as HTMLElement).className).toContain("opacity-0");
+    expect((container.firstChild as HTMLElement).className).toContain("oui:opacity-0");
   });
 
   test("tiene pointer-events-auto cuando show es true", () => {
     const { container } = render(<Overlay show={true} />);
-    expect((container.firstChild as HTMLElement).className).toContain("pointer-events-auto");
+    expect((container.firstChild as HTMLElement).className).toContain("oui:pointer-events-auto");
   });
 
   test("tiene pointer-events-none cuando show es false", () => {
     const { container } = render(<Overlay show={false} />);
-    expect((container.firstChild as HTMLElement).className).toContain("pointer-events-none");
+    expect((container.firstChild as HTMLElement).className).toContain("oui:pointer-events-none");
   });
 
   test("llama onClick al hacer clic", () => {
@@ -37,21 +37,21 @@ describe("Overlay", () => {
 
   test("aplica la clase de color blue por defecto", () => {
     const { container } = render(<Overlay />);
-    expect((container.firstChild as HTMLElement).className).toContain("bg-onpe-blue");
+    expect((container.firstChild as HTMLElement).className).toContain("oui:bg-onpe-blue");
   });
 
   test("aplica la clase de color red cuando se especifica", () => {
     const { container } = render(<Overlay color="red" />);
-    expect((container.firstChild as HTMLElement).className).toContain("bg-onpe-red");
+    expect((container.firstChild as HTMLElement).className).toContain("oui:bg-onpe-red");
   });
 
   test("aplica la clase de color gray cuando se especifica", () => {
     const { container } = render(<Overlay color="gray" />);
-    expect((container.firstChild as HTMLElement).className).toContain("bg-onpe-gray");
+    expect((container.firstChild as HTMLElement).className).toContain("oui:bg-onpe-gray");
   });
 
   test("color primary usa la clase bg-onpe-blue", () => {
     const { container } = render(<Overlay color="primary" />);
-    expect((container.firstChild as HTMLElement).className).toContain("bg-onpe-blue");
+    expect((container.firstChild as HTMLElement).className).toContain("oui:bg-onpe-blue");
   });
 });

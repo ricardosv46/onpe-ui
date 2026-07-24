@@ -28,35 +28,35 @@ export const ModalNfc = ({
       zIndexLevel={zIndexLevel}
       isOpen={isOpen}
       onClose={onClose}
-      className={`bg-white max-w-[600px]! pt-[46px] pb-[46px] px-[30px] md:px-[50px] md:pt-[35px] md:pb-[54px]  ${className}`}
+      className={`oui:bg-white oui:max-w-[600px]! oui:pt-[46px] oui:pb-[46px] oui:px-[30px] oui:md:px-[50px] oui:md:pt-[35px] oui:md:pb-[54px]  ${className}`}
       closeButton={true}
       aria-label="¿Cómo saber si tu dispositivo móvil tiene NFC?"
     >
       <h2
-        className="text-center text-onpe-blue font-bold text-base"
+        className="oui:text-center oui:text-onpe-blue oui:font-bold oui:text-base"
         tabIndex={0}
       >
         ¿Cómo saber si tu dispositivo móvil tiene NFC?
       </h2>
 
-      <section className="flex flex-col gap-6 items-center mt-8 text-sm w-full">
+      <section className="oui:flex oui:flex-col oui:gap-6 oui:items-center oui:mt-8 oui:text-sm oui:w-full">
         {/* Android section */}
-        <div className="w-full">
-          <p className="text-sm text-justify mb-3" tabIndex={0}>
-            <span className="mr-1">1.</span>
+        <div className="oui:w-full">
+          <p className="oui:text-sm oui:text-justify oui:mb-3" tabIndex={0}>
+            <span className="oui:mr-1">1.</span>
             Celular Android
           </p>
-          <ul role="presentation" className="list-disc pl-[26px] mt-2">
+          <ul role="presentation" className="oui:list-disc oui:pl-[26px] oui:mt-2">
             <li
               role="presentation"
-              className="text-sm text-left mb-2 tracking-[0.15px]"
+              className="oui:text-sm oui:text-left oui:mb-2 oui:tracking-[0.15px]"
             >
               Desde la barra de notificaciones, simplemente deslizando hacia
               abajo desde tu pantalla y buscando el ícono del NFC.
             </li>
             <li
               role="presentation"
-              className="text-sm text-left mb-2 tracking-[0.15px]"
+              className="oui:text-sm oui:text-left oui:mb-2 oui:tracking-[0.15px]"
             >
               Otra forma es ir hacia Ajustes
               <span aria-hidden="true">{" > "}</span>Conexiones o Redes
@@ -69,15 +69,15 @@ export const ModalNfc = ({
         {iconNfc1}
 
         {/* iPhone section */}
-        <div className="w-full">
-          <p className="text-sm text-justify mb-3" tabIndex={0}>
-            <span className="mr-1">2.</span>
+        <div className="oui:w-full">
+          <p className="oui:text-sm oui:text-justify oui:mb-3" tabIndex={0}>
+            <span className="oui:mr-1">2.</span>
             Celular iPhone
           </p>
-          <ul role="presentation" className="list-disc pl-[26px] mt-2">
+          <ul role="presentation" className="oui:list-disc oui:pl-[26px] oui:mt-2">
             <li
               role="presentation"
-              className="text-sm text-left mb-2 tracking-[0.15px]"
+              className="oui:text-sm oui:text-left oui:mb-2 oui:tracking-[0.15px]"
             >
               Todos los modelos iPhone 7 en adelante ya cuentan con tecnología
               NFC activa.
@@ -89,28 +89,28 @@ export const ModalNfc = ({
 
         {/* How to use NFC */}
         <h2
-          className="text-center text-onpe-blue font-bold my-5 text-base"
+          className="oui:text-center oui:text-onpe-blue oui:font-bold oui:my-5 oui:text-base"
           tabIndex={0}
         >
           ¿Cómo usar el NFC correctamente?
         </h2>
 
-        <div className="pl-3 w-full">
+        <div className="oui:pl-3 oui:w-full">
           <ol
             role="presentation"
-            className="text-sm text-justify list-decimal list-outside"
+            className="oui:text-sm oui:text-justify oui:list-decimal oui:list-outside"
           >
-            <li role="presentation" className="mb-2">
+            <li role="presentation" className="oui:mb-2">
               Activa el NFC en tu celular.
             </li>
-            <li role="presentation" className="mb-2">
+            <li role="presentation" className="oui:mb-2">
               Busca en internet dónde está el lector NFC según tu modelo.
             </li>
-            <li role="presentation" className="mb-2">
+            <li role="presentation" className="oui:mb-2">
               Coloca tu DNIe sobre esa zona hasta que recibas la confirmación
               del sistema.
             </li>
-            <li role="presentation" className="mb-2">
+            <li role="presentation" className="oui:mb-2">
               Puedes consultar los videos &quot;Aprende cómo leer tu DNIe con
               NFC&quot;:
             </li>
@@ -118,9 +118,9 @@ export const ModalNfc = ({
         </div>
 
         {/* OS links */}
-        <div className="flex flex-row gap-5 justify-center items-center">
+        <div className="oui:flex oui:flex-row oui:gap-5 oui:justify-center oui:items-center">
           <a
-            className="text-onpe-skyblue flex flex-row gap-2.5 justify-center items-center no-underline cursor-pointer rounded-lg px-2.5 py-1.5 transition-colors duration-120 focus-visible:outline-2 focus-visible:outline-onpe-blue focus-visible:outline-offset-2"
+            className="oui:text-onpe-skyblue oui:flex oui:flex-row oui:gap-2.5 oui:justify-center oui:items-center oui:no-underline oui:cursor-pointer oui:rounded-lg oui:px-2.5 oui:py-1.5 oui:transition-colors oui:duration-120 oui:focus-visible:outline-2 oui:focus-visible:outline-onpe-blue oui:focus-visible:outline-offset-2"
             href={ANDROID_VIDEO_URL}
             target="_blank"
             rel="noopener noreferrer"
@@ -130,7 +130,7 @@ export const ModalNfc = ({
             Android
           </a>
           <a
-            className="text-onpe-skyblue flex flex-row gap-2.5 justify-center items-center no-underline cursor-pointer rounded-lg px-2.5 py-1.5 transition-colors duration-120 focus-visible:outline-2 focus-visible:outline-onpe-blue focus-visible:outline-offset-2"
+            className="oui:text-onpe-skyblue oui:flex oui:flex-row oui:gap-2.5 oui:justify-center oui:items-center oui:no-underline oui:cursor-pointer oui:rounded-lg oui:px-2.5 oui:py-1.5 oui:transition-colors oui:duration-120 oui:focus-visible:outline-2 oui:focus-visible:outline-onpe-blue oui:focus-visible:outline-offset-2"
             href={IPHONE_VIDEO_URL}
             target="_blank"
             rel="noopener noreferrer"

@@ -40,48 +40,48 @@ export const NotRecommended = ({
 
   return (
     <div
-      className="fixed z-[99]"
+      className="oui:fixed oui:z-[99]"
       style={{ bottom: getBottomValue(), right: getRightValue() }}
     >
       <div
-        className="relative h-[75px] transition-all duration-300"
+        className="oui:relative oui:h-[75px] oui:transition-all oui:duration-300"
         style={{ width: getContainerWidth() }}
       >
         {/* Warning icon */}
         {isWarningClosed ? (
           <button
             onClick={handleOpenWarning}
-            className="absolute left-0 top-0 pb-2 h-[60px] w-[60px] flex items-center justify-center bg-onpe-yellow rounded-full z-10 cursor-pointer border-none transition-transform duration-200 hover:scale-110"
+            className="oui:absolute oui:left-0 oui:top-0 oui:pb-2 oui:h-[60px] oui:w-[60px] oui:flex oui:items-center oui:justify-center oui:bg-onpe-yellow oui:rounded-full oui:z-10 oui:cursor-pointer oui:border-none oui:transition-transform oui:duration-200 oui:hover:scale-110"
             aria-label="Abrir advertencia"
             type="button"
           >
-            <IconWarningNotRecommended className="w-10 h-[35px] text-black" />
+            <IconWarningNotRecommended className="oui:w-10 oui:h-[35px] oui:text-black" />
           </button>
         ) : (
-          <div className="absolute left-0 top-0 pb-2 h-[60px] w-[60px] flex items-center justify-center bg-onpe-yellow rounded-full z-10">
-            <IconWarningNotRecommended className="w-10 h-[35px] text-black" />
+          <div className="oui:absolute oui:left-0 oui:top-0 oui:pb-2 oui:h-[60px] oui:w-[60px] oui:flex oui:items-center oui:justify-center oui:bg-onpe-yellow oui:rounded-full oui:z-10">
+            <IconWarningNotRecommended className="oui:w-10 oui:h-[35px] oui:text-black" />
           </div>
         )}
 
         {/* Message */}
         <div
           className={[
-            "absolute bg-white left-[30px] top-0 flex flex-col justify-center items-center gap-2",
-            "border-2 border-onpe-yellow rounded-[10px] h-[60px] text-sm",
-            "transition-all duration-300 overflow-hidden",
-            isWarningClosed ? "opacity-0 border-0 pointer-events-none" : "opacity-100",
+            "oui:absolute oui:bg-white oui:left-[30px] oui:top-0 oui:flex oui:flex-col oui:justify-center oui:items-center oui:gap-2",
+            "oui:border-2 oui:border-onpe-yellow oui:rounded-[10px] oui:h-[60px] oui:text-sm",
+            "oui:transition-all oui:duration-300 oui:overflow-hidden",
+            isWarningClosed ? "oui:opacity-0 oui:border-0 oui:pointer-events-none" : "oui:opacity-100",
           ].join(" ")}
           style={{ width: getMessageWidth() }}
         >
-          <div className="whitespace-nowrap pl-6">
-            <p className="font-bold text-onpe-yellow m-0">Estás usando un</p>
+          <div className="oui:whitespace-nowrap oui:pl-6">
+            <p className="oui:font-bold oui:text-onpe-yellow oui:m-0">Estás usando un</p>
             {isOpenDeviceError && (
-              <p className="m-0 text-onpe-dark-gray">
+              <p className="oui:m-0 oui:text-onpe-dark-gray">
                 sistema operativo no recomendado
               </p>
             )}
             {isOpenBrowserError && !isOpenDeviceError && (
-              <p className="m-0 text-onpe-dark-gray">navegador no recomendado</p>
+              <p className="oui:m-0 oui:text-onpe-dark-gray">navegador no recomendado</p>
             )}
           </div>
         </div>
@@ -90,11 +90,11 @@ export const NotRecommended = ({
         {!isWarningClosed && (
           <button
             onClick={handleCloseWarning}
-            className="absolute -top-2 -right-2 z-20 rounded-full cursor-pointer border-none bg-transparent p-0 transition-opacity duration-200 hover:opacity-80"
+            className="oui:absolute oui:-top-2 oui:-right-2 oui:z-20 oui:rounded-full oui:cursor-pointer oui:border-none oui:bg-transparent oui:p-0 oui:transition-opacity oui:duration-200 oui:hover:opacity-80"
             aria-label="Cerrar advertencia"
             type="button"
           >
-            <IconCloseRadius className="w-[23px] h-[23px] text-onpe-yellow bg-white rounded-full" />
+            <IconCloseRadius className="oui:w-[23px] oui:h-[23px] oui:text-onpe-yellow oui:bg-white oui:rounded-full" />
           </button>
         )}
       </div>

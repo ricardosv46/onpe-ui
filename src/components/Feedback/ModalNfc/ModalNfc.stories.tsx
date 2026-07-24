@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ModalNfc } from "./ModalNfc";
 
 const PlaceholderNfc = ({ label }: { label: string }) => (
-  <div className="w-full min-h-[80px] bg-gray-200 rounded flex items-center justify-center text-sm text-gray-500 font-medium">
+  <div className="oui:w-full oui:min-h-[80px] oui:bg-gray-200 oui:rounded oui:flex oui:items-center oui:justify-center oui:text-sm oui:text-gray-500 oui:font-medium">
     {label}
   </div>
 );
@@ -26,7 +26,7 @@ function DefaultStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Ver información NFC
       </button>

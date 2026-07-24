@@ -142,7 +142,7 @@ export const Disabled: Story = {
 // Galería de todos los colores
 export const AllColors: Story = {
   render: () => (
-    <div className="flex flex-wrap gap-4">
+    <div className="oui:flex oui:flex-wrap oui:gap-4">
       <Button color="primary" title="Primario" />
       <Button color="blue" title="Azul" />
       <Button color="skyblue" title="Skyblue" />
@@ -163,7 +163,7 @@ export const AllColors: Story = {
 // Galería de todos los tamaños
 export const AllSizes: Story = {
   render: () => (
-    <div className="flex flex-wrap items-center gap-4">
+    <div className="oui:flex oui:flex-wrap oui:items-center oui:gap-4">
       <Button color="primary" size="small" title="Pequeño" />
       <Button color="primary" size="normal" title="Normal" />
       <Button color="primary" size="large" title="Grande" />
@@ -176,7 +176,7 @@ export const WithIcon: Story = {
   args: {
     color: "primary",
     title: "Con Icono",
-    icon: <IconCheck className="w-6 h-6 text-white" />,
+    icon: <IconCheck className="oui:w-6 oui:h-6 oui:text-white" />,
   },
 };
 
@@ -184,7 +184,7 @@ export const WithIconCustomBg: Story = {
   args: {
     color: "skyblue",
     title: "Icono con fondo diferente",
-    icon: <IconHome className="w-6 h-6 text-white" />,
+    icon: <IconHome className="oui:w-6 oui:h-6 oui:text-white" />,
     colorBgIcon: "blue",
   },
 };
@@ -193,7 +193,7 @@ export const WithIconDisabled: Story = {
   args: {
     color: "primary",
     title: "Icono deshabilitado",
-    icon: <IconPhone className="w-6 h-6 text-white" />,
+    icon: <IconPhone className="oui:w-6 oui:h-6 oui:text-white" />,
     disabled: true,
   },
 };
@@ -201,12 +201,12 @@ export const WithIconDisabled: Story = {
 // Galería de iconos con distintos colores de fondo
 export const AllIconColors: Story = {
   render: () => (
-    <div className="flex flex-wrap gap-4">
-      <Button color="blue" title="Blue" icon={<IconCheck className="w-6 h-6 text-white" />} />
-      <Button color="skyblue" title="Skyblue" icon={<IconCheck className="w-6 h-6 text-white" />} />
-      <Button color="red" title="Rojo" icon={<IconCheck className="w-6 h-6 text-white" />} colorBgIcon="dark-gray" />
-      <Button color="green" title="Verde" icon={<IconCheck className="w-6 h-6 text-white" />} colorBgIcon="blue" />
-      <Button color="yellow" title="Amarillo" icon={<IconHome className="w-6 h-6 text-white" />} colorBgIcon="red" />
+    <div className="oui:flex oui:flex-wrap oui:gap-4">
+      <Button color="blue" title="Blue" icon={<IconCheck className="oui:w-6 oui:h-6 oui:text-white" />} />
+      <Button color="skyblue" title="Skyblue" icon={<IconCheck className="oui:w-6 oui:h-6 oui:text-white" />} />
+      <Button color="red" title="Rojo" icon={<IconCheck className="oui:w-6 oui:h-6 oui:text-white" />} colorBgIcon="dark-gray" />
+      <Button color="green" title="Verde" icon={<IconCheck className="oui:w-6 oui:h-6 oui:text-white" />} colorBgIcon="blue" />
+      <Button color="yellow" title="Amarillo" icon={<IconHome className="oui:w-6 oui:h-6 oui:text-white" />} colorBgIcon="red" />
     </div>
   ),
 };
@@ -222,7 +222,7 @@ export const WithHover: Story = {
 
 export const FixedWidthVsFitContent: Story = {
   render: () => (
-    <div className="flex flex-col gap-4 w-full max-w-3xl">
+    <div className="oui:flex oui:flex-col oui:gap-4 oui:w-full oui:max-w-3xl">
       <Button color="primary" title="Texto corto fijo (200px)" />
       <Button
         color="primary"
