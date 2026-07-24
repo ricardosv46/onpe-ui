@@ -6,7 +6,8 @@ Librería de componentes de interfaz de usuario para aplicaciones de la Oficina 
 ## Características
 
 - **Colores oficiales ONPE** — Paleta de colores institucional completa
-- **Tailwind CSS v4** — Framework CSS moderno, sin conflictos con proyectos existentes
+- **CSS autocontenido** — Estilos compilados en el paquete; el host solo importa un `.css`
+- **Sin choques con Tailwind del host** — Utilidades con prefijo `oui:` y **sin Preflight**
 - **TypeScript** — Tipado completo en todos los componentes e iconos
 - **Responsive** — Diseño adaptable a todos los dispositivos
 - **Accesible** — Componentes con soporte de focus trap, ARIA y navegación por teclado
@@ -28,9 +29,11 @@ npm install @votodigital-onpeui/react
 Importar los estilos **una sola vez** en el entry point de tu aplicación:
 
 ```tsx
-// main.tsx o index.tsx
+// main.tsx, index.tsx o _app.tsx (Next.js)
 import "@votodigital-onpeui/react/styles.css";
 ```
+
+**No necesitas** configurar Tailwind del host para esta librería (ni `@source`, ni replicar tokens `onpe-*` en el tema del proyecto). El CSS publicado ya trae las utilidades y colores que usan los componentes.
 
 Para componentes que usan `Portal` (Modal y derivados), agregar el elemento `#portal` en el HTML:
 
@@ -41,6 +44,40 @@ Para componentes que usan `Portal` (Modal y derivados), agregar el elemento `#po
   <div id="portal"></div>
 </body>
 ```
+
+---
+
+## Estilos aislados (`oui:`) — por qué no chocan con el host
+
+La librería usa **Tailwind CSS v4 solo en su build**. El CSS publicado:
+
+1. **Prefijo `oui:`** en todas las utilidades (`oui:flex`, `oui:bg-onpe-blue`, `oui:md:hidden`, …).  
+   Así no existen clases globales `.flex` / `.p-4` de la librería que pisen las del host.
+2. **Sin Preflight** — no resetea botones, bordes ni tipografía del proyecto consumidor.
+3. **Tokens propios** — variables CSS con prefijo (`--oui-color-onpe-blue`, etc.).
+
+| En la librería (interno) | En tu app (host) |
+|--------------------------|------------------|
+| `oui:flex`, `oui:bg-onpe-red` | `flex`, `bg-blue-500` (tu Tailwind normal) |
+| Importas `styles.css` | Tu `globals.css` / config Tailwind sigue igual |
+
+### `className` adicional desde el host
+
+Si pasas `className` a un componente de la librería y quieres usar **utilidades del CSS de ONPE UI**, debes usar el prefijo `oui:`:
+
+```tsx
+// ✅ Estilos de la librería
+<Modal className="oui:bg-white" ... />
+<IconLogoONPE className="oui:w-24 oui:h-24 oui:text-onpe-blue" />
+
+// ✅ Estilos de TU Tailwind (si el host genera esas clases)
+<div className="flex gap-4 p-4">...</div>
+
+// ❌ No aplicará estilos de ONPE UI (falta el prefijo)
+<Modal className="bg-white" ... />
+```
+
+Las props de API (`color="red"`, `size="small"`, etc.) **no** usan el prefijo: son valores de la API de React, no clases CSS.
 
 ---
 
@@ -115,7 +152,7 @@ function App() {
     <>
       <button onClick={() => setIsOpen(true)}>Abrir Modal</button>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} closeButton className="bg-white">
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} closeButton className="oui:bg-white">
         <h2>Título del Modal</h2>
         <p>Contenido del modal.</p>
       </Modal>
@@ -222,7 +259,7 @@ import { ModalLoading } from "@votodigital-onpeui/react";
 <ModalLoading
   isOpen={loading}
   message="Subiendo archivo..."
-  spinner={<div className="w-16 h-16 rounded-full border-4 border-white border-t-transparent animate-spin" />}
+  spinner={<div className="oui:w-16 oui:h-16 oui:rounded-full oui:border-4 oui:border-white oui:border-t-transparent oui:animate-spin" />}
 />
 ```
 
@@ -565,9 +602,9 @@ import {
   IconWarningNotRecommended,
 } from "@votodigital-onpeui/react/icons";
 
-<IconCheck className="w-6 h-6 text-onpe-green" />
-<IconWarning className="w-8 h-8 text-onpe-yellow" />
-<IconSpinnerDesktop className="w-12 h-12 text-white animate-spin" />
+<IconCheck className="oui:w-6 oui:h-6 oui:text-onpe-green" />
+<IconWarning className="oui:w-8 oui:h-8 oui:text-onpe-yellow" />
+<IconSpinnerDesktop className="oui:w-12 oui:h-12 oui:text-white oui:animate-spin" />
 ```
 
 ### Navegadores
@@ -580,11 +617,11 @@ import {
   IconMozilla, IconMozillaColor,
 } from "@votodigital-onpeui/react/icons";
 
-// Monocromos (color via className)
-<IconChrome className="w-6 h-6 text-onpe-blue" />
+// Monocromos (color via className de ONPE UI → prefijo oui:)
+<IconChrome className="oui:w-6 oui:h-6 oui:text-onpe-blue" />
 
 // A color (colores fijos propios del ícono)
-<IconChromeColor className="w-8 h-8" />
+<IconChromeColor className="oui:w-8 oui:h-8" />
 ```
 
 ### Sistemas Operativos
@@ -597,8 +634,8 @@ import {
   IconWindow,
 } from "@votodigital-onpeui/react/icons";
 
-<IconAndroid className="w-6 h-6 text-onpe-skyblue" />
-<IconApple className="w-6 h-6 text-onpe-skyblue" />
+<IconAndroid className="oui:w-6 oui:h-6 oui:text-onpe-skyblue" />
+<IconApple className="oui:w-6 oui:h-6 oui:text-onpe-skyblue" />
 ```
 
 ### Redes Sociales
@@ -613,8 +650,8 @@ import {
   YoutubeIcon,
 } from "@votodigital-onpeui/react/icons";
 
-<FaceBookIcon className="w-6 h-6 text-onpe-blue" />
-<YoutubeIcon className="w-6 h-6 text-onpe-red" />
+<FaceBookIcon className="oui:w-6 oui:h-6 oui:text-onpe-blue" />
+<YoutubeIcon className="oui:w-6 oui:h-6 oui:text-onpe-red" />
 ```
 
 ### ONPE
@@ -627,30 +664,33 @@ import {
   IconElectionsRegionalesYMunicipales,
 } from "@votodigital-onpeui/react/icons";
 
-<IconLogoONPE className="w-24 h-24 text-onpe-blue" />
-<IconVotoDigital className="w-16 h-16 text-onpe-skyblue" />
+<IconLogoONPE className="oui:w-24 oui:h-24 oui:text-onpe-blue" />
+<IconVotoDigital className="oui:w-16 oui:h-16 oui:text-onpe-skyblue" />
 ```
 
 ---
 
 ## Paleta de colores ONPE
 
-Los colores se acceden via clases Tailwind con el prefijo `onpe-`:
+Los colores institucionales se exponen como utilidades del CSS de la librería.  
+Como todas las utilidades llevan el prefijo de aislamiento, la forma de usarlas es `oui:` + `text-onpe-*` / `bg-onpe-*`:
 
-| Token | Clase Tailwind | Hex |
-|-------|---------------|-----|
-| Azul principal | `text-onpe-blue` / `bg-onpe-blue` | `#003770` |
-| Sky Blue | `text-onpe-skyblue` / `bg-onpe-skyblue` | `#0073cf` |
-| Sky Blue Light | `text-onpe-skyblue-light` / `bg-onpe-skyblue-light` | `#69b2e8` |
-| Light Sky Blue | `text-onpe-light-skyblue` / `bg-onpe-light-skyblue` | `#aaeff6` |
-| Amarillo | `text-onpe-yellow` / `bg-onpe-yellow` | `#ffb81c` |
-| Amarillo Light | `text-onpe-yellow-light` / `bg-onpe-yellow-light` | `#fff1d2` |
-| Verde | `text-onpe-green` / `bg-onpe-green` | `#76bd43` |
-| Rojo | `text-onpe-red` / `bg-onpe-red` | `#e3002b` |
-| Dark Gray | `text-onpe-dark-gray` / `bg-onpe-dark-gray` | `#4f4f4f` |
-| Gray | `text-onpe-gray` / `bg-onpe-gray` | `#bcbcbc` |
-| Gray Light | `text-onpe-gray-light` / `bg-onpe-gray-light` | `#bdbdbd` |
-| Gray Extra Light | `text-onpe-gray-extra-light` / `bg-onpe-gray-extra-light` | `#f2f2f2` |
+| Token | Clase (ONPE UI) | Hex |
+|-------|-----------------|-----|
+| Azul principal | `oui:text-onpe-blue` / `oui:bg-onpe-blue` | `#003770` |
+| Sky Blue | `oui:text-onpe-skyblue` / `oui:bg-onpe-skyblue` | `#0073cf` |
+| Sky Blue Light | `oui:text-onpe-skyblue-light` / `oui:bg-onpe-skyblue-light` | `#69b2e8` |
+| Light Sky Blue | `oui:text-onpe-light-skyblue` / `oui:bg-onpe-light-skyblue` | `#aaeff6` |
+| Amarillo | `oui:text-onpe-yellow` / `oui:bg-onpe-yellow` | `#ffb81c` |
+| Amarillo Light | `oui:text-onpe-yellow-light` / `oui:bg-onpe-yellow-light` | `#fff1d2` |
+| Verde | `oui:text-onpe-green` / `oui:bg-onpe-green` | `#76bd43` |
+| Rojo | `oui:text-onpe-red` / `oui:bg-onpe-red` | `#e3002b` |
+| Dark Gray | `oui:text-onpe-dark-gray` / `oui:bg-onpe-dark-gray` | `#4f4f4f` |
+| Gray | `oui:text-onpe-gray` / `oui:bg-onpe-gray` | `#bcbcbc` |
+| Gray Light | `oui:text-onpe-gray-light` / `oui:bg-onpe-gray-light` | `#bdbdbd` |
+| Gray Extra Light | `oui:text-onpe-gray-extra-light` / `oui:bg-onpe-gray-extra-light` | `#f2f2f2` |
+
+> Si tu app también usa Tailwind y define sus propios colores `onpe-*` en el tema del host, eso es independiente: no hace falta para que funcionen los componentes de esta librería.
 
 ---
 
@@ -698,15 +738,19 @@ npm run lint         # Verificar código con ESLint
 
 ### Build
 
-El build genera tres entradas en `dist/`:
+El build genera las entradas JS/TS y el CSS aislado en `dist/`:
 
 ```
 dist/
 ├── index.js / index.mjs / index.d.ts      → @votodigital-onpeui/react
 ├── components.js / components.mjs / ...   → @votodigital-onpeui/react/components
 ├── icons.js / icons.mjs / icons.d.ts      → @votodigital-onpeui/react/icons
+├── hooks.js / modal.js / ...
 └── styles.css                             → @votodigital-onpeui/react/styles.css
+                                           (utilidades con prefix oui:, sin preflight)
 ```
+
+`npm run build` ejecuta `tsup` y luego `build:css` (Tailwind CLI) para regenerar `styles.css`.
 
 ---
 

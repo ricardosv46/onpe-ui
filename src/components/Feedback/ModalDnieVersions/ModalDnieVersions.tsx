@@ -25,35 +25,35 @@ export const ModalDnieVersions = ({
       zIndexLevel={zIndexLevel}
       isOpen={isOpen}
       onClose={onClose}
-      className={`bg-white max-w-[590px]! pt-[30px] pb-[38px] md:pt-[35px] px-4 md:pb-[54px] md:px-8 ${className}`}
+      className={`oui:bg-white oui:max-w-[590px]! oui:pt-[30px] oui:pb-[38px] oui:md:pt-[35px] oui:px-4 oui:md:pb-[54px] oui:md:px-8 ${className}`}
       closeButton={true}
       aria-label="Versiones del DNI electrónico"
     >
       <h2
-        className="text-center text-onpe-blue font-bold mb-2 text-lg sm:text-xl"
+        className="oui:text-center oui:text-onpe-blue oui:font-bold oui:mb-2 oui:text-lg oui:sm:text-xl"
         tabIndex={0}
       >
-        <span className="sr-only">Versiones del DNI electrónico</span>
+        <span className="oui:sr-only">Versiones del DNI electrónico</span>
         <span aria-hidden="true">Versiones del DNIe</span>
       </h2>
 
-      <section className="flex flex-col gap-5 sm:gap-8 items-center mt-[18px] sm:mt-6 text-sm">
+      <section className="oui:flex oui:flex-col oui:gap-5 oui:sm:gap-8 oui:items-center oui:mt-[18px] oui:sm:mt-6 oui:text-sm">
         {/* DNIe versión 1 */}
-        <article className="flex flex-col sm:flex-row items-center sm:items-start gap-10 w-full">
-          <div className="w-[233px]">
-            <p className="flex-1 mb-4" tabIndex={0}>
-              <span className="font-bold">
-                <span className="sr-only">DNI electrónico versión 1</span>
+        <article className="oui:flex oui:flex-col oui:sm:flex-row oui:items-center oui:sm:items-start oui:gap-10 oui:w-full">
+          <div className="oui:w-[233px]">
+            <p className="oui:flex-1 oui:mb-4" tabIndex={0}>
+              <span className="oui:font-bold">
+                <span className="oui:sr-only">DNI electrónico versión 1</span>
                 <span aria-hidden="true">DNIe versión 1</span>
               </span>
             </p>
             <ul
               role="none"
-              className="text-sm list-disc text-justify self-start pl-8"
+              className="oui:text-sm oui:list-disc oui:text-justify oui:self-start oui:pl-8"
             >
-              <li role="none" className="mb-2">
+              <li role="none" className="oui:mb-2">
                 <p tabIndex={0}>
-                  <span className="sr-only">
+                  <span className="oui:sr-only">
                     Chip en la parte delantera del DNI electrónico.
                   </span>
                   <span aria-hidden="true">
@@ -61,9 +61,9 @@ export const ModalDnieVersions = ({
                   </span>
                 </p>
               </li>
-              <li role="none" className="mb-2">
+              <li role="none" className="oui:mb-2">
                 <p tabIndex={0}>
-                  <span className="sr-only">
+                  <span className="oui:sr-only">
                     Compatible solo con el lector del DNI electrónico en PC, Mac
                     o laptop.
                   </span>
@@ -75,27 +75,27 @@ export const ModalDnieVersions = ({
               </li>
             </ul>
           </div>
-          <div className="w-[240px] sm:w-[200px] relative flex justify-center">
+          <div className="oui:w-[240px] oui:sm:w-[200px] oui:relative oui:flex oui:justify-center">
             {iconDnie1}
           </div>
         </article>
 
         {/* DNIe versión 2 y 3 */}
-        <article className="flex flex-col sm:flex-row items-center sm:items-start gap-10 sm:gap-[52px] w-full">
-          <div className="w-[233px]">
-            <p className="flex-1 mb-4" tabIndex={0}>
-              <span className="font-bold">
-                <span className="sr-only">DNI electrónico versión 2 y 3</span>
+        <article className="oui:flex oui:flex-col oui:sm:flex-row oui:items-center oui:sm:items-start oui:gap-10 oui:sm:gap-[52px] oui:w-full">
+          <div className="oui:w-[233px]">
+            <p className="oui:flex-1 oui:mb-4" tabIndex={0}>
+              <span className="oui:font-bold">
+                <span className="oui:sr-only">DNI electrónico versión 2 y 3</span>
                 <span aria-hidden="true">DNIe versión 2 y 3</span>
               </span>
             </p>
             <ul
               role="none"
-              className="text-sm list-disc text-justify self-start pl-8"
+              className="oui:text-sm oui:list-disc oui:text-justify oui:self-start oui:pl-8"
             >
-              <li role="none" className="mb-2">
+              <li role="none" className="oui:mb-2">
                 <p tabIndex={0}>
-                  <span className="sr-only">
+                  <span className="oui:sr-only">
                     Chip en la parte posterior del DNI electrónico.
                   </span>
                   <span aria-hidden="true">
@@ -103,9 +103,9 @@ export const ModalDnieVersions = ({
                   </span>
                 </p>
               </li>
-              <li role="none" className="mb-2">
+              <li role="none" className="oui:mb-2">
                 <p tabIndex={0}>
-                  <span className="sr-only">
+                  <span className="oui:sr-only">
                     Compatibles con el lector del DNI electrónico en PC, Mac o
                     laptop y tecnología NFC (ISO 14443-B) en móviles.
                   </span>
@@ -121,7 +121,7 @@ export const ModalDnieVersions = ({
               </li>
             </ul>
           </div>
-          <div className="w-[240px] sm:w-[200px] h-[181px] relative">
+          <div className="oui:w-[240px] oui:sm:w-[200px] oui:h-[181px] oui:relative">
             {iconDnie2}
             {iconDnie3}
           </div>

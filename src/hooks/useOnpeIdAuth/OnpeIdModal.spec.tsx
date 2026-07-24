@@ -72,7 +72,7 @@ describe("OnpeIdModal", () => {
     const iframe = screen.getByTitle("Precarga ONPE ID");
     expect(iframe).toBeInTheDocument();
     expect(iframe).toHaveAttribute("src", "http://test.url");
-    expect(iframe).toHaveClass("hidden");
+    expect(iframe).toHaveClass("oui:hidden");
 
     fireEvent.load(iframe);
     expect(defaultProps.handlePreloadIframeReady).toHaveBeenCalled();

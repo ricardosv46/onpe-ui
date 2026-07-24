@@ -10,34 +10,34 @@ export type ModalType = "warning" | "success" | "question" | "info" | "none";
 
 /** Mapa de override de color a clase CSS (icono + título) */
 const colorOverrideMap: Record<string, string> = {
-  red: "text-onpe-red",
-  blue: "text-onpe-blue",
-  skyblue: "text-onpe-skyblue",
-  yellow: "text-onpe-yellow",
+  red: "oui:text-onpe-red",
+  blue: "oui:text-onpe-blue",
+  skyblue: "oui:text-onpe-skyblue",
+  yellow: "oui:text-onpe-yellow",
 };
 
 function renderIcon(type: ModalType, colorClass: string): ReactNode {
   if (type === "none") return null;
   if (type === "success") {
     return (
-      <IconCheck role="presentation" className={`w-16 h-16 ${colorClass}`} />
+      <IconCheck role="presentation" className={`oui:w-16 oui:h-16 ${colorClass}`} />
     );
   }
   if (type === "question") {
     return (
-      <IconQuestion role="presentation" className={`w-16 h-16 ${colorClass}`} />
+      <IconQuestion role="presentation" className={`oui:w-16 oui:h-16 ${colorClass}`} />
     );
   }
   if (type === "info") {
     return (
-      <IconInfo role="presentation" className={`w-16 h-16 ${colorClass}`} />
+      <IconInfo role="presentation" className={`oui:w-16 oui:h-16 ${colorClass}`} />
     );
   }
   // error | warning
   return (
     <IconWarningNotRecommended
       role="presentation"
-      className={`w-16 h-16 ${colorClass}`}
+      className={`oui:w-16 oui:h-16 ${colorClass}`}
     />
   );
 }
@@ -125,8 +125,8 @@ export const ModalConfirm = ({
   const effectiveTitle = title ?? defaultTitleByType[type] ?? "";
   // Título e ícono siempre skyblue por defecto; `color` es el único override
   const effectiveColorClass = color
-    ? (colorOverrideMap[color] ?? "text-onpe-skyblue")
-    : "text-onpe-skyblue";
+    ? (colorOverrideMap[color] ?? "oui:text-onpe-skyblue")
+    : "oui:text-onpe-skyblue";
   const effectiveButtonMode =
     buttonMode ?? (type === "question" ? "confirm" : "single");
   const isConfirmMode = effectiveButtonMode === "confirm";
@@ -159,7 +159,7 @@ export const ModalConfirm = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      className={`bg-white pt-[30px] pb-[30px] px-[30px] max-w-[719px]! ${className}`}
+      className={`oui:bg-white oui:pt-[30px] oui:pb-[30px] oui:px-[30px] oui:max-w-[719px]! ${className}`}
       closeButton={closeButton}
       closeDisabled={closeDisabled}
       zIndexLevel={zIndexLevel}
@@ -171,7 +171,7 @@ export const ModalConfirm = ({
       preventBodyScroll={preventBodyScroll}
     >
       {/* Icono */}
-      <div className="flex items-center justify-center">
+      <div className="oui:flex oui:items-center oui:justify-center">
         {renderIcon(type, effectiveColorClass)}
       </div>
 
@@ -179,7 +179,7 @@ export const ModalConfirm = ({
       <p
         id={titleId}
         className={[
-          "text-lg md:text-2xl font-semibold text-center mt-0 md:mt-4",
+          "oui:text-lg oui:md:text-2xl oui:font-semibold oui:text-center oui:mt-0 oui:md:mt-4",
           effectiveColorClass,
         ].join(" ")}
       >
@@ -191,13 +191,13 @@ export const ModalConfirm = ({
         (typeof message === "string" ? (
           <div
             id={messageId}
-            className={`mt-7 w-full text-sm md:text-lg text-black ${alignJustify ? "text-justify" : "text-center"}`}
+            className={`oui:mt-7 oui:w-full oui:text-sm oui:md:text-lg oui:text-black ${alignJustify ? "oui:text-justify" : "oui:text-center"}`}
             dangerouslySetInnerHTML={{ __html: message }}
           />
         ) : (
           <div
             id={messageId}
-            className={`mt-7 w-full text-sm md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+            className={`oui:mt-7 oui:w-full oui:text-sm oui:md:text-lg oui:max-w-full oui:text-black ${alignJustify ? "oui:text-justify" : "oui:text-center"}`}
           >
             {message}
           </div>
@@ -206,22 +206,22 @@ export const ModalConfirm = ({
         (typeof content === "string" ? (
           <div
             id={message ? undefined : messageId}
-            className={`text-sm w-full md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+            className={`oui:text-sm oui:w-full oui:md:text-lg oui:max-w-full oui:text-black ${alignJustify ? "oui:text-justify" : "oui:text-center"}`}
             dangerouslySetInnerHTML={{ __html: content }}
           />
         ) : (
           <div
             id={message ? undefined : messageId}
-            className={`text-sm w-full md:text-lg max-w-full text-black ${alignJustify ? "text-justify" : "text-center"}`}
+            className={`oui:text-sm oui:w-full oui:md:text-lg oui:max-w-full oui:text-black ${alignJustify ? "oui:text-justify" : "oui:text-center"}`}
           >
             {content}
           </div>
         ))}
 
       {/* Mobile: apilado */}
-      <div className="flex flex-col items-center justify-center w-full gap-5 mt-11 md:hidden">
+      <div className="oui:flex oui:flex-col oui:items-center oui:justify-center oui:w-full oui:gap-5 oui:mt-11 oui:md:hidden">
         <Button
-          className="w-full max-w-[200px]"
+          className="oui:w-full oui:max-w-[200px]"
           color="red"
           title={confirmLabel}
           onClick={handleConfirm}
@@ -229,7 +229,7 @@ export const ModalConfirm = ({
         />
         {showTwoButtons && (
           <Button
-            className="w-full max-w-[200px]"
+            className="oui:w-full oui:max-w-[200px]"
             color="skyblue"
             title={cancelLabel}
             onClick={handleCancel}
@@ -238,17 +238,17 @@ export const ModalConfirm = ({
       </div>
 
       {/* Desktop: fila */}
-      <div className="hidden md:flex md:flex-row items-center justify-center w-full gap-5 mt-11">
+      <div className="oui:hidden oui:md:flex oui:md:flex-row oui:items-center oui:justify-center oui:w-full oui:gap-5 oui:mt-11">
         {showTwoButtons && (
           <Button
-            className="w-[200px]"
+            className="oui:w-[200px]"
             color="skyblue"
             title={cancelLabel}
             onClick={handleCancel}
           />
         )}
         <Button
-          className="w-[200px]"
+          className="oui:w-[200px]"
           color="red"
           title={confirmLabel}
           onClick={handleConfirm}

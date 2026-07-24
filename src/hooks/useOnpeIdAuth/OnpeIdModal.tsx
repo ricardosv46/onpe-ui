@@ -35,7 +35,7 @@ export const OnpeIdModal = ({
         <iframe
           ref={preloadIframeRef}
           src={modalUrl}
-          className="hidden"
+          className="oui:hidden"
           onLoad={handlePreloadIframeReady}
           title="Precarga ONPE ID"
         />
@@ -44,7 +44,7 @@ export const OnpeIdModal = ({
       <Modal
         isOpen={isOpenModal && isOnline}
         onClose={onClose}
-        className="bg-white max-w-custom-673 p-10 relative"
+        className="oui:bg-white oui:max-w-[673px] oui:p-10 oui:relative"
         closeButton={!isOpenLaunchApp}
         closeDisabled={!isIframeLoaded}
         escapeToClose={false}
@@ -60,7 +60,7 @@ export const OnpeIdModal = ({
               handleModalIframeReady();
               setIsIframeLoaded(true);
             }}
-            className="w-full h-[410px] min-[400px]:h-[390px] md:h-[312px]"
+            className="oui:w-full oui:h-[410px] oui:min-[400px]:h-[390px] oui:md:h-[312px]"
             title="Aplicativo ONPEID para autenticación y registro"
           />
         )}

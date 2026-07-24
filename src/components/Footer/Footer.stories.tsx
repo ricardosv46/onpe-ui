@@ -89,8 +89,8 @@ export const CustomContent: Story = {
   args: {
     ...Default.args,
     children: (
-      <div className="p-8 text-center text-white bg-gray-800">
-        <h3 className="mb-4 text-xl font-bold">Footer Personalizado</h3>
+      <div className="oui:p-8 oui:text-center oui:text-white oui:bg-gray-800">
+        <h3 className="oui:mb-4 oui:text-xl oui:font-bold">Footer Personalizado</h3>
         <p>Contenido personalizado del footer</p>
       </div>
     ),

@@ -1,6 +1,13 @@
 /* CSS exclusivo para Storybook — incluye preflight para ver los componentes correctamente.
-   Este archivo NO se publica ni afecta al proyecto host. */
-@import "tailwindcss";
+   Este archivo NO se publica ni afecta al proyecto host.
+   Usa el mismo prefix(oui) que el CSS publicado. */
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme) prefix(oui);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities) prefix(oui);
+
+@source "./**/*.{js,ts,jsx,tsx}";
 
 @theme {
   --color-onpe-primary: #C8171E;

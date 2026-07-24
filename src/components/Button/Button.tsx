@@ -35,25 +35,25 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const colorClasses: Record<ButtonColor, string> = {
-  blue: "bg-onpe-blue",
-  skyblue: "bg-onpe-skyblue",
-  "skyblue-light": "bg-onpe-skyblue-light",
-  yellow: "bg-onpe-yellow",
-  "light-skyblue": "bg-onpe-light-skyblue",
-  gray: "bg-onpe-gray",
-  "gray-light": "bg-onpe-gray-light",
-  "gray-extra-light": "bg-onpe-gray-extra-light",
-  red: "bg-onpe-red",
-  "dark-gray": "bg-onpe-dark-gray",
-  green: "bg-onpe-green",
-  "yellow-light": "bg-onpe-yellow-light",
-  primary: "bg-onpe-blue",
+  blue: "oui:bg-onpe-blue",
+  skyblue: "oui:bg-onpe-skyblue",
+  "skyblue-light": "oui:bg-onpe-skyblue-light",
+  yellow: "oui:bg-onpe-yellow",
+  "light-skyblue": "oui:bg-onpe-light-skyblue",
+  gray: "oui:bg-onpe-gray",
+  "gray-light": "oui:bg-onpe-gray-light",
+  "gray-extra-light": "oui:bg-onpe-gray-extra-light",
+  red: "oui:bg-onpe-red",
+  "dark-gray": "oui:bg-onpe-dark-gray",
+  green: "oui:bg-onpe-green",
+  "yellow-light": "oui:bg-onpe-yellow-light",
+  primary: "oui:bg-onpe-blue",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  small: "min-h-10 text-sm",
-  normal: "min-h-12 text-base",
-  large: "min-h-14 text-lg",
+  small: "oui:min-h-10 oui:text-sm",
+  normal: "oui:min-h-12 oui:text-base",
+  large: "oui:min-h-14 oui:text-lg",
 };
 
 export function Button({
@@ -78,14 +78,14 @@ export function Button({
   return (
     <button
       className={[
-        "inline-flex items-center",
-        icon ? "" : "justify-center",
-        fitContent ? "w-fit min-w-0" : "w-[200px]",
-        "px-3",
-        "text-white font-semibold cursor-pointer",
-        "transition-all duration-300 ease-in-out",
-        "disabled:cursor-default disabled:bg-onpe-gray!",
-        hoverEffect ? "hover:opacity-50 disabled:hover:opacity-100" : "",
+        "oui:inline-flex oui:items-center",
+        icon ? "" : "oui:justify-center",
+        fitContent ? "oui:w-fit oui:min-w-0" : "oui:w-[200px]",
+        "oui:px-3",
+        "oui:text-white oui:font-semibold oui:cursor-pointer",
+        "oui:transition-all oui:duration-300 oui:ease-in-out",
+        "oui:disabled:cursor-default oui:disabled:bg-onpe-gray!",
+        hoverEffect ? "oui:hover:opacity-50 oui:disabled:hover:opacity-100" : "",
         colorClasses[color],
         sizeClasses[size],
         className,
@@ -98,9 +98,9 @@ export function Button({
       {icon && (
         <div
           className={[
-            "w-12 h-12 flex justify-center items-center shrink-0",
+            "oui:w-12 oui:h-12 oui:flex oui:justify-center oui:items-center oui:shrink-0",
             props.disabled
-              ? "bg-onpe-gray"
+              ? "oui:bg-onpe-gray"
               : colorClasses[colorBgIcon ?? color],
           ].join(" ")}
         >
@@ -110,13 +110,13 @@ export function Button({
 
       {srOnlyText ? (
         <>
-          <span className="sr-only">{srOnlyText}</span>
-          <span className="flex-1 text-center" aria-hidden="true">
+          <span className="oui:sr-only">{srOnlyText}</span>
+          <span className="oui:flex-1 oui:text-center" aria-hidden="true">
             {title}
           </span>
         </>
       ) : (
-        <span className="flex-1 text-center">{title}</span>
+        <span className="oui:flex-1 oui:text-center">{title}</span>
       )}
     </button>
   );

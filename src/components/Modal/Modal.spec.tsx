@@ -192,7 +192,7 @@ describe("Modal", () => {
         <Modal {...defaultProps} animated={false} onClose={onClose} />
       );
       // El primer div fixed es el backdrop
-      const backdrop = container.querySelector(".fixed.inset-0");
+      const backdrop = container.querySelector(".oui\\:fixed.oui\\:inset-0");
       expect(backdrop).toBeTruthy();
       fireEvent.click(backdrop!);
       expect(onClose).toHaveBeenCalledTimes(1);

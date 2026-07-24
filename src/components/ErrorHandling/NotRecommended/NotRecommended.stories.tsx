@@ -27,8 +27,8 @@ export const NavegadorNoRecomendado: Story = {
     right: 20,
   },
   render: (args) => (
-    <div className="relative h-64 bg-gray-50">
-      <p className="p-8 text-gray-500">Página de ejemplo con aviso flotante</p>
+    <div className="oui:relative oui:h-64 oui:bg-gray-50">
+      <p className="oui:p-8 oui:text-gray-500">Página de ejemplo con aviso flotante</p>
       <NotRecommended {...args} />
     </div>
   ),
@@ -42,8 +42,8 @@ export const SistemaNoRecomendado: Story = {
     right: 20,
   },
   render: (args) => (
-    <div className="relative h-64 bg-gray-50">
-      <p className="p-8 text-gray-500">Página de ejemplo con aviso flotante</p>
+    <div className="oui:relative oui:h-64 oui:bg-gray-50">
+      <p className="oui:p-8 oui:text-gray-500">Página de ejemplo con aviso flotante</p>
       <NotRecommended {...args} />
     </div>
   ),
@@ -57,8 +57,8 @@ export const AmbosErrores: Story = {
     right: 20,
   },
   render: (args) => (
-    <div className="relative h-64 bg-gray-50">
-      <p className="p-8 text-gray-500">Página de ejemplo con aviso flotante</p>
+    <div className="oui:relative oui:h-64 oui:bg-gray-50">
+      <p className="oui:p-8 oui:text-gray-500">Página de ejemplo con aviso flotante</p>
       <NotRecommended {...args} />
     </div>
   ),

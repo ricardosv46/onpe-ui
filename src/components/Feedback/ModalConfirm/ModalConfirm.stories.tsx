@@ -34,7 +34,7 @@ function DefaultStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Abrir confirmación
       </button>
@@ -56,7 +56,7 @@ function AdvertenciaStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-red text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-red oui:text-white oui:rounded oui:cursor-pointer"
       >
         Abrir advertencia
       </button>
@@ -81,7 +81,7 @@ function ExitoStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Abrir éxito
       </button>
@@ -104,7 +104,7 @@ function UnSoloBotonStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Abrir (un botón)
       </button>
@@ -126,7 +126,7 @@ function ConfirmarStory() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-onpe-blue text-white rounded cursor-pointer"
+        className="oui:px-4 oui:py-2 oui:bg-onpe-blue oui:text-white oui:rounded oui:cursor-pointer"
       >
         Abrir Sí/No
       </button>
@@ -181,19 +181,19 @@ function ColoresStory() {
   const [color, setColor] = useState<"red" | "blue" | "skyblue" | "yellow">("blue");
   const [isOpen, setIsOpen] = useState(false);
   const colores: Array<{ value: "red" | "blue" | "skyblue" | "yellow"; label: string; bg: string }> = [
-    { value: "blue", label: "Azul", bg: "bg-onpe-blue" },
-    { value: "red", label: "Rojo", bg: "bg-onpe-red" },
-    { value: "skyblue", label: "Celeste", bg: "bg-onpe-skyblue" },
-    { value: "yellow", label: "Amarillo", bg: "bg-onpe-yellow" },
+    { value: "blue", label: "Azul", bg: "oui:bg-onpe-blue" },
+    { value: "red", label: "Rojo", bg: "oui:bg-onpe-red" },
+    { value: "skyblue", label: "Celeste", bg: "oui:bg-onpe-skyblue" },
+    { value: "yellow", label: "Amarillo", bg: "oui:bg-onpe-yellow" },
   ];
   return (
     <>
-      <div className="flex gap-2 flex-wrap">
+      <div className="oui:flex oui:gap-2 oui:flex-wrap">
         {colores.map((c) => (
           <button
             key={c.value}
             onClick={() => { setColor(c.value); setIsOpen(true); }}
-            className={`px-4 py-2 ${c.bg} text-white rounded cursor-pointer`}
+            className={`oui:px-4 oui:py-2 ${c.bg} oui:text-white oui:rounded oui:cursor-pointer`}
           >
             {c.label}
           </button>
