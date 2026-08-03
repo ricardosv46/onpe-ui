@@ -2,7 +2,7 @@ import { render, screen, fireEvent, act, waitFor } from "@testing-library/react"
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { Modal } from "./Modal";
 
-// Portal renderiza directamente en document.body ÿÿÿ no hace falta mockear
+// Portal renderiza directamente en document.body ï¿½ï¿½ï¿½ no hace falta mockear
 vi.mock("../Portal/Portal", () => ({
   Portal: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));

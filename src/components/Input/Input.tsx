@@ -64,7 +64,7 @@ export function Input({
           className={classNames([
             classInput,
             props.type === "password" ? "oui:pl-5 oui:pr-12" : "oui:px-5",
-            "oui:border-onpe-gray oui:outline-none oui:border oui:flex-1 oui:placeholder:normal-case",
+            "oui:border-onpe-gray oui:outline-none oui:border oui:flex-1 oui:h-12 oui:placeholder:normal-case",
           ])}
         />
 
