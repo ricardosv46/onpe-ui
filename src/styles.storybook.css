@@ -34,3 +34,12 @@
   --color-onpe-black: #000000;
   --color-onpe-white: #ffffff;
 }
+
+
+button:hover:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
