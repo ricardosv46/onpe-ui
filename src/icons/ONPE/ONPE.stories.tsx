@@ -17,16 +17,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Galeria: Story = {
   render: () => (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 p-6">
+    <div className="oui:grid oui:grid-cols-2 sm:oui:grid-cols-4 oui:gap-8 oui:p-6">
       {[
-        { icon: <IconElectionsGeneral className="w-16 h-16 text-onpe-blue" />, name: "IconElectionsGeneral" },
-        { icon: <IconElectionsRegionalesYMunicipales className="w-16 h-16 text-onpe-blue" />, name: "IconElectionsRegionalesYMunicipales" },
-        { icon: <IconLogoONPE className="w-16 h-16 text-onpe-blue" />, name: "IconLogoONPE" },
-        { icon: <IconVotoDigital className="w-16 h-16 text-onpe-blue" />, name: "IconVotoDigital" },
+        { icon: <IconElectionsGeneral className="oui:w-16 oui:h-16 oui:text-onpe-blue" />, name: "IconElectionsGeneral" },
+        { icon: <IconElectionsRegionalesYMunicipales className="oui:w-16 oui:h-16 oui:text-onpe-blue" />, name: "IconElectionsRegionalesYMunicipales" },
+        { icon: <IconLogoONPE className="oui:w-16 oui:h-16 oui:text-onpe-blue" />, name: "IconLogoONPE" },
+        { icon: <IconVotoDigital className="oui:w-16 oui:h-16 oui:text-onpe-blue" />, name: "IconVotoDigital" },
       ].map(({ icon, name }) => (
-        <div key={name} className="flex flex-col items-center gap-2">
+        <div key={name} className="oui:flex oui:flex-col oui:items-center oui:gap-2">
           {icon}
-          <span className="text-xs text-gray-500 text-center">{name}</span>
+          <span className="oui:text-xs oui:text-gray-500 oui:text-center">{name}</span>
         </div>
       ))}
     </div>
@@ -35,9 +35,9 @@ export const Galeria: Story = {
 
 export const LogoONPE: Story = {
   render: () => (
-    <div className="p-8 flex flex-col items-center gap-4">
-      <IconLogoONPE className="w-32 h-32 text-onpe-blue" />
-      <p className="text-sm text-gray-500">Logo oficial ONPE</p>
+    <div className="oui:p-8 oui:flex oui:flex-col oui:items-center oui:gap-4">
+      <IconLogoONPE className="oui:w-32 oui:h-32 oui:text-onpe-blue" />
+      <p className="oui:text-sm oui:text-gray-500">Logo oficial ONPE</p>
     </div>
   ),
 };

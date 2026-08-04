@@ -21,33 +21,33 @@ type Story = StoryObj<typeof meta>;
 
 export const Galeria: Story = {
   render: () => (
-    <div className="p-6">
-      <h3 className="text-sm font-semibold text-gray-700 mb-4">Monocromos</h3>
-      <div className="grid grid-cols-4 gap-8 mb-8">
+    <div className="oui:p-6">
+      <h3 className="oui:mb-4 oui:text-sm oui:font-semibold oui:text-gray-700">Monocromos</h3>
+      <div className="oui:grid oui:grid-cols-4 oui:gap-8 oui:mb-8">
         {[
-          { icon: <IconChrome className="w-10 h-10 text-onpe-blue" />, name: "IconChrome" },
-          { icon: <IconEdge className="w-10 h-10 text-onpe-blue" />, name: "IconEdge" },
-          { icon: <IconMozilla className="w-10 h-10 text-onpe-blue" />, name: "IconMozilla" },
-          { icon: <IconSafari className="w-10 h-10 text-onpe-blue" />, name: "IconSafari" },
+          { icon: <IconChrome className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconChrome" },
+          { icon: <IconEdge className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconEdge" },
+          { icon: <IconMozilla className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconMozilla" },
+          { icon: <IconSafari className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconSafari" },
         ].map(({ icon, name }) => (
-          <div key={name} className="flex flex-col items-center gap-2">
+          <div key={name} className="oui:flex oui:flex-col oui:items-center oui:gap-2">
             {icon}
-            <span className="text-xs text-gray-500 text-center">{name}</span>
+            <span className="oui:text-xs oui:text-center oui:text-gray-500">{name}</span>
           </div>
         ))}
       </div>
 
-      <h3 className="text-sm font-semibold text-gray-700 mb-4">A color</h3>
-      <div className="grid grid-cols-4 gap-8">
+      <h3 className="oui:mb-4 oui:text-sm oui:font-semibold oui:text-gray-700">A color</h3>
+      <div className="oui:grid oui:grid-cols-4 oui:gap-8">
         {[
-          { icon: <IconChromeColor className="w-10 h-10" />, name: "IconChromeColor" },
-          { icon: <IconEdgeColor className="w-10 h-10" />, name: "IconEdgeColor" },
-          { icon: <IconMozillaColor className="w-10 h-10" />, name: "IconMozillaColor" },
-          { icon: <IconSafariColor className="w-10 h-10" />, name: "IconSafariColor" },
+          { icon: <IconChromeColor className="oui:w-10 oui:h-10" />, name: "IconChromeColor" },
+          { icon: <IconEdgeColor className="oui:w-10 oui:h-10" />, name: "IconEdgeColor" },
+          { icon: <IconMozillaColor className="oui:w-10 oui:h-10" />, name: "IconMozillaColor" },
+          { icon: <IconSafariColor className="oui:w-10 oui:h-10" />, name: "IconSafariColor" },
         ].map(({ icon, name }) => (
-          <div key={name} className="flex flex-col items-center gap-2">
+          <div key={name} className="oui:flex oui:flex-col oui:items-center oui:gap-2">
             {icon}
-            <span className="text-xs text-gray-500 text-center">{name}</span>
+            <span className="oui:text-xs oui:text-center oui:text-gray-500">{name}</span>
           </div>
         ))}
       </div>
