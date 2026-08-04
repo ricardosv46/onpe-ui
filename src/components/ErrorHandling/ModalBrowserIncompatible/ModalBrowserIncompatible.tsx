@@ -1,5 +1,5 @@
 import { Modal } from "../../Modal/Modal";
-import { IconWarning } from "../../../icons/Actions/IconWarning";
+import { IconWarning } from "../../../icons/Status/IconWarning";
 import { IconChromeColor } from "../../../icons/Browsers/IconChromeColor";
 import { IconSafariColor } from "../../../icons/Browsers/IconSafariColor";
 import { IconEdgeColor } from "../../../icons/Browsers/IconEdgeColor";

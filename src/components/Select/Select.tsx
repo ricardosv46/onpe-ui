@@ -2,7 +2,7 @@ import type { HTMLAttributes } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { IconArrowDown } from "../../icons/Actions/IconArrowDown";
-import { IconSpinnerMobile } from "../../icons/Actions/IconSpinnerMobile";
+import { IconSpinnerMobile } from "../../icons/Loading/IconSpinnerMobile";
 import { classNames } from "../../utils/classNames";
 import { useToggle } from "../../utils/useToggle";
 

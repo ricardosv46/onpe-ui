@@ -54,3 +54,21 @@ export const Galeria: Story = {
     </div>
   ),
 };
+
+
+export const MigradoDesdeVENP: Story = {
+  render: () => (
+    <div className="oui:p-6">
+      <h3 className="oui:mb-4 oui:text-sm oui:font-semibold oui:text-gray-700">Migrado desde VENP (2026-08-04)</h3>
+      <div className="oui:grid oui:grid-cols-3 sm:oui:grid-cols-5 oui:gap-8 oui:p-6">
+        {[
+        ].map(({ icon, name }) => (
+          <div key={name} className="oui:flex oui:flex-col oui:items-center oui:gap-2">
+            {icon}
+            <span className="oui:text-xs oui:text-gray-500 oui:text-center">{name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ),
+};

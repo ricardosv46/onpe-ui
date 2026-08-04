@@ -16,7 +16,7 @@ vi.mock("../../Modal/Modal", () => ({
   },
 }));
 
-vi.mock("../../../icons/Actions/IconWarning", () => ({ IconWarning: () => <svg data-testid="icon-warning" /> }));
+vi.mock("../../../icons/Status/IconWarning", () => ({ IconWarning: () => <svg data-testid="icon-warning" /> }));
 vi.mock("../../../icons/OperatingSystems/IconWindow", () => ({ IconWindow: (p: { "aria-label"?: string }) => <svg aria-label={p["aria-label"]} /> }));
 vi.mock("../../../icons/OperatingSystems/IconAndroid", () => ({ IconAndroid: (p: { "aria-label"?: string }) => <svg aria-label={p["aria-label"]} /> }));
 vi.mock("../../../icons/OperatingSystems/IconApple", () => ({ IconApple: (p: { "aria-label"?: string }) => <svg aria-label={p["aria-label"]} /> }));

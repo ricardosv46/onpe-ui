@@ -16,10 +16,10 @@ vi.mock("../../Modal/Modal", () => ({
   },
 }));
 
-vi.mock("../../../icons/Actions/IconCheck", () => ({ IconCheck: () => <svg data-testid="icon-check" /> }));
-vi.mock("../../../icons/Actions/IconQuestion", () => ({ IconQuestion: () => <svg data-testid="icon-question" /> }));
-vi.mock("../../../icons/Actions/IconInfo", () => ({ IconInfo: () => <svg data-testid="icon-info" /> }));
-vi.mock("../../../icons", () => ({ IconWarningNotRecommended: () => <svg data-testid="icon-warning" /> }));
+vi.mock("../../../icons/Status/IconCheck", () => ({ IconCheck: () => <svg data-testid="icon-check" /> }));
+vi.mock("../../../icons/Status/IconQuestion", () => ({ IconQuestion: () => <svg data-testid="icon-question" /> }));
+vi.mock("../../../icons/Status/IconInfo", () => ({ IconInfo: () => <svg data-testid="icon-info" /> }));
+vi.mock("../../../icons", () => ({ IconWarningStrong: () => <svg data-testid="icon-warning" /> }));
 
 const defaultProps = {
   isOpen: true,
