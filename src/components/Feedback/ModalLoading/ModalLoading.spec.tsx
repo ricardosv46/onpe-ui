@@ -9,10 +9,10 @@ vi.mock("../../Modal/Modal", () => ({
   },
 }));
 
-vi.mock("../../../icons/Actions/IconSpinnerDesktop", () => ({
+vi.mock("../../../icons/Loading/IconSpinnerDesktop", () => ({
   IconSpinnerDesktop: () => <svg data-testid="spinner-desktop" />,
 }));
-vi.mock("../../../icons/Actions/IconSpinnerMobile", () => ({
+vi.mock("../../../icons/Loading/IconSpinnerMobile", () => ({
   IconSpinnerMobile: () => <svg data-testid="spinner-mobile" />,
 }));
 

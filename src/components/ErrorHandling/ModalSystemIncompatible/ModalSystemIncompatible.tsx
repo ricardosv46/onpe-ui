@@ -1,5 +1,5 @@
 import { Modal } from "../../Modal/Modal";
-import { IconWarning } from "../../../icons/Actions/IconWarning";
+import { IconWarning } from "../../../icons/Status/IconWarning";
 import { IconWindow } from "../../../icons/OperatingSystems/IconWindow";
 import { IconAndroid } from "../../../icons/OperatingSystems/IconAndroid";
 import { IconApple } from "../../../icons/OperatingSystems/IconApple";

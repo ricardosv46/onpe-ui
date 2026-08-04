@@ -1,14 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { IconCheck } from "./IconCheck";
 import { IconClose } from "./IconClose";
 import { IconCloseRadius } from "./IconCloseRadius";
+import { IconRemove } from "./IconRemove";
+import { IconArrowDown } from "./IconArrowDown";
 import { IconHome } from "./IconHome";
-import { IconInfo } from "./IconInfo";
-import { IconPhone } from "./IconPhone";
-import { IconSpinnerDesktop } from "./IconSpinnerDesktop";
-import { IconSpinnerMobile } from "./IconSpinnerMobile";
-import { IconWarning } from "./IconWarning";
-import { IconWarningNotRecommended } from "./IconWarningNotRecommended";
+import { IconShowPassword } from "./IconShowPassword";
+import { IconShowPasswordSlash } from "./IconShowPasswordSlash";
+import { IconAdd } from "./IconAdd";
+import { IconAttach } from "./IconAttach";
+import { IconDelete } from "./IconDelete";
+import { IconEdit } from "./IconEdit";
+import { IconEraser } from "./IconEraser";
+import { IconHash } from "./IconHash";
+import { IconPassword } from "./IconPassword";
+import { IconResend } from "./IconResend";
+import { IconReload } from "./IconReload";
 
 const meta: Meta = {
   title: "Icons/Actions",
@@ -23,38 +29,45 @@ type Story = StoryObj<typeof meta>;
 
 export const Galeria: Story = {
   render: () => (
-    <div className="oui:grid oui:grid-cols-3 sm:oui:grid-cols-5 oui:gap-8 oui:p-6">
-      {[
-        { icon: <IconCheck className="oui:w-10 oui:h-10 oui:text-onpe-skyblue" />, name: "IconCheck" },
-        { icon: <IconClose className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconClose" },
-        { icon: <IconCloseRadius className="oui:w-10 oui:h-10 oui:text-onpe-red" />, name: "IconCloseRadius" },
-        { icon: <IconHome className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconHome" },
-        { icon: <IconInfo className="oui:w-10 oui:h-10 oui:text-onpe-skyblue" />, name: "IconInfo" },
-        { icon: <IconPhone className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconPhone" },
-        { icon: <IconSpinnerDesktop className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconSpinnerDesktop" },
-        { icon: <IconSpinnerMobile className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconSpinnerMobile" },
-        { icon: <IconWarning className="oui:w-10 oui:h-10 oui:text-onpe-skyblue" />, name: "IconWarning" },
-        { icon: <IconWarningNotRecommended className="oui:w-10 oui:h-10 oui:text-onpe-yellow" />, name: "IconWarningNotRecommended" },
-      ].map(({ icon, name }) => (
-        <div key={name} className="oui:flex oui:flex-col oui:items-center oui:gap-2">
-          {icon}
-          <span className="oui:text-xs oui:text-gray-500 oui:text-center">{name}</span>
-        </div>
-      ))}
-    </div>
-  ),
-};
-
-export const Spinner: Story = {
-  render: () => (
-    <div className="oui:flex oui:gap-8 oui:items-center oui:p-6">
-      <div className="oui:flex oui:flex-col oui:items-center oui:gap-2">
-        <IconSpinnerDesktop className="oui:w-16 oui:h-16 oui:text-onpe-blue oui:animate-spin" />
-        <span className="oui:text-xs oui:text-gray-500">Desktop (animado)</span>
+    <div className="oui:p-6">
+      <h3 className="oui:mb-4 oui:text-sm oui:font-semibold oui:text-gray-700">
+        Cerrar / Quitar (misma idea, distinto peso y estilo)
+      </h3>
+      <div className="oui:grid oui:grid-cols-3 sm:oui:grid-cols-5 oui:gap-8 oui:mb-8">
+        {[
+          { icon: <IconClose className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconClose" },
+          { icon: <IconCloseRadius className="oui:w-10 oui:h-10 oui:text-onpe-red" />, name: "IconCloseRadius" },
+          { icon: <IconRemove className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconRemove" },
+        ].map(({ icon, name }) => (
+          <div key={name} className="oui:flex oui:flex-col oui:items-center oui:gap-2">
+            {icon}
+            <span className="oui:text-xs oui:text-gray-500 oui:text-center">{name}</span>
+          </div>
+        ))}
       </div>
-      <div className="oui:flex oui:flex-col oui:items-center oui:gap-2">
-        <IconSpinnerMobile className="oui:w-16 oui:h-16 oui:text-onpe-blue oui:animate-spin" />
-        <span className="oui:text-xs oui:text-gray-500">Mobile (animado)</span>
+
+      <h3 className="oui:mb-4 oui:text-sm oui:font-semibold oui:text-gray-700">Otras acciones</h3>
+      <div className="oui:grid oui:grid-cols-3 sm:oui:grid-cols-5 oui:gap-8">
+        {[
+          { icon: <IconArrowDown className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconArrowDown" },
+          { icon: <IconHome className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconHome" },
+          { icon: <IconShowPassword className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconShowPassword" },
+          { icon: <IconShowPasswordSlash className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconShowPasswordSlash" },
+          { icon: <IconAdd className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconAdd" },
+          { icon: <IconAttach className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconAttach" },
+          { icon: <IconDelete className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconDelete" },
+          { icon: <IconEdit className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconEdit" },
+          { icon: <IconEraser className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconEraser" },
+          { icon: <IconHash className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconHash" },
+          { icon: <IconPassword className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconPassword" },
+          { icon: <IconResend className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconResend" },
+          { icon: <IconReload className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconReload" },
+        ].map(({ icon, name }) => (
+          <div key={name} className="oui:flex oui:flex-col oui:items-center oui:gap-2">
+            {icon}
+            <span className="oui:text-xs oui:text-gray-500 oui:text-center">{name}</span>
+          </div>
+        ))}
       </div>
     </div>
   ),

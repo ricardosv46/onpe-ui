@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { Input } from "./Input";
-import { IconPhone } from "../../icons/Actions/IconPhone";
+import { IconPhone } from "../../icons/Contact/IconPhone";
 
 const meta: Meta<typeof Input> = {
   title: "Components/Input",

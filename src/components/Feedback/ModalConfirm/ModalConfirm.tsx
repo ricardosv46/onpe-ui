@@ -1,10 +1,10 @@
 import { type ReactNode } from "react";
 import { Modal } from "../../Modal/Modal";
 import { Button } from "../../Button/Button";
-import { IconCheck } from "../../../icons/Actions/IconCheck";
-import { IconWarningNotRecommended } from "../../../icons";
-import { IconQuestion } from "../../../icons/Actions/IconQuestion";
-import { IconInfo } from "../../../icons/Actions/IconInfo";
+import { IconCheck } from "../../../icons/Status/IconCheck";
+import { IconWarningStrong } from "../../../icons";
+import { IconQuestion } from "../../../icons/Status/IconQuestion";
+import { IconInfo } from "../../../icons/Status/IconInfo";
 
 export type ModalType = "warning" | "success" | "question" | "info" | "none";
 
@@ -35,7 +35,7 @@ function renderIcon(type: ModalType, colorClass: string): ReactNode {
   }
   // error | warning
   return (
-    <IconWarningNotRecommended
+    <IconWarningStrong
       role="presentation"
       className={`oui:w-16 oui:h-16 ${colorClass}`}
     />

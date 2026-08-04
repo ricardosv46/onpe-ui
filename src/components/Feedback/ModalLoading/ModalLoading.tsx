@@ -1,7 +1,7 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { Modal } from "../../Modal/Modal";
-import { IconSpinnerDesktop } from "../../../icons/Actions/IconSpinnerDesktop";
-import { IconSpinnerMobile } from "../../../icons/Actions/IconSpinnerMobile";
+import { IconSpinnerDesktop } from "../../../icons/Loading/IconSpinnerDesktop";
+import { IconSpinnerMobile } from "../../../icons/Loading/IconSpinnerMobile";
 
 export interface ModalLoadingProps {
   isOpen: boolean;

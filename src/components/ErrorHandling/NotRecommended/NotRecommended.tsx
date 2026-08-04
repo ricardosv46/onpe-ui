@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IconWarningNotRecommended } from "../../../icons/Actions/IconWarningNotRecommended";
+import { IconWarningStrong } from "../../../icons/Status/IconWarningStrong";
 import { IconCloseRadius } from "../../../icons/Actions/IconCloseRadius";
 
 export interface NotRecommendedProps {
@@ -55,11 +55,11 @@ export const NotRecommended = ({
             aria-label="Abrir advertencia"
             type="button"
           >
-            <IconWarningNotRecommended className="oui:w-10 oui:h-[35px] oui:text-black" />
+            <IconWarningStrong className="oui:w-10 oui:h-[35px] oui:text-black" />
           </button>
         ) : (
           <div className="oui:absolute oui:left-0 oui:top-0 oui:pb-2 oui:h-[60px] oui:w-[60px] oui:flex oui:items-center oui:justify-center oui:bg-onpe-yellow oui:rounded-full oui:z-10">
-            <IconWarningNotRecommended className="oui:w-10 oui:h-[35px] oui:text-black" />
+            <IconWarningStrong className="oui:w-10 oui:h-[35px] oui:text-black" />
           </div>
         )}
 

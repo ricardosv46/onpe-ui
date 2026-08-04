@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 
-export const IconWarningNotRecommended = (props: SVGProps<SVGSVGElement>) => (
+export const IconWarningStrong = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="1em"
     height="1em"
@@ -16,4 +16,4 @@ export const IconWarningNotRecommended = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export default IconWarningNotRecommended;
+export default IconWarningStrong;

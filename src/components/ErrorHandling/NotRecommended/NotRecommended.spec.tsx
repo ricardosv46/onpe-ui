@@ -2,8 +2,8 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, test, expect, vi } from "vitest";
 import { NotRecommended } from "./NotRecommended";
 
-vi.mock("../../../icons/Actions/IconWarningNotRecommended", () => ({
-  IconWarningNotRecommended: () => <svg data-testid="icon-warning" />,
+vi.mock("../../../icons/Status/IconWarningStrong", () => ({
+  IconWarningStrong: () => <svg data-testid="icon-warning" />,
 }));
 vi.mock("../../../icons/Actions/IconCloseRadius", () => ({
   IconCloseRadius: () => <svg data-testid="icon-close" />,
