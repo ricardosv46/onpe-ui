@@ -56,6 +56,10 @@ const meta: Meta<typeof Button> = {
     hoverEffect: { control: "boolean" },
     disableEnterClick: { control: "boolean" },
     fitContent: { control: "boolean" },
+    iconPosition: {
+      control: { type: "select" },
+      options: ["left", "right"],
+    },
   },
 };
 
@@ -196,6 +200,34 @@ export const WithIconDisabled: Story = {
     icon: <IconPhone className="oui:w-6 oui:h-6 oui:text-white" />,
     disabled: true,
   },
+};
+
+export const WithIconRight: Story = {
+  args: {
+    color: "primary",
+    title: "Icono a la derecha",
+    icon: <IconCheck className="oui:w-6 oui:h-6 oui:text-white" />,
+    iconPosition: "right",
+  },
+};
+
+export const IconLeftVsRight: Story = {
+  render: () => (
+    <div className="oui:flex oui:flex-wrap oui:gap-4">
+      <Button
+        color="primary"
+        title="Izquierda"
+        icon={<IconCheck className="oui:w-6 oui:h-6 oui:text-white" />}
+        iconPosition="left"
+      />
+      <Button
+        color="primary"
+        title="Derecha"
+        icon={<IconCheck className="oui:w-6 oui:h-6 oui:text-white" />}
+        iconPosition="right"
+      />
+    </div>
+  ),
 };
 
 // Galería de iconos con distintos colores de fondo

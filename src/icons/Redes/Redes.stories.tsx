@@ -19,18 +19,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Galeria: Story = {
   render: () => (
-    <div className="grid grid-cols-3 sm:grid-cols-6 gap-8 p-6">
+    <div className="oui:grid oui:grid-cols-3 sm:oui:grid-cols-6 oui:gap-8 oui:p-6">
       {[
-        { icon: <FaceBookIcon className="w-10 h-10 text-onpe-blue" />, name: "FaceBookIcon" },
-        { icon: <InstagramIcon className="w-10 h-10 text-onpe-blue" />, name: "InstagramIcon" },
-        { icon: <TikTokIcon className="w-10 h-10 text-onpe-blue" />, name: "TikTokIcon" },
-        { icon: <WhatsappIcon className="w-10 h-10 text-onpe-blue" />, name: "WhatsappIcon" },
-        { icon: <XIcon className="w-10 h-10 text-onpe-blue" />, name: "XIcon" },
-        { icon: <YoutubeIcon className="w-10 h-10 text-onpe-blue" />, name: "YoutubeIcon" },
+        { icon: <FaceBookIcon className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "FaceBookIcon" },
+        { icon: <InstagramIcon className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "InstagramIcon" },
+        { icon: <TikTokIcon className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "TikTokIcon" },
+        { icon: <WhatsappIcon className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "WhatsappIcon" },
+        { icon: <XIcon className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "XIcon" },
+        { icon: <YoutubeIcon className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "YoutubeIcon" },
       ].map(({ icon, name }) => (
-        <div key={name} className="flex flex-col items-center gap-2">
+        <div key={name} className="oui:flex oui:flex-col oui:items-center oui:gap-2">
           {icon}
-          <span className="text-xs text-gray-500 text-center">{name}</span>
+          <span className="oui:text-xs oui:text-gray-500 oui:text-center">{name}</span>
         </div>
       ))}
     </div>

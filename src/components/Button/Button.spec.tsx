@@ -72,14 +72,34 @@ describe("Button", () => {
     render(<Button color="blue" title="Test" />);
     const button = screen.getByRole("button");
     expect(button.className).toContain("oui:w-[200px]");
-    expect(button.className).toContain("oui:px-3");
+    expect(screen.getByText("Test").className).toContain("oui:px-3");
   });
 
   test("fitContent ajusta el botón al contenido", () => {
     render(<Button color="blue" title="Test" fitContent />);
     const button = screen.getByRole("button");
     expect(button.className).toContain("oui:w-fit");
-    expect(button.className).toContain("oui:px-3");
+    expect(screen.getByText("Test").className).toContain("oui:px-3");
+  });
+
+  test("el icono se muestra a la izquierda por defecto", () => {
+    render(<Button color="blue" title="Test" icon={<span data-testid="icon" />} />);
+    const button = screen.getByRole("button");
+    const icon = screen.getByTestId("icon").closest("div");
+    expect(button.firstElementChild).toBe(icon);
+  });
+
+  test("iconPosition right muestra el icono al final", () => {
+    render(<Button color="blue" title="Test" icon={<span data-testid="icon" />} iconPosition="right" />);
+    const button = screen.getByRole("button");
+    const icon = screen.getByTestId("icon").closest("div");
+    expect(button.lastElementChild).toBe(icon);
+  });
+
+  test("el icono no lleva padding, queda pegado al borde del botón", () => {
+    render(<Button color="blue" title="Test" icon={<span data-testid="icon" />} />);
+    const iconContainer = screen.getByTestId("icon").closest("div");
+    expect(iconContainer?.className).not.toContain("px-");
   });
 
   test("no aplica ancho por defecto si className trae w-*", () => {

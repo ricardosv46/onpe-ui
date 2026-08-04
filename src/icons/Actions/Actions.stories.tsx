@@ -23,22 +23,22 @@ type Story = StoryObj<typeof meta>;
 
 export const Galeria: Story = {
   render: () => (
-    <div className="grid grid-cols-3 sm:grid-cols-5 gap-8 p-6">
+    <div className="oui:grid oui:grid-cols-3 sm:oui:grid-cols-5 oui:gap-8 oui:p-6">
       {[
-        { icon: <IconCheck className="w-10 h-10 text-onpe-skyblue" />, name: "IconCheck" },
-        { icon: <IconClose className="w-10 h-10 text-onpe-blue" />, name: "IconClose" },
-        { icon: <IconCloseRadius className="w-10 h-10 text-onpe-red" />, name: "IconCloseRadius" },
-        { icon: <IconHome className="w-10 h-10 text-onpe-blue" />, name: "IconHome" },
-        { icon: <IconInfo className="w-10 h-10 text-onpe-skyblue" />, name: "IconInfo" },
-        { icon: <IconPhone className="w-10 h-10 text-onpe-blue" />, name: "IconPhone" },
-        { icon: <IconSpinnerDesktop className="w-10 h-10 text-onpe-blue" />, name: "IconSpinnerDesktop" },
-        { icon: <IconSpinnerMobile className="w-10 h-10 text-onpe-blue" />, name: "IconSpinnerMobile" },
-        { icon: <IconWarning className="w-10 h-10 text-onpe-skyblue" />, name: "IconWarning" },
-        { icon: <IconWarningNotRecommended className="w-10 h-10 text-onpe-yellow" />, name: "IconWarningNotRecommended" },
+        { icon: <IconCheck className="oui:w-10 oui:h-10 oui:text-onpe-skyblue" />, name: "IconCheck" },
+        { icon: <IconClose className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconClose" },
+        { icon: <IconCloseRadius className="oui:w-10 oui:h-10 oui:text-onpe-red" />, name: "IconCloseRadius" },
+        { icon: <IconHome className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconHome" },
+        { icon: <IconInfo className="oui:w-10 oui:h-10 oui:text-onpe-skyblue" />, name: "IconInfo" },
+        { icon: <IconPhone className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconPhone" },
+        { icon: <IconSpinnerDesktop className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconSpinnerDesktop" },
+        { icon: <IconSpinnerMobile className="oui:w-10 oui:h-10 oui:text-onpe-blue" />, name: "IconSpinnerMobile" },
+        { icon: <IconWarning className="oui:w-10 oui:h-10 oui:text-onpe-skyblue" />, name: "IconWarning" },
+        { icon: <IconWarningNotRecommended className="oui:w-10 oui:h-10 oui:text-onpe-yellow" />, name: "IconWarningNotRecommended" },
       ].map(({ icon, name }) => (
-        <div key={name} className="flex flex-col items-center gap-2">
+        <div key={name} className="oui:flex oui:flex-col oui:items-center oui:gap-2">
           {icon}
-          <span className="text-xs text-gray-500 text-center">{name}</span>
+          <span className="oui:text-xs oui:text-gray-500 oui:text-center">{name}</span>
         </div>
       ))}
     </div>
@@ -47,14 +47,14 @@ export const Galeria: Story = {
 
 export const Spinner: Story = {
   render: () => (
-    <div className="flex gap-8 items-center p-6">
-      <div className="flex flex-col items-center gap-2">
-        <IconSpinnerDesktop className="w-16 h-16 text-onpe-blue animate-spin" />
-        <span className="text-xs text-gray-500">Desktop (animado)</span>
+    <div className="oui:flex oui:gap-8 oui:items-center oui:p-6">
+      <div className="oui:flex oui:flex-col oui:items-center oui:gap-2">
+        <IconSpinnerDesktop className="oui:w-16 oui:h-16 oui:text-onpe-blue oui:animate-spin" />
+        <span className="oui:text-xs oui:text-gray-500">Desktop (animado)</span>
       </div>
-      <div className="flex flex-col items-center gap-2">
-        <IconSpinnerMobile className="w-16 h-16 text-onpe-blue animate-spin" />
-        <span className="text-xs text-gray-500">Mobile (animado)</span>
+      <div className="oui:flex oui:flex-col oui:items-center oui:gap-2">
+        <IconSpinnerMobile className="oui:w-16 oui:h-16 oui:text-onpe-blue oui:animate-spin" />
+        <span className="oui:text-xs oui:text-gray-500">Mobile (animado)</span>
       </div>
     </div>
   ),

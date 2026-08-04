@@ -21,8 +21,10 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   color: ButtonColor;
   title: string;
   size?: ButtonSize;
-  /** Icono opcional que se muestra a la izquierda del texto */
+  /** Icono opcional que se muestra junto al texto */
   icon?: ReactNode;
+  /** Lado del botón en el que se muestra el icono (default: "left") */
+  iconPosition?: "left" | "right";
   /** Color de fondo del contenedor del icono. Si no se especifica, usa el mismo color del botón */
   colorBgIcon?: ButtonColor;
   /** Deshabilita el click al presionar Enter o Espacio */
@@ -65,6 +67,7 @@ export function Button({
   size = "normal",
   className = "",
   icon,
+  iconPosition = "left",
   colorBgIcon,
   disableEnterClick,
   hoverEffect = false,
@@ -78,6 +81,30 @@ export function Button({
     }
   };
 
+  const iconElement = icon && (
+    <div
+      className={[
+        "oui:w-12 oui:h-12 oui:flex oui:justify-center oui:items-center oui:shrink-0",
+        props.disabled
+          ? "oui:bg-onpe-gray"
+          : colorClasses[colorBgIcon ?? color],
+      ].join(" ")}
+    >
+      {icon}
+    </div>
+  );
+
+  const textElement = srOnlyText ? (
+    <>
+      <span className="oui:sr-only">{srOnlyText}</span>
+      <span className="oui:flex-1 oui:text-center oui:px-3" aria-hidden="true">
+        {title}
+      </span>
+    </>
+  ) : (
+    <span className="oui:flex-1 oui:text-center oui:px-3">{title}</span>
+  );
+
   return (
     <button
       className={[
@@ -85,7 +112,6 @@ export function Button({
         icon ? "" : "oui:justify-center",
         !hasWidthClass(className) &&
           (fitContent ? "oui:w-fit oui:min-w-0" : "oui:w-[200px]"),
-        "oui:px-3",
         "oui:text-white oui:font-semibold oui:cursor-pointer",
         "oui:transition-all oui:duration-300 oui:ease-in-out",
         "oui:disabled:cursor-default oui:disabled:bg-onpe-gray!",
@@ -99,29 +125,9 @@ export function Button({
       onKeyDown={disableEnterClick ? handleKeyDown : undefined}
       {...props}
     >
-      {icon && (
-        <div
-          className={[
-            "oui:w-12 oui:h-12 oui:flex oui:justify-center oui:items-center oui:shrink-0",
-            props.disabled
-              ? "oui:bg-onpe-gray"
-              : colorClasses[colorBgIcon ?? color],
-          ].join(" ")}
-        >
-          {icon}
-        </div>
-      )}
-
-      {srOnlyText ? (
-        <>
-          <span className="oui:sr-only">{srOnlyText}</span>
-          <span className="oui:flex-1 oui:text-center" aria-hidden="true">
-            {title}
-          </span>
-        </>
-      ) : (
-        <span className="oui:flex-1 oui:text-center">{title}</span>
-      )}
+      {iconPosition === "left" && iconElement}
+      {textElement}
+      {iconPosition === "right" && iconElement}
     </button>
   );
 }
