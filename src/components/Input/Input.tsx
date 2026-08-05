@@ -50,7 +50,7 @@ export function Input({
         ])}
       >
         {typeof Icon === "function" && (
-          <div className="oui:bg-onpe-blue oui:w-12 oui:h-12 oui:flex oui:justify-center oui:items-center oui:shrink-0">
+          <div className="oui:bg-onpe-blue oui:text-white oui:w-12 oui:h-12 oui:flex oui:justify-center oui:items-center oui:shrink-0">
             <Icon className="oui:w-8 oui:h-8" />
           </div>
         )}
