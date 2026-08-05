@@ -1,17 +1,9 @@
 {
   "name": "@votodigital-onpeui/react",
-  "version": "0.1.96",
+  "version": "0.2.0",
   "description": "Librería de componentes UI para proyectos ONPE",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "style": "./dist/styles.css",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
     "./components": {
       "types": "./dist/components.d.ts",
       "import": "./dist/components.mjs",
