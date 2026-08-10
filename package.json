@@ -1,6 +1,6 @@
 {
   "name": "@votodigital-onpeui/react",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Librería de componentes UI para proyectos ONPE",
   "style": "./dist/styles.css",
   "exports": {
